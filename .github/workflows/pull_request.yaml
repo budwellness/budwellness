@@ -7,8 +7,10 @@ jobs:
       - name: Get repo code
         uses: actions/checkout@v3
       - name: Install dependencies
+        working-directory: ./client
         run: npm ci
       - name: Test application
+        working-directory: ./client
         run: npm run test
   lint:
     runs-on: ubuntu-latest
@@ -17,8 +19,10 @@ jobs:
       - name: Get repo code
         uses: actions/checkout@v3
       - name: Install dependencies
+        working-directory: ./client
         run: npm ci
       - name: Lint application
+        working-directory: ./client
         run: npm run lint
   build:
     needs: lint
@@ -27,6 +31,8 @@ jobs:
       - name: Get repo code
         uses: actions/checkout@v3
       - name: Install dependencies
+        working-directory: ./client
         run: npm ci
       - name: Build application
+        working-directory: ./client
         run: npm run build
