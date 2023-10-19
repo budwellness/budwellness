@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"EditorConfig.EditorConfig",
+			"dbaeumer.vscode-eslint",
+		]
+	}
+}
