@@ -1,5 +1,5 @@
 import './App.css'
-import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson'
+import {useGetAllProductsQuery} from './store/serverResponse/fetchLocalJson'
 
 function App() {
 
