@@ -1,6 +1,12 @@
 import './App.css'
+import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson'
 
 function App() {
+
+  const {data, error} = useGetAllProductsQuery()
+
+  console.log('DATA: ', data);
+  console.log('error: ', error);
 
   return (
     <>
