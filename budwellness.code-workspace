@@ -4,7 +4,14 @@
 			"path": ".."
 		}
 	],
-	"settings": {},
+	"settings": {
+		"[javascript]": {
+			"editor.defaultFormatter":"EditorConfig.EditorConfig"
+		},
+		"[javascriptreact]": {
+			"editor.defaultFormatter":"EditorConfig.EditorConfig"
+		}
+	},
 	"extensions": {
 		"recommendations": [
 			"EditorConfig.EditorConfig",
