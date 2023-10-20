@@ -14,12 +14,7 @@ function App() {
   console.log('error: ', error);
 
   return (
-    <>
-      <Header />
-
-      <h1>Hello React App!!!</h1>
-      <p>Тут был Снежок</p>
-    </>
+    <Header />
   );
 }
 
