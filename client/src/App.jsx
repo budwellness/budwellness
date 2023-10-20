@@ -1,12 +1,14 @@
+import React from 'react'
 import './App.css'
 import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson'
 
 function App() {
+  const { data, error } = useGetAllProductsQuery()
 
-  const {data, error} = useGetAllProductsQuery()
-
-  console.log('DATA: ', data);
-  console.log('error: ', error);
+  // eslint-disable-next-line no-console
+  console.log('DATA: ', data)
+  // eslint-disable-next-line no-console
+  console.log('error: ', error)
 
   return (
     <>
