@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
 
 function Button(props) {
-  const { type, text, className, onClick } = props;
+  const {
+    type, text, className, onClick,
+  } = props;
 
   const buttonClasses = [
     styles.btn,
@@ -12,6 +14,7 @@ function Button(props) {
   ].join(' ');
 
   return (
+    // eslint-disable-next-line react/button-has-type
     <button type={type} className={buttonClasses} onClick={onClick}>
       {text}
     </button>
