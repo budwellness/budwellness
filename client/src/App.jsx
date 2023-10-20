@@ -1,5 +1,6 @@
 import './App.css'
 import {useGetAllProductsQuery} from './store/serverResponse/fetchLocalJson'
+import Header from "./components/Header/Header.jsx";
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
 
   return (
     <>
+      <Header/>
       <h1>Hello React App!!!</h1>
       <p>Тут был Снежок</p>
     </>
