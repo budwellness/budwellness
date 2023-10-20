@@ -5,7 +5,9 @@ import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson'
 function App() {
   const { data, error } = useGetAllProductsQuery()
 
+  // eslint-disable-next-line no-console
   console.log('DATA: ', data)
+  // eslint-disable-next-line no-console
   console.log('error: ', error)
 
   return (
