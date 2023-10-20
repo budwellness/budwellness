@@ -1,28 +1,22 @@
 import React from 'react';
 
+// import styles from './Nav.module.scss';
 
-import styles from "./Nav.module.scss"
-import {Link} from "react-router-dom";
-
-const Nav = () => {
+function Nav() {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to={"/"}>Home</Link>
-        </li>
-        <li>
-          <Link to={"/"}>Shop</Link>
-        </li>
-        <li>
-          <Link to={"/"}>News</Link>
-        </li>
-        <li>
-          <Link to={"/"}>Pages</Link>
-        </li>
-      </ul>
+      <div className="menu__content">
+        <div className="menu__header">header</div>
+        <ul>
+          <li>home</li>
+          <li>test</li>
+          <li>tha</li>
+          <li>sad</li>
+        </ul>
+      </div>
+
     </nav>
   );
-};
+}
 
 export default Nav;

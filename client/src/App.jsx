@@ -1,23 +1,26 @@
-import React from 'react'
-import './App.css'
-import {useGetAllProductsQuery} from './store/serverResponse/fetchLocalJson'
-import Header from "./components/Header/Header.jsx";
+import React from 'react';
+
+import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
+
+import './App.css';
+import Header from './components/Header/Header';
 
 function App() {
-  const { data, error } = useGetAllProductsQuery()
+  const { data, error } = useGetAllProductsQuery();
 
   // eslint-disable-next-line no-console
-  console.log('DATA: ', data)
+  console.log('DATA: ', data);
   // eslint-disable-next-line no-console
-  console.log('error: ', error)
+  console.log('error: ', error);
 
   return (
     <>
-      <Header/>
+      <Header />
+
       <h1>Hello React App!!!</h1>
       <p>Тут был Снежок</p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
