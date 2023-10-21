@@ -1,9 +1,9 @@
 import React from 'react';
+import Header from './components/Header/Header';
 
 import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.css';
-import Header from './components/Header/Header';
 
 function App() {
   const { data, error } = useGetAllProductsQuery();
