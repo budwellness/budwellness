@@ -1,0 +1,16 @@
+.footer {
+  background-color: black;
+  &__main {
+    padding: 60px 0;
+    background-color: #214842;
+    &__content {
+    }
+  }
+
+  &__secondary {
+    color: aqua;
+  }
+  span {
+    color: red;
+  }
+}
