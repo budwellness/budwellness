@@ -7,7 +7,7 @@ import WishlistPage from './pages/WishlistPage/WishlistPage';
 
 import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
-import './App.css';
+import './App.scss';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
