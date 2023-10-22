@@ -13,6 +13,14 @@ export default defineConfig({
       },
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // eslint-disable-next-line quotes
+        additionalData: `@import "./src/assets/styles/variables.scss";`,
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
