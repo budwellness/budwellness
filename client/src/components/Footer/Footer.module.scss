@@ -8,7 +8,7 @@
   }
 
   &__secondary {
-    color: aqua;
+    color: map-get($colors, mainColor);
   }
   span {
     color: red;
