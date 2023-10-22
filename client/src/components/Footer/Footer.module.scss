@@ -1,0 +1,44 @@
+.footer {
+  background-color: map-get($colors, mainGreen);
+  width: 100vw;
+
+
+  @include _320 {
+    background-color: black;
+
+    @include _768 {
+      background-color: purple;
+
+      @include _1380 {
+        background-color: orangered;
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+    margin: 0 auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: 100%;
+
+    &__main {
+      padding: 60px 0;
+      ;
+
+      &__content {}
+    }
+
+    &__secondary {
+      color: map-get($colors, mainOrange);
+      background-color: map-get($colors, backgroundImageHover);
+    }
+
+    span {
+      color: red;
+    }
+  }
+
+}
+
+
