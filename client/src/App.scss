@@ -1,5 +1,4 @@
-@import './assets/styles/variables.scss';
-
 body {
-    font-family: map-get($fonts, montserrat);
+    font-family: $font-montserrat;
+    box-sizing: border-box;
   }
