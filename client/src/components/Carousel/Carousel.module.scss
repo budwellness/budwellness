@@ -1,0 +1,184 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.hero {
+  text-align: center;
+}
+
+.staticContainer {
+  @include for-size(576px) {
+    text-align: left;
+  }
+}
+
+.heroTitle {
+  color: #214842;
+}
+
+.staticText {
+  font-size: 17px;
+  color: #556260;
+  line-height: 1.5;
+  padding-bottom: 20px;
+}
+.phoneImg {
+  width: 40px;
+  height: 40px;
+  padding-bottom: 15px;
+  @include for-size(576px) {
+    padding-right: 15px;
+  }
+}
+// .contactInfo {
+// 	// display: flex;
+// 	// flex-direction: column;
+// 	// @include for-size(769px) {
+// 	// 	flex-direction: row;
+// 	// }
+// }
+
+.contactsMessage {
+  padding-top: 20px;
+  color: #556260;
+  font-size: 14px;
+}
+
+.contactInfo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @include for-size(576px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+}
+
+.phoneNumText {
+  display: flex;
+  flex-direction: column;
+}
+// .phoneInfo {
+// 	display: flex;
+// 	justify-content: center;
+// }
+
+span {
+  font-size: 14px;
+  color: #556260;
+}
+
+.linkTel {
+  font-size: 14px;
+  font-weight: 700;
+  color: #214842;
+  text-decoration: none;
+  padding-bottom: 30px;
+}
+
+.dinamicContainer {
+  // background-color: #084327;
+  background-color: #214842;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  // position: relative;
+  @include for-size(576px) {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    // justify-content: flex-start;
+  }
+  @include for-size(768px) {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+.heroImg {
+  // width: auto;
+  width: 50%;
+  height: 100%;
+  // height: 300px;
+  margin: 0 auto;
+  @include for-size(768px) {
+    width: 25%;
+  }
+}
+
+.infoProductContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.textImg {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.title,
+.info,
+.link {
+  color: white;
+}
+
+// .info {
+// 	color: white;
+//
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  // @include for-size(576px) {
+  // 	justify-content: flex-start;
+  // }
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  @include for-size(576px) {
+    justify-content: flex-start;
+  }
+}
+
+.doneImg {
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.aboutProduct {
+  font-size: 17px;
+  display: inline-block;
+  color: #efc368;
+  position: relative;
+}
+
+.aboutProduct::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: #efc368;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: transform 0.3s ease;
+
+  // content: '';
+  // width: 100%;
+  // height: 2px;
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  // transition: width 0.3s ease-in-out;
+}
+
+.aboutProduct:hover::after {
+  transform: scaleX(1);
+}
