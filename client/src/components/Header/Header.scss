@@ -1,47 +1,59 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.header {
+  border: 1px solid red;
+
+  svg {
+    width: 48px;
+    height: 45px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+    text-transform: capitalize;
+
+    display: flex;
+    align-items: center;
+  }
+  
+  @media screen and (max-width:1199.99px) {
+    width: 500px;
+  }
 }
 
-header {
-  border: 1px solid red;
-  width: 100%;
-  height: 10vh;
-  line-height: 10vh;
+.wrapp {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
 }
 
-button {
+.header_logo-title {
+  color: map-get($colors, mainGreen);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 20px
+}
+
+.accent-color {
+  color: map-get($colors, secondaryGreen)
+}
+
+.button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-ul {
-  display: inline-block;
+.header_nav-list {
+  color: map-get($colors, mainGreen);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25.5px;
 }
 
-ul li {
+.header_nav-item {
   display: inline-block;
   margin-left: 20px;
-}
-
-svg {
-  width: 30px;
-  height: 30px;
-}
-
-a {
-  text-decoration: none;
-  color: #000;
-  text-transform: capitalize;
-
-  display: flex;
-  align-items: center;
 }
 
 .toggleBtn {
@@ -50,32 +62,60 @@ a {
   width: 10px;
 }
 
-@media (max-width: 1200px) {
-  .toggleBtn {
-    display: block;
+//@media (max-width: 1200px) {
+//  .toggleBtn {
+//    display: block;
+//  }
+//  .list {
+//    display: none;
+//  }
+//  .mobile-nav {
+//    display: block;
+//    position: absolute;
+//    top: 10vh;
+//    left: 0;
+//    height: 100vh;
+//    width: 100%;
+//    background-color: #fff;
+//    box-shadow: 0 5px 10px rgba(90, 116, 148, 0.3);
+//    transition: 0.5s;
+//  }
+//  ul li,
+//  ul {
+//    display: block;
+//  }
+//}
+
+.header_user {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 15px;
+    height: 15px;
   }
-  .list {
-    display: none;
-  }
-  .mobile-nav {
-    display: block;
-    position: absolute;
-    top: 10vh;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
-    transition: 0.5s;
-  }
-  ul li,
-  ul {
-    display: block;
+}
+
+.header_user-search{
+  display: flex;
+}
+
+.header_user-serarch_button {
+
+
+  svg {
+    width: 15px;
+    height: 15px;
   }
 }
 
 
-.two {
+.test {
   display: flex;
-
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  border-radius: 50%;
 }

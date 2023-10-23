@@ -10,7 +10,7 @@ function Container({ children }) {
 }
 
 Container.defaultProps = {
-  children: null,
+  children: 'container',
 };
 
 Container.propTypes = {
