@@ -18,8 +18,9 @@ function Header() {
         <div className="wrapp">
           {/* eslint-disable-next-line react/button-has-type */}
           <button className="toggleBtn" onClick={() => setShow(!show)}>
-            {show ? <span className="fa fa-times">da</span>
-              : <span className="fa fa-bars">net</span>}
+            {show
+              ? <span className="fa fa-times" />
+              : <span className="fa fa-bars" />}
           </button>
           <Link to="/">
             <LogoIcon />
@@ -50,13 +51,13 @@ function Header() {
                 <SearchIcon />
               </button>
             </form>
-            <Link to="/login">
+            <Link to="/login" className="test">
               <LoginIcon />
             </Link>
-            <Link to="/wishlist">
+            <Link to="/wishlist" className="test">
               <WishlistIcon />
             </Link>
-            <Link to="/cart">
+            <Link to="/cart" className="test">
               <CartIcon />
             </Link>
           </div>
