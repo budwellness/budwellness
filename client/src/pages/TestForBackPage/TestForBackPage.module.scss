@@ -1,0 +1,41 @@
+.mainWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  margin: 20px 0;
+
+  .btnWrapper {
+    display: flex;
+    gap: 20px;
+
+    .wishBtn {
+      display: block;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background-color: rgb(99, 99, 99);
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+
+      .info {
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 14px;
+        height: 14px;
+        background-color: red;
+        position: absolute;
+        font-size: 12px;
+        right: -10%;
+        bottom: -10%;
+        border-radius: 50%;
+        color: white;
+      }
+    }
+  }
+}

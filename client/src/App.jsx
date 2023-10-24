@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage/HomePage';
 import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
 
-import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
+// import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';

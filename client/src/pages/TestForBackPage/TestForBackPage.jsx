@@ -1,8 +1,11 @@
 /* eslint-disable */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { loginUser, uploadSingleProduct } from '../../helpers/sendRequest';
-import { useGetAllProductsQuery } from '../../store/serverResponse/danitApi.products';
+import { useLazyGetAllProductsQuery } from '../../store/serverResponse/danitApi.products';
+import { Link } from 'react-router-dom';
+
+import styles from './TestForBackPage.module.scss'
 
 const mockProductBud = {
   enabled: true,
@@ -560,21 +563,33 @@ function TestForBackPage() {
     console.log(localStorage.getItem('token'));
   }
 
-  const getSlidesHandler = () => {
 
-  }
-
-  const { data } = useGetAllProductsQuery()
+  const [getAllProducts, { data, isError, isLoading }] = useLazyGetAllProductsQuery()
 
   console.log(data);
 
   return (
-    <div>
-      <button onClick={() => loginHandler()}>Login</button>
-      {/* <button onClick={() => uploadHandler()}>Upload</button> */}
-      <button onClick={() => checkHandler()}>Check</button>
-      <button onClick={() => checkToken()}>Check TOKEN</button>
-      <button onClick={() => getSlides()}>Check TOKEN</button>
+    <div className={styles.mainWrapper}>
+      <div className=''>
+        <button onClick={() => loginHandler()}>Login</button>
+        {/* <button onClick={() => uploadHandler()}>Upload</button> */}
+        <button onClick={() => checkHandler()}>Check</button>
+        <button onClick={() => checkToken()}>Check TOKEN</button>
+        <button onClick={() => getSlides()}>Check TOKEN</button>
+        <button onClick={() => {
+          getAllProducts()
+        }}>Get All Products</button>
+      </div>
+      <div className={styles.btnWrapper}>
+        <Link className={styles.wishBtn} to={'/wishlist'}>
+          <span>W</span>
+          <span className={styles.info}>0</span>
+        </Link>
+        <Link className={styles.wishBtn} to={'/cart'}>
+          <span>C</span>
+          <span className={styles.info}>0</span>
+        </Link>
+      </div>
     </div>
   );
 }
