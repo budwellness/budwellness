@@ -6,11 +6,18 @@
 
 .hero {
   text-align: center;
+  width: 100%;
+  @include for-size(1200px) {
+    display: flex;
+  }
 }
 
 .staticContainer {
   @include for-size(576px) {
     text-align: left;
+  }
+  @include for-size(1200px) {
+    width: 50%;
   }
 }
 
@@ -80,7 +87,6 @@ span {
 }
 
 .dinamicContainer {
-  // background-color: #084327;
   background-color: #214842;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -95,17 +101,43 @@ span {
     display: flex;
     justify-content: flex-start;
   }
+  @include for-size(1200px) {
+    width: 50%;
+  }
 }
 
+// .imgWrapper {
+//   height: 350px;
+//   @include for-size(992px) {
+//     width: 45%;
+//     height: 450px;
+//   }
+//   @include for-size(1200px) {
+//     width: 25%;
+//     height: 611px;
+//   }
+// }
+
 .heroImg {
+  width: 55%;
   // width: auto;
-  width: 50%;
   height: 100%;
-  // height: 300px;
+  // height: 350px;
+  // height: auto;
   margin: 0 auto;
-  @include for-size(768px) {
-    width: 25%;
-  }
+  object-fit: cover;
+  // @include for-size(768px) {
+  //   height: 350px;
+  //   // width: 45%;
+  // }
+  // @include for-size(992px) {
+  //   // width: 53%;
+  //   height: 510px;
+  // }
+  // @include for-size(1200px) {
+  //   // width: 50%;
+  //   height: 611px;
+  // }
 }
 
 .infoProductContainer {
@@ -181,4 +213,12 @@ span {
 
 .aboutProduct:hover::after {
   transform: scaleX(1);
+}
+
+.textImgwrapper {
+  @include for-size(576px) {
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-start;
+  }
 }

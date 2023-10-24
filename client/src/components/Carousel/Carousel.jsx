@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { EffectFade, Pagination, Navigation } from 'swiper/modules';
 import Button from '../Button/Button';
 import phone from '../../assets/icons/phone-svg.svg';
 import done from '../../assets/icons/done-svg.svg';
 import styles from './Carousel.module.scss';
+
+// import 'swiper/css';
+// import 'swiper/css/effect-fade';
+// import 'swiper/css/navigation';
+// import 'swiper/css/pagination';
+
+// import './swiper.scss';
+// import './modules/pagination.scss';
+// import './modules/effect-fade.scss';
 
 function Carousel() {
   const images = [
@@ -25,7 +36,7 @@ function Carousel() {
       },
     },
     {
-      src: './images/hero02.webp',
+      src: './images/hero03.webp',
       alt: 'Image 3',
       text: {
         title: 'Northern Lights',
@@ -84,13 +95,13 @@ function Carousel() {
           {/* </div> */}
         </div>
         <div className={styles.dinamicContainer}>
-          {/* <div> */}
-          <img
-            className={styles.heroImg}
-            src={images[currentIndex].src}
-            alt={images[currentIndex].alt}
-          />
-          {/* </div> */}
+          <div className={styles.imgWrapper}>
+            <img
+              className={styles.heroImg}
+              src={images[currentIndex].src}
+              alt={images[currentIndex].alt}
+            />
+          </div>
           <div className={styles.infoProductContainer}>
             <h2 className={styles.title}>{images[currentIndex].text.title}</h2>
             <p className={styles.info}>{images[currentIndex].text.info}</p>
@@ -98,7 +109,6 @@ function Carousel() {
             <ul className={styles.list}>
               <div className={styles.link}>
                 <img className={styles.doneImg} src={done} alt="done" />
-
                 <li>Sativa-Dominant</li>
               </div>
               <div className={styles.link}>
@@ -113,8 +123,53 @@ function Carousel() {
 
             <p className={styles.aboutProduct}>About Product</p>
           </div>
+          <div className={styles.textImgwrapper}>
+            <p className={styles.textImg}>{images[currentIndex].text.num}</p>
+          </div>
 
-          <p className={styles.textImg}>{images[currentIndex].text.num}</p>
+          {/* <Swiper
+            modules={[EffectFade, Pagination]}
+            spaceBetween={50}
+            slidesPerView={1}
+            effect="fade"
+            // navigation={true}
+            pagination={{
+              clickable: true,
+            }}
+            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            {images.map((image) => (
+              <SwiperSlide key={image.src}>
+                <img
+                  className={styles.heroImg}
+                  src={image.src}
+                  alt={image.alt}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper> */}
+
+          {/* <Swiper
+            spaceBetween={30}
+            effect="fade"
+            navigation={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[EffectFade, Navigation, Pagination]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <img src="./images/hero01.webp" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="./images/hero02.webp" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="./images/hero03.webp" />
+            </SwiperSlide>
+          </Swiper> */}
         </div>
       </div>
       <div />
