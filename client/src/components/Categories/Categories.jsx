@@ -43,12 +43,10 @@ const categoryData = [
 
 function Categories() {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [setSelectedProduct] = useState(null);
   const navigate = useNavigate();
 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
-    setSelectedProduct(null);
     navigate(`/products/${categoryName}`);
   };
 
@@ -73,7 +71,7 @@ function Categories() {
               src={category.image}
               alt={category.name}
             />
-            <h2 className={styles['text-categories']}>{category.name}</h2>
+            <h4 className={styles['text-categories']}>{category.name}</h4>
           </li>
         ))}
       </ul>

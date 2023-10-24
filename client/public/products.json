@@ -523,9 +523,9 @@
     {
         "enabled": true,
         "imageUrls": [
-            "https://ca.tokyosmoke.com/cdn/shop/products/15a213589790471677f2f400e21d828a_1000x.png?v=1607101936",
-            "https://ca.tokyosmoke.com/cdn/shop/products/a73b8ebfca5a84f9b550dc238ba89206_1000x.png?v=1607101944",
-            "https://theounce.ca/wp-content/uploads/2021/03/Cans.jpg"
+            "https://ca.tokyosmoke.com/cdn/shop/products/Deepspace_1000x.png?v=1594412862",
+            "https://www.deepspace.com/content/dam/deep-space/OG_Cola_Image_1.png",
+            "https://images.dutchie.com/bda075590ceaa7d8990f961a52f0aef7?auto=format&fit=fill&fill=solid&fillColor=%23fff&ixlib=react-9.0.2&w=1446"
         ],
         "quantity": 2,
         "_id": 10,
