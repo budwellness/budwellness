@@ -15,12 +15,11 @@ import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import Button from './components/Button/Button';
 
 function App() {
-  const { data, error } = useGetAllProductsQuery();
+  // const { data, error } = useGetAllProductsQuery();
 
-  // eslint-disable-next-line no-console
-  console.log('DATA: ', data);
-  // eslint-disable-next-line no-console
-  console.log('error: ', error);
+  // console.log('DATA: ', data);
+
+  // console.log('error: ', error);
 
   return (
     <>
