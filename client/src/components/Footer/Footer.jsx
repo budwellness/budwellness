@@ -6,11 +6,11 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <container className={styles.container}>
-        <div className={styles.footer__main}>
+        <div className={styles.container__main}>
           <span>123</span>
-          <div className={styles.footer__main__content}>a</div>
+          <div className={styles.container__main__content}>a</div>
         </div>
-        <div className={styles.footer__secondary}>secondary</div>
+        <div className={styles.container__secondary}>secondary</div>
       </container>
     </footer>
   );
