@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { EffectFade, Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
 import Button from '../Button/Button';
 import phone from '../../assets/icons/phone-svg.svg';
 import done from '../../assets/icons/done-svg.svg';
 import styles from './Carousel.module.scss';
 
-// import 'swiper/css';
-// import 'swiper/css/effect-fade';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-
-// import './swiper.scss';
-// import './modules/pagination.scss';
-// import './modules/effect-fade.scss';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
 
 function Carousel() {
   const images = [
@@ -46,19 +41,19 @@ function Carousel() {
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Змінюємо індекс слайду кожні 3 секунди
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // Змінюємо індекс слайду кожні 3 секунди
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  //   }, 3000);
 
-    return () => {
-      // Очищаємо інтервал при розмонтажі компонента
-      clearInterval(interval);
-    };
-  }, []);
+  //   return () => {
+  //     // Очищаємо інтервал при розмонтажі компонента
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   return (
     <>
@@ -95,7 +90,7 @@ function Carousel() {
           {/* </div> */}
         </div>
         <div className={styles.dinamicContainer}>
-          <div className={styles.imgWrapper}>
+          {/* <div className={styles.imgWrapper}>
             <img
               className={styles.heroImg}
               src={images[currentIndex].src}
@@ -125,19 +120,20 @@ function Carousel() {
           </div>
           <div className={styles.textImgwrapper}>
             <p className={styles.textImg}>{images[currentIndex].text.num}</p>
-          </div>
+          </div> */}
 
-          {/* <Swiper
-            modules={[EffectFade, Pagination]}
-            spaceBetween={50}
+          <Swiper
+            modules={[EffectFade, Pagination, Autoplay]}
             slidesPerView={1}
-            effect="fade"
-            // navigation={true}
-            pagination={{
-              clickable: true,
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
             }}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            // pagination={{
+            //   clickable: true,
+            // }}
           >
             {images.map((image) => (
               <SwiperSlide key={image.src}>
@@ -148,28 +144,7 @@ function Carousel() {
                 />
               </SwiperSlide>
             ))}
-          </Swiper> */}
-
-          {/* <Swiper
-            spaceBetween={30}
-            effect="fade"
-            navigation={true}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[EffectFade, Navigation, Pagination]}
-            className="mySwiper"
-          >
-            <SwiperSlide>
-              <img src="./images/hero01.webp" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="./images/hero02.webp" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="./images/hero03.webp" />
-            </SwiperSlide>
-          </Swiper> */}
+          </Swiper>
         </div>
       </div>
       <div />
