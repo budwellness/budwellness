@@ -43,3 +43,31 @@
     padding-bottom: 90px;
   }
 }
+
+.linkWpapper {
+  padding-top: 30px;
+  font-size: 17px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.link {
+  color: $secondary-green;
+  position: relative;
+  padding-right: 8px;
+  text-decoration: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: $secondary-green;
+}
+
+span {
+  font-size: 17px;
+  color: $main-text-color;
+}

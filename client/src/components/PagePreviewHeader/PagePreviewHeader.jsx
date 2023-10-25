@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import styles from './PagePreviewHeader.module.scss';
 
 function PagePreviewHeader({ title, text }) {
-  //   const { title, text } = props;
   return (
     <>
       <div className={styles.wrapper}>
@@ -12,11 +11,11 @@ function PagePreviewHeader({ title, text }) {
           <p className={styles.text}>{text}</p>
         </div>
       </div>
-      <div className={styles.link}>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? 'active-link' : '')}
-        />
+      <div className={styles.linkWpapper}>
+        <NavLink to="/" className={styles.link}>
+          Home &nbsp;/
+        </NavLink>
+        <span>{title}</span>
       </div>
     </>
   );
