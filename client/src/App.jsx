@@ -13,7 +13,7 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import Button from './components/Button/Button';
-import Header from './components/Header/Header.jsx';
+import Header from './components/Header/Header';
 
 function App() {
   const { data, error } = useGetAllProductsQuery();

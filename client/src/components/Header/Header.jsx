@@ -44,10 +44,10 @@ function Header() {
             </ul>
           </nav>
           <div className="header_user">
-            <form className="header_user-search">
-              <input className="header_user-serarch_input" type="text" />
+            <form className="header_user-search-form">
+              <input className="header_user-serarch_input" type="text" placeholder="Search..."/>
               {/* eslint-disable-next-line react/button-has-type */}
-              <button className="header_user-serarch_button">
+              <button className="header_user-search_button">
                 <SearchIcon />
               </button>
             </form>
