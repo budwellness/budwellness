@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
 import Button from '../Button/Button';
@@ -15,45 +15,26 @@ function Carousel() {
     {
       src: './images/hero01.webp',
       alt: 'Image 1',
-      text: {
-        title: 'Purple Hawaiian Haze',
-        info: 'Nisl vel pretium lectus quam id leo in vitae. Pellentesque adipiscing commodo elit at imperdiet',
-        num: '01',
-      },
     },
     {
       src: './images/hero02.webp',
       alt: 'Image 2',
-      text: {
-        title: 'Sour Diesel',
-        info: 'Pellentesque adipiscing commodo elit at imperdiet. Nisl vel pretium lectus quam id leo in vitae',
-        num: '02',
-      },
     },
     {
       src: './images/hero03.webp',
       alt: 'Image 3',
-      text: {
-        title: 'Northern Lights',
-        info: 'Pellentesque adipiscing commodo elit at imperdiet. Nisl vel pretium lectus quam id leo in vitae',
-        num: '03',
-      },
     },
   ];
 
-  // const [currentIndex, setCurrentIndex] = useState(0);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     // Змінюємо індекс слайду кожні 3 секунди
-  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  //   }, 3000);
-
-  //   return () => {
-  //     // Очищаємо інтервал при розмонтажі компонента
-  //     clearInterval(interval);
-  //   };
-  // }, []);
+  const pagination = {
+    clickable: true,
+    bulletClass: styles.singleBullet,
+    bulletActiveClass: styles.activeBullet,
+    renderBullet(index, className) {
+      return `<span class="${className}">0${index + 1}</span>`;
+    },
+    // type: 'bullets',
+  };
 
   return (
     <>
@@ -61,10 +42,10 @@ function Carousel() {
         <div className={styles.staticContainer}>
           <h1 className={styles.heroTitle}>Highest Quality Marijuana Seeds</h1>
           <p className={styles.staticText}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis
-            reprehenderit aliquid eaque eveniet! Delectus explicabo dignissimos
-            in quibusdam sunt. Magni quod distinctio blanditiis impedit maiores
-            quae dolore veniam corporis ullam!
+            “Seeds of Change” is a multifaceted exploration of the cannabis
+            industry and social justice. We’re on a mission to strengthen our
+            industry through equity, and unlock economic empowerment. We will
+            lead with, and be led by, justice for all
           </p>
           <Button
             type="button"
@@ -90,40 +71,8 @@ function Carousel() {
           {/* </div> */}
         </div>
         <div className={styles.dinamicContainer}>
-          {/* <div className={styles.imgWrapper}>
-            <img
-              className={styles.heroImg}
-              src={images[currentIndex].src}
-              alt={images[currentIndex].alt}
-            />
-          </div>
-          <div className={styles.infoProductContainer}>
-            <h2 className={styles.title}>{images[currentIndex].text.title}</h2>
-            <p className={styles.info}>{images[currentIndex].text.info}</p>
-
-            <ul className={styles.list}>
-              <div className={styles.link}>
-                <img className={styles.doneImg} src={done} alt="done" />
-                <li>Sativa-Dominant</li>
-              </div>
-              <div className={styles.link}>
-                <img className={styles.doneImg} src={done} alt="done" />
-                <li>THC 110.0-160.0mg/g</li>
-              </div>
-              <div className={styles.link}>
-                <img className={styles.doneImg} src={done} alt="done" />
-                <li>CBD 0.0-1.0mg/g</li>
-              </div>
-            </ul>
-
-            <p className={styles.aboutProduct}>About Product</p>
-          </div>
-          <div className={styles.textImgwrapper}>
-            <p className={styles.textImg}>{images[currentIndex].text.num}</p>
-          </div> */}
-
           <Swiper
-            modules={[EffectFade, Pagination, Autoplay]}
+            modules={[EffectFade, Autoplay]}
             slidesPerView={1}
             autoplay={{
               delay: 2500,
@@ -131,9 +80,7 @@ function Carousel() {
             }}
             effect="fade"
             fadeEffect={{ crossFade: true }}
-            // pagination={{
-            //   clickable: true,
-            // }}
+            // className={styles.heroImgSwiper}
           >
             {images.map((image) => (
               <SwiperSlide key={image.src}>
@@ -144,6 +91,94 @@ function Carousel() {
                 />
               </SwiperSlide>
             ))}
+          </Swiper>
+
+          <Swiper
+            modules={[EffectFade, Autoplay, Pagination]}
+            slidesPerView={1}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            pagination={pagination}
+            breakpoints={
+              {
+                // 576: {
+                //   direction: 'vertical',
+                // },
+              }
+            }
+            // className={styles.heroImgSwiper}
+          >
+            <SwiperSlide>
+              <h2 className={styles.title}>Purple Hawaiian Haze</h2>
+              <p className={styles.info}>
+                This sweet strain will infuses you with an invigorating euphoria
+                perfect for outdoor activities and social gatherings
+              </p>
+              <ul className={styles.list}>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>Sativa-Dominant</li>
+                </div>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>THC 110.0-160.0mg/g</li>
+                </div>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>CBD 0.0-1.0mg/g</li>
+                </div>
+              </ul>
+              <p className={styles.aboutProduct}>About Product</p>
+            </SwiperSlide>
+            <SwiperSlide>
+              <h2 className={styles.title}>Sour Diesel</h2>
+              <p className={styles.info}>
+                This strain features a pungent flavor profile that smells like
+                diesel. It helps to help relieve symptoms associated with
+                depression, pain, and stress
+              </p>
+              <ul className={styles.list}>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>Sativa-Dominant</li>
+                </div>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>THC 160.0-190.0mg/g</li>
+                </div>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>CBD 0.0-2.0mg/g</li>
+                </div>
+              </ul>
+              <p className={styles.aboutProduct}>About Product</p>
+            </SwiperSlide>
+            <SwiperSlide>
+              <h2 className={styles.title}>Northern Lights</h2>
+              <p className={styles.info}>
+                It relaxing muscles and easing the mind, help relieve symptoms
+                associated with depression, stress, pain and insomnia
+              </p>
+              <ul className={styles.list}>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>Indica-Dominant</li>
+                </div>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>THC 170.0-180.0mg/g</li>
+                </div>
+                <div className={styles.link}>
+                  <img className={styles.doneImg} src={done} alt="done" />
+                  <li>CBD 0.0-1.0mg/g</li>
+                </div>
+              </ul>
+              <p className={styles.aboutProduct}>About Product</p>
+            </SwiperSlide>
           </Swiper>
         </div>
       </div>

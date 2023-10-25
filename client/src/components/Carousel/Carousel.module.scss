@@ -7,15 +7,20 @@
 .hero {
   text-align: center;
   width: 100%;
+  @include for-size(576px) {
+    text-align: left;
+  }
   @include for-size(1200px) {
     display: flex;
   }
 }
 
 .staticContainer {
-  @include for-size(576px) {
-    text-align: left;
-  }
+  // position: relative;
+  // z-index: 0;
+  // @include for-size(576px) {
+  //   text-align: left;
+  // }
   @include for-size(1200px) {
     width: 50%;
   }
@@ -23,6 +28,9 @@
 
 .heroTitle {
   color: #214842;
+  font-size: 36px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 900;
 }
 
 .staticText {
@@ -51,6 +59,8 @@
   padding-top: 20px;
   color: #556260;
   font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
 }
 
 .contactInfo {
@@ -80,17 +90,20 @@ span {
 
 .linkTel {
   font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
   color: #214842;
   text-decoration: none;
-  padding-bottom: 30px;
+  padding-top: 5px;
+  padding-bottom: 80px;
 }
 
 .dinamicContainer {
   background-color: #214842;
   padding-top: 40px;
   padding-bottom: 40px;
-  // position: relative;
+  position: relative;
+  // z-index: 1;
   @include for-size(576px) {
     // display: flex;
     // flex-direction: column;
@@ -98,28 +111,20 @@ span {
     // justify-content: flex-start;
   }
   @include for-size(768px) {
-    display: flex;
-    justify-content: flex-start;
+    // display: flex;
+    // justify-content: flex-start;
   }
   @include for-size(1200px) {
     width: 50%;
   }
 }
 
-// .imgWrapper {
-//   height: 350px;
-//   @include for-size(992px) {
-//     width: 45%;
-//     height: 450px;
-//   }
-//   @include for-size(1200px) {
-//     width: 25%;
-//     height: 611px;
-//   }
+// .heroImgSwiper {
+//   position: relative;
 // }
 
 .heroImg {
-  width: 55%;
+  // width: 55%;
   max-width: 100%;
   // height: 100%;
   height: 350px;
@@ -130,14 +135,17 @@ span {
   //   height: 350px;
   //   // width: 45%;
   // }
-  // @include for-size(992px) {
-  //   // width: 53%;
-  //   height: 510px;
-  // }
-  // @include for-size(1200px) {
-  //   // width: 50%;
-  //   height: 611px;
-  // }
+  @include for-size(992px) {
+    height: 510px;
+  }
+  @include for-size(1200px) {
+    transform: translateX(-130%);
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // z-index: 1;
+    height: 550px;
+  }
 }
 
 .infoProductContainer {
@@ -157,9 +165,10 @@ span {
   color: white;
 }
 
-// .info {
-// 	color: white;
-//
+.info {
+  font-size: 17px;
+  line-height: 24px;
+}
 
 .list {
   list-style: none;
@@ -171,6 +180,7 @@ span {
 }
 
 .link {
+  font-size: 17px;
   display: flex;
   justify-content: center;
   @include for-size(576px) {
@@ -188,27 +198,20 @@ span {
   display: inline-block;
   color: #efc368;
   position: relative;
+  padding-bottom: 30px;
 }
 
 .aboutProduct::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: 22px;
   width: 100%;
   height: 2px;
   background-color: #efc368;
   transform: scaleX(0);
   transform-origin: 0 0;
   transition: transform 0.3s ease;
-
-  // content: '';
-  // width: 100%;
-  // height: 2px;
-  // position: absolute;
-  // bottom: 0;
-  // left: 0;
-  // transition: width 0.3s ease-in-out;
 }
 
 .aboutProduct:hover::after {
@@ -221,4 +224,17 @@ span {
     flex-direction: column;
     // justify-content: flex-start;
   }
+}
+
+.singleBullet {
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  padding-right: 15px;
+  transition: font-size 0.3s ease;
+}
+
+.activeBullet {
+  font-weight: 700;
+  font-size: 22px;
 }
