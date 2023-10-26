@@ -28,6 +28,7 @@ function Carousel() {
 
   const pagination = {
     clickable: true,
+    // el: styles.pagination,
     bulletClass: styles.singleBullet,
     bulletActiveClass: styles.activeBullet,
     renderBullet(index, className) {
@@ -71,6 +72,7 @@ function Carousel() {
           {/* </div> */}
         </div>
         <div className={styles.dinamicContainer}>
+          {/* <div className={styles.heroImgSwiper}> */}
           <Swiper
             modules={[EffectFade, Autoplay]}
             slidesPerView={1}
@@ -92,6 +94,7 @@ function Carousel() {
               </SwiperSlide>
             ))}
           </Swiper>
+          {/* </div> */}
 
           <Swiper
             modules={[EffectFade, Autoplay, Pagination]}
@@ -103,81 +106,85 @@ function Carousel() {
             effect="fade"
             fadeEffect={{ crossFade: true }}
             pagination={pagination}
-            breakpoints={
-              {
-                // 576: {
-                //   direction: 'vertical',
-                // },
-              }
-            }
+            breakpoints={{
+              576: {
+                // direction: 'vertical',
+              },
+            }}
             // className={styles.heroImgSwiper}
           >
             <SwiperSlide>
-              <h2 className={styles.title}>Purple Hawaiian Haze</h2>
-              <p className={styles.info}>
-                This sweet strain will infuses you with an invigorating euphoria
-                perfect for outdoor activities and social gatherings
-              </p>
-              <ul className={styles.list}>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>Sativa-Dominant</li>
-                </div>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>THC 110.0-160.0mg/g</li>
-                </div>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>CBD 0.0-1.0mg/g</li>
-                </div>
-              </ul>
-              <p className={styles.aboutProduct}>About Product</p>
+              <div className={styles.paginationWrap}>
+                <h2 className={styles.title}>Purple Hawaiian Haze</h2>
+                <p className={styles.info}>
+                  This sweet strain will infuses you with an invigorating
+                  euphoria perfect for outdoor activities and social gatherings
+                </p>
+                <ul className={styles.list}>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>Sativa-Dominant</li>
+                  </div>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>THC 110.0-160.0mg/g</li>
+                  </div>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>CBD 0.0-1.0mg/g</li>
+                  </div>
+                </ul>
+                <p className={styles.aboutProduct}>About Product</p>
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <h2 className={styles.title}>Sour Diesel</h2>
-              <p className={styles.info}>
-                This strain features a pungent flavor profile that smells like
-                diesel. It helps to help relieve symptoms associated with
-                depression, pain, and stress
-              </p>
-              <ul className={styles.list}>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>Sativa-Dominant</li>
-                </div>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>THC 160.0-190.0mg/g</li>
-                </div>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>CBD 0.0-2.0mg/g</li>
-                </div>
-              </ul>
-              <p className={styles.aboutProduct}>About Product</p>
+              <div className={styles.paginationWrap}>
+                <h2 className={styles.title}>Sour Diesel</h2>
+                <p className={styles.info}>
+                  This strain features a pungent flavor profile that smells like
+                  diesel. It helps to help relieve symptoms associated with
+                  depression, pain, and stress
+                </p>
+                <ul className={styles.list}>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>Sativa-Dominant</li>
+                  </div>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>THC 160.0-190.0mg/g</li>
+                  </div>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>CBD 0.0-2.0mg/g</li>
+                  </div>
+                </ul>
+                <p className={styles.aboutProduct}>About Product</p>
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <h2 className={styles.title}>Northern Lights</h2>
-              <p className={styles.info}>
-                It relaxing muscles and easing the mind, help relieve symptoms
-                associated with depression, stress, pain and insomnia
-              </p>
-              <ul className={styles.list}>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>Indica-Dominant</li>
-                </div>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>THC 170.0-180.0mg/g</li>
-                </div>
-                <div className={styles.link}>
-                  <img className={styles.doneImg} src={done} alt="done" />
-                  <li>CBD 0.0-1.0mg/g</li>
-                </div>
-              </ul>
-              <p className={styles.aboutProduct}>About Product</p>
+              <div className={styles.paginationWrap}>
+                <h2 className={styles.title}>Northern Lights</h2>
+                <p className={styles.info}>
+                  It relaxing muscles and easing the mind, help relieve symptoms
+                  associated with depression, stress, pain and insomnia
+                </p>
+                <ul className={styles.list}>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>Indica-Dominant</li>
+                  </div>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>THC 170.0-180.0mg/g</li>
+                  </div>
+                  <div className={styles.link}>
+                    <img className={styles.doneImg} src={done} alt="done" />
+                    <li>CBD 0.0-1.0mg/g</li>
+                  </div>
+                </ul>
+                <p className={styles.aboutProduct}>About Product</p>
+              </div>
             </SwiperSlide>
           </Swiper>
         </div>
