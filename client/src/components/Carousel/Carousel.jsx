@@ -90,8 +90,7 @@ function Carousel() {
             // onSwiper={setFirstSwiper}
             // controller={{ control: secondSwiper }}
             // controller={{ control: controlledSwiper }}
-
-            // className={styles.heroImgSwiper}
+            className={styles.heroImgSwiper}
           >
             {images.map((image) => (
               <SwiperSlide key={image.src}>
@@ -123,7 +122,7 @@ function Carousel() {
             // onSwiper={setSecondSwiper}
             // controller={{ control: firstSwiper }}
             // onSwiper={setControlledSwiper}
-            // className={styles.heroImgSwiper}
+            className={styles.heroTextSwiper}
           >
             <SwiperSlide>
               <div className={styles.paginationWrap}>
