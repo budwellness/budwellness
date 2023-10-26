@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
+import { EffectFade, Pagination, Autoplay, Controller } from 'swiper/modules';
 import Button from '../Button/Button';
 import phone from '../../assets/icons/phone-svg.svg';
 import done from '../../assets/icons/done-svg.svg';
@@ -11,6 +11,11 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
 function Carousel() {
+  // const [firstSwiper, setFirstSwiper] = useState(null);
+  // const [secondSwiper, setSecondSwiper] = useState(null);
+
+  // const [controlledSwiper, setControlledSwiper] = useState(null);
+
   const images = [
     {
       src: './images/hero01.webp',
@@ -74,7 +79,7 @@ function Carousel() {
         <div className={styles.dinamicContainer}>
           {/* <div className={styles.heroImgSwiper}> */}
           <Swiper
-            modules={[EffectFade, Autoplay]}
+            modules={[EffectFade, Autoplay, Controller]}
             slidesPerView={1}
             autoplay={{
               delay: 2500,
@@ -82,6 +87,10 @@ function Carousel() {
             }}
             effect="fade"
             fadeEffect={{ crossFade: true }}
+            // onSwiper={setFirstSwiper}
+            // controller={{ control: secondSwiper }}
+            // controller={{ control: controlledSwiper }}
+
             // className={styles.heroImgSwiper}
           >
             {images.map((image) => (
@@ -97,7 +106,7 @@ function Carousel() {
           {/* </div> */}
 
           <Swiper
-            modules={[EffectFade, Autoplay, Pagination]}
+            modules={[EffectFade, Autoplay, Pagination, Controller]}
             slidesPerView={1}
             autoplay={{
               delay: 2500,
@@ -111,6 +120,9 @@ function Carousel() {
                 // direction: 'vertical',
               },
             }}
+            // onSwiper={setSecondSwiper}
+            // controller={{ control: firstSwiper }}
+            // onSwiper={setControlledSwiper}
             // className={styles.heroImgSwiper}
           >
             <SwiperSlide>
