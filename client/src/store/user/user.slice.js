@@ -2,20 +2,24 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-const token = localStorage.getItem('token');
+const initialState = {
+  isUserLogin: null,
+  token: null,
+};
 
-const isUserLogin = !!token;
-
-const initialState = isUserLogin;
-
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    toggleLogin: (state) => {
-      state = !state;
+    setToken: (state, { payload: { token } }) => {
+      state.token = token;
     },
+    toggleUserLogin: (state) => {},
   },
 });
 
-export const {} = cartSlice;
+export const {
+  setToken: userSetTokenAction,
+  toggleUserLogin: userToggleUserLogin,
+} = userSlice.actions;
+export default userSlice.reducer;

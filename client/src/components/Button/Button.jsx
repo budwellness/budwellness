@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Button.module.scss';
+// eslint-disable-next-line semi
+import styles from './Button.module.scss'
 
 function Button(props) {
   const {
@@ -33,7 +34,7 @@ Button.defaultProps = {
   text: 'Our Products',
   className: 'btn',
 
-  onClick: () => {},
+  onClick: () => { },
 };
 
 export default Button;
