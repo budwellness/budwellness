@@ -18,8 +18,6 @@
 .staticContainer {
   @include for-size(1200px) {
     width: 40%;
-    position: relative;
-    z-index: -1;
   }
 }
 
@@ -101,8 +99,6 @@ span {
   background-color: #214842;
   padding-top: 40px;
   padding-bottom: 40px;
-  position: relative;
-  z-index: 1;
   @include for-size(768px) {
     display: flex;
   }
@@ -110,8 +106,8 @@ span {
     width: 60%;
     background: linear-gradient(
       to right,
-      white 15%,
-      #214842 15%,
+      white 20%,
+      #214842 20%,
       #214842 90%,
       #214842 90%
     );
@@ -123,7 +119,7 @@ span {
   max-width: 100%;
   height: 350px;
   margin: 0 auto;
-  object-fit: cover;
+  object-fit: contain;
   @include for-size(992px) {
     height: 510px;
   }

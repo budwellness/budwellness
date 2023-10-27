@@ -81,6 +81,7 @@ function Carousel() {
             {images.map((image) => (
               <SwiperSlide key={image.src}>
                 <img
+                  width={400}
                   className={styles.heroImg}
                   src={image.src}
                   alt={image.alt}
