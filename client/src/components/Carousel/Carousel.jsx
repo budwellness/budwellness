@@ -13,11 +13,6 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
 function Carousel() {
-  // const [firstSwiper, setFirstSwiper] = useState(null);
-  // const [secondSwiper, setSecondSwiper] = useState(null);
-
-  // const [controlledSwiper, setControlledSwiper] = useState(null);
-
   const images = [
     {
       src: './images/hero01.webp',
@@ -35,13 +30,11 @@ function Carousel() {
 
   const pagination = {
     clickable: true,
-    // el: styles.pagination,
     bulletClass: styles.singleBullet,
     bulletActiveClass: styles.activeBullet,
     renderBullet(index, className) {
       return `<span class="${className}">0${index + 1}</span>`;
     },
-    // type: 'bullets',
   };
 
   return (
@@ -59,10 +52,8 @@ function Carousel() {
             type="button"
             text="Our Products"
             className="orangeBtn"
-            // className="whiteBtn"
             onClick={() => {}}
           />
-          {/* <div className={styles.contactInfo}> */}
           <p className={styles.contactsMessage}>
             Our support team is available 24/7 to resolve any product issues
           </p>
@@ -76,10 +67,8 @@ function Carousel() {
               </a>
             </div>
           </div>
-          {/* </div> */}
         </div>
         <div className={styles.dinamicContainer}>
-          {/* <div className={styles.heroImgSwiper}> */}
           <Swiper
             modules={[EffectFade, Autoplay, Controller]}
             slidesPerView={1}
@@ -89,15 +78,12 @@ function Carousel() {
             }}
             effect="fade"
             fadeEffect={{ crossFade: true }}
-            // onSwiper={setFirstSwiper}
-            // controller={{ control: secondSwiper }}
-            // controller={{ control: controlledSwiper }}
-
-            // className={styles.heroImgSwiper}
+            className={styles.heroImgSwiper}
           >
             {images.map((image) => (
               <SwiperSlide key={image.src}>
                 <img
+                  width={400}
                   className={styles.heroImg}
                   src={image.src}
                   alt={image.alt}
@@ -105,7 +91,6 @@ function Carousel() {
               </SwiperSlide>
             ))}
           </Swiper>
-          {/* </div> */}
 
           <Swiper
             modules={[EffectFade, Autoplay, Pagination, Controller]}
@@ -117,15 +102,6 @@ function Carousel() {
             effect="fade"
             fadeEffect={{ crossFade: true }}
             pagination={pagination}
-            breakpoints={{
-              576: {
-                // direction: 'vertical',
-              },
-            }}
-            // onSwiper={setSecondSwiper}
-            // controller={{ control: firstSwiper }}
-            // onSwiper={setControlledSwiper}
-            // className={styles.heroImgSwiper}
           >
             <SwiperSlide>
               <div className={styles.paginationWrap}>

@@ -10,22 +10,14 @@
   @include for-size(576px) {
     text-align: left;
   }
-  // @include for-size(768px) {
-  //   text-align: center;
-  // }
   @include for-size(1200px) {
     display: flex;
   }
 }
 
 .staticContainer {
-  // position: relative;
-  // z-index: 0;
-  // @include for-size(576px) {
-  //   text-align: left;
-  // }
   @include for-size(1200px) {
-    width: 50%;
+    width: 40%;
   }
 }
 
@@ -34,6 +26,15 @@
   font-size: 36px;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 900;
+  @include for-size(768px) {
+    font-size: 40px;
+  }
+  @include for-size(992px) {
+    font-size: 56px;
+  }
+  @include for-size(1200px) {
+    max-width: 500px;
+  }
 }
 
 .staticText {
@@ -41,22 +42,25 @@
   color: #556260;
   line-height: 1.5;
   padding-bottom: 20px;
+  @include for-size(1200px) {
+    max-width: 400px;
+  }
 }
+
 .phoneImg {
   width: 40px;
   height: 40px;
   padding-bottom: 15px;
+  transition-duration: 0.5s;
   @include for-size(576px) {
     padding-right: 15px;
   }
 }
-// .contactInfo {
-// 	// display: flex;
-// 	// flex-direction: column;
-// 	// @include for-size(769px) {
-// 	// 	flex-direction: row;
-// 	// }
-// }
+
+.phoneImg:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
 .contactsMessage {
   padding-top: 20px;
@@ -81,10 +85,6 @@
   display: flex;
   flex-direction: column;
 }
-// .phoneInfo {
-// 	display: flex;
-// 	justify-content: center;
-// }
 
 span {
   font-size: 14px;
@@ -105,51 +105,31 @@ span {
   background-color: #214842;
   padding-top: 40px;
   padding-bottom: 40px;
-  position: relative;
-  // z-index: 1;
-  @include for-size(576px) {
-    // display: flex;
-    // flex-direction: column;
-    // text-align: left;
-    // justify-content: flex-start;
-  }
   @include for-size(768px) {
     display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
   }
   @include for-size(1200px) {
-    width: 50%;
+    width: 60%;
+    background: linear-gradient(
+      to right,
+      white 20%,
+      #214842 20%,
+      #214842 90%,
+      #214842 90%
+    );
+    background-size: 100% 100%;
   }
 }
 
-// .heroImgSwiper {
-//   // position: relative;
-//   @include for-size(768px) {
-//     margin-right: 20px;
-//   }
-// }
-
 .heroImg {
-  // width: 55%;
   max-width: 100%;
-  // height: 100%;
   height: 350px;
-  // height: auto;
   margin: 0 auto;
-  object-fit: cover;
-  // @include for-size(768px) {
-
-  // }
+  object-fit: contain;
   @include for-size(992px) {
     height: 510px;
   }
   @include for-size(1200px) {
-    // transform: translateX(-130%);
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // z-index: 1;
     height: 550px;
   }
 }
@@ -171,6 +151,13 @@ span {
   color: white;
 }
 
+.title {
+  font-size: 30px;
+  @include for-size(992px) {
+    font-size: 36px;
+  }
+}
+
 .info {
   font-size: 17px;
   line-height: 24px;
@@ -183,9 +170,6 @@ span {
   list-style: none;
   margin: 0;
   padding: 0;
-  // @include for-size(576px) {
-  // 	justify-content: flex-start;
-  // }
 }
 
 .link {
@@ -218,29 +202,14 @@ span {
   width: 100%;
   height: 2px;
   background-color: #efc368;
-  // transform: scaleX(0);
-  // transform-origin: 0 0;
-  // transition: transform 0.3s ease;
 }
 
-// .aboutProduct:hover::after {
-//   transform: scaleX(1);
-// }
+.aboutProduct:hover {
+  cursor: pointer;
+}
 
-// .textImgwrapper {
-//   @include for-size(576px) {
-//     display: flex;
-//     flex-direction: column;
-//     // justify-content: flex-start;
-//   }
-// }
 .paginationWrap {
   position: relative;
-  // @include for-size(576px) {
-  //   display: flex;
-  //   justify-content: center;
-  //   padding-bottom: 15px;
-  // }
 }
 
 .singleBullet {
@@ -248,20 +217,21 @@ span {
   font-size: 16px;
   color: white;
   padding-right: 15px;
-  // transition: font-size 0.3s ease;
   transition-property: font-size;
   transition-timing-function: ease;
   transition-duration: 0.3s;
+  position: relative;
   @include for-size(576px) {
     display: flex;
     justify-content: flex-end;
     padding-bottom: 20px;
-    position: relative;
     bottom: 230px;
   }
   @include for-size(768px) {
-    position: relative;
     bottom: 115px;
+  }
+  @include for-size(992px) {
+    bottom: 230px;
   }
 }
 
@@ -269,10 +239,3 @@ span {
   font-weight: 700;
   font-size: 22px;
 }
-
-// .pagination {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding-bottom: 15px;
-// }
