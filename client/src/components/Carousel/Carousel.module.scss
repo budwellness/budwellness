@@ -10,29 +10,13 @@
   @include for-size(576px) {
     text-align: left;
   }
-  // @include for-size(768px) {
-  //   text-align: center;
-  // }
   @include for-size(1200px) {
     display: flex;
-    //   background: linear-gradient(
-    //   to left,
-    //   #214842 0%,
-    //   #214842 50%,
-    //   #ffffff 50%,
-    //   #ffffff 100%
-    // );
   }
 }
 
 .staticContainer {
-  position: relative;
-  // z-index: 0;
-  // @include for-size(576px) {
-  //   text-align: left;
-  // }
   @include for-size(1200px) {
-    // width: 50%;
     width: 40%;
     position: relative;
     z-index: -1;
@@ -73,13 +57,6 @@
     padding-right: 15px;
   }
 }
-// .contactInfo {
-// 	// display: flex;
-// 	// flex-direction: column;
-// 	// @include for-size(769px) {
-// 	// 	flex-direction: row;
-// 	// }
-// }
 
 .contactsMessage {
   padding-top: 20px;
@@ -104,10 +81,6 @@
   display: flex;
   flex-direction: column;
 }
-// .phoneInfo {
-// 	display: flex;
-// 	justify-content: center;
-// }
 
 span {
   font-size: 14px;
@@ -130,27 +103,11 @@ span {
   padding-bottom: 40px;
   position: relative;
   z-index: 1;
-  @include for-size(576px) {
-    // display: flex;
-    // flex-direction: column;
-    // text-align: left;
-    // justify-content: flex-start;
-  }
   @include for-size(768px) {
     display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
   }
   @include for-size(1200px) {
-    // width: 50%;
     width: 60%;
-    // background: linear-gradient(
-    //   to right,
-    //   #214842 10%,
-    //   transparent 10%,
-    //   transparent 100%
-    // );
-    // background-size: 100% 100%;
     background: linear-gradient(
       to right,
       white 15%,
@@ -162,32 +119,15 @@ span {
   }
 }
 
-// .heroImgSwiper {
-//   // position: relative;
-//   @include for-size(768px) {
-//     margin-right: 20px;
-//   }
-// }
-
 .heroImg {
-  // width: 55%;
   max-width: 100%;
-  // height: 100%;
   height: 350px;
-  // height: auto;
   margin: 0 auto;
   object-fit: cover;
-  // @include for-size(768px) {
-
-  // }
   @include for-size(992px) {
     height: 510px;
   }
   @include for-size(1200px) {
-    // transform: translateX(-50%);
-    // position: absolute;
-    // top: 0;
-    // left: 0;
     z-index: 3;
     position: relative;
     height: 550px;
@@ -230,9 +170,6 @@ span {
   list-style: none;
   margin: 0;
   padding: 0;
-  // @include for-size(576px) {
-  // 	justify-content: flex-start;
-  // }
 }
 
 .link {
@@ -265,29 +202,10 @@ span {
   width: 100%;
   height: 2px;
   background-color: #efc368;
-  // transform: scaleX(0);
-  // transform-origin: 0 0;
-  // transition: transform 0.3s ease;
 }
 
-// .aboutProduct:hover::after {
-//   transform: scaleX(1);
-// }
-
-// .textImgwrapper {
-//   @include for-size(576px) {
-//     display: flex;
-//     flex-direction: column;
-//     // justify-content: flex-start;
-//   }
-// }
 .paginationWrap {
   position: relative;
-  // @include for-size(576px) {
-  //   display: flex;
-  //   justify-content: center;
-  //   padding-bottom: 15px;
-  // }
 }
 
 .singleBullet {
@@ -295,7 +213,6 @@ span {
   font-size: 16px;
   color: white;
   padding-right: 15px;
-  // transition: font-size 0.3s ease;
   transition-property: font-size;
   transition-timing-function: ease;
   transition-duration: 0.3s;
@@ -304,42 +221,17 @@ span {
     display: flex;
     justify-content: flex-end;
     padding-bottom: 20px;
-    // position: relative;
     bottom: 230px;
   }
   @include for-size(768px) {
-    // position: relative;
     bottom: 115px;
   }
   @include for-size(992px) {
-    // position: relative;
     bottom: 230px;
   }
-  // @include for-size(1200px) {
-  //   // position: relative;
-  //   bottom: 230px;
-  // }
 }
 
 .activeBullet {
   font-weight: 700;
   font-size: 22px;
-}
-
-// .pagination {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding-bottom: 15px;
-// }
-.heroImgSwiper {
-  // overflow: visible !important;
-  @include for-size(1200px) {
-    // position: relative;
-    z-index: 5;
-    position: relative;
-  }
-}
-
-.heroTextSwiper {
 }
