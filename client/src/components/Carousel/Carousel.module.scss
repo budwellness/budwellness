@@ -15,17 +15,25 @@
   // }
   @include for-size(1200px) {
     display: flex;
+    //   background: linear-gradient(
+    //   to left,
+    //   #214842 0%,
+    //   #214842 50%,
+    //   #ffffff 50%,
+    //   #ffffff 100%
+    // );
   }
 }
 
 .staticContainer {
-  // position: relative;
+  position: relative;
   // z-index: 0;
   // @include for-size(576px) {
   //   text-align: left;
   // }
   @include for-size(1200px) {
-    width: 50%;
+    // width: 50%;
+    width: 40%;
     position: relative;
     z-index: -1;
   }
@@ -134,7 +142,23 @@ span {
     // justify-content: space-between;
   }
   @include for-size(1200px) {
-    width: 50%;
+    // width: 50%;
+    width: 60%;
+    // background: linear-gradient(
+    //   to right,
+    //   #214842 10%,
+    //   transparent 10%,
+    //   transparent 100%
+    // );
+    // background-size: 100% 100%;
+    background: linear-gradient(
+      to right,
+      white 15%,
+      #214842 15%,
+      #214842 90%,
+      #214842 90%
+    );
+    background-size: 100% 100%;
   }
 }
 
@@ -160,7 +184,7 @@ span {
     height: 510px;
   }
   @include for-size(1200px) {
-    transform: translateX(-50%);
+    // transform: translateX(-50%);
     // position: absolute;
     // top: 0;
     // left: 0;
@@ -313,6 +337,9 @@ span {
   @include for-size(1200px) {
     // position: relative;
     z-index: 5;
-    position: absolute;
+    position: relative;
   }
+}
+
+.heroTextSwiper {
 }
