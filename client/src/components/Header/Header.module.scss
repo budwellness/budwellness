@@ -1,11 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 90px;
-  display: flex;
-  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   svg {
     width: 48px;
@@ -27,9 +30,9 @@
   align-items: center;
 }
 
-
 .header_logoTitle {
   color: $main-green;
+  font-family: $font-nunito;
   font-size: 28px;
   font-style: normal;
   font-weight: 900;
@@ -70,6 +73,7 @@
   margin-left: 20px;
   padding-left: 0;
   color: $main-green;
+  font-family: $font-nunito;
 
   @media (max-width: 1199.98px) {
     display: flex;
@@ -119,6 +123,7 @@
 
 .mobileNav {
   padding-top: 30px;
+
   @media (max-width: 1199.98px) {
     display: block;
     position: absolute;
@@ -159,10 +164,12 @@
 .header_userSearchInput {
   display: inline;
   padding: 0 20px;
-  height: 39px;
+  height: 40px;
   border: 1px solid #c6c6c6;
   border-radius: 20px;
   background: #fff;
+  outline: none;
+  cursor: pointer;
 
   @media (max-width: 767.98px) {
     display: none;
@@ -183,6 +190,7 @@
   height: 40px;
   font-size: 16px;
   border: none;
+  cursor: pointer;
 
   display: flex;
   justify-content: center;
