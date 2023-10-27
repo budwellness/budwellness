@@ -8,7 +8,7 @@ import { uploadHandler } from './vanilaJsHelpers';
 import {
   userLoginUserAction,
   userLogutUserAction,
-} from '../../store/User/User.slice';
+} from '../../store/user/user.slice';
 import { userMockData } from './mockedTestData';
 import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 import { useLazyGetWishlistQuery } from '../../store/serverResponse/danitApi.wishlist';
@@ -36,7 +36,7 @@ function TestForBackPage() {
   // log('user token RTK: ', userToken);
 
   const [
-    getUserWishList,
+    getWishlist,
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
@@ -53,6 +53,10 @@ function TestForBackPage() {
 
   const getAllProductsHandler = () => {};
 
+  const showWishlistHandler = () => {
+    log('Wishlist data: ', userWishListData);
+  };
+
   // COMPONENT LOGIC
   useEffect(() => {
     if (isLoginSuccess) {
@@ -62,14 +66,16 @@ function TestForBackPage() {
     }
   }, [isLoginSuccess]);
 
-  // useEffect(() => {
-  //   if (isUserLogin) {
-  //     getUserWishList(token);
-  //     if (isSuccessUserWishlistData) {
-  //       log('User wishlist data: ', userWishListData);
-  //     }
-  //   }
-  // }, [isUserLogin]);
+  useEffect(() => {
+    if (isUserLogin) {
+      getWishlist(token);
+      if (isSuccessUserWishlistData) {
+        log('User wishlist data: ', userWishListData);
+      }
+    } else {
+      log('Я работаю...');
+    }
+  }, [isUserLogin]);
 
   return (
     <>
@@ -85,6 +91,7 @@ function TestForBackPage() {
           {/* <button onClick={() => uploadHandler()}>Upload</button> */}
           <button onClick={() => checkTokenHandler()}>Check TOKEN</button>
           <button onClick={() => logoutHandler()}>Logout</button>
+          <button onClick={() => showWishlistHandler()}>Show wishlist</button>
           <button onClick={() => getAllProductsHandler()}>
             Get All Products
           </button>

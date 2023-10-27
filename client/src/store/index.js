@@ -3,10 +3,12 @@ import { localJsonApi } from './serverResponse/fetchLocalJson';
 import { danitApiProducts } from './serverResponse/danitApi.products';
 import { danitApiAuth } from './serverResponse/danitApi.auth';
 import { danitApiWishlist } from './serverResponse/danitApi.wishlist';
-import userReducer from './User/User.slice';
+import userReducer from './user/user.slice';
+import wishlistReducer from './wishlist/wishList.slice';
 
 const rootReducer = combineReducers({
   user: userReducer,
+  wishlist: wishlistReducer,
   [danitApiAuth.reducerPath]: danitApiAuth.reducer,
   [danitApiWishlist.reducerPath]: danitApiWishlist.reducer,
   [localJsonApi.reducerPath]: localJsonApi.reducer,

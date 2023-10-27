@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import {
   userLoginUserAction,
   userLogutUserAction,
-} from '../store/User/User.slice';
+} from '../store/user/user.slice';
 
 const rootActions = {
   ...userLoginUserAction,
