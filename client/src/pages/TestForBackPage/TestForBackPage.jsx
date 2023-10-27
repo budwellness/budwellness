@@ -1,67 +1,107 @@
 /* eslint-disable */
 import React, { useEffect } from 'react';
-import { loginUser, uploadSingleProduct } from '../../helpers/sendRequest';
-import { useLazyGetAllProductsQuery } from '../../store/serverResponse/danitApi.products';
+import { useDispatch } from 'react-redux';
+import { useGetAllProductsQuery } from '../../store/serverResponse/danitApi.products';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { uploadHandler } from './vanilaJsHelpers';
 import {
-  checkHandler,
-  checkToken,
-  loginHandler,
-  uploadHandler,
-} from './vanilaJsHelpers';
+  userLoginUserAction,
+  userLogutUserAction,
+} from '../../store/User/User.slice';
 import { userMockData } from './mockedTestData';
-import { useLoginMutation } from '../../store/serverResponse/danitApi.auth';
+import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
+import { useLazyGetWishlistQuery } from '../../store/serverResponse/danitApi.wishlist';
 
 import styles from './TestForBackPage.module.scss';
 
-function TestForBackPage() {
-  // REDUX STATE:
-  // const token = localStorage.getItem('token');
+const log = console.log;
 
-  // const isUserLogin = !!token;
+function TestForBackPage() {
+  // INIT HOOKS:
+  const dispatch = useDispatch();
+
+  // REDUX STATE:
   const { isUserLogin, token } = useSelector((state) => state.user);
-  console.log(isUserLogin);
+  // log('USER SATATE "isLogin"', isUserLogin);
+  // log('USER SATATE "token"', token);
 
   // RTK QUERY CUSTOM HOOKS:
-  const [getAllProducts, { data: productData, isError, isLoading }] =
-    useLazyGetAllProductsQuery();
-  const [loginUser, { data: userData }] = useLoginMutation();
-  console.log('user token RTK: ', userData);
+
+  const { data: allProductsData } = useGetAllProductsQuery();
+  // log('All products data: ', allProductsData);
+
+  const [loginUserReq, { data: userToken, isSuccess: isLoginSuccess }] =
+    useLoginUserMutation();
+  // log('user token RTK: ', userToken);
+
+  const [
+    getUserWishList,
+    { data: userWishListData, isSuccess: isSuccessUserWishlistData },
+  ] = useLazyGetWishlistQuery();
+
+  // COMPONENT HANDLERS:
+  const logoutHandler = () => {
+    localStorage.clear();
+    dispatch(userLogutUserAction());
+  };
+
+  const checkTokenHandler = () => {
+    const token = localStorage.getItem('token');
+    log('loginHandler token: ', token);
+  };
+
+  const getAllProductsHandler = () => {};
+
+  // COMPONENT LOGIC
+  useEffect(() => {
+    if (isLoginSuccess) {
+      localStorage.setItem('token', userToken);
+      dispatch(userLoginUserAction(userToken));
+      log('useEffect scope. Works only on trigger from hook');
+    }
+  }, [isLoginSuccess]);
+
+  // useEffect(() => {
+  //   if (isUserLogin) {
+  //     getUserWishList(token);
+  //     if (isSuccessUserWishlistData) {
+  //       log('User wishlist data: ', userWishListData);
+  //     }
+  //   }
+  // }, [isUserLogin]);
 
   return (
-    <div className={styles.mainWrapper}>
-      <div className="">
-        <button
-          onClick={() => {
-            loginUser(userMockData);
-          }}
-        >
-          Login
-        </button>
-        {/* <button onClick={() => uploadHandler()}>Upload</button> */}
-        <button onClick={() => checkHandler()}>Check</button>
-        <button onClick={() => console.log(userData)}>Check TOKEN</button>
-        <button onClick={() => localStorage.clear()}>Logout</button>
-        <button
-          onClick={() => {
-            getAllProducts();
-          }}
-        >
-          Get All Products
-        </button>
+    <>
+      <div className={styles.mainWrapper}>
+        <div className="">
+          <button
+            onClick={() => {
+              loginUserReq(userMockData);
+            }}
+          >
+            Login
+          </button>
+          {/* <button onClick={() => uploadHandler()}>Upload</button> */}
+          <button onClick={() => checkTokenHandler()}>Check TOKEN</button>
+          <button onClick={() => logoutHandler()}>Logout</button>
+          <button onClick={() => getAllProductsHandler()}>
+            Get All Products
+          </button>
+        </div>
+        <div className={styles.btnWrapper}>
+          <Link target="_blank" className={styles.wishBtn} to={'/wishlist'}>
+            <span>W</span>
+            {isUserLogin && <span className={styles.info}>0</span>}
+          </Link>
+          <Link className={styles.wishBtn} to={'/cart'}>
+            <span>C</span>
+            {isUserLogin && <span className={styles.info}>0</span>}
+          </Link>
+        </div>
       </div>
-      <div className={styles.btnWrapper}>
-        <Link target="_blank" className={styles.wishBtn} to={'/wishlist'}>
-          <span>W</span>
-          {isUserLogin && <span className={styles.info}>0</span>}
-        </Link>
-        <Link className={styles.wishBtn} to={'/cart'}>
-          <span>C</span>
-          {isUserLogin && <span className={styles.info}>0</span>}
-        </Link>
-      </div>
-    </div>
+      <div className={styles.secondaryWrapper}></div>
+    </>
   );
 }
 

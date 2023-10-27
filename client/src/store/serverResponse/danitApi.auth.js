@@ -7,7 +7,7 @@ export const danitApiAuth = createApi({
     baseUrl: API.API_URL,
   }),
   endpoints: (build) => ({
-    login: build.mutation({
+    loginUser: build.mutation({
       query: ({ ...credentials }) => ({
         url: API.API_LOGIN,
         method: 'POST',
@@ -16,19 +16,9 @@ export const danitApiAuth = createApi({
         },
         body: credentials,
       }),
-    }),
-    addProduct: build.mutation({
-      query: ({ token, ...patch }) => ({
-        url: API.API_ADD_PRODUCT,
-        method: 'POST',
-        headers: {
-          Authorization: token,
-          'Content-type': 'application/json',
-        },
-        body: patch,
-      }),
+      transformResponse: (response) => response.token,
     }),
   }),
 });
 
-export const { useLoginMutation } = danitApiAuth;
+export const { useLoginUserMutation } = danitApiAuth;

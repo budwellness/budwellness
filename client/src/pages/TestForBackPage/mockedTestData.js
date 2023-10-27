@@ -1,4 +1,4 @@
-//MOCKED USER DATA:
+// MOCKED USER DATA:
 export const userMockData = {
   loginOrEmail: 'customer@gmail.com',
   password: '1111111',
