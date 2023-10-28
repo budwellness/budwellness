@@ -13,28 +13,14 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import Button from './components/Button/Button';
-import ProductCard from './components/ProductCard/ProductCard';
+import ProductList from './components/ProductList/ProductList';
 
 function App() {
-  const { data, error } = useGetAllProductsQuery();
+  const { data: products, error } = useGetAllProductsQuery();
 
-  // eslint-disable-next-line no-console
-  console.log('DATA: ', data);
-  // eslint-disable-next-line no-console
+  console.log('DATA: ', products);
+
   console.log('error: ', error);
-
-  const product = data[2];
-
-  // function getRandomProduct() {
-  //   const randomIndex = Math.floor(Math.random() * data.length);
-  //   return data[randomIndex];
-  // }
-
-  // const randomProduct = getRandomProduct();
-
-  // console.log(`Название продукта: ${randomProduct.name}`);
-  // console.log(`Цена: ${randomProduct.price}`);
-  // console.log(`Описание: ${randomProduct.description}`);
 
   return (
     <>
@@ -49,7 +35,7 @@ function App() {
       </Routes>
       <Footer />
       <Button />
-      <ProductCard classNames="product-card" product={product} />
+      <ProductList products={products} error={error} />
     </>
   );
 }

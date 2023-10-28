@@ -1,126 +1,89 @@
 import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import StarIconFill from '../../assets/icons/star-fill.svg';
-import StarIconOutlines from '../../assets/icons/star-outline.svg';
-import HeartIcon from '../../assets/icons/heart-20x20.svg';
+import { ReactComponent as HeartIcon } from '../../assets/icons/heart-20x20.svg';
 import Button from '../Button/Button';
-import './ProductCard.module.scss';
+import styles from './ProductCard.module.scss';
 
 // eslint-disable-next-line react/prop-types
-function ProductCard({ favoriteItems, cartItems, product }) {
+function ProductCard({ product }) {
   const {
-    // _id,
+    // id,
     imageUrls,
     sale,
     currentPrice,
-    rate,
+    // rate,
+    // thc,
+    // cbd,
     name,
     classNames,
   } = product;
 
-  console.log(product);
+  // console.log(product);
+  // console.log(imageUrls[0]);
 
-  // eslint-disable-next-line no-shadow
-  const inFavorites = (product) => {
-    // eslint-disable-next-line react/prop-types
-    if (favoriteItems.some((item) => item.id === product.id)) {
-      return true;
-    }
-    return false;
-  };
-
-  // eslint-disable-next-line no-shadow
-  const inCart = (product) => {
-    // eslint-disable-next-line react/prop-types
-    if (cartItems.some((item) => item.id === product.id)) {
-      return true;
-    }
-    return false;
-  };
-
-  const renderRatingStars = (rating) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i === i + 1) {
-      if (i <= rating) {
-        stars.push(
-          <span key={i} className="yellow-star">
-            <StarIconFill />
-          </span>,
-        );
-      } else {
-        stars.push(
-          <span key={i} className="outline-star">
-            <StarIconOutlines />
-          </span>,
-        );
-      }
-    }
-    return stars;
-  };
+  const previousPrice = (currentPrice / ((100 - sale) / 100)).toFixed(2);
 
   return (
-    <div className={cn('product-card', classNames)}>
-      {sale !== 0 && (
-        <div className="sale-label">
-          <span className="white-text">Sale</span>
-        </div>
-      )}
-      <img src={imageUrls[0]} alt={name} />
-      {!inFavorites(product) && (
+    <div className={cn('productCard', classNames)}>
+      <div className={styles.productCard__media}>
+        {sale !== 0 && (
+          <div className={styles.productCard__media__saleLabel}>
+            <span className={styles.productCard__media__saleLabel__saleText}>Sale</span>
+          </div>
+        )}
+        <a
+          className={styles.productCard__media__productLink}
+          href="product.html"
+          target="_blank"
+        >
+          <div className={styles.productCard__media__productLink__imageWrapper}>
+            <img
+              className={
+                styles.productCard__media__productLink__imageWrapper__image
+              }
+              src={imageUrls[0]}
+              alt={name}
+            />
+          </div>
+        </a>
         <Button
-          className="add-favorite"
-          //  onClick={() => dispatch(actionAddFavorites(product))}
+          className={styles.productCard__media__buttonAddFavorites}
+          type="button"
+          // onClick={ () => addFavorites()}
         >
           <HeartIcon
-            className="icon-heart"
+            className={styles.productCard__media__buttonAddFavorites__iconHeart}
             // style={{
             //   color: '#9a9a9c',
             // }}
           />
         </Button>
-      )}
-      {inFavorites(product) && (
-        <Button
-          className="add-favorite"
-          // style={{
-          //   backgroundColor: '#cccccc',
-          //   border: '1.5px solid #cccccc',
-          // }}
-          // onClick={() => addFavorites(product))}
-        >
-          <HeartIcon size="xs" style={{ color: '#f4f88b' }} />
-        </Button>
-      )}
-      <div className="prices">
-        {sale !== 0 && (
-          <span className="discount-price">
-            {((currentPrice * (100 - sale)) / 100).toFixed(2)}
-          </span>
-        )}
-        <span className="current-price">{currentPrice}</span>
       </div>
-      <div className="rating">{renderRatingStars(rate)}</div>
-      {!inCart(product) && (
+      <div className={styles.productCard__main}>
+        <div className={styles.productCard__main__rating}>Rating</div>
+        <h3 className={styles.productCard__main__productName}>{name}</h3>
+        <div className={styles.productCard__main__productPrices}>
+          {sale !== 0 && (
+            <span
+              className={styles.productCard__main__productPrices__previousPrice}
+            >
+              {previousPrice}
+            </span>
+          )}
+          <span
+            className={styles.productCard__main__productPrices__currentPrice}
+          >
+            {currentPrice}
+          </span>
+        </div>
         <Button
-          className="add-to-cart"
-          onClick={() => {
-            // addToCart(product)
-          }}
+          className={styles.productCard__main__buttonAddToCart}
+          // onClick={() => { addToCart(product)}}
         >
           Add to cart
         </Button>
-      )}
-      {inCart(product) && (
-        <Button
-          classNames="product-in-cart"
-          onClick={() => {
-            //  showCartModal(product);
-          }}
-        >
-          In cart
-        </Button>
-      )}
+      </div>
     </div>
   );
 }
@@ -128,11 +91,7 @@ function ProductCard({ favoriteItems, cartItems, product }) {
 ProductCard.propTypes = {
   // eslint-disable-next-line react/require-default-props
   product: PropTypes.shape({
-    imageUrls: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string,
-      }),
-    ),
+    imageUrls: PropTypes.arrayOf(PropTypes.string),
     sale: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,

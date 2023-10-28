@@ -8,9 +8,9 @@ function Button(props) {
   } = props;
 
   const buttonClasses = [
-    styles.btn,
-    className.includes('orangeBtn') ? styles.orangeBtn : '',
-    className.includes('whiteBtn') ? styles.whiteBtn : '',
+    styles.btn, styles[className],
+    // className.includes('orangeBtn') ? styles.orangeBtn : '',
+    // className.includes('whiteBtn') ? styles.whiteBtn : '',
   ].join(' ');
 
   return (
