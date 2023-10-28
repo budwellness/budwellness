@@ -21,19 +21,6 @@ function App() {
 
   console.log('error: ', error);
 
-  const product = data[2];
-
-  // function getRandomProduct() {
-  //   const randomIndex = Math.floor(Math.random() * data.length);
-  //   return data[randomIndex];
-  // }
-
-  // const randomProduct = getRandomProduct();
-
-  // console.log(`Название продукта: ${randomProduct.name}`);
-  // console.log(`Цена: ${randomProduct.price}`);
-  // console.log(`Описание: ${randomProduct.description}`);
-
   return (
     <>
       <Header />
