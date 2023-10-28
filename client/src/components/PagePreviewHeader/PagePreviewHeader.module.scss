@@ -1,0 +1,73 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.wrapper {
+  background-image: url(./images/pagePreviewHeader-bg.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.container {
+  max-width: 1380px;
+}
+
+.title {
+  padding-top: 60px;
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: 900;
+  font-family: 'Nunito Sans', sans-serif;
+  color: $main-green;
+  @include for-size(768px) {
+    font-size: 40px;
+  }
+  @include for-size(992px) {
+    font-size: 56px;
+    padding-top: 80px;
+  }
+}
+
+.text {
+  font-size: 17px;
+  color: $main-text-color;
+  line-height: 24px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  @include for-size(992px) {
+    padding-bottom: 90px;
+  }
+}
+
+.linkWpapper {
+  padding-top: 30px;
+  font-size: 17px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.link {
+  color: $secondary-green;
+  position: relative;
+  padding-right: 8px;
+  text-decoration: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: $secondary-green;
+}
+
+span {
+  font-size: 17px;
+  color: $main-text-color;
+}
