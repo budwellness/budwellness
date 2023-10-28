@@ -22,7 +22,7 @@
 }
 
 .heroTitle {
-  color: #214842;
+  color: $main-green;
   font-size: 36px;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 900;
@@ -95,14 +95,14 @@ span {
   font-size: 14px;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
-  color: #214842;
+  color: $main-green;
   text-decoration: none;
   padding-top: 5px;
   padding-bottom: 80px;
 }
 
 .dinamicContainer {
-  background-color: #214842;
+  background-color: $main-green;
   padding-top: 40px;
   padding-bottom: 40px;
   @include for-size(768px) {
@@ -113,9 +113,9 @@ span {
     background: linear-gradient(
       to right,
       white 20%,
-      #214842 20%,
-      #214842 90%,
-      #214842 90%
+      $main-green 20%,
+      $main-green 90%,
+      $main-green 90%
     );
     background-size: 100% 100%;
   }
@@ -186,10 +186,16 @@ span {
   padding-bottom: 10px;
 }
 
+.doneImgFill {
+  fill: $main-orange;
+  width: 100px;
+  height: 100px;
+}
+
 .aboutProduct {
   font-size: 17px;
   display: inline-block;
-  color: #efc368;
+  color: $main-orange;
   position: relative;
   padding-bottom: 30px;
 }

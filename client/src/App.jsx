@@ -35,11 +35,11 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes> */}
-      <PagePreviewHeader
+      {/* <PagePreviewHeader
         title="Shop"
         text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, blanditiis."
-      />
-      {/* <Carousel /> */}
+      /> */}
+      <Carousel />
       {/* <Footer /> */}
       {/* <Button /> */}
     </>

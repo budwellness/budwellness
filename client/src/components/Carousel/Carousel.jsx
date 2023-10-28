@@ -1,13 +1,26 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Pagination, Autoplay, Controller } from 'swiper/modules';
+
+import {
+  EffectFade,
+  Pagination,
+  Autoplay,
+  Controller,
+  // eslint-disable-next-line import/no-unresolved
+} from 'swiper/modules';
 import Button from '../Button/Button';
-import phone from '../../assets/icons/phone-svg.svg';
-import done from '../../assets/icons/done-svg.svg';
+// import phone from '../../assets/icons/phone-svg.svg';
+import PhoneIcon from '../UI/PhoneIcon';
+// import done from '../../assets/icons/done-svg.svg';
+import DoneIcon from '../UI/DoneIcon';
 import styles from './Carousel.module.scss';
 
+// eslint-disable-next-line import/no-unresolved
 import 'swiper/css';
+// eslint-disable-next-line import/no-unresolved
 import 'swiper/css/effect-fade';
+// eslint-disable-next-line import/no-unresolved
 import 'swiper/css/pagination';
 
 function Carousel() {
@@ -57,7 +70,14 @@ function Carousel() {
           </p>
 
           <div className={styles.contactInfo}>
-            <img className={styles.phoneImg} src={phone} alt="phone" />
+            {/* <img
+              className={styles.phoneImg}
+              src={<PhoneIcon fill="#258f67" width="40px" height="40px" />}
+              alt="phone"
+            /> */}
+            <span className={styles.phoneImg}>
+              <PhoneIcon fill="#258f67" width="40px" height="40px" />
+            </span>
             <div className={styles.phoneNumText}>
               <span>Phone number</span>
               <a href="+38(068)-548-46-98" className={styles.linkTel}>
@@ -110,15 +130,57 @@ function Carousel() {
                 </p>
                 <ul className={styles.list}>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
+                    {/* <img
+                      className={styles.doneImg}
+                      src={
+                        <DoneIcon fill="##efc368" width="20px" height="20px" />
+                      }
+                      alt="done"
+                    /> */}
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        width="20px"
+                        height="20px"
+                        className={styles.doneImgFill}
+                      />
+                    </span>
                     <li>Sativa-Dominant</li>
                   </div>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
+                    {/* <img
+                      className={styles.doneImg}
+                      src={
+                        <DoneIcon fill="##efc368" width="20px" height="20px" />
+                      }
+                      alt="done"
+                    /> */}
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
                     <li>THC 110.0-160.0mg/g</li>
                   </div>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
+                    {/* <img
+                      className={styles.doneImg}
+                      src={
+                        <DoneIcon fill="#efc368" width="20px" height="20px" />
+                      }
+                      alt="done"
+                    /> */}
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
                     <li>CBD 0.0-1.0mg/g</li>
                   </div>
                 </ul>
@@ -135,15 +197,36 @@ function Carousel() {
                 </p>
                 <ul className={styles.list}>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
                     <li>Sativa-Dominant</li>
                   </div>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
                     <li>THC 160.0-190.0mg/g</li>
                   </div>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
                     <li>CBD 0.0-2.0mg/g</li>
                   </div>
                 </ul>
@@ -159,15 +242,36 @@ function Carousel() {
                 </p>
                 <ul className={styles.list}>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
                     <li>Indica-Dominant</li>
                   </div>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
                     <li>THC 170.0-180.0mg/g</li>
                   </div>
                   <div className={styles.link}>
-                    <img className={styles.doneImg} src={done} alt="done" />
+                    <span className={styles.doneImg}>
+                      <DoneIcon
+                        fill={styles.doneImgFill}
+                        width="20px"
+                        height="20px"
+                      />
+                    </span>
+                    {/* <img className={styles.doneImg} src={done} alt="done" /> */}
                     <li>CBD 0.0-1.0mg/g</li>
                   </div>
                 </ul>
