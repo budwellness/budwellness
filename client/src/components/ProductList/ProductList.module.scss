@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+    margin: 0 auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    .productList {
+        width: 100%;
+        min-height: 65vh;
+        margin-top: 130px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        &__errorWrapper {
+            width: 700px;
+            font-family: $font-nunito;
+            font-size: 50px;
+        }
+
+        &__productsWrapper {
+            width: 100%;
+        }
+    }
+}
