@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Pagination, Autoplay, Controller } from 'swiper/modules';
+import {
+  EffectFade, Pagination, Autoplay, Controller,
+} from 'swiper/modules';
 import Button from '../Button/Button';
 import phone from '../../assets/icons/phone-svg.svg';
 import done from '../../assets/icons/done-svg.svg';
