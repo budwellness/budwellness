@@ -26,20 +26,20 @@ function App() {
 
   return (
     <>
-      {/* <Routes>
-        <Route path="/" element={<HomePage />} />
+      <Routes>
+        {/* <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/test" element={<TestForBackPage />} />
+        <Route path="/test" element={<TestForBackPage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
-      </Routes> */}
+      </Routes>
       {/* <PagePreviewHeader
         title="Shop"
         text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, blanditiis."
       /> */}
-      <Carousel />
+      {/* <Carousel /> */}
       {/* <Footer /> */}
       {/* <Button /> */}
     </>
