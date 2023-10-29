@@ -4,9 +4,16 @@
   }
 }
 
+.heroWrrap {
+  @include for-size(1200px) {
+    background: linear-gradient(to right, white 50%, $main-green 50%);
+  }
+}
+
 .hero {
   text-align: center;
   width: 100%;
+  position: relative;
   @include for-size(576px) {
     text-align: left;
   }
@@ -39,7 +46,7 @@
 
 .staticText {
   font-size: 17px;
-  color: #556260;
+  color: $main-text-color;
   line-height: 1.5;
   padding-bottom: 20px;
   @include for-size(1200px) {
@@ -62,9 +69,15 @@
   cursor: pointer;
 }
 
+.phoneImgFill {
+  fill: $secondary-green;
+  width: 40px;
+  height: 40px;
+}
+
 .contactsMessage {
   padding-top: 20px;
-  color: #556260;
+  color: $main-text-color;
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
@@ -88,7 +101,7 @@
 
 span {
   font-size: 14px;
-  color: #556260;
+  color: $main-text-color;
 }
 
 .linkTel {
@@ -105,6 +118,7 @@ span {
   background-color: $main-green;
   padding-top: 40px;
   padding-bottom: 40px;
+  position: relative;
   @include for-size(768px) {
     display: flex;
   }
@@ -112,13 +126,30 @@ span {
     width: 60%;
     background: linear-gradient(
       to right,
-      white 20%,
-      $main-green 20%,
+      $white-text-color 23%,
+      $main-green 23%,
       $main-green 90%,
       $main-green 90%
     );
     background-size: 100% 100%;
   }
+}
+
+.dinamicContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -12px;
+  right: -12px;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    $main-green 0.75rem,
+    transparent 0.75rem,
+    transparent calc(100% - 0.75rem),
+    $main-green calc(100% - 0.75rem)
+  );
 }
 
 .heroImg {
@@ -130,7 +161,8 @@ span {
     height: 510px;
   }
   @include for-size(1200px) {
-    height: 550px;
+    // height: 550px;
+    height: 610px;
   }
 }
 
@@ -140,7 +172,7 @@ span {
 }
 
 .textImg {
-  color: white;
+  color: $white-text-color;
   font-weight: bold;
   font-size: 20px;
 }
@@ -148,7 +180,7 @@ span {
 .title,
 .info,
 .link {
-  color: white;
+  color: $white-text-color;
 }
 
 .title {
@@ -188,8 +220,8 @@ span {
 
 .doneImgFill {
   fill: $main-orange;
-  width: 100px;
-  height: 100px;
+  width: 20px;
+  height: 20px;
 }
 
 .aboutProduct {
@@ -207,7 +239,7 @@ span {
   bottom: 22px;
   width: 100%;
   height: 2px;
-  background-color: #efc368;
+  background-color: $main-orange;
 }
 
 .aboutProduct:hover {
@@ -221,7 +253,7 @@ span {
 .singleBullet {
   font-weight: 600;
   font-size: 16px;
-  color: white;
+  color: $white-text-color;
   padding-right: 15px;
   transition-property: font-size;
   transition-timing-function: ease;

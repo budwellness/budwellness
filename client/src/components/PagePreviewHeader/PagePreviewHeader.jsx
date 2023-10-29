@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from './PagePreviewHeader.module.scss';
 
 function PagePreviewHeader({ title, text }) {
@@ -20,5 +21,15 @@ function PagePreviewHeader({ title, text }) {
     </>
   );
 }
+
+PagePreviewHeader.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.string,
+};
+
+PagePreviewHeader.defaultProps = {
+  title: 'Shop',
+  text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, blanditiis.',
+};
 
 export default PagePreviewHeader;
