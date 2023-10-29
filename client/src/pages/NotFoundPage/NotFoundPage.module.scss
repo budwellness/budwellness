@@ -23,6 +23,9 @@
   color: $main-green;
   text-align: center;
   font-weight: 800;
+  @include for-size(992px) {
+    font-size: 28px;
+  }
 }
 
 .text {
@@ -32,4 +35,12 @@
     display: flex;
     flex-direction: column-reverse;
   }
+}
+
+.btnWrrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  // коли буде готова карусель підігнати нижній відспуп
 }
