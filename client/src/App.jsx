@@ -5,7 +5,6 @@ import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
 import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
-// import PagePreviewHeader from './components/PagePreviewHeader/PagePreviewHeader';
 
 import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 

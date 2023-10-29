@@ -1,0 +1,64 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.container {
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 10px;
+}
+
+.content-categories {
+    text-align: center;
+    cursor: pointer;
+}
+
+.image-categories {
+    width: 133px;
+    height: 133px;
+    border-radius: 20px;
+    object-fit: cover;
+
+    @media (min-width: 459px) {
+        width: 202px;
+        height: 202px;
+    }
+
+    @media (min-width: 666px) {
+        width: 306px;
+        height: 306px;
+    }
+
+    @media (min-width: 768px) {
+        width: 227px;
+        height: 227px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 162px;
+        height: 162px;
+    }
+
+    &:hover {
+        filter: brightness(50%);
+        transform: scale(1.05);
+        transition: all 0.5s ease;
+    }
+}
+
+.text-categories {
+    color: #214842;
+    font-family: Nunito Sans;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24.2px;
+}
