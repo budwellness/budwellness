@@ -27,17 +27,17 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/test" element={<TestForBackPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
       <Carousel />
-      <Footer />
-      <Button />
+      {/* <Footer />
+      <Button /> */}
     </>
   );
 }

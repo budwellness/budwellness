@@ -161,8 +161,7 @@ span {
     height: 510px;
   }
   @include for-size(1200px) {
-    // height: 550px;
-    height: 610px;
+    height: 550px;
   }
 }
 

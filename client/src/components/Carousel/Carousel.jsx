@@ -1,11 +1,13 @@
 import React from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   EffectFade,
   Pagination,
   Autoplay,
   Controller,
+  // eslint-disable-next-line import/no-unresolved
 } from 'swiper/core';
 import Container from '../Container/Container';
 import Button from '../Button/Button';
@@ -14,7 +16,6 @@ import DoneIcon from '../UI/DoneIcon';
 import styles from './Carousel.module.scss';
 
 import 'swiper/swiper-bundle.min.css';
-import 'swiper/swiper.min.css';
 
 SwiperCore.use([EffectFade, Pagination, Autoplay, Controller]);
 
