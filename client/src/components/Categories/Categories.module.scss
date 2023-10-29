@@ -25,6 +25,7 @@
     width: 133px;
     height: 133px;
     border-radius: 20px;
+    object-fit: cover;
 
     @media (min-width: 459px) {
         width: 202px;
@@ -52,7 +53,6 @@
         transition: all 0.5s ease;
     }
 }
-
 
 .text-categories {
     color: #214842;
