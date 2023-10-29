@@ -11,10 +11,6 @@
     background-color: purple;
   }
 
-  @include _1380 {
-    background-color: $secondary-text-color;
-  }
-
   .container {
     position: relative;
     margin: 0 auto;
