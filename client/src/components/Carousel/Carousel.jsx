@@ -1,13 +1,12 @@
 import React from 'react';
 
-// eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   EffectFade,
   Pagination,
   Autoplay,
   Controller,
-  // eslint-disable-next-line import/no-unresolved
+
 } from 'swiper/core';
 import Container from '../Container/Container';
 import Button from '../Button/Button';
