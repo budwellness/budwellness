@@ -13,6 +13,7 @@ export default function RatingStars({ rate, edit }) {
       edit={edit}
       color="#c6c6c6"
       activeColor="#efc368"
+      // eslint-disable-next-line no-console
       onChange={(newValue) => console.log(`New value is ${newValue}`)}
     />
   );
