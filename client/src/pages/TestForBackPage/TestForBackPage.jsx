@@ -14,6 +14,7 @@ import {
   userLoginUserAction,
   userLogutUserAction,
 } from '../../store/user/user.slice';
+import { setWishlistAction } from '../../store/wishlist/wishList.slice';
 import { userMockData } from './mockedTestData';
 import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 import { useLazyGetWishlistQuery } from '../../store/serverResponse/danitApi.wishlist';
@@ -28,6 +29,9 @@ function TestForBackPage() {
 
   // REDUX STATE:
   const { isUserLogin, token } = useSelector((state) => state.user);
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist
+  );
   // log('USER SATATE "isLogin"', isUserLogin);
   // log('USER SATATE "token"', token);
 
@@ -50,16 +54,16 @@ function TestForBackPage() {
     useLoginUserMutation();
   // log('user token RTK: ', userToken);
 
-  // const [
-  //   getWishlist,
-  //   { data: userWishListData, isSuccess: isSuccessUserWishlistData },
-  // ] = useLazyGetWishlistQuery();
+  const [
+    getWishlist,
+    { data: userWishListData, isSuccess: isSuccessUserWishlistData },
+  ] = useLazyGetWishlistQuery();
 
   // COMPONENT HANDLERS:
-  // const logoutHandler = () => {
-  //   localStorage.clear();
-  //   dispatch(userLogutUserAction());
-  // };
+  const logoutHandler = () => {
+    localStorage.clear();
+    dispatch(userLogutUserAction());
+  };
 
   // const checkTokenHandler = () => {
   //   const token = localStorage.getItem('token');
@@ -87,6 +91,43 @@ function TestForBackPage() {
   // };
 
   // COMPONENT LOGIC
+
+  const checkTokenInLocalStorage = () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      log('User not logged in');
+    } else {
+      log('token appear, put it into store...');
+      dispatch(userLoginUserAction(token));
+      localStorage.setItem('token', token);
+      getWishlist(token);
+    }
+  };
+  useEffect(() => {
+    checkTokenInLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    if (isLoginSuccess || userToken) {
+      dispatch(userLoginUserAction(userToken));
+      localStorage.setItem('token', userToken);
+      getWishlist(userToken);
+    }
+  }, [isLoginSuccess]);
+
+  useEffect(() => {
+    log('Тригер вишлиста сработал');
+    if (isUserLogin || userWishListData) {
+      log('я зашел в диспатч вишлиста');
+      dispatch(setWishlistAction(userWishListData.products));
+    }
+  }, [isSuccessUserWishlistData]);
+
+  // useEffect(() => {
+  //   if (isUserLogin) {
+  //     getWishlist(token);
+  //   }
+  // }, [isUserLogin]);
   // useEffect(() => {
   //   if (isLoginSuccess) {
   //     localStorage.setItem('token', userToken);
@@ -110,10 +151,17 @@ function TestForBackPage() {
     <>
       <div className={styles.mainWrapper}>
         <div className="">
-          <button onClick={() => {}}>Login</button>
+          {!isUserLogin && (
+            <button onClick={() => loginUser(userMockData)}>Login</button>
+          )}
+          {isUserLogin && (
+            <button onClick={() => logoutHandler()}>Logout</button>
+          )}
+          <button onClick={() => log(userWishListData)}>Wishlist data</button>
+          <button onClick={() => log(wishlistStoreData)}>Wishlist store</button>
           {/* <button onClick={() => uploadHandler()}>Upload</button> */}
-          <button>Check TOKEN</button>
-          <button>Logout</button>
+          {/* <button>Check TOKEN</button>
+
           <button>Show wishlist</button>
           <button onClick={() => getAllProductsHandler()}>
             Get All Products
@@ -123,12 +171,14 @@ function TestForBackPage() {
           </button>
           <button onClick={() => searchForProductsHandler()}>
             Search For Products
-          </button>
+          </button> */}
         </div>
         <div className={styles.btnWrapper}>
           <Link target="_blank" className={styles.wishBtn} to={'/wishlist'}>
             <span>W</span>
-            {/* {isUserLogin && <span className={styles.info}>0</span>} */}
+            {isUserLogin && wishlistStoreData.length > 0 && (
+              <span className={styles.info}>{wishlistStoreData.length}</span>
+            )}
           </Link>
           <Link className={styles.wishBtn} to={'/cart'}>
             <span>C</span>
