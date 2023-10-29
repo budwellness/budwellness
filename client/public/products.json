@@ -9,7 +9,7 @@
         "quantity": 6,
         "id": 1,
         "rate": 4.4,
-        "category": " Edible",
+        "category": "Edible",
         "name": "Bhang Milk Chocolate",
         "currentPrice": 25.00,
         "previousPrice": 0,
@@ -291,9 +291,9 @@
     {
         "enabled": true,
         "imageUrls": [
-            "https://ca.tokyosmoke.com/cdn/shop/products/e96a18b5991250526e86e1ead709a109_1000x.png?v=1599148085",
-            "https://static.wixstatic.com/media/645e3f_38fbb2f262644fb3a766446abd5aeaad~mv2.webp",
-            "https://static.wixstatic.com/media/645e3f_348a1920cbfc402986b118677e654431~mv2.png/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/645e3f_348a1920cbfc402986b118677e654431~mv2.png"
+            "https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-strain-350x420.jpg",
+            "https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-weed-350x420.jpg",
+            "https://kamikazi.cc/wp-content/uploads/2021/05/PINK-DIABLO-2KAMIKAZI-2_WEED-DELIVERY-TORONTO.jpg"
         ],
         "quantity": 6,
         "id": 6,
@@ -456,6 +456,242 @@
         "additionalInformation": {
             "ingredients": "100% Indica",
             "flavors": "red wine, chocolate, and citrus.",
+            "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
+        }
+    },
+
+
+    {
+        "enabled": true,
+        "imageUrls": [
+            "https://ca.tokyosmoke.com/cdn/shop/products/15a213589790471677f2f400e21d828a_1000x.png?v=1607101936",
+            "https://ca.tokyosmoke.com/cdn/shop/products/a73b8ebfca5a84f9b550dc238ba89206_1000x.png?v=1607101944",
+            "https://theounce.ca/wp-content/uploads/2021/03/Cans.jpg"
+        ],
+        "quantity": 11,
+        "_id": 9,
+        "rate": 4.4,
+        "category": "Beverage",
+        "name": "XMG Tropical Fruit",
+        "currentPrice": 7.00,
+        "previousPrice": 0,
+        "sale": 0,
+        "plantType": "Sativa",
+        "thc": 10,
+        "cbd": 1,
+        "effects": [
+            "Stimulating",
+            "Buzzy",
+            "Energetic"
+        ],
+        "tags": [
+            "Cannabis",
+            "beverage"
+        ],
+        "itemNo": 534670,
+        "description": {
+            "short": "No messing around with this tropical fruit, high-intensity flavoured potion. 10 mg THC. Enjoy straight up, right out of the can.",
+            "completion": "These XMG drinks taste different but suffer the same flaws. Mango Pineapple is bright yellow, and Tropical Fruit is pinkish-red. Both smell fruity and sugary, and taste it too. Far and away the best part of these drinks is the effect—a happy buzzy head high. But first you have to choke down the taste."
+        },
+        "reviews": [
+            {
+                "fullName": "Michael",
+                "reviewRating": 5,
+                "reviewDate": "September 30, 2021 at 9:52 am",
+                "feedback": "Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.",
+                "benefit": "In nulla posuere sollicitudin aliquam ultrices.",
+                "disadvantages": "Viverra aliquet eget sit amet tellus cras adipiscing enim."
+            },
+            {
+                "fullName": "Charles Sanchez",
+                "reviewRating": 5,
+                "reviewDate": "October 1, 2021 at 11:52 am",
+                "reviewText": "I usually only eat a square and that’s good enough for me. It’s very potent",
+                "feedback": "I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.",
+                "benefit": "",
+                "disadvantages": ""
+            }
+        ],
+        "additionalInformation": {
+            "ingredients": "Water, cane sugar, citric acid, cannabis emulsion (glycerin, ethyl alcohol, water, polysorbate 80, modified palm oil, sunflower lecithin, THC distillate), concentrates of carrot and blackcurrant (for colour), natural flavor.",
+            "flavors": "tropical fruit.",
+            "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
+        }
+    },
+
+
+    {
+        "enabled": true,
+        "imageUrls": [
+            "https://ca.tokyosmoke.com/cdn/shop/products/Deepspace_1000x.png?v=1594412862",
+            "https://www.deepspace.com/content/dam/deep-space/OG_Cola_Image_1.png",
+            "https://images.dutchie.com/bda075590ceaa7d8990f961a52f0aef7?auto=format&fit=fill&fill=solid&fillColor=%23fff&ixlib=react-9.0.2&w=1446"
+        ],
+        "quantity": 2,
+        "_id": 10,
+        "rate": 4.4,
+        "category": "Beverage",
+        "name": "Deep Space Carbonated",
+        "currentPrice": 10.00,
+        "previousPrice": 0,
+        "sale": 10,
+        "plantType": "Sativa",
+        "thc": 10,
+        "cbd": 1,
+        "effects": [
+            "Euphoric",
+            "Hazy",
+            "Tipsy"
+        ],
+        "tags": [
+            "Cannabis",
+            "beverage"
+        ],
+        "itemNo": 534670,
+        "description": {
+            "short": "Small, potent and ready-to-go. Prepare for the bold taste of this dark, full-flavoured 10mg THC, carbonated drink in a 222mL sleek can.",
+            "completion": "Deep Space by Tweed is a 10mg THC drink and cost $9.20 per 222 ml can.  Using nanoemulsions, Tweed drinks are designed to be fast acting in ten minutes as opposed to 45 minutes for edibles.  From our own personal consumption profile, we do not have a positive view on cannabis edibles and beverages as a meaningful consumption category compared to dried flowers and concentrates.  That was before we discovered nanoemulsions.  Let’s check this out."
+        },
+        "reviews": [
+            {
+                "fullName": "Michael",
+                "reviewRating": 5,
+                "reviewDate": "September 30, 2021 at 9:52 am",
+                "feedback": "Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.",
+                "benefit": "In nulla posuere sollicitudin aliquam ultrices.",
+                "disadvantages": "Viverra aliquet eget sit amet tellus cras adipiscing enim."
+            },
+            {
+                "fullName": "Charles Sanchez",
+                "reviewRating": 5,
+                "reviewDate": "October 1, 2021 at 11:52 am",
+                "reviewText": "I usually only eat a square and that’s good enough for me. It’s very potent",
+                "feedback": "I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.",
+                "benefit": "",
+                "disadvantages": ""
+            }
+        ],
+        "additionalInformation": {
+            "ingredients": "Carbonated water, Sugar, Distilled Cannabis™ Blend (Vegetable glycerin, Cannabis distillate, Monoglycerides, Soy lecithin, Sucrose monopalmitate), Citric acid, Potassium citrate, Caramel colour, Calcium disodium EDTA, Natural flavours.",
+            "flavors": "bold and mysterious",
+            "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
+        }
+    },
+
+
+    {
+        "enabled": true,
+        "imageUrls": [
+            "https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl.png",
+            "https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl-4.png",
+            "https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl-5.png"
+        ],
+        "quantity": 8,
+        "_id": 11,
+        "rate": 4.4,
+        "category": "Seeds",
+        "name": "Purple Cookie Kush Feminized Seeds",
+        "currentPrice": 20.00,
+        "previousPrice": 0,
+        "sale": 10,
+        "plantType": "Hybrid",
+        "thc": 22,
+        "cbd": 1,
+        "effects": [
+            "Euphoric",
+            "Cerebral high",
+            "Relaxed"
+        ],
+        "tags": [
+            "Cannabis",
+            "Seeds"
+        ],
+        "itemNo": 534670,
+        "description": {
+            "short": "Purple Cookie Kush Feminized seeds come from two well-known strains, Girl Scout Cookies and Purple Kush. The 60% indica / 40% sativa heritage leads to a well-balanced hybrid flower. Flavours range from grapes to sandalwood, and the terpene profile is a concoction of many complimentary aromas. Purple Cookie Kush Feminized is a short plant with good yields. Bud formation is dense, similar to many Kush strains.",
+            "completion": "Purple Cookie Kush Feminized takes the hottest GSC genetics and mashes them with a Purple Kush cultivar that was hand chosen for this project. No corners were cut in creating and selecting the right breeding stock for this fantastic strain. The result is a well-balanced hybrid that retains key qualities from its lineage. The Purple Kush parent of Purple Cookie Kush Feminized has a lot to contribute, as evidenced by the plant morphology. The compact nature and sturdy branching can be attributed to those indica-dominant genetics. Another area that the indica influence is evident is in the terpene profile, which includes scents of spicy hashish and earthiness."
+        },
+        "reviews": [
+            {
+                "fullName": "Michael",
+                "reviewRating": 5,
+                "reviewDate": "September 30, 2021 at 9:52 am",
+                "feedback": "Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.",
+                "benefit": "In nulla posuere sollicitudin aliquam ultrices.",
+                "disadvantages": "Viverra aliquet eget sit amet tellus cras adipiscing enim."
+            },
+            {
+                "fullName": "Charles Sanchez",
+                "reviewRating": 5,
+                "reviewDate": "October 1, 2021 at 11:52 am",
+                "reviewText": "I usually only eat a square and that’s good enough for me. It’s very potent",
+                "feedback": "I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.",
+                "benefit": "",
+                "disadvantages": ""
+            }
+        ],
+        "additionalInformation": {
+            "ingredients": "60% indica, 40% sativa plant",
+            "flavors": "Creamy, flowery, pungent, sweet",
+            "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
+        }
+    },
+
+
+    {
+        "enabled": true,
+        "imageUrls": [
+            "https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl.png",
+            "https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl-2.png",
+            "https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl-3.png"
+        ],
+        "quantity": 3,
+        "_id": 12,
+        "rate": 4.4,
+        "category": "Seeds",
+        "name": "Pure Power Plant Feminized Seeds by White Label",
+        "currentPrice": 32.00,
+        "previousPrice": 0,
+        "sale": 0,
+        "plantType": "Hybrid",
+        "thc": 22,
+        "cbd": 1,
+        "effects": [
+            "Stimulating",
+            "Energetic",
+            "Happy"
+        ],
+        "tags": [
+            "Cannabis",
+            "Seeds"
+        ],
+        "itemNo": 534670,
+        "description": {
+            "short": "Pure Power Plant Feminized by White Label is a fast-flowering 40% indica, 60% sativa strain. It produces abundant yields, and can be grown indoors, or outdoors in a warm climate. The plants produce a skunky, vanilla-wood aroma while growing, which is also evident in the taste. The sativa dominance results in a talkative, uplifting high.",
+            "completion": "White Label Pure Power Plant Feminized cannabis seeds are a potent hybrid; made up of 60% sativa and 40% indica. Its exact genetics have been kept a secret, though it’s known that the sativa parent plant is South African, and the indica originates from the US. The slight sativa dominance is evident in the high, which is energising and euphoric. This is a feminized strain, which means that it’s highly unlikely that any male plants will grow from the seeds. This means cultivation is much easier, making it a suitable option for novice growers. Pure Power Plant Feminized also has high resistance to mould, which is another advantage."
+        },
+        "reviews": [
+            {
+                "fullName": "Michael",
+                "reviewRating": 5,
+                "reviewDate": "September 30, 2021 at 9:52 am",
+                "feedback": "Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.",
+                "benefit": "In nulla posuere sollicitudin aliquam ultrices.",
+                "disadvantages": "Viverra aliquet eget sit amet tellus cras adipiscing enim."
+            },
+            {
+                "fullName": "Charles Sanchez",
+                "reviewRating": 5,
+                "reviewDate": "October 1, 2021 at 11:52 am",
+                "reviewText": "I usually only eat a square and that’s good enough for me. It’s very potent",
+                "feedback": "I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.",
+                "benefit": "",
+                "disadvantages": ""
+            }
+        ],
+        "additionalInformation": {
+            "ingredients": "40% indica, 60% sativa plant",
+            "flavors": "Pleasantly musky, citrussy aroma while growing, with a note of skunk",
             "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
         }
     }
