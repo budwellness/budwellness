@@ -1,18 +1,18 @@
 .footer {
-  background-color: map-get($colors, mainGreen);
-  width: 100vw;
-
+  background-color: $main-green;
+  min-width: 320px;
+  height: 100px;
 
   @include _320 {
     background-color: black;
+  }
 
-    @include _768 {
-      background-color: purple;
+  @include _768 {
+    background-color: purple;
+  }
 
-      @include _1380 {
-        background-color: orangered;
-      }
-    }
+  @include _1380 {
+    background-color: $secondary-text-color;
   }
 
   .container {
@@ -20,25 +20,33 @@
     margin: 0 auto;
     padding-right: 1rem;
     padding-left: 1rem;
-    width: 100%;
+    background-color: $background-image-hover;
+    @include dflex-jcsb-aic;
+
+    @include _1380 {
+      max-width: calc(1380px - 2rem);
+    }
 
     &__main {
-      padding: 60px 0;
-      ;
+      padding: 10px 0;
+      display: inline-block;
+      @include dflex-jcc-aic;
 
-      &__content {}
+      &__content {
+        color: $white-text-color;
+      }
     }
 
     &__secondary {
-      color: map-get($colors, mainOrange);
-      background-color: map-get($colors, backgroundImageHover);
+      display: inline-block;
+      color: $main-orange;
+      background-color: $background-image-hover;
     }
 
     span {
-      color: red;
+      color: $secondary-green;
     }
   }
-
 }
 
 

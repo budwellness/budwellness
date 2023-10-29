@@ -8,8 +8,8 @@
 }
 
 .orangeBtn {
-  background-color: #efc368;
-  color: #214842;
+  background-color: $main-orange;
+  color: $main-green;
   border: none;
 }
 
@@ -19,12 +19,13 @@
 }
 
 .whiteBtn {
-  color: #258f67;
-  border: 1px solid #258f67;
+  background-color: #fff;
+  color: $secondary-green;
+  border: 1px solid $secondary-green;
 }
 
 .whiteBtn:hover {
-  background-color: #258f67;
-  color: #fff;
+  background-color: $secondary-green;
+  color: $white-text-color;
   cursor: pointer;
 }

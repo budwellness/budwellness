@@ -1,26 +1,23 @@
 /*** VARIABLES ***/
 
 /* COLORS */
-$colors: (
-    mainGreen: #214842,
-    mainOrange: #EFC368,
-    secondaryGreen: #258F67,
-    colorWhite: #fff,
-    backgroundImageHover: rgba(33, 72, 66, 0.6),
-);
+$main-green: #214842;
+$main-orange: #EFC368;
+$secondary-green: #258F67;
+$color-white: #fff;
+$background-image-hover: rgba(33, 72, 66, 0.6);
 
-$fontColors: (
-    main: #556260,
-    secondary: #c6c6c6,
-    colorWhite: #fff,
-);
+
+$main-text-color: #556260;
+$secondary-text-color: #c6c6c6;
+$white-text-color: #fff;
+
 
 /* FONT FAMILIES */
 
-$fonts: (
-    montserrat: 'Montserrat',
-    nunito: 'Nunito Sans',
-);
+$font-montserrat: 'Montserrat', sans-serif;
+$font-nunito: 'Nunito Sans', sans-serif;
+
 
 
 /*** MIXINS ***/
