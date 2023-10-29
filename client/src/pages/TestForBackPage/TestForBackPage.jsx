@@ -1,14 +1,13 @@
-/* eslint-disable */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   useGetAllProductsQuery,
   useLazyGetAllProductsQuery,
   useGetSingleProductMutation,
   useSearchForProductsMutation,
 } from '../../store/serverResponse/danitApi.products';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import { uploadHandler } from './vanilaJsHelpers';
 import {
   userLoginUserAction,
@@ -21,21 +20,19 @@ import { useLazyGetWishlistQuery } from '../../store/serverResponse/danitApi.wis
 
 import styles from './TestForBackPage.module.scss';
 
-const log = console.log;
+const { log } = console;
 
 function TestForBackPage() {
-  // INIT HOOKS:
+  /* --------- INIT HOOKS: --------- */
   const dispatch = useDispatch();
 
-  // REDUX STATE:
+  /* --------- REDUX STATE: --------- */
   const { isUserLogin, token } = useSelector((state) => state.user);
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist
   );
-  // log('USER SATATE "isLogin"', isUserLogin);
-  // log('USER SATATE "token"', token);
 
-  // RTK QUERY CUSTOM HOOKS:
+  /* --------- RTK QUERY CUSTOM HOOKS: --------- */
 
   const [
     getAllProducts,
@@ -47,19 +44,17 @@ function TestForBackPage() {
 
   const [searchForProducts, { data: searchForProductsData }] =
     useSearchForProductsMutation();
-  // const { data: allProductsData } = useGetAllProductsQuery();
-  // log('All products data: ', allProductsData);
 
-  const [loginUser, { data: userToken, isSuccess: isLoginSuccess }] =
+  const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
     useLoginUserMutation();
-  // log('user token RTK: ', userToken);
 
   const [
     getWishlist,
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
-  // COMPONENT HANDLERS:
+  /* --------- COMPONENT HELPER HANDLERS: --------- */
+
   const logoutHandler = () => {
     localStorage.clear();
     dispatch(userLogutUserAction());
@@ -70,95 +65,109 @@ function TestForBackPage() {
   //   log('loginHandler token: ', token);
   // };
 
-  const getAllProductsHandler = () => {
-    getAllProducts();
-    log(allProductsData);
-  };
+  // const getAllProductsHandler = () => {
+  //   getAllProducts();
+  //   log(allProductsData);
+  // };
 
-  const getSingleProductHandler = (itemNo) => {
-    getSingleProduct(itemNo);
-    log(singleProductData);
-  };
+  // const getSingleProductHandler = (itemNo) => {
+  //   getSingleProduct(itemNo);
+  //   log(singleProductData);
+  // };
 
-  const searchForProductsHandler = () => {
-    const mockSearch = {
-      query: 'milk',
-    };
-    searchForProducts(mockSearch);
-  };
+  // const searchForProductsHandler = () => {
+  //   const mockSearch = {
+  //     query: 'milk',
+  //   };
+  //   searchForProducts(mockSearch);
+  // };
+
   // const showWishlistHandler = () => {
   //   log('Wishlist data: ', userWishListData);
   // };
 
-  // COMPONENT LOGIC
+  /* --------- COMPONENT LOGIC: --------- */
 
-  const checkTokenInLocalStorage = () => {
-    const token = localStorage.getItem('token');
+  /*
+    При первой загрузке страницы, проверяем наличие токена
+    и тригерим все экшены которые должны быть если юзер залогинен:
+    - Меняем глобальное состояние на True
+    - Добавляем токен в глобальный state
+    - Получаем с сервера wishlist юзера, инициализируем в stor
+    - Получаем с сервера cart юзера, инициализируем в stor
+  */
+
+  const initUserOnLoad = () => {
+    const localStorageToken = localStorage.getItem('token');
     if (!token) {
       log('User not logged in');
     } else {
       log('token appear, put it into store...');
-      dispatch(userLoginUserAction(token));
-      localStorage.setItem('token', token);
-      getWishlist(token);
+      dispatch(userLoginUserAction(localStorageToken));
+      localStorage.setItem('token', localStorageToken);
+      getWishlist(localStorageToken);
+      // добавить запрос данных на корзину
     }
   };
-  useEffect(() => {
-    checkTokenInLocalStorage();
-  }, []);
 
-  useEffect(() => {
-    if (isLoginSuccess || userToken) {
-      dispatch(userLoginUserAction(userToken));
-      localStorage.setItem('token', userToken);
-      getWishlist(userToken);
+  useEffect(() => initUserOnLoad(), []);
+
+  /* ------------------------------------------------ */
+
+  /*
+    Если юзер не был залогинен, то мы логинимся, используя 
+    loginUser из хука QUERY, и трегирим наш useEffect в зависимости
+    от того правильно были введены данные или нет, если нет (ЛОГИКА
+      ОБРАБОТКИ ОШИБКИ ЕЩЕ НЕ ПРИДУМАНА) обрабатываем ошибку,
+    если данные для аунтефикации верны, заносим данные в наш стор и 
+    localStorage. И так же трегирим остальные экшены:
+    - Получаем с сервера wishlist юзера, инициализируем в stor
+    - Получаем с сервера cart юзера, инициализируем в stor
+
+  */
+
+  const isLoginSuccessHandler = () => {
+    if (loginIsSuccess && loginUserToken) {
+      dispatch(userLoginUserAction(loginUserToken));
+      localStorage.setItem('token', loginUserToken);
+      getWishlist(loginUserToken);
     }
-  }, [isLoginSuccess]);
+  };
 
   useEffect(() => {
-    log('Тригер вишлиста сработал');
+    isLoginSuccessHandler();
+  }, [loginIsSuccess]);
+
+  /* ------------------------------------------------ */
+
+  useEffect(() => {
     if (isUserLogin || userWishListData) {
-      log('я зашел в диспатч вишлиста');
       dispatch(setWishlistAction(userWishListData.products));
     }
   }, [isSuccessUserWishlistData]);
 
-  // useEffect(() => {
-  //   if (isUserLogin) {
-  //     getWishlist(token);
-  //   }
-  // }, [isUserLogin]);
-  // useEffect(() => {
-  //   if (isLoginSuccess) {
-  //     localStorage.setItem('token', userToken);
-  //     dispatch(userLoginUserAction(userToken));
-  //     log('useEffect scope. Works only on trigger from hook');
-  //   }
-  // }, [isLoginSuccess]);
-
-  // useEffect(() => {
-  //   if (isUserLogin) {
-  //     getWishlist(token);
-  //     if (isSuccessUserWishlistData) {
-  //       log('User wishlist data: ', userWishListData);
-  //     }
-  //   } else {
-  //     log('Я работаю...');
-  //   }
-  // }, [isUserLogin]);
+  /* ------------------------------------------------ */
 
   return (
     <>
       <div className={styles.mainWrapper}>
         <div className="">
           {!isUserLogin && (
-            <button onClick={() => loginUser(userMockData)}>Login</button>
+            <button type="button" onClick={() => loginUser(userMockData)}>
+              Login
+            </button>
           )}
           {isUserLogin && (
-            <button onClick={() => logoutHandler()}>Logout</button>
+            <button type="button" onClick={() => logoutHandler()}>
+              Logout
+            </button>
           )}
-          <button onClick={() => log(userWishListData)}>Wishlist data</button>
-          <button onClick={() => log(wishlistStoreData)}>Wishlist store</button>
+          <button type="button" onClick={() => log(userWishListData)}>
+            Wishlist data
+          </button>
+          <button type="button" onClick={() => log(wishlistStoreData)}>
+            Wishlist store
+          </button>
           {/* <button onClick={() => uploadHandler()}>Upload</button> */}
           {/* <button>Check TOKEN</button>
 
@@ -174,19 +183,19 @@ function TestForBackPage() {
           </button> */}
         </div>
         <div className={styles.btnWrapper}>
-          <Link target="_blank" className={styles.wishBtn} to={'/wishlist'}>
+          <Link target="_blank" className={styles.wishBtn} to="/wishlist">
             <span>W</span>
             {isUserLogin && wishlistStoreData.length > 0 && (
               <span className={styles.info}>{wishlistStoreData.length}</span>
             )}
           </Link>
-          <Link className={styles.wishBtn} to={'/cart'}>
+          <Link className={styles.wishBtn} to="/cart">
             <span>C</span>
             {/* {isUserLogin && <span className={styles.info}>0</span>} */}
           </Link>
         </div>
       </div>
-      <div className={styles.secondaryWrapper}></div>
+      <div className={styles.secondaryWrapper} />
     </>
   );
 }
