@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Carousel from './components/Carousel/Carousel';
 import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
 import ProductsPage from './pages/ShopPage/ProductsPage';
@@ -34,7 +33,6 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Carousel />
       <Footer />
       <Button />
     </>
