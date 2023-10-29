@@ -1,5 +1,5 @@
 import React from 'react';
-// eslint-disable-next-line import/no-unresolved
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   EffectFade,
@@ -7,6 +7,7 @@ import SwiperCore, {
   Autoplay,
   Controller,
 } from 'swiper/core';
+import Container from '../Container/Container';
 import Button from '../Button/Button';
 import PhoneIcon from '../UI/PhoneIcon';
 import DoneIcon from '../UI/DoneIcon';
