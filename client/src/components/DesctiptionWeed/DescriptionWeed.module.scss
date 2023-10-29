@@ -49,33 +49,30 @@
 
 .textBlock {
     position: relative;
-
+    text-align-last: left;
     @media (min-width: 320px) {
         text-align: center;
         width: 296px;
-
         &::before {
             display: none;
         }
     }
-
     @media (min-width: 768px) {
         width: 744px;
         padding-left: 10px;
-
         &::before {
             display: none;
         }
     }
-
     @media (min-width: 1200px) {
         width: 367px;
         padding: 0;
         &::before {
             content: '';
             position: absolute;
+            display: block; 
             top: 310px;
-            left: 160px;
+            left: 180px;
             width: 281px;
             height: 157px;
             background-image: url(../../assets/icons/SVG.svg);
@@ -90,9 +87,7 @@
 .titleWeed {
     color: #214842;
     font-family: Nunito Sans;
-    font-size: 36px;
     font-weight: 800;
-    line-height: 43.2px;
     text-align: start;
     margin: 0 0 15px 0;
 
@@ -109,6 +104,8 @@
 
     @media (min-width: 1200px) {
         width: 367px;
+        line-height: 43.2px;
+        font-size: 36px;
     }
 }
 
@@ -149,8 +146,6 @@
 }
 
 .imageBlock img {
-    width: 387px;
-    height: 540px;
     object-fit: cover;
     border-radius: 20px;
 
@@ -162,6 +157,11 @@
     @media(min-width: 768px) {
         width: 357px;
         height: 400px;
+    }
+
+    @media(min-width: 768px) {
+        width: 387px;
+        height: 540px;
     }
 }
 
@@ -209,11 +209,11 @@
     @media (min-width: 768px) {
         width: 277px;
         margin-bottom: 30px;
-        margin-left: 50px;
+        margin-left: 70px;
 
         &::before {
             top: 0;
-            left: -25px;
+            left: -10px;
         }
 
     }
@@ -246,11 +246,11 @@
     @media (min-width: 768px) {
         width: 277px;
         margin-bottom: 30px;
-        margin-left: 50px;
+        margin-left: 70px;
 
         &::before {
             top: 140px;
-            left: -25px;
+            left: -10px;
         }
     }
 }
@@ -282,11 +282,11 @@
     @media (min-width: 768px) {
         width: 277px;
         margin-bottom: 30px;
-        margin-left: 50px;
+        margin-left: 70px;
 
         &::before {
             top: 280px;
-            left: -25px;
+            left: -10px;
         }
     }
 }
