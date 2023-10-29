@@ -18,8 +18,8 @@ function SearchIcon(props) {
 
 SearchIcon.propTypes = {
   fill: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
 
 SearchIcon.defaultProps = {

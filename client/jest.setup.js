@@ -1,5 +1,10 @@
 require('whatwg-fetch');
 // module.exports = {
-//     setupFiles: ["whatwg-fetch"],
-//     // ...rest of the config
+//   transform: {
+//     '^.+\\.js$': 'babel-jest',
+//     '^.+\\.mjs$': 'babel-jest',
+//   },
+//   modulePathIgnorePatterns: ['<rootDir>/node_modules'],
+//   // setupFiles: ["whatwg-fetch"],
+//   // ...rest of the config
 // };
