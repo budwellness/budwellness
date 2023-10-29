@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Container from '../Container/Container';
 import styles from './PagePreviewHeader.module.scss';
 
 function PagePreviewHeader({ title, text }) {
@@ -13,10 +14,12 @@ function PagePreviewHeader({ title, text }) {
         </div>
       </div>
       <div className={styles.linkWpapper}>
-        <NavLink to="/" className={styles.link}>
-          Home &nbsp;/
-        </NavLink>
-        <span>{title}</span>
+        <Container>
+          <NavLink to="/" className={styles.link}>
+            Home &nbsp;/
+          </NavLink>
+          <span>{title}</span>
+        </Container>
       </div>
     </>
   );
