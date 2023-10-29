@@ -27,7 +27,7 @@ function TestForBackPage() {
   const dispatch = useDispatch();
 
   // REDUX STATE:
-  // const { isUserLogin, token } = useSelector((state) => state.user);
+  const { isUserLogin, token } = useSelector((state) => state.user);
   // log('USER SATATE "isLogin"', isUserLogin);
   // log('USER SATATE "token"', token);
 
@@ -46,8 +46,8 @@ function TestForBackPage() {
   // const { data: allProductsData } = useGetAllProductsQuery();
   // log('All products data: ', allProductsData);
 
-  // const [loginUserReq, { data: userToken, isSuccess: isLoginSuccess }] =
-  //   useLoginUserMutation();
+  const [loginUser, { data: userToken, isSuccess: isLoginSuccess }] =
+    useLoginUserMutation();
   // log('user token RTK: ', userToken);
 
   // const [
@@ -110,7 +110,7 @@ function TestForBackPage() {
     <>
       <div className={styles.mainWrapper}>
         <div className="">
-          <button>Login</button>
+          <button onClick={() => {}}>Login</button>
           {/* <button onClick={() => uploadHandler()}>Upload</button> */}
           <button>Check TOKEN</button>
           <button>Logout</button>

@@ -2,8 +2,16 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
+const log = console.log;
 const token = localStorage.getItem('token');
+log('Захожу проверяю есть ли токен...');
 const isUserLogin = !!token;
+if (token) {
+  log('Токен есть, кладу в стейт...');
+} else {
+  log('Токена нету, нужно залогиниться... ', 'isUserLogin: ', isUserLogin);
+  log('isUserLogin: ', isUserLogin);
+}
 
 const initialState = {
   isUserLogin,
