@@ -21,7 +21,25 @@ export const danitApiProducts = createApi({
         body: patch,
       }),
     }),
+    getSingleProduct: build.mutation({
+      query: (itemNo) => ({
+        url: `${API.API_GET_ONE_PRODUCT}/${itemNo}`,
+        method: 'GET',
+      }),
+    }),
+    searchForProducts: build.mutation({
+      query: (searchPhrases) => ({
+        url: API.API_SEARCH_PRODUCTS,
+        method: 'POST',
+        body: searchPhrases,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery } = danitApiProducts;
+export const {
+  useGetAllProductsQuery,
+  useLazyGetAllProductsQuery,
+  useGetSingleProductMutation,
+  useSearchForProductsMutation,
+} = danitApiProducts;

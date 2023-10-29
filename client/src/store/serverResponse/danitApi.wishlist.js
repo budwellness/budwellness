@@ -45,5 +45,4 @@ export const danitApiWishlist = createApi({
   }),
 });
 
-export const { useLazyGetWishlistQuery, useCreateWishlistMutation } =
-  danitApiWishlist;
+export const { useLazyGetWishlistQuery, useCreateWishlistMutation } = danitApiWishlist;
