@@ -1,0 +1,46 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.errorImg {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  object-fit: cover;
+  margin-top: 60px;
+}
+
+.errorMain {
+  margin-top: 25px;
+}
+
+.title {
+  font-size: 24px;
+  font-family: 'Nunito Sans', sans-serif;
+  color: $main-green;
+  text-align: center;
+  font-weight: 800;
+  @include for-size(992px) {
+    font-size: 28px;
+  }
+}
+
+.text {
+  text-align: center;
+  line-height: 1.5;
+  @include for-size(768px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.btnWrrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  // коли буде готова карусель підігнати нижній відспуп
+}
