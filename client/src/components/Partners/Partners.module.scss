@@ -3,45 +3,54 @@
         @content;
     }
 }
-.partners{
+
+.partners {
     display: flex;
     justify-content: space-evenly;
     padding: 80px 0;
     background-color: #FAFAF5;
 }
 
-.partnerHemp{
+.partnerHemp {
     width: 320px;
     text-align: center;
 }
-.partnerGreen{
+
+.partnerGreen {
     width: 320px;
     display: none;
     text-align: center;
+
     @include for-size(576px) {
         display: block;
     }
 }
-.partnerVerano{
+
+.partnerVerano {
     width: 320px;
     display: none;
     text-align: center;
+
     @include for-size(768px) {
         display: block;
     }
 }
-.partnerHoly{
+
+.partnerHoly {
     width: 320px;
     display: none;
     text-align: center;
+
     @include for-size(992px) {
         display: block;
     }
 }
-.partnerCresco{
+
+.partnerCresco {
     width: 320px;
     display: none;
     text-align: center;
+
     @include for-size(1200px) {
         display: block;
     }
