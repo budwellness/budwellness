@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
-// eslint-disable-next-line import/no-unresolved
-import { Pagination, Autoplay } from 'swiper/modules';
+import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
+// import { Pagination, Autoplay } from 'swiper/modules';
 import cN from 'classnames';
 import { useGetAllProductsQuery } from '../../../store/serverResponse/fetchLocalJson';
 import CartIcon from '../../UI/CartIcon';
@@ -11,12 +10,12 @@ import FavouriteIcon from '../../UI/FavouriteIcon';
 import EyeIcon from '../../UI/EyeIcon';
 import RatingStars from '../../RatingStars/RatingStars';
 
-// eslint-disable-next-line import/no-unresolved
-import 'swiper/scss';
-// eslint-disable-next-line import/no-unresolved
-import 'swiper/scss/pagination';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
 
 import styles from './PopularSwiper.module.scss';
+
+SwiperCore.use([Pagination, Autoplay]);
 
 export default function PopularSwiper() {
   const { data: productsData } = useGetAllProductsQuery();
@@ -31,33 +30,30 @@ export default function PopularSwiper() {
           <div className={styles.mediaOverlay}>
             <ul className={styles.actionList}>
               <li className={styles.listItem}>
-                <button type="button" className={styles.actionLink}>
-                  <CartIcon
-                    fill="#EFC368"
-                    width={18}
-                    height={16}
-                    onClick={() => {}}
-                  />
+                <button
+                  type="button"
+                  className={styles.actionLink}
+                  onClick={() => {}}
+                >
+                  <CartIcon className={styles.styleIcon} />
                 </button>
               </li>
               <li className={styles.listItem}>
-                <button type="button" className={styles.actionLink}>
-                  <FavouriteIcon
-                    fill="#EFC368"
-                    width={16}
-                    height={16}
-                    onClick={() => {}}
-                  />
+                <button
+                  type="button"
+                  className={styles.actionLink}
+                  onClick={() => {}}
+                >
+                  <FavouriteIcon className={styles.styleIcon} />
                 </button>
               </li>
               <li className={styles.listItem}>
-                <button type="button" className={styles.actionLink}>
-                  <EyeIcon
-                    fill="#EFC368"
-                    width={16}
-                    height={16}
-                    onClick={() => {}}
-                  />
+                <button
+                  type="button"
+                  className={styles.actionLink}
+                  onClick={() => {}}
+                >
+                  <EyeIcon className={styles.styleIcon} />
                 </button>
               </li>
             </ul>
