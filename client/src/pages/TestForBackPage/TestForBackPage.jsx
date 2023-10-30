@@ -99,7 +99,7 @@ function TestForBackPage() {
 
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    if (!token) {
+    if (!localStorageToken) {
       log('User not logged in');
     } else {
       log('token appear, put it into store...');
@@ -121,8 +121,6 @@ function TestForBackPage() {
       ОБРАБОТКИ ОШИБКИ ЕЩЕ НЕ ПРИДУМАНА) обрабатываем ошибку,
     если данные для аунтефикации верны, заносим данные в наш стор и 
     localStorage. И так же трегирим остальные экшены:
-    - Получаем с сервера wishlist юзера, инициализируем в stor
-    - Получаем с сервера cart юзера, инициализируем в stor
 
   */
 
@@ -134,14 +132,12 @@ function TestForBackPage() {
     }
   };
 
-  useEffect(() => {
-    isLoginSuccessHandler();
-  }, [loginIsSuccess]);
+  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess]);
 
   /* ------------------------------------------------ */
 
   useEffect(() => {
-    if (isUserLogin || userWishListData) {
+    if (isUserLogin && userWishListData) {
       dispatch(setWishlistAction(userWishListData.products));
     }
   }, [isSuccessUserWishlistData]);
