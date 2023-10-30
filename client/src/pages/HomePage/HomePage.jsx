@@ -1,6 +1,7 @@
 import React from 'react';
-import Categories from '../../components/Categories/Categories';
 import Carousel from '../../components/Carousel/Carousel';
+import Categories from '../../components/Categories/Categories';
+import DescriptionWeed from '../../components/DesctiptionWeed/DescriptionWeed';
 
 function HomePage() {
   return (
@@ -8,6 +9,7 @@ function HomePage() {
       <div>HomePage</div>
       <Carousel />
       <Categories />
+      <DescriptionWeed />
     </>
   );
 }
