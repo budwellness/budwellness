@@ -13,7 +13,7 @@ function Partners() {
       <a className={styles.partners__verano} href="https://www.verano.com/">
         <img src="/public/images/partnerThree.png" alt="Verano" />
       </a>
-      <a className={styles.partners__voly} href="https://www.holyherb.com/">
+      <a className={styles.partners__holy} href="https://www.holyherb.com/">
         <img src="/public/images/partnerFour.png" alt="Holy Herb" />
       </a>
       <a className={styles.partners__cresco} href="https://www.crescolabs.com/">
