@@ -10,8 +10,7 @@ import LoginIcon from './icons/LoginIcon';
 import Container from '../Container/Container';
 
 import styles from './Header.module.scss';
-import Modal from '../Modal/Modal.jsx';
-import Footer from '../Footer/Footer.jsx';
+import Modal from '../Modal/Modal';
 
 function Header() {
   const [showBurger, setShowBurger] = useState(false);
@@ -43,15 +42,19 @@ function Header() {
           </Link>
           <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
             <ul className={styles.header_navList}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/">Home</Link>
               </li>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/shop">Shop</Link>
               </li>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/news">News</Link>
               </li>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/pages">Pages</Link>
               </li>
@@ -79,7 +82,7 @@ function Header() {
       </Container>
       {showModal && (
         <Modal handleModal={handleModal}>
-          <div className='test'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus accusantium autem dolor et illo iusto laboriosam magni maxime obcaecati?</div>
+          <div className="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus accusantium autem dolor et illo iusto laboriosam magni maxime obcaecati?</div>
         </Modal>
       )}
     </header>
