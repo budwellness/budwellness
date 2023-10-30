@@ -7,9 +7,17 @@
 .wrapper {
   background-image: url(./images/pagePreviewHeader-bg.webp);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: initial;
+  // background-size: contain;
   background-position: center;
   text-align: center;
+  padding-top: 80px;
+  @include for-size(768px) {
+    padding-bottom: 90px;
+  }
+  @include for-size(992px) {
+    padding-bottom: 120px;
+  }
 }
 
 .container {
@@ -38,17 +46,26 @@
   line-height: 24px;
   max-width: 500px;
   margin: 0 auto;
-  padding-bottom: 60px;
+  padding-bottom: 70px;
   @include for-size(992px) {
     padding-bottom: 90px;
+  }
+  @include for-size(1200px) {
+    padding-bottom: 120px;
   }
 }
 
 .linkWpapper {
-  padding-top: 30px;
+  // padding-top: 20px;
+  margin-top: 20px;
   font-size: 17px;
   font-family: 'Nunito Sans', sans-serif;
-  //   padding-left: 0.75rem;
+  @include for-size(768px) {
+    margin-top: -30px;
+  }
+  @include for-size(1200px) {
+    margin-top: -60px;
+  }
 }
 
 .link {
@@ -71,4 +88,5 @@
 span {
   font-size: 17px;
   color: $main-text-color;
+  line-height: 1.5;
 }
