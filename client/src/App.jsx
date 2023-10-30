@@ -38,7 +38,6 @@ function App() {
       </Routes>
       <Footer />
       <Button />
-      <PopularProducts />
     </>
   );
 }

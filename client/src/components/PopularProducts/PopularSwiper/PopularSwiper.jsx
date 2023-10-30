@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
-// import { Pagination, Autoplay } from 'swiper/modules';
 import cN from 'classnames';
 import { useGetAllProductsQuery } from '../../../store/serverResponse/fetchLocalJson';
 import CartIcon from '../../UI/CartIcon';
@@ -20,7 +19,7 @@ SwiperCore.use([Pagination, Autoplay]);
 export default function PopularSwiper() {
   const { data: productsData } = useGetAllProductsQuery();
 
-  const popularCards = productsData?.map((productItem) => (
+  const popularCards = productsData?.slice(0, 4).map((productItem) => (
     <SwiperSlide key={productItem.itemNo} className={styles.slide}>
       <div className={styles.wpapper}>
         <div className={styles.media}>
@@ -105,7 +104,7 @@ export default function PopularSwiper() {
       }}
       autoplay={{
         delay: 2000,
-        disableOnInteraction: true,
+        disableOnInteraction: false,
       }}
       loop
       watchOverflow={false}
