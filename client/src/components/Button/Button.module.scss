@@ -2,10 +2,10 @@
   height: 48px;
   font-size: 17px;
   padding: 10px 25px;
+  height: 48px;
   border-radius: 24px;
   font-weight: 700;
   font-family: $font-nunito;
-  background-color: $color-white;
   transition-timing-function: ease-in-out;
   transition-duration: 0.5s;
 }
@@ -24,6 +24,7 @@
 .whiteBtn {
   color: $secondary-green;
   border: 1px solid $secondary-green;
+  background-color: $color-white;
 }
 
 .whiteBtn:hover {

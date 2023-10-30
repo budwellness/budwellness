@@ -7,11 +7,7 @@ function Button(props) {
     type, text, className, onClick,
   } = props;
 
-  const buttonClasses = [
-    styles.btn, styles[className],
-    // className.includes('orangeBtn') ? styles.orangeBtn : '',
-    // className.includes('whiteBtn') ? styles.whiteBtn : '',
-  ].join(' ');
+  const buttonClasses = [styles.btn, styles[className]].join(' ');
 
   return (
     // eslint-disable-next-line react/button-has-type
