@@ -1,3 +1,8 @@
+@mixin for-size($size) {
+    @include for-size($size) {
+        @content;
+    }
+}
 .partners{
     display: flex;
     justify-content: space-evenly;
@@ -13,7 +18,7 @@
     width: 320px;
     display: none;
     text-align: center;
-    @media (min-width: 576px) {
+    @include for-size(576px) {
         display: block;
     }
 }
@@ -21,7 +26,7 @@
     width: 320px;
     display: none;
     text-align: center;
-    @media (min-width: 768px) {
+    @include for-size(768px) {
         display: block;
     }
 }
@@ -29,7 +34,7 @@
     width: 320px;
     display: none;
     text-align: center;
-    @media (min-width: 992px) {
+    @include for-size(992px) {
         display: block;
     }
 }
@@ -37,7 +42,7 @@
     width: 320px;
     display: none;
     text-align: center;
-    @media (min-width: 1200px) {
+    @include for-size(1200px) {
         display: block;
     }
 }
