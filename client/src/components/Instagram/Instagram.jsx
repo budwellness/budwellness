@@ -1,10 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
 import 'swiper/swiper-bundle.min.css';
 import styles from './Instagram.module.scss';
-
-SwiperCore.use([Navigation, Pagination]);
 
 function Instagram() {
   return (
@@ -39,8 +36,6 @@ function Instagram() {
               slidesPerView: 5,
             },
           }}
-          navigation
-          pagination
         >
           <SwiperSlide className={styles.instaSwipe}>
             <a href="https://www.instagram.com/">

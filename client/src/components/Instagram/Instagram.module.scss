@@ -1,3 +1,9 @@
+@mixin for-size($size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -5,7 +11,7 @@
     align-items: center;
     margin-bottom: 40px;
     margin-top: 80px;
-    @media (min-width: 320px) {
+    @include for-size(320px) {
         padding: 0 12px;
     }
 }
@@ -14,14 +20,14 @@
     font-weight: 800;
     font-size: 36px;
     line-height: 1.2;
-    color: #214842;
+    color: $main-green;
     margin: 0 0 20px 0;
     text-align: center;
 }
 
 .instaDesc {
     font-family: Montserrat;
-    color: #556260;
+    color: $main-text-color;
     font-size: 17px;
     line-height: 1.5;
     text-align: center;
@@ -31,6 +37,9 @@
 
 .instaSwipe {
     position: relative;
+    @include for-size(567px) {
+        height: 270px;
+    }
 }
 
 .instaSwipe:hover {
@@ -41,17 +50,26 @@
     &::before {
         content: "";
         position: absolute;
-        top: 90px;
-        left: 90px;
+        top: 150px;
+        left: 150px;
         width: 24px;
         height: 24px;
         background-size: cover;
         background-repeat: no-repeat;
         z-index: 0;
         background-image: url(./iconmonstr-instagram-11.svg);
+        @include for-size(576px) {
+            top: 125px;
+            left: 135px;
+        }
+        @include for-size(768px) {
+            left: 120px;
+        }
+        @include for-size(1200px) {
+            left: 115px;
+        }
     }
 }
-
 
 .instaImage {
     width: 100%;
