@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
 import Container from '../../components/Container/Container';
 import Button from '../../components/Button/Button';
+import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import styles from './NotFoundPage.module.scss';
 
 function NotFoundPage() {
@@ -37,6 +38,7 @@ function NotFoundPage() {
               </NavLink>
             </div>
           </div>
+          <PopularProducts />
         </Container>
       </div>
     </>

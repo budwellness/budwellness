@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Container from '../Container/Container';
 import Button from '../Button/Button';
 import styles from './PopularProducts.module.scss';
 import PopularSwiper from './PopularSwiper/PopularSwiper';
@@ -9,8 +10,8 @@ export default function PopularProducts() {
   const navigate = useNavigate();
 
   return (
-    <section className={styles.section_popular}>
-      <div className={styles.container}>
+    <Container>
+      <section className={styles.section_popular}>
         <div className={styles.popular_header}>
           <h2 className={styles.popular_headerTitle}>Popular Products</h2>
           <p className={styles.popular_headerText}>
@@ -29,7 +30,7 @@ export default function PopularProducts() {
             navigate('/products');
           }}
         />
-      </div>
-    </section>
+      </section>
+    </Container>
   );
 }

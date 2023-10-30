@@ -6,7 +6,6 @@ import PopularProducts from '../../components/PopularProducts/PopularProducts';
 function HomePage() {
   return (
     <>
-      <div>HomePage</div>
       <Carousel />
       <Categories />
       <PopularProducts />
