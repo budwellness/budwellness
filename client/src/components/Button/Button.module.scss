@@ -1,15 +1,18 @@
 .btn {
+  height: 48px;
   font-size: 17px;
   padding: 10px 25px;
   border-radius: 24px;
   font-weight: 700;
+  font-family: $font-nunito;
+  background-color: $color-white;
   transition-timing-function: ease-in-out;
   transition-duration: 0.5s;
 }
 
 .orangeBtn {
-  background-color: #efc368;
-  color: #214842;
+  background-color: $main-orange;
+  color: $main-green;
   border: none;
 }
 
@@ -19,12 +22,12 @@
 }
 
 .whiteBtn {
-  color: #258f67;
-  border: 1px solid #258f67;
+  color: $secondary-green;
+  border: 1px solid $secondary-green;
 }
 
 .whiteBtn:hover {
-  background-color: #258f67;
-  color: #fff;
+  background-color: $secondary-green;
+  color: $white-text-color;
   cursor: pointer;
 }

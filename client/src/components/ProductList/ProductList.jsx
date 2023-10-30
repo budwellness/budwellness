@@ -7,20 +7,18 @@ function ProductList({ products, error }) {
   console.log(products);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.productList}>
-        {error ? (
-          <div className={styles.productList__errorWrapper}>
-            Oh no, there was an error
-          </div>
-        ) : (
-          <div className={styles.productList__productsWrapper}>
-            {products?.map((product) => (
-              <ProductCard product={product} key={product.id} />
-            ))}
-          </div>
-        )}
-      </div>
+    <div className={styles.productList}>
+      {error ? (
+        <div className={styles.productList__errorWrapper}>
+          Oh no, there was an error
+        </div>
+      ) : (
+        <div className={styles.productList__productsWrapper}>
+          {products?.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

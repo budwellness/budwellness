@@ -12,8 +12,6 @@ import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
-import Button from './components/Button/Button';
-import ProductList from './components/ProductList/ProductList';
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
@@ -33,9 +31,7 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
-      <Button />
-      <ProductList products={products} error={error} />
+      <Footer products={products} error={error} />
     </>
   );
 }

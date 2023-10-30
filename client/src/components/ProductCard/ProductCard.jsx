@@ -1,8 +1,7 @@
 import React from 'react';
-import cn from 'classnames';
 import PropTypes from 'prop-types';
-import { ReactComponent as HeartIcon } from '../../assets/icons/heart-20x20.svg';
 import Button from '../Button/Button';
+import FavoriteIcon from '../UI/FavoriteIcon';
 import styles from './ProductCard.module.scss';
 
 // eslint-disable-next-line react/prop-types
@@ -19,19 +18,13 @@ function ProductCard({ product }) {
     classNames,
   } = product;
 
-  // console.log(product);
-  // console.log(imageUrls[0]);
+  const productCardClasses = [styles.productCard, styles[classNames]].join(' ');
 
   const previousPrice = (currentPrice / ((100 - sale) / 100)).toFixed(2);
 
   return (
-    <div className={cn('productCard', classNames)}>
+    <div className={productCardClasses}>
       <div className={styles.productCard__media}>
-        {sale !== 0 && (
-          <div className={styles.productCard__media__saleLabel}>
-            <span className={styles.productCard__media__saleLabel__saleText}>Sale</span>
-          </div>
-        )}
         <a
           className={styles.productCard__media__productLink}
           href="product.html"
@@ -47,42 +40,46 @@ function ProductCard({ product }) {
             />
           </div>
         </a>
-        <Button
+        <a
           className={styles.productCard__media__buttonAddFavorites}
-          type="button"
-          // onClick={ () => addFavorites()}
+          href="wishlist.html"
         >
-          <HeartIcon
-            className={styles.productCard__media__buttonAddFavorites__iconHeart}
-            // style={{
-            //   color: '#9a9a9c',
-            // }}
-          />
-        </Button>
+          <FavoriteIcon className={styles.favoriteIcon} />
+        </a>
+        {sale !== 0 && (
+          <div className={styles.productCard__media__saleLabel}>
+            <span className={styles.productCard__media__saleLabel__saleText}>
+              Sale
+            </span>
+          </div>
+        )}
       </div>
       <div className={styles.productCard__main}>
         <div className={styles.productCard__main__rating}>Rating</div>
-        <h3 className={styles.productCard__main__productName}>{name}</h3>
+        <a className={styles.productCard__main__titleLink} href="product.html">
+          {name}
+        </a>
         <div className={styles.productCard__main__productPrices}>
           {sale !== 0 && (
             <span
               className={styles.productCard__main__productPrices__previousPrice}
             >
+              $
               {previousPrice}
             </span>
           )}
           <span
             className={styles.productCard__main__productPrices__currentPrice}
           >
+            $
             {currentPrice}
           </span>
         </div>
         <Button
-          className={styles.productCard__main__buttonAddToCart}
+          className="whiteBtn"
+          text="Add to cart"
           // onClick={() => { addToCart(product)}}
-        >
-          Add to cart
-        </Button>
+        />
       </div>
     </div>
   );
