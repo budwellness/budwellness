@@ -10,15 +10,45 @@ const wishListSlice = createSlice({
   name: 'wishlist',
   initialState,
   reducers: {
-    setWishList: (state, { payload }) => {
-      console.log('inc PAYLOAD', payload);
-      state.wishList = [...payload];
-      console.log('initState inside Slice', initialState.wishList);
+    toggleWishlist: (state, { payload: product }) => {
+      const isExist = state.wishList.some((p) => p.id === product.id);
+
+      if (isExist) {
+        const index = state.wishList.findIndex(
+          (item) => item.id === product.id
+        );
+        if (index !== -1) {
+          state.wishList.splice(index, 1);
+        }
+      } else {
+        state.wishList.push(product);
+      }
     },
-    addItemToWishList: (state) => state,
-    removeItemFromWishList: (state) => state,
+    setWishList: (state, { payload }) => {
+      // нужна, логика что бы не добавлять дубликаты
+      state.wishList = payload;
+    },
+    // updateLocalWishList: (state, { payload }) => {
+    //   state.wishList = [...payload];
+    // },
+    addItemToWishList: (state, { payload }) => {
+      state.wishList.push(payload);
+    },
+    removeItemFromWishList: (state, { payload }) => {
+      const index = state.wishList.findIndex(
+        (item) => item._id === payload._id
+      );
+      if (index !== -1) {
+        state.wishList.splice(index, 1);
+      }
+    },
   },
 });
 
-export const { setWishList: setWishlistAction } = wishListSlice.actions;
+export const {
+  setWishList: setWishlistAction,
+  toggleWishlist: toggleWishlistAction,
+  addItemToWishList: addItemToWishListAction,
+  removeItemFromWishList: removeItemFromWishListAction,
+} = wishListSlice.actions;
 export default wishListSlice.reducer;

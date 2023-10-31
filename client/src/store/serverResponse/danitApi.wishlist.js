@@ -29,20 +29,29 @@ export const danitApiWishlist = createApi({
       }),
     }),
     addProductToWishlist: build.mutation({
-      query: ({ id: productId, token, ...patch }) => ({
+      query: ({ productId, token }) => ({
         url: `${API.API_ADD_TO_WISHLIST}${productId}`,
-        method: 'POST',
+        method: 'PUT',
         headers: {
           Authorization: token,
-          'Content-type': 'application/json',
         },
-        body: patch,
       }),
     }),
     removeFromWishlist: build.mutation({
-      query: () => {},
+      query: ({ productId, token }) => ({
+        url: `${API.API_REMOVE_FROM_WISHLIST}${productId}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: token,
+        },
+      }),
     }),
   }),
 });
 
-export const { useLazyGetWishlistQuery, useCreateWishlistMutation } = danitApiWishlist;
+export const {
+  useLazyGetWishlistQuery,
+  useCreateWishlistMutation,
+  useAddProductToWishlistMutation,
+  useRemoveFromWishlistMutation,
+} = danitApiWishlist;

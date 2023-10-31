@@ -18,3 +18,4 @@ export const API_GET_SLIDES = `${API_URL}/slides`;
 export const API_GET_WISHLIST = '/wishlist';
 export const API_CREATE_WISHLIST = '/wishlist';
 export const API_ADD_TO_WISHLIST = '/wishlist/';
+export const API_REMOVE_FROM_WISHLIST = '/wishlist/';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -13,26 +14,44 @@ import {
   userLoginUserAction,
   userLogutUserAction,
 } from '../../store/user/user.slice';
-import { setWishlistAction } from '../../store/wishlist/wishList.slice';
+import {
+  setWishlistAction,
+  addItemToWishListAction,
+  removeItemFromWishListAction,
+} from '../../store/wishlist/wishList.slice';
 import { userMockData } from './mockedTestData';
 import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
-import { useLazyGetWishlistQuery } from '../../store/serverResponse/danitApi.wishlist';
+import {
+  useLazyGetWishlistQuery,
+  useAddProductToWishlistMutation,
+  useRemoveFromWishlistMutation,
+} from '../../store/serverResponse/danitApi.wishlist';
+import Container from '../../components/Container/Container';
 
 import styles from './TestForBackPage.module.scss';
+import TestProductCard from './TestProductCard';
 
 const { log } = console;
 
 function TestForBackPage() {
-  /* --------- INIT HOOKS: --------- */
+  /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
 
-  /* --------- REDUX STATE: --------- */
-  const { isUserLogin, token } = useSelector((state) => state.user);
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { isUserLogin, token: tokenReduxStore } = useSelector(
+    (state) => state.user
+  );
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist
   );
 
-  /* --------- RTK QUERY CUSTOM HOOKS: --------- */
+  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
+
+  const {
+    data: allProducts,
+    isError: isErrorAllProducts,
+    isLoading: isLoadingAllProducts,
+  } = useGetAllProductsQuery();
 
   const [
     getAllProducts,
@@ -53,22 +72,99 @@ function TestForBackPage() {
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
-  /* --------- COMPONENT HELPER HANDLERS: --------- */
+  const [
+    addProductToWishlist,
+    {
+      data: wishlistAddToWishlistData,
+      isSuccess: isSuccessAddToWishlist,
+      isError: isErrorAddToWishlist,
+      error: errorAddtoWishlist,
+    },
+  ] = useAddProductToWishlistMutation();
+
+  const [
+    removeProductFromWishlist,
+    {
+      data: wishlistRemoveFromData,
+      isSuccess: isSuccessRemoveFromWishlist,
+      isError: isErrorRemoveFromWishlist,
+      error: errorRemoveToWishlist,
+    },
+  ] = useRemoveFromWishlistMutation();
+
+  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
   const logoutHandler = () => {
-    localStorage.clear();
+    localStorage.removeItem('token');
     dispatch(userLogutUserAction());
   };
 
-  // const checkTokenHandler = () => {
-  //   const token = localStorage.getItem('token');
-  //   log('loginHandler token: ', token);
-  // };
+  /* ------------------------------------------------ */
 
-  // const getAllProductsHandler = () => {
-  //   getAllProducts();
-  //   log(allProductsData);
-  // };
+  const addToWishlistHandler = (productId, token) => {
+    if (!token) {
+      log('Please login first!');
+    } else {
+      const objectAddToWishlist = {
+        productId,
+        token,
+      };
+      addProductToWishlist(objectAddToWishlist);
+    }
+  };
+
+  /* ------------------------------------------------ */
+
+  const removeFromWishlistHandler = (productId, token) => {
+    if (!token) {
+      log('Please login first!');
+    } else {
+      const objectRemoveFromWishlist = {
+        productId,
+        token,
+      };
+      removeProductFromWishlist(objectRemoveFromWishlist);
+      log();
+      log('removeProductFromWishlist: прошли в хук и отправили запрос');
+    }
+  };
+
+  /* ------------------------------------------------ */
+
+  /* 
+    // 
+    // проверить есть ли этот продукт уже в wishlist в локальном стейте
+    // в зависимости от того есть или нету, делаем запрос Добавить или удалить
+    // после респонса с сервера проверяю на 200 и меняю стейт на
+  */
+
+  const toggleWishlistHandler = async (product, token) => {
+    const isExist = wishlistStoreData.some((p) => p._id === product._id);
+
+    if (isExist) {
+      try {
+        await removeProductFromWishlist({ productId: product._id, token }).then(
+          () => {
+            dispatch(removeItemFromWishListAction(product));
+          }
+        );
+      } catch (error) {
+        log(error);
+      }
+    } else {
+      try {
+        await addProductToWishlist({ productId: product._id, token }).then(
+          () => {
+            dispatch(addItemToWishListAction(product));
+          }
+        );
+      } catch (error) {
+        log(error);
+      }
+    }
+  };
+
+  /* ------------------------------------------------ */
 
   // const getSingleProductHandler = (itemNo) => {
   //   getSingleProduct(itemNo);
@@ -82,11 +178,13 @@ function TestForBackPage() {
   //   searchForProducts(mockSearch);
   // };
 
-  // const showWishlistHandler = () => {
-  //   log('Wishlist data: ', userWishListData);
+  // const showWishlistHandler = async () => {
+  //   await getWishlist(tokenReduxStore)
+  //     .then(() => log('сработал нужный then!'))
+  //     .then(() => log('Wishlist data: ', userWishListData));
   // };
 
-  /* --------- COMPONENT LOGIC: --------- */
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   /*
     При первой загрузке страницы, проверяем наличие токена
@@ -102,9 +200,8 @@ function TestForBackPage() {
     if (!localStorageToken) {
       log('User not logged in');
     } else {
-      log('token appear, put it into store...');
+      log('token is present, put it into store...');
       dispatch(userLoginUserAction(localStorageToken));
-      localStorage.setItem('token', localStorageToken);
       getWishlist(localStorageToken);
       // добавить запрос данных на корзину
     }
@@ -136,13 +233,71 @@ function TestForBackPage() {
 
   /* ------------------------------------------------ */
 
-  useEffect(() => {
+  /*
+    Используя хук getWishList, получаем ответ с wishlist`ом юзера,
+    Если wishlist приходит пустой:
+      -ничего не делаем
+    Если wishlist приходит не пустой:
+      -забираем из ответа сервера массив продуктов и инициализируем в сторе
+  */
+
+  const initUserWishlistOnLoad = () => {
     if (isUserLogin && userWishListData) {
+      if (isSuccessAddToWishlist) {
+        log('ТРРИГЕР ТОЛЬКО КОГДА ДОБАВИЛ В ВИШЛИСТ!');
+        // dispatch(setWishlistAction(wishlistAddToWishlistData.products));
+      }
       dispatch(setWishlistAction(userWishListData.products));
     }
-  }, [isSuccessUserWishlistData]);
+  };
+
+  useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
 
   /* ------------------------------------------------ */
+
+  // useEffect(() => {
+  //   if (isSuccessAddToWishlist) {
+  //     log(wishlistAddToWishlistData);
+  //   }
+  // }, [isSuccessAddToWishlist]);
+  /* ------------------------------------------------ */
+
+  const products = allProducts?.map((product) => (
+    <TestProductCard
+      key={product._id}
+      product={product}
+      action={toggleWishlistHandler}
+    />
+  ));
+  // const products = allProducts?.map((product) => (
+  //   <div key={product.itemNo} className={styles.poductCardWrap}>
+  //     <h3>{product.name}</h3>
+  //     <h4>{product._id}</h4>
+  //     <button
+  //       onClick={() => {
+  //         toggleWishlistHandler(product, tokenReduxStore);
+  //       }}
+  //     >
+  //       Toggle Wishlist
+  //     </button>
+  //     <button
+  //       onClick={() => {
+  //         addToWishlistHandler(product._id, tokenReduxStore);
+  //       }}
+  //     >
+  //       Add to wishlist
+  //     </button>
+  //     <button
+  //       onClick={() => {
+  //         removeFromWishlistHandler(product._id, tokenReduxStore);
+  //       }}
+  //     >
+  //       Remove from wish
+  //     </button>
+  //     <button>Add to cart</button>
+  //     <button>Remove cart</button>
+  //   </div>
+  // ));
 
   return (
     <>
@@ -158,7 +313,7 @@ function TestForBackPage() {
               Logout
             </button>
           )}
-          <button type="button" onClick={() => log(userWishListData)}>
+          <button type="button" onClick={() => showWishlistHandler()}>
             Wishlist data
           </button>
           <button type="button" onClick={() => log(wishlistStoreData)}>
@@ -191,7 +346,13 @@ function TestForBackPage() {
           </Link>
         </div>
       </div>
-      <div className={styles.secondaryWrapper} />
+      <Container>
+        <div className={styles.secondaryWrapper}>
+          {isLoadingAllProducts && <h1>Loading...</h1>}
+
+          {products}
+        </div>
+      </Container>
     </>
   );
 }
