@@ -11,7 +11,7 @@ function NotFoundPage() {
     <>
       <PagePreviewHeader
         title="Error Page"
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, blanditiis."
+        text="Whoops! You can't buy Bud Wellness here"
       />
       <div className={styles.wrapper}>
         <Container>
