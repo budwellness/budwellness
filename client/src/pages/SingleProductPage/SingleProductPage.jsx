@@ -1,8 +1,12 @@
 import React from 'react';
+import Container from '../../components/Container/Container';
+import PopularProducts from '../../components/PopularProducts/PopularProducts';
 
 function SingleProductPage() {
   return (
-    <div>SingleProductPage</div>
+    <Container>
+      <PopularProducts />
+    </Container>
   );
 }
 
