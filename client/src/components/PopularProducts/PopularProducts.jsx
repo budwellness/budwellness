@@ -17,7 +17,7 @@ export default function PopularProducts() {
           <p className={styles.popular_headerText}>
             Medical marijuana can be beneficial in treating anxiety disorders
             and post-traumatic stress syndrome. Marijuana can help patients with
-            depression and other mood-related conditions.
+            depression and other mood-related conditions
           </p>
         </div>
 

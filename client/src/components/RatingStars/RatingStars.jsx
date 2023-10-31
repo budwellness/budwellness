@@ -8,7 +8,8 @@ export default function RatingStars({ rate, edit }) {
     <ReactStars
       classNames={styles.mainRating}
       count={5}
-      size={30}
+      size={25}
+      isHalf
       value={rate}
       edit={edit}
       color="#c6c6c6"
