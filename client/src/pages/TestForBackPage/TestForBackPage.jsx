@@ -2,6 +2,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { userMockData } from './mockedTestData';
+import { uploadHandler } from './vanilaJsHelpers';
+
+// COMPONENTS: 
+import Container from '../../components/Container/Container';
+import TestProductCard from './TestProductCard';
+
+// PRODUCT IMPORTS:
 import {
   useGetAllProductsQuery,
   useLazyGetAllProductsQuery,
@@ -9,27 +17,40 @@ import {
   useSearchForProductsMutation,
 } from '../../store/serverResponse/danitApi.products';
 
-import { uploadHandler } from './vanilaJsHelpers';
+// USER IMPORTS: 
 import {
   userLoginUserAction,
   userLogutUserAction,
 } from '../../store/user/user.slice';
+import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
+
+// WISHLIST IMPORTS:
 import {
   setWishlistAction,
   addItemToWishListAction,
   removeItemFromWishListAction,
 } from '../../store/wishlist/wishList.slice';
-import { userMockData } from './mockedTestData';
-import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 import {
   useLazyGetWishlistQuery,
   useAddProductToWishlistMutation,
   useRemoveFromWishlistMutation,
 } from '../../store/serverResponse/danitApi.wishlist';
-import Container from '../../components/Container/Container';
+
+// CART IMPORTS:
+import {
+  setCartAction,
+  addItemToCartAction,
+  removeItemFromCartAction,
+} from '../../store/cart/cart.slice'
+import {
+  useLazyGetCartQuery,
+  useAddToCartMutation,
+  useRemoveFromCartMutation,
+} from '../../store/serverResponse/danitApi.cart';
+
 
 import styles from './TestForBackPage.module.scss';
-import TestProductCard from './TestProductCard';
+
 
 const { log } = console;
 
@@ -45,8 +66,11 @@ function TestForBackPage() {
     (state) => state.wishlist
   );
 
+  const { cart: cartStoreData } = useSelector(state => state.cart)
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
+
+  // PRODUCTS API:
   const {
     data: allProducts,
     isError: isErrorAllProducts,
@@ -64,8 +88,12 @@ function TestForBackPage() {
   const [searchForProducts, { data: searchForProductsData }] =
     useSearchForProductsMutation();
 
+  // USER API:
+
   const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
     useLoginUserMutation();
+
+  // WISHLIST API:
 
   const [
     getWishlist,
@@ -92,7 +120,43 @@ function TestForBackPage() {
     },
   ] = useRemoveFromWishlistMutation();
 
+  // CART API:
+
+  const [
+    getCart,
+    {
+      data: userCartData,
+      isSuccess: isSuccessUserCartData
+    }
+  ] = useLazyGetCartQuery()
+
+  const [
+    addProductToCart,
+    {
+      data: cartAddToCartData,
+      isSuccess: isSuccessAddToCart,
+      isError: isErrorAddToCart,
+      error: errorAddToCart
+    }
+  ] = useAddToCartMutation()
+
+  const [
+    removeProductFromCart,
+    {
+      data: cartRemoveFromCartData,
+      isSuccess: isSuccessRemoveFromCart,
+      isError: isErrorRemoveFromCart,
+      error: errorRemoveFromCart,
+    }
+  ] = useRemoveFromCartMutation()
+
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
+
+  /* 
+    При выходе очищаем localStorage от ключа 'token',
+    и тригерим экшен, который поменят в глобальном сторе
+    состояния isUserLoign на false, а полю токен задаст NULL
+  */
 
   const logoutHandler = () => {
     localStorage.removeItem('token');
@@ -143,21 +207,19 @@ function TestForBackPage() {
 
     if (isExist) {
       try {
-        await removeProductFromWishlist({ productId: product._id, token }).then(
-          () => {
-            dispatch(removeItemFromWishListAction(product));
-          }
-        );
+        await removeProductFromWishlist({ productId: product._id, token })
+          .then(
+            () => dispatch(removeItemFromWishListAction(product))
+          );
       } catch (error) {
         log(error);
       }
     } else {
       try {
-        await addProductToWishlist({ productId: product._id, token }).then(
-          () => {
-            dispatch(addItemToWishListAction(product));
-          }
-        );
+        await addProductToWishlist({ productId: product._id, token })
+          .then(
+            () => dispatch(addItemToWishListAction(product))
+          );
       } catch (error) {
         log(error);
       }
@@ -165,6 +227,38 @@ function TestForBackPage() {
   };
 
   /* ------------------------------------------------ */
+
+  const showCartStoreHandler = () => {
+    log(cartStoreData)
+  }
+
+  /* ------------------------------------------------ */
+
+  const showUserCartDataHandler = () => {
+    log(userCartData)
+  }
+
+  const toggleCartHandler = async (product, token) => {
+    const isExist = cartStoreData.some(p => p._id === product._id)
+
+    if (isExist) {
+      try {
+        await removeProductFromCart({ productId: product._id, token })
+          .then(() => dispatch(removeItemFromCartAction(product)))
+      } catch (error) {
+
+      }
+    } else {
+      try {
+        await addProductToCart({ productId: product._id, token })
+          .then(
+            () => dispatch(addItemToCartAction(product))
+          )
+      } catch (error) {
+
+      }
+    }
+  }
 
   // const getSingleProductHandler = (itemNo) => {
   //   getSingleProduct(itemNo);
@@ -203,7 +297,7 @@ function TestForBackPage() {
       log('token is present, put it into store...');
       dispatch(userLoginUserAction(localStorageToken));
       getWishlist(localStorageToken);
-      // добавить запрос данных на корзину
+      getCart(localStorageToken)
     }
   };
 
@@ -218,7 +312,7 @@ function TestForBackPage() {
       ОБРАБОТКИ ОШИБКИ ЕЩЕ НЕ ПРИДУМАНА) обрабатываем ошибку,
     если данные для аунтефикации верны, заносим данные в наш стор и 
     localStorage. И так же трегирим остальные экшены:
-
+  
   */
 
   const isLoginSuccessHandler = () => {
@@ -226,6 +320,7 @@ function TestForBackPage() {
       dispatch(userLoginUserAction(loginUserToken));
       localStorage.setItem('token', loginUserToken);
       getWishlist(loginUserToken);
+      getCart(loginUserToken)
     }
   };
 
@@ -236,6 +331,7 @@ function TestForBackPage() {
   /*
     Используя хук getWishList, получаем ответ с wishlist`ом юзера,
     Если wishlist приходит пустой:
+    тригерим через useEffect только на статус 200.
       -ничего не делаем
     Если wishlist приходит не пустой:
       -забираем из ответа сервера массив продуктов и инициализируем в сторе
@@ -243,10 +339,6 @@ function TestForBackPage() {
 
   const initUserWishlistOnLoad = () => {
     if (isUserLogin && userWishListData) {
-      if (isSuccessAddToWishlist) {
-        log('ТРРИГЕР ТОЛЬКО КОГДА ДОБАВИЛ В ВИШЛИСТ!');
-        // dispatch(setWishlistAction(wishlistAddToWishlistData.products));
-      }
       dispatch(setWishlistAction(userWishListData.products));
     }
   };
@@ -254,6 +346,23 @@ function TestForBackPage() {
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
 
   /* ------------------------------------------------ */
+
+  /*
+  Используя хук getCart, получаем ответ с cart'ом юзера,
+  тригерим через useEffect только на статус 200.
+  Если cart приходит пустой:
+    -ничего не делаем
+  Если cart приходит не пустой:
+    -забираем из ответа сервера массив продуктов и инициализируем в сторе
+*/
+
+  const initUserCardOnLoad = () => {
+    if (isUserLogin && userCartData) {
+      dispatch(setCartAction(userCartData.products))
+    }
+  }
+
+  useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData])
 
   // useEffect(() => {
   //   if (isSuccessAddToWishlist) {
@@ -266,7 +375,7 @@ function TestForBackPage() {
     <TestProductCard
       key={product._id}
       product={product}
-      action={toggleWishlistHandler}
+      action={{ toggleWishlistHandler, toggleCartHandler }}
     />
   ));
   // const products = allProducts?.map((product) => (
@@ -319,6 +428,12 @@ function TestForBackPage() {
           <button type="button" onClick={() => log(wishlistStoreData)}>
             Wishlist store
           </button>
+          <button type="button" onClick={() => showUserCartDataHandler()}>
+            Cart data
+          </button>
+          <button type="button" onClick={() => showCartStoreHandler()}>
+            Cart store
+          </button>
           {/* <button onClick={() => uploadHandler()}>Upload</button> */}
           {/* <button>Check TOKEN</button>
 
@@ -342,14 +457,15 @@ function TestForBackPage() {
           </Link>
           <Link className={styles.wishBtn} to="/cart">
             <span>C</span>
-            {/* {isUserLogin && <span className={styles.info}>0</span>} */}
+            {isUserLogin && cartStoreData.length > 0 && (
+              <span className={styles.info}>{cartStoreData.length}</span>
+            )}
           </Link>
         </div>
       </div>
       <Container>
         <div className={styles.secondaryWrapper}>
           {isLoadingAllProducts && <h1>Loading...</h1>}
-
           {products}
         </div>
       </Container>

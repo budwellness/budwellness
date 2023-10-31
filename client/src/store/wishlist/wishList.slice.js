@@ -10,20 +10,20 @@ const wishListSlice = createSlice({
   name: 'wishlist',
   initialState,
   reducers: {
-    toggleWishlist: (state, { payload: product }) => {
-      const isExist = state.wishList.some((p) => p.id === product.id);
+    // toggleWishlist: (state, { payload: product }) => {
+    //   const isExist = state.wishList.some((p) => p.id === product.id);
 
-      if (isExist) {
-        const index = state.wishList.findIndex(
-          (item) => item.id === product.id
-        );
-        if (index !== -1) {
-          state.wishList.splice(index, 1);
-        }
-      } else {
-        state.wishList.push(product);
-      }
-    },
+    //   if (isExist) {
+    //     const index = state.wishList.findIndex(
+    //       (item) => item.id === product.id
+    //     );
+    //     if (index !== -1) {
+    //       state.wishList.splice(index, 1);
+    //     }
+    //   } else {
+    //     state.wishList.push(product);
+    //   }
+    // },
     setWishList: (state, { payload }) => {
       // нужна, логика что бы не добавлять дубликаты
       state.wishList = payload;
