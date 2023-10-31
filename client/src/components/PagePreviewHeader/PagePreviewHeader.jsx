@@ -8,10 +8,10 @@ function PagePreviewHeader({ title, text }) {
   return (
     <>
       <div className={styles.wrapper}>
-        <div className={styles.container}>
+        <Container>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.text}>{text}</p>
-        </div>
+        </Container>
       </div>
       <div className={styles.linkWpapper}>
         <Container>
