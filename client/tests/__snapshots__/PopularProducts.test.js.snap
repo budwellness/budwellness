@@ -19,7 +19,7 @@ exports[`PopularProducts component Smoke test (Snapshot test) should PopularProd
         <p
           class="popular_headerText"
         >
-          Medical marijuana can be beneficial in treating anxiety disorders and post-traumatic stress syndrome. Marijuana can help patients with depression and other mood-related conditions.
+          Medical marijuana can be beneficial in treating anxiety disorders and post-traumatic stress syndrome. Marijuana can help patients with depression and other mood-related conditions
         </p>
       </div>
       <div>
