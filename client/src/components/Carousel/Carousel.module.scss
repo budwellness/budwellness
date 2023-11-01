@@ -5,6 +5,7 @@
 }
 
 .heroWrrap {
+  padding-top: 90px;
   @include for-size(1200px) {
     background: linear-gradient(to right, white 50%, $main-green 50%);
   }
@@ -57,10 +58,10 @@
 .phoneImg {
   width: 40px;
   height: 40px;
-  padding-bottom: 15px;
+  margin-bottom: 15px;
   transition-duration: 0.5s;
   @include for-size(576px) {
-    padding-right: 15px;
+    margin-right: 15px;
   }
 }
 
