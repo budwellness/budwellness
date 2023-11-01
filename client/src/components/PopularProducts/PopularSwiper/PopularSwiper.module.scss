@@ -38,8 +38,7 @@
     overflow: hidden;
     cursor: pointer;
     margin-bottom: 10px;
-    border: 0.5px solid rgba(33, 72, 66, 0.2);
-
+    box-shadow: 0 0 15px rgba(37, 143, 103, 0.1);
     &:hover {
       .mediaOverlay {
         opacity: 1;
@@ -126,6 +125,7 @@
       display: block;
       width: 100%;
       object-fit: cover;
+      aspect-ratio: 1/1;
     }
   }
 
