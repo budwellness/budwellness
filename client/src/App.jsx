@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <Header />
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
@@ -34,10 +34,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Routes> */}
-      <SingleProductPage />
-      {/* <Footer />
-      <Button /> */}
+      </Routes>
     </>
   );
 }
