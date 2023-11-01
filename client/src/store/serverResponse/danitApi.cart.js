@@ -28,7 +28,16 @@ export const danitApiCart = createApi({
     removeFromCart: build.mutation({
       query: ({ productId, token }) => ({
         url: `${API.API_REMOVE_FROM_CART}${productId}`,
-        method: 'DETELE',
+        method: 'DELETE',
+        headers: {
+          Authorization: token,
+        },
+      }),
+    }),
+    decreaseCartQuantity: build.mutation({
+      query: ({ productId, token }) => ({
+        url: `${API.API_DEACREASE_PRODUCT_QUANTITY}${productId}`,
+        method: 'DELETE',
         headers: {
           Authorization: token,
         },
@@ -41,4 +50,5 @@ export const {
   useLazyGetCartQuery,
   useAddToCartMutation,
   useRemoveFromCartMutation,
+  useDecreaseCartQuantityMutation,
 } = danitApiCart;

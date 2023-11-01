@@ -24,3 +24,4 @@ export const API_REMOVE_FROM_WISHLIST = '/wishlist/';
 export const API_GET_CART = '/cart';
 export const API_ADD_TO_CART = '/cart/';
 export const API_REMOVE_FROM_CART = '/cart/';
+export const API_DEACREASE_PRODUCT_QUANTITY = '/cart/product/';

@@ -6,8 +6,21 @@ import styles from './TestProductCard.module.scss';
 
 const log = console.log;
 
-function TestProductCard({ product, action: { toggleWishlistHandler, toggleCartHandler } }) {
+function TestProductCard(props) {
+
+  /* --------------------------- INIT PROPS: --------------------------- */
+
+  const {
+    product,
+    action: {
+      toggleWishlistHandler,
+      toggleCartHandler,
+      increaseCartQuantityHandler
+    },
+  } = props
+
   /* --------------------------- REDUX STATE: --------------------------- */
+
   const { isUserLogin, token } = useSelector((state) => state.user);
   const { wishList } = useSelector((state) => state.wishlist);
   const { cart } = useSelector(state => state.cart)
@@ -16,6 +29,7 @@ function TestProductCard({ product, action: { toggleWishlistHandler, toggleCartH
 
   const [isExistInWishlist, setIsExistInWishlist] = useState(null);
   const [isExistInCart, setIsExistInCart] = useState(null);
+  const [cartProductQuantity, setCartProductQuantity] = useState(0);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
@@ -28,11 +42,32 @@ function TestProductCard({ product, action: { toggleWishlistHandler, toggleCartH
   }
   const toggleCartWithLoginHandler = () => {
     if (isUserLogin) {
-      toggleCartHandler(product, token);
+      toggleCartHandler(product, token)
+
     } else {
       console.log('Please login first');
     }
   }
+
+  const reflectCartItemQuantityHandler = () => {
+    if (cart.length > 0) {
+      const indexOfProductInCart = cart.findIndex(item => item.product._id === product._id)
+      if (indexOfProductInCart !== -1) {
+        return cart[indexOfProductInCart].cartQuantity
+        // setCartProductQuantity(cart[indexOfProductInCart].cartQuantity)
+      } else {
+        return 0
+        // setCartProductQuantity(0)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (cart) {
+      setCartProductQuantity(reflectCartItemQuantityHandler())
+    }
+
+  }, [cart])
 
   /*
   Функция меняет локальное сотояние компонента кнопки, которое 
@@ -68,6 +103,23 @@ function TestProductCard({ product, action: { toggleWishlistHandler, toggleCartH
     }
   };
 
+  const CartButtonStateHandler = (
+    globalUserState,
+    globalUserDataState,
+    localButtonState,
+    localButtonStateSetter,
+  ) => {
+    if (globalUserState) {
+      if (globalUserDataState.length > 0) {
+        localButtonStateSetter(globalUserDataState.some((p) => p.product._id === product._id));
+      } else if (localButtonState) {
+        localButtonStateSetter(!localButtonState);
+      }
+    } else {
+      localButtonStateSetter(false);
+    }
+  };
+
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   // WISHLIST BUTTON: 
@@ -76,9 +128,9 @@ function TestProductCard({ product, action: { toggleWishlistHandler, toggleCartH
     [wishList, isUserLogin]
   );
 
-  // CART BUTTON: 
+  // // CART BUTTON: 
   useEffect(
-    () => ButtonStateHandler(isUserLogin, cart, isExistInCart, setIsExistInCart),
+    () => CartButtonStateHandler(isUserLogin, cart, isExistInCart, setIsExistInCart),
     [cart, isUserLogin]
   );
 
@@ -103,7 +155,13 @@ function TestProductCard({ product, action: { toggleWishlistHandler, toggleCartH
         onClick={() => toggleCartWithLoginHandler()}
       >
         Toggle Cart</button>
-      <button onClick={() => { }}>Show Cart Store</button>
+      <div className={styles.qntyWrap}>
+        <button onClick={() => { }}>-</button>
+        <span>Cart Quantity</span>
+        <button onClick={() => increaseCartQuantityHandler(product._id, token)}>+</button>
+        <p>{cartProductQuantity}</p>
+      </div>
+
     </div>
   );
 }
