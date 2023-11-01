@@ -9,8 +9,8 @@
   right: 0;
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: #ffffff;
   z-index: 10000;
+
 
   svg {
     width: 48px;
@@ -25,6 +25,20 @@
     display: flex;
     align-items: center;
   }
+}
+
+.header.scrolled {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  transition: padding 0.3s ease; /* Добавляем плавную анимацию перехода */
+  background-color: #ffffff;
+}
+
+.sticky {
+  display: none;
+  position: sticky;
+  top: 0;
+  transition: padding 0.5s, display 0.5s; /* Добавляем плавную анимацию для padding и display */
 }
 
 .wrapp {
@@ -65,6 +79,7 @@
     flex-direction: column;
     gap: 30px;
   }
+
   a {
     color: $main-green;
   }

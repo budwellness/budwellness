@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -11,18 +11,72 @@ import Container from '../Container/Container';
 
 import styles from './Header.module.scss';
 import Modal from '../Modal/Modal';
-import Login from '../Login/Login';
+import LoginForm from '../LoginForm/LoginForm';
 
 function Header() {
   const [showBurger, setShowBurger] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  // testing =======================================
+  // const [scrolled, setScrolled] = useState(false);
+  //
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY >= 100) {
+  //       setScrolled(true);
+  //     } else {
+  //       setScrolled(false);
+  //     }
+  //   };
+  //
+  //   window.addEventListener('scroll', handleScroll);
+  //
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [])
+  //
+  //
+  //= =================================================
+  // testing 2
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollY } = window;
+
+      if (scrollY >= 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      // Добавьте этот блок, чтобы установить "прилипание" при скролле ниже 400px.
+      if (scrollY >= 400) {
+        // eslint-disable-next-line no-use-before-define
+        setSticky(true);
+      } else {
+        // eslint-disable-next-line no-use-before-define
+        setSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const [sticky, setSticky] = useState(false);
+
+  // ========================================================
 
   const handleModal = () => {
     setShowModal(!showModal);
   };
 
   return (
-    <header className={styles.header}>
+    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
       <Container>
         <div className={styles.wrapp}>
           {/* eslint-disable-next-line max-len */}
@@ -83,7 +137,7 @@ function Header() {
       </Container>
       {showModal && (
         <Modal handleModal={handleModal}>
-          <Login />
+          <LoginForm setShowModal={setShowModal} />
         </Modal>
       )}
     </header>
