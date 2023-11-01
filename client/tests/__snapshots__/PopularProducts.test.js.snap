@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopularProducts component Smoke test (Snapshot test) should PopularProducts render 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <section
+      class="section_popular"
+    >
+      <div
+        class="popular_header"
+      >
+        <h2
+          class="popular_headerTitle"
+        >
+          Popular Products
+        </h2>
+        <p
+          class="popular_headerText"
+        >
+          Medical marijuana can be beneficial in treating anxiety disorders and post-traumatic stress syndrome. Marijuana can help patients with depression and other mood-related conditions.
+        </p>
+      </div>
+      <div>
+        PopularSwiper
+      </div>
+      <button>
+        Button
+      </button>
+    </section>
+  </div>
+</DocumentFragment>
+`;
