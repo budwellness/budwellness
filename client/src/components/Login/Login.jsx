@@ -6,9 +6,9 @@ function Login() {
   return (
     <div className={styles.login}>
       login
-      <form action='' className={styles.loginForm}>
-        <input type='text' placeholder="login"/>
-        <input type='text' placeholder="password"/>
+      <form action="" className={styles.loginForm}>
+        <input type="text" placeholder="login" />
+        <input type="text" placeholder="password" />
       </form>
     </div>
   );
