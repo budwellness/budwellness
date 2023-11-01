@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import ReactStars from 'react-rating-stars-component';
 import PropTypes from 'prop-types';
 import styles from './RatingStars.module.scss';
@@ -8,7 +9,8 @@ export default function RatingStars({ rate, edit }) {
     <ReactStars
       classNames={styles.mainRating}
       count={5}
-      size={30}
+      size={25}
+      isHalf
       value={rate}
       edit={edit}
       color="#c6c6c6"
