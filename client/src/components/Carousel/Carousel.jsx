@@ -114,7 +114,7 @@ function Carousel() {
             >
               <SwiperSlide>
                 <div className={styles.paginationWrap}>
-                  <h2 className={styles.title}>Purple Hawaiian Haze</h2>
+                  <h2 className={styles.title}>Purple Haze</h2>
                   <p className={styles.info}>
                     This sweet strain will infuses you with an invigorating
                     euphoria perfect for outdoor activities and social
