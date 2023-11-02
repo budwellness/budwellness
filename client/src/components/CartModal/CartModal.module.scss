@@ -1,0 +1,23 @@
+.cartModal {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s linear;
+  z-index: 20000;
+  padding-top: 50px;
+}
+
+.cartModal.openCart {
+  transform: translateX(-100%);
+}
+
+.cartHeader {
+  display: flex;
+  justify-content: space-between;
+}

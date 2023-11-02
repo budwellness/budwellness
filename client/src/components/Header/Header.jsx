@@ -12,33 +12,15 @@ import Container from '../Container/Container';
 import styles from './Header.module.scss';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
+import CartModal from '../CartModal/CartModal';
 
 function Header() {
   const [showBurger, setShowBurger] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  // testing =======================================
-  // const [scrolled, setScrolled] = useState(false);
-  //
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (window.scrollY >= 100) {
-  //       setScrolled(true);
-  //     } else {
-  //       setScrolled(false);
-  //     }
-  //   };
-  //
-  //   window.addEventListener('scroll', handleScroll);
-  //
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [])
-  //
-  //
-  //= =================================================
-  // testing 2
+  const [showCartModal, setShowCartModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  console.log(showCartModal);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +32,6 @@ function Header() {
         setScrolled(false);
       }
 
-      // Добавьте этот блок, чтобы установить "прилипание" при скролле ниже 400px.
       if (scrollY >= 400) {
         // eslint-disable-next-line no-use-before-define
         setSticky(true);
@@ -74,6 +55,10 @@ function Header() {
   const handleModal = () => {
     setShowModal(!showModal);
   };
+  const handleCartModal = () => {
+    setShowCartModal(!showCartModal);
+  };
+
 
   return (
     <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
@@ -90,7 +75,7 @@ function Header() {
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
           </span>
-          <Link to="/">
+          <Link to='/'>
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
@@ -99,42 +84,43 @@ function Header() {
             <ul className={styles.header_navList}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/">Home</Link>
+                <Link to='/'>Home</Link>
               </li>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/shop">Shop</Link>
+                <Link to='/shop'>Shop</Link>
               </li>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/news">News</Link>
+                <Link to='/news'>News</Link>
               </li>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/pages">Pages</Link>
+                <Link to='/pages'>Pages</Link>
               </li>
             </ul>
           </nav>
           <div className={styles.header_user}>
             <form className={styles.header_userSearchForm}>
-              <input className={styles.header_userSearchInput} type="text" placeholder="Search..." />
+              <input className={styles.header_userSearchInput} type='text' placeholder='Search...' />
               {/* eslint-disable-next-line react/button-has-type */}
               <button className={styles.header_userSearchButton}>
                 <SearchIcon />
               </button>
             </form>
-            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
+            <Link to='/' className={styles.header_userLink} onClick={handleModal}>
               <LoginIcon />
             </Link>
-            <Link to="/wishlist" className={styles.header_userLink}>
+            <Link to='/wishlist' className={styles.header_userLink}>
               <WishlistIcon />
             </Link>
-            <Link to="/cart" className={styles.header_userLink}>
+            <Link to='/' className={styles.header_userLink} onClick={handleCartModal}>
               <CartIcon />
             </Link>
           </div>
         </div>
       </Container>
+      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal}/>
       {showModal && (
         <Modal handleModal={handleModal}>
           <LoginForm setShowModal={setShowModal} />

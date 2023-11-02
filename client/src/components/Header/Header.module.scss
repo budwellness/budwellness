@@ -30,7 +30,7 @@
 .header.scrolled {
   padding-top: 15px;
   padding-bottom: 15px;
-  transition: padding 0.3s ease; /* Добавляем плавную анимацию перехода */
+  transition: padding 0.3s ease;
   background-color: #ffffff;
 }
 
@@ -38,7 +38,7 @@
   display: none;
   position: sticky;
   top: 0;
-  transition: padding 0.5s, display 0.5s; /* Добавляем плавную анимацию для padding и display */
+  transition: padding 0.5s, display 0.5s;
 }
 
 .wrapp {
