@@ -10,16 +10,26 @@ import LoginIcon from './icons/LoginIcon';
 import Container from '../Container/Container';
 
 import styles from './Header.module.scss';
+import Modal from '../Modal/Modal';
 
 function Header() {
-  const [show, setShow] = useState(false);
+  const [showBurger, setShowBurger] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <header className={styles.header}>
       <Container>
         <div className={styles.wrapp}>
           {/* eslint-disable-next-line max-len */}
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,max-len,jsx-a11y/no-static-element-interactions */}
-          <span className={cn(styles.toggleBtn, { [styles.active]: show })} onClick={() => setShow(!show)}>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+          <span
+            className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
+            onClick={() => setShowBurger(!showBurger)}
+          >
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
             <span className={cn(styles.line, styles.shortLine)} />
@@ -30,18 +40,22 @@ function Header() {
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
           </Link>
-          <nav className={`${show ? styles.mobileNav : styles.list}`}>
+          <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
             <ul className={styles.header_navList}>
-              <li className={styles.header_navItem}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/">Home</Link>
               </li>
-              <li className={styles.header_navItem}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/shop">Shop</Link>
               </li>
-              <li className={styles.header_navItem}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/news">News</Link>
               </li>
-              <li className={styles.header_navItem}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
                 <Link to="/pages">Pages</Link>
               </li>
             </ul>
@@ -54,7 +68,7 @@ function Header() {
                 <SearchIcon />
               </button>
             </form>
-            <Link to="/login" className={styles.header_userLink}>
+            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
               <LoginIcon />
             </Link>
             <Link to="/wishlist" className={styles.header_userLink}>
@@ -66,6 +80,11 @@ function Header() {
           </div>
         </div>
       </Container>
+      {showModal && (
+        <Modal handleModal={handleModal}>
+          <div className="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus accusantium autem dolor et illo iusto laboriosam magni maxime obcaecati?</div>
+        </Modal>
+      )}
     </header>
   );
 }
