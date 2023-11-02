@@ -8,19 +8,17 @@ import WishlistIcon from './icons/WishlistIcon';
 import CartIcon from './icons/CartIcon';
 import LoginIcon from './icons/LoginIcon';
 import Container from '../Container/Container';
-
-import styles from './Header.module.scss';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
 import CartModal from '../CartModal/CartModal';
+
+import styles from './Header.module.scss';
 
 function Header() {
   const [showBurger, setShowBurger] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  console.log(showCartModal);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +56,6 @@ function Header() {
   const handleCartModal = () => {
     setShowCartModal(!showCartModal);
   };
-
 
   return (
     <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
@@ -120,12 +117,15 @@ function Header() {
           </div>
         </div>
       </Container>
-      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal}/>
+      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} />
       {showModal && (
         <Modal handleModal={handleModal}>
           <LoginForm setShowModal={setShowModal} />
         </Modal>
       )}
+      {/* eslint-disable-next-line max-len */}
+      {/* eslint-disable-next-line max-len,jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />}
     </header>
   );
 }

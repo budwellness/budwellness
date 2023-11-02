@@ -1,16 +1,17 @@
 .cartModal {
   position: fixed;
   top: 0;
-  right: -50%;
+  right: -850px;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 850px;
   height: 100%;
   background-color: #fff;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s linear;
   z-index: 20000;
-  padding-top: 50px;
+
+  padding: 30px;
 }
 
 .cartModal.openCart {
@@ -20,4 +21,16 @@
 .cartHeader {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cartTitle {
+  margin-top: 0;
+}
+
+.cartHeaderButton {
+  background: #ffffff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
 }
