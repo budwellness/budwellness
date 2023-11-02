@@ -18,18 +18,19 @@
         background-color: $color-white; 
         
         @include _320 {
+            margin-top: 20px;
             @include dflex-column-jcfs-aic;
         }
-        @include _768 {
+        @include _576 {
             margin: 0;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2vw;
         }
-        @include _1380 {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 2vw;
+        @include _768 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2vw;
         }
     }
 }

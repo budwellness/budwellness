@@ -17,9 +17,9 @@ import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
 
-  console.log('DATA: ', products);
+  // console.log('DATA: ', products);
 
-  console.log('error: ', error);
+  // console.log('error: ', error);
 
   return (
     <>

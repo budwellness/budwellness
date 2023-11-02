@@ -29,7 +29,9 @@ ButtonIcon.defaultProps = {
 };
 
 ButtonIcon.propTypes = {
-  classNames: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  classNames: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types, react/require-default-props
+  children: PropTypes.object,
   onClick: PropTypes.func,
 };

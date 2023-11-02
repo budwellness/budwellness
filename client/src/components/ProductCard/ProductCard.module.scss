@@ -7,15 +7,16 @@
     transition: .3s ease-in-out;
 
     &:is(:hover, :focus) {
-        box-shadow: 0 0 15px rgba(37,143,103,.25);
+        box-shadow: 0 0 15px rgba(37,143,103,.20
+        );
         transition: .3s ease-in-out;
     }
     @include _320 {
-        min-width: 320px;
+        min-width: 280px;
         margin-bottom: 30px;
     }
     @include _768 {
-        max-width: 400px;
+        max-width: 320px;
     }
 
     &__media {
@@ -94,6 +95,7 @@
         width: 100%;
         padding: 0 30px 30px;
         @include dflex-column-jcfs-aic;
+        text-align: center;
     
 
         &__rating {
@@ -119,6 +121,7 @@
 
             &:is(:hover, :focus) {
                 color: $secondary-green;
+                transition: .3s ease-in-out;
             }
             
         }

@@ -8,7 +8,7 @@ import RatingStars from '../RatingStars/RatingStars';
 import FavoriteIcon from '../UI/FavoriteIcon';
 import styles from './ProductCard.module.scss';
 
-function ProductCard({ product }) {
+function ProductCard({ onClick, product }) {
   const {
     imageUrls,
     sale,
@@ -134,7 +134,7 @@ function ProductCard({ product }) {
             {currentPrice.toFixed(2)}
           </span>
         </div>
-        <Button className="whiteBtn" text="Add to cart" onClick={() => {}} />
+        <Button className="whiteBtn" text="Add to cart" onClick={onClick} />
       </div>
     </div>
   );
@@ -154,6 +154,7 @@ ProductCard.propTypes = {
     name: PropTypes.string,
     classNames: PropTypes.string,
   }),
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
