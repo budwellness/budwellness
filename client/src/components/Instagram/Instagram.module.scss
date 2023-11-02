@@ -44,30 +44,21 @@
 
 .instaSwipe:hover {
     filter: brightness(50%);
-    transform: scale(1.05);
     transition: all 0.5s ease;
 
     &::before {
         content: "";
         position: absolute;
-        top: 150px;
-        left: 150px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 24px;
         height: 24px;
         background-size: cover;
         background-repeat: no-repeat;
         z-index: 0;
         background-image: url(./iconmonstr-instagram-11.svg);
-        @include for-size(576px) {
-            top: 125px;
-            left: 135px;
-        }
-        @include for-size(768px) {
-            left: 120px;
-        }
-        @include for-size(1200px) {
-            left: 115px;
-        }
+
     }
 }
 
