@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
@@ -19,6 +20,8 @@ import 'swiper/swiper.min.css';
 SwiperCore.use([EffectFade, Pagination, Autoplay, Controller]);
 
 function Carousel() {
+  const navigate = useNavigate();
+
   const images = [
     {
       src: './images/hero01.webp',
@@ -60,7 +63,9 @@ function Carousel() {
               type="button"
               text="Our Products"
               className="orangeBtn"
-              onClick={() => {}}
+              onClick={() => {
+                navigate('/products');
+              }}
             />
             <p className={styles.contactsMessage}>
               Our support team is available 24/7 to resolve any product issues

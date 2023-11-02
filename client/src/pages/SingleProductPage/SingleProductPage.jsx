@@ -1,28 +1,94 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
 import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
-// import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import Container from '../../components/Container/Container';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
 import Button from '../../components/Button/Button';
+import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import { useGetAllProductsQuery } from '../../store/serverResponse/fetchLocalJson';
 
 import styles from './SingleProductPage.module.scss';
 
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
-// import 'swiper/css';
-// import 'swiper/css/free-mode';
-// import 'swiper/css/navigation';
-// import 'swiper/css/thumbs';
 
 SwiperCore.use([Navigation, Thumbs]);
 
-function SingleProductPage() {
-  const { data, error } = useGetAllProductsQuery();
-  console.log(data);
+const mockDataProduct = {
+  enabled: true,
+  imageUrls: [
+    'https://ca.tokyosmoke.com/cdn/shop/products/e96a18b5991250526e86e1ead709a109_1000x.png?v=1599148085',
+    'https://static.wixstatic.com/media/645e3f_38fbb2f262644fb3a766446abd5aeaad~mv2.webp',
+    'https://static.wixstatic.com/media/645e3f_348a1920cbfc402986b118677e654431~mv2.png/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/645e3f_348a1920cbfc402986b118677e654431~mv2.png',
+    'https://ocs.ca/cdn/shop/products/00851653000172_00_compress_330154_1024x1024.jpg?v=1694408215%22%20alt=%22Chocolate%20Brownies%20-%20%22',
+    'https://ocs.ca/cdn/shop/products/00851653000172_01_compress_330154_e87fa6ae-8422-4ea3-aa6c-bd79df3dc07c_1024x1024.jpg?v=1694408215%22%20alt=%22Chocolate%20Brownies%20-%20%22',
+    'https://images.dutchie.com/f0c735369143fdfbe99b17f82f827484?auto=format&fit=fill&fill=solid&ixlib=react-9.5.4&w=344&h=330&dpr=1&q=75',
+    'https://nuleafnaturals.com/wp-content/uploads/2020/07/NLN_2021_CBD_Oil_Human_900_800px.jpg',
+    'https://nuleafnaturals.com/wp-content/uploads/2020/07/NuLeaf-Oil-900mg-box-bottle.jpg',
+    'https://nuleafnaturals.com/wp-content/uploads/2020/07/CL-2DH-NuLeaf-Bottle-Label-Human-15mL-1-24-22_web_sup_facts.png',
+    'https://images.prom.ua/4209399693_w640_h640_4209399693.jpg',
+    'https://images.prom.ua/4209399692_w640_h640_4209399692.jpg',
+    'https://images.prom.ua/4209399694_w640_h640_4209399694.jpg',
+    'https://ocs.ca/cdn/shop/products/00688083011092_a1cc_compressed_110016_1024x1024.jpg?v=1697463553%22',
+    'https://w7a7p5v9.rocketcdn.me/wp-content/uploads/2023/05/doja-ucorn-cake-review-cannabis-photos-4-merry-jade-1024x1024.webp',
+    'https://w7a7p5v9.rocketcdn.me/wp-content/uploads/2023/05/doja-ucorn-cake-review-cannabis-photos-5-merry-jade-1024x1024.webp',
+    'https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-strain-350x420.jpg',
+    'https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-weed-350x420.jpg',
+    'https://kamikazi.cc/wp-content/uploads/2021/05/PINK-DIABLO-2KAMIKAZI-2_WEED-DELIVERY-TORONTO.jpg',
+  ],
+  quantity: 6,
+  _id: 1,
+  rate: 4.4,
+  category: 'Edible',
+  name: 'Bhang Milk Chocolate',
+  currentPrice: 25.0,
+  previousPrice: 25.0,
+  plantType: 'Sativa',
+  thc: 10,
+  cbd: 1,
+  effects: ['Giggly', 'Relaxed', 'Sleepy'],
+  tags: ['Cannabis', 'edible'],
+  itemNo: 867443,
+  description: {
+    short:
+      'Bhang® Milk Chocolate starts with sustainably-sourced and fair-trade cacao and is Powered by INDIVA™. Produced in Indiva’s state-of-the-art facility based in London, Ontario, and backed by a fifth generation chocolatier, Bhang® MilkChocolate offers a cannabis-free flavour that offer just the right hint of sweetness.',
+    completion:
+      'Cannabis-infused edible products combine cannabis distillate with premium ingredients. They offer the same delayed onset time and smoke-free experience of capsules and oils, packaged within a tasty snack..',
+  },
+  reviews: [
+    {
+      fullName: 'Bhang Milk Chocolate',
+      reviewRating: 5,
+      reviewDate: 'September 30, 2021 at 9:52 am',
+      feedback:
+        'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+      benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+      disadvantages:
+        'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+    },
+    {
+      fullName: 'Charles Sanchez',
+      reviewRating: 5,
+      reviewDate: 'October 1, 2021 at 11:52 am',
+      reviewText:
+        'I usually only eat a square and that’s good enough for me. It’s very potent',
+      feedback:
+        'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+      benefit: '',
+      disadvantages: '',
+    },
+  ],
+  additionalInformation: {
+    ingredients:
+      'MILK CHOCOLATE (SUGAR, HYDROGENATED PALM KERNEL OIL, NONFAT DRY MILK, COCOA PROCESSED WITH ALKALI, SORBITAN MONOSTEARATE, LACTIC ACID ESTERS OF MONO AND DIGLYCERIDES WITH CITRIC ACID TO PROTECT FLAVOR, SOY LECITHIN (AN EMULSIFIER), ARTIFICIAL FLAVOR), MCT OIL, HEMP EXTRACT',
+    flavors: 'MAY CONTAIN PEANUTS, TREE NUTS, MILK CHOCOLATE',
+    recommendedUsage:
+      'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more.',
+  },
+};
 
+function SingleProductPage() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -36,46 +102,52 @@ function SingleProductPage() {
           <div className={styles.swiperWrap}>
             <Swiper
               style={{
-                '--swiper-navigation-color': '#fff',
-                '--swiper-pagination-color': '#fff',
+                '--swiper-navigation-color': 'black',
+                '--swiper-pagination-color': 'black',
               }}
-              loop={true}
+              loop
               spaceBetween={10}
-              navigation={true}
+              navigation
               thumbs={{ swiper: thumbsSwiper }}
               className={styles.myMainSwiper}
             >
-              <SwiperSlide>
-                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-              </SwiperSlide>
+              {mockDataProduct.imageUrls.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <picture key={image}>
+                    <img
+                      className={styles.singleImg}
+                      src={image}
+                      alt="product"
+                    />
+                  </picture>
+                </SwiperSlide>
+              ))}
             </Swiper>
+
             <Swiper
               onSwiper={setThumbsSwiper}
-              loop={true}
+              loop
               spaceBetween={10}
               slidesPerView={2}
-              freeMode={true}
-              watchSlidesVisibility={true}
-              watchSlidesProgress={true}
+              freeMode
+              watchSlidesVisibility
+              watchSlidesProgress
               className={styles.mySwiper}
             >
-              <SwiperSlide>
-                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-              </SwiperSlide>
+              {mockDataProduct.imageUrls.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <picture key={image}>
+                    <img
+                      className={styles.singleImg}
+                      src={image}
+                      alt="product"
+                    />
+                  </picture>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
+          {/* <PopularProducts /> */}
         </Container>
       </div>
     </>
