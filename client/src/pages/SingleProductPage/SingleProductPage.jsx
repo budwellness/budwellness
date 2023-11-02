@@ -7,11 +7,13 @@ import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHea
 import Button from '../../components/Button/Button';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import { useGetAllProductsQuery } from '../../store/serverResponse/fetchLocalJson';
+import ArrowNextIcon from '../../components/UI/ArrowNextIcon';
 
 import styles from './SingleProductPage.module.scss';
 
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
+import ArrowPrevIcon from '../../components/UI/ArrowPrevIcon';
 
 SwiperCore.use([Navigation, Thumbs]);
 
@@ -36,6 +38,15 @@ const mockDataProduct = {
     'https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-strain-350x420.jpg',
     'https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-weed-350x420.jpg',
     'https://kamikazi.cc/wp-content/uploads/2021/05/PINK-DIABLO-2KAMIKAZI-2_WEED-DELIVERY-TORONTO.jpg',
+    'https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl.png',
+    'https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl-4.png',
+    'https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl-5.png',
+    'https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl.png',
+    'https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl-2.png',
+    'https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl-3.png',
+    'https://ca.tokyosmoke.com/cdn/shop/products/Deepspace_1000x.png?v=1594412862',
+    'https://www.deepspace.com/content/dam/deep-space/OG_Cola_Image_1.png',
+    'https://images.dutchie.com/bda075590ceaa7d8990f961a52f0aef7?auto=format&fit=fill&fill=solid&fillColor=%23fff&ixlib=react-9.0.2&w=1446',
   ],
   quantity: 6,
   _id: 1,
@@ -101,13 +112,12 @@ function SingleProductPage() {
         <Container>
           <div className={styles.swiperWrap}>
             <Swiper
-              style={{
-                '--swiper-navigation-color': 'black',
-                '--swiper-pagination-color': 'black',
-              }}
               loop
               spaceBetween={10}
-              navigation
+              navigation={{
+                nextEl: '.next-button',
+                prevEl: '.prev-button',
+              }}
               thumbs={{ swiper: thumbsSwiper }}
               className={styles.myMainSwiper}
             >
@@ -122,6 +132,12 @@ function SingleProductPage() {
                   </picture>
                 </SwiperSlide>
               ))}
+              <div className={`${styles.nextBtn} next-button`}>
+                <ArrowNextIcon className={styles.arrowNext} />
+              </div>
+              <div className={`${styles.prevBtn} prev-button`}>
+                <ArrowPrevIcon className={styles.arrowPrev} />
+              </div>
             </Swiper>
 
             <Swiper
@@ -135,7 +151,7 @@ function SingleProductPage() {
               className={styles.mySwiper}
             >
               {mockDataProduct.imageUrls.map((image, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} className={styles['swiperSlide']}>
                   <picture key={image}>
                     <img
                       className={styles.singleImg}
