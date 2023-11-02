@@ -1,23 +1,31 @@
 .productCard {
-    max-width: auto;
-    padding: 0 20px;
     @include dflex-column-jcfs-aic;
     overflow: hidden;
     font-size: 14px;
     background: $color-white;
-    box-shadow: 0 0 15px rgba(37,143,103,.1);
     border-radius: 16px;
     transition: .3s ease-in-out;
 
+    &:is(:hover, :focus) {
+        box-shadow: 0 0 15px rgba(37,143,103,.25);
+        transition: .3s ease-in-out;
+    }
+    @include _320 {
+        min-width: 320px;
+        margin-bottom: 30px;
+    }
+    @include _768 {
+        max-width: 400px;
+    }
+
     &__media {
         position: relative;
-        min-width: 100%;
+        width: 100%;
         margin-bottom: 10px;
         background-color: $color-white;
 
-        
         &__productLink {
-            width: 100%;
+            min-width: 290px;;
             overflow: hidden;
 
             &__imageWrapper {
@@ -27,9 +35,8 @@
                 justify-content: center;
                 
                 &__image {
-                    max-width: 280px;
+                    max-width: 290px;
                     max-height: 200px;
-
                 }
             }
         }
@@ -47,11 +54,13 @@
             cursor: pointer;
 
             &:is(:hover, :focus) {
-                background: $main-orange;
+                background-color: $main-orange;
                 color: $white-text-color;
+                transition: .5s ease-in-out;
 
                 .favoriteIcon {
                     fill: $white-text-color;
+                    transition: .5s ease-in-out;
                 }
                 
             }
@@ -88,10 +97,12 @@
     
 
         &__rating {
-            height: 21px;
+            height: 22px;
         }
         &__titleLink {        
             margin: 10px 0;
+            max-width: 260px;
+            min-height: 23px;
             font-family: $font-nunito;
             font-weight: 700;
             font-size: 20px;
@@ -101,10 +112,19 @@
             cursor: pointer;
             transition: .3s ease-in-out;
 
+            @include _768 {
+                min-height: 52px;
+            }
+            
+
             &:is(:hover, :focus) {
                 color: $secondary-green;
             }
             
+        }
+        &__property span {
+            font-weight: 600;
+            color: $main-green;
         }
         &__productPrices {
             width: 100%;

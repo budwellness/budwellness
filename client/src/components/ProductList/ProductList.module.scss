@@ -2,19 +2,34 @@
     width: 100%;
     min-height: 65vh;
     margin-top: 130px;
+    @include dflex-column-jcfs-aic;
 
     &__errorWrapper {
-        width: 700px;
+        margin-top: 10px;
+        max-width: 700px;
+        text-align: center;
         font-family: $font-nunito;
-        font-size: 50px;
+        color: $main-orange;
+        font-size: 40px;
     }
 
     &__productsWrapper {
         width: 100%;
-        display: grid;
-        background-color: $color-white;
+        background-color: $color-white; 
+        
+        @include _320 {
+            @include dflex-column-jcfs-aic;
+        }
+        @include _768 {
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2vw;
+        }
+        @include _1380 {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
-        column-gap: 40px;
+        gap: 2vw;
+        }
     }
 }

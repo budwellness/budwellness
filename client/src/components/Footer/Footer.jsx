@@ -26,9 +26,9 @@ function Footer(props) {
 }
 
 ProductList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types, react/require-default-props
+  // eslint-disable-next-line react/forbid-prop-types
   products: PropTypes.arrayOf(PropTypes.object),
-  // eslint-disable-next-line react/require-default-props
+
   error: PropTypes.string,
 };
 

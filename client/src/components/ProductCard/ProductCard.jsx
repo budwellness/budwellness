@@ -1,34 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import cn from 'classnames';
 import Button from '../Button/Button';
+import ButtonIcon from '../ButtonIcon/ButtonIcon';
+import RatingStars from '../RatingStars/RatingStars';
 import FavoriteIcon from '../UI/FavoriteIcon';
 import styles from './ProductCard.module.scss';
 
-// eslint-disable-next-line react/prop-types
 function ProductCard({ product }) {
   const {
-    // id,
     imageUrls,
     sale,
+    previousPrice,
     currentPrice,
-    // rate,
-    // thc,
-    // cbd,
+    rate,
+    itemNo,
+    thc,
+    cbd,
     name,
     classNames,
+    ...restProps
   } = product;
 
-  const productCardClasses = [styles.productCard, styles[classNames]].join(' ');
+  let cbdCategory;
+  let thcCategory;
 
-  const previousPrice = (currentPrice / ((100 - sale) / 100)).toFixed(2);
+  switch (true) {
+    case cbd >= 0.1 && cbd <= 1:
+      cbdCategory = '0.10-1.00%';
+      break;
+    case cbd >= 2 && cbd <= 5:
+      cbdCategory = '2.00-5.00%';
+      break;
+    case cbd >= 5 && cbd <= 20:
+      cbdCategory = '5.00-20.00%';
+      break;
+    case cbd >= 20 && cbd <= 50:
+      cbdCategory = '20.00-50.00%';
+      break;
+    default:
+      cbdCategory = 'unknown';
+  }
+
+  switch (true) {
+    case thc >= 0.2 && thc <= 10:
+      thcCategory = '0.20-10.00%';
+      break;
+    case thc >= 11 && thc <= 20:
+      thcCategory = '11.00-20.00%';
+      break;
+    case thc >= 21 && thc <= 30:
+      thcCategory = '21.00-30.00%';
+      break;
+    case thc >= 31 && thc <= 40:
+      thcCategory = '31.00- 40.00%';
+      break;
+    default:
+      thcCategory = 'unknown';
+  }
 
   return (
-    <div className={productCardClasses}>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div className={cn(styles.productCard, styles[classNames])} {...restProps}>
       <div className={styles.productCard__media}>
-        <a
+        <Link
+          to={`/product/${itemNo}`}
           className={styles.productCard__media__productLink}
-          href="product.html"
-          target="_blank"
         >
           <div className={styles.productCard__media__productLink__imageWrapper}>
             <img
@@ -39,47 +77,64 @@ function ProductCard({ product }) {
               alt={name}
             />
           </div>
-        </a>
-        <a
-          className={styles.productCard__media__buttonAddFavorites}
-          href="wishlist.html"
-        >
-          <FavoriteIcon className={styles.favoriteIcon} />
-        </a>
-        {sale !== 0 && (
-          <div className={styles.productCard__media__saleLabel}>
-            <span className={styles.productCard__media__saleLabel__saleText}>
-              Sale
-            </span>
-          </div>
-        )}
+        </Link>
+        <div className={styles.overlay}>
+          {previousPrice !== currentPrice && (
+            <div className={styles.productCard__media__saleLabel}>
+              <span className={styles.productCard__media__saleLabel__saleText}>
+                Sale
+              </span>
+            </div>
+          )}
+          <ButtonIcon
+            className={styles.productCard__media__buttonAddFavorites}
+            onClick={() => {}}
+          >
+            <FavoriteIcon className={styles.favoriteIcon} />
+          </ButtonIcon>
+        </div>
       </div>
       <div className={styles.productCard__main}>
-        <div className={styles.productCard__main__rating}>Rating</div>
-        <a className={styles.productCard__main__titleLink} href="product.html">
+        <RatingStars
+          classNames={styles.productCard__main__rating}
+          rate={rate}
+          size={20}
+        />
+        <Link
+          to={`/product/${itemNo}`}
+          className={styles.productCard__main__titleLink}
+        >
           {name}
-        </a>
+        </Link>
+        <div className={styles.productCard__main__property}>
+          <div className={styles.productCard__main__property_thc}>
+            <span>THC</span>
+            {' '}
+            {thcCategory}
+          </div>
+          <div className={styles.productCard__main__property_cbd}>
+            <span>CBD</span>
+            {' '}
+            {cbdCategory}
+          </div>
+        </div>
         <div className={styles.productCard__main__productPrices}>
-          {sale !== 0 && (
+          {previousPrice !== currentPrice && (
             <span
               className={styles.productCard__main__productPrices__previousPrice}
             >
               $
-              {previousPrice}
+              {previousPrice.toFixed(2)}
             </span>
           )}
           <span
             className={styles.productCard__main__productPrices__currentPrice}
           >
             $
-            {currentPrice}
+            {currentPrice.toFixed(2)}
           </span>
         </div>
-        <Button
-          className="whiteBtn"
-          text="Add to cart"
-          // onClick={() => { addToCart(product)}}
-        />
+        <Button className="whiteBtn" text="Add to cart" onClick={() => {}} />
       </div>
     </div>
   );
@@ -89,7 +144,11 @@ ProductCard.propTypes = {
   // eslint-disable-next-line react/require-default-props
   product: PropTypes.shape({
     imageUrls: PropTypes.arrayOf(PropTypes.string),
+    thc: PropTypes.number.isRequired,
+    cbd: PropTypes.number.isRequired,
     sale: PropTypes.number.isRequired,
+    itemNo: PropTypes.number.isRequired,
+    previousPrice: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
     name: PropTypes.string,

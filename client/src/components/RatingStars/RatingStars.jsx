@@ -3,12 +3,12 @@ import ReactStars from 'react-rating-stars-component';
 import PropTypes from 'prop-types';
 import styles from './RatingStars.module.scss';
 
-export default function RatingStars({ rate, edit }) {
+export default function RatingStars({ size, rate, edit }) {
   return (
     <ReactStars
       classNames={styles.mainRating}
       count={5}
-      size={30}
+      size={size}
       value={rate}
       edit={edit}
       color="#c6c6c6"
@@ -20,6 +20,7 @@ export default function RatingStars({ rate, edit }) {
 }
 
 RatingStars.propTypes = {
+  size: PropTypes.number.isRequired,
   rate: PropTypes.number,
   edit: PropTypes.bool,
 };
