@@ -1,12 +1,13 @@
 import React from 'react';
-import CartModalItem from './CartModalItem/CartModalItem.jsx';
+import CartModalItem from './CartModalItem/CartModalItem';
 
-const CartWrapperModal = () => {
+function CartWrapperModal() {
   return (
     <ul>
-      <CartModalItem/>
+      <CartModalItem />
+      <CartModalItem />
     </ul>
   );
-};
+}
 
 export default CartWrapperModal;
