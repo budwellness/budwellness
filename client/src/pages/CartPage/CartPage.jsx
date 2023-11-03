@@ -1,12 +1,18 @@
 import React from 'react';
-import Container from '../../components/Container/Container';
+
+import PagePrevievHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
+import Cart from '../../components/Cart/Cart';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 
 function CartPage() {
   return (
-    <Container>
-      <PopularProducts />
-    </Container>
+    <>
+      <PagePrevievHeader title="Cart page" />
+      <main>
+        <Cart />
+        <PopularProducts />
+      </main>
+    </>
   );
 }
 
