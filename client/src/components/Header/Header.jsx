@@ -72,7 +72,7 @@ function Header() {
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
           </span>
-          <Link to='/'>
+          <Link to="/">
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
@@ -81,37 +81,37 @@ function Header() {
             <ul className={styles.header_navList}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to='/'>Home</Link>
+                <Link to="/">Home</Link>
               </li>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to='/shop'>Shop</Link>
+                <Link to="/shop">Shop</Link>
               </li>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to='/news'>News</Link>
+                <Link to="/news">News</Link>
               </li>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to='/pages'>Pages</Link>
+                <Link to="/pages">Pages</Link>
               </li>
             </ul>
           </nav>
           <div className={styles.header_user}>
             <form className={styles.header_userSearchForm}>
-              <input className={styles.header_userSearchInput} type='text' placeholder='Search...' />
+              <input className={styles.header_userSearchInput} type="text" placeholder="Search..." />
               {/* eslint-disable-next-line react/button-has-type */}
               <button className={styles.header_userSearchButton}>
                 <SearchIcon />
               </button>
             </form>
-            <Link to='/' className={styles.header_userLink} onClick={handleModal}>
+            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
               <LoginIcon />
             </Link>
-            <Link to='/wishlist' className={styles.header_userLink}>
+            <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
             </Link>
-            <Link to='/' className={styles.header_userLink} onClick={handleCartModal}>
+            <Link to="/" className={styles.header_userLink} onClick={handleCartModal}>
               <CartIcon />
             </Link>
           </div>

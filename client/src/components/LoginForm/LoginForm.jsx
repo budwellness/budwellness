@@ -1,6 +1,5 @@
 import React from 'react';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Form, Formik } from 'formik';
 
 import PropTypes from 'prop-types';
@@ -14,8 +13,7 @@ function LoginForm({ setShowModal }) {
     password: '',
   };
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = () => {
     // here will be the logic of the request to the server
   };
 

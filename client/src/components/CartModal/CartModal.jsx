@@ -11,11 +11,16 @@ function CartModal({ showCartModal, setShowCartModal }) {
     <div className={cn(styles.cartModal, { [styles.openCart]: showCartModal })}>
       <div className={styles.cartHeader}>
         <h2 className={styles.cartTitle}>Cart</h2>
-        <button className={styles.cartHeaderButton} type='button'
-                onClick={() => setShowCartModal(false)}>&times;</button>
+        <button
+          className={styles.cartHeaderButton}
+          type="button"
+          onClick={() => setShowCartModal(false)}
+        >
+          &times;
+        </button>
       </div>
       <CartWrapperModal />
-      {/*<div className={styles.cartModalFooter}>footer</div>*/}
+      {/* <div className={styles.cartModalFooter}>footer</div> */}
     </div>
   );
 }
