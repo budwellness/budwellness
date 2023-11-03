@@ -1,6 +1,4 @@
 .section_popular {
-  min-width: 320px;
-
   @include _320 {
     padding: 60px 0;
   }
