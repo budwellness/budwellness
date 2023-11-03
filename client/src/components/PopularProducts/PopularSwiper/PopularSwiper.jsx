@@ -5,7 +5,7 @@ import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
 import cN from 'classnames';
 import { useGetAllProductsQuery } from '../../../store/serverResponse/fetchLocalJson';
 import CartIcon from '../../UI/CartIcon';
-import FavouriteIcon from '../../UI/FavouriteIcon';
+import FavoriteIcon from '../../UI/FavoriteIcon';
 import EyeIcon from '../../UI/EyeIcon';
 import RatingStars from '../../RatingStars/RatingStars';
 
@@ -47,7 +47,7 @@ export default function PopularSwiper() {
                     className={styles.actionLink}
                     onClick={() => {}}
                   >
-                    <FavouriteIcon className={styles.styleIcon} />
+                    <FavoriteIcon className={styles.styleIcon} />
                   </button>
                 </li>
                 <li className={styles.listItem}>
