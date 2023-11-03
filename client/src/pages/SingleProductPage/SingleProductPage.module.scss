@@ -62,3 +62,51 @@
   object-fit: cover;
   aspect-ratio: 1/1;
 }
+
+// .styleIcon {
+//   background: $color-white;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   border: 1px solid $main-orange;
+//   font-size: 16px;
+//   fill: $main-orange;
+//   width: 18px;
+//   height: 16px;
+// }
+
+// .styleIcon:hover {
+//   background: $main-orange;
+//   fill: $color-white;
+//   transition: 0.3s ease-in-out;
+// }
+
+.countWrapper {
+  display: flex;
+  // justify-content: center;
+  // gap: 5px;
+  justify-content: space-between;
+  background-color: $color-white;
+  padding: 13px 15px;
+  box-shadow: 1px 2px 15px rgba(33, 72, 66, 0.07);
+  border-radius: 24px;
+  width: 110px;
+  border: 1px solid black;
+}
+.countBtn {
+  border: none;
+  background-color: $color-white;
+}
+span {
+  color: $main-green;
+  font-family: $font-nunito;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.countIcon {
+  width: 13px;
+  height: 17px;
+  fill: $main-green;
+}

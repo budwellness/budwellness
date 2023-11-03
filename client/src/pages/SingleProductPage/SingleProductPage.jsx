@@ -7,13 +7,16 @@ import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHea
 import Button from '../../components/Button/Button';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import { useGetAllProductsQuery } from '../../store/serverResponse/fetchLocalJson';
+import ArrowPrevIcon from '../../components/UI/ArrowPrevIcon';
 import ArrowNextIcon from '../../components/UI/ArrowNextIcon';
+import FavouriteIcon from '../../components/UI/FavouriteIcon';
+import MinusIcon from '../../components/UI/MinusIcon';
+import PlusIcon from '../../components/UI/PlusIcon';
 
 import styles from './SingleProductPage.module.scss';
 
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
-import ArrowPrevIcon from '../../components/UI/ArrowPrevIcon';
 
 SwiperCore.use([Navigation, Thumbs]);
 
@@ -101,6 +104,9 @@ const mockDataProduct = {
 
 function SingleProductPage() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [active, setActive] = useState(false);
+
+  let count = 1;
 
   return (
     <>
@@ -162,6 +168,24 @@ function SingleProductPage() {
                 </SwiperSlide>
               ))}
             </Swiper>
+          </div>
+          <div className={styles.infoWrapper}>
+            <div className={styles.title_action}>
+              <h1 className={styles.title}>{mockDataProduct.name}</h1>
+              {/* <button className={styles.action}>
+                <FavouriteIcon className={styles.styleIcon} />
+              </button> */}
+            </div>
+
+            <div className={styles.countWrapper}>
+              <button className={styles.countBtn}>
+                <MinusIcon className={styles.countIcon} />
+              </button>
+              <span>{count}</span>
+              <button className={styles.countBtn}>
+                <PlusIcon className={styles.countIcon} />
+              </button>
+            </div>
           </div>
           {/* <PopularProducts /> */}
         </Container>
