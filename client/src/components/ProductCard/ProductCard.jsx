@@ -11,6 +11,7 @@ import styles from './ProductCard.module.scss';
 function ProductCard({ onClick, product }) {
   const {
     imageUrls,
+    sale,
     previousPrice,
     currentPrice,
     rate,
@@ -19,6 +20,7 @@ function ProductCard({ onClick, product }) {
     cbd,
     name,
     classNames,
+    ...restProps
   } = product;
 
   let cbdCategory;
@@ -60,7 +62,7 @@ function ProductCard({ onClick, product }) {
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <div className={cn(styles.productCard, styles[classNames])}>
+    <div className={cn(styles.productCard, styles[classNames])} {...restProps}>
       <div className={styles.productCard__media}>
         <Link
           to={`/product/${itemNo}`}
@@ -152,8 +154,7 @@ ProductCard.propTypes = {
     name: PropTypes.string,
     classNames: PropTypes.string,
   }),
-  // eslint-disable-next-line react/require-default-props
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
