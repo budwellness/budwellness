@@ -4,9 +4,10 @@ import ProductCard from '../ProductCard/ProductCard';
 import styles from './ProductList.module.scss';
 
 function ProductList({ products, error }) {
-  console.log(products);
+  // console.log(products);
 
   return (
+
     <div className={styles.productList}>
       {error ? (
         <div className={styles.productList__errorWrapper}>
