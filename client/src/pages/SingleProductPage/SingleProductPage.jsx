@@ -1,17 +1,18 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
 import Container from '../../components/Container/Container';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
+import ButtonCount from '../../components/ButtonCount/ButtonCount';
+import RatingStars from '../../components/RatingStars/RatingStars';
 import Button from '../../components/Button/Button';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import { useGetAllProductsQuery } from '../../store/serverResponse/fetchLocalJson';
 import ArrowPrevIcon from '../../components/UI/ArrowPrevIcon';
 import ArrowNextIcon from '../../components/UI/ArrowNextIcon';
 import FavouriteIcon from '../../components/UI/FavouriteIcon';
-import MinusIcon from '../../components/UI/MinusIcon';
-import PlusIcon from '../../components/UI/PlusIcon';
 
 import styles from './SingleProductPage.module.scss';
 
@@ -104,17 +105,7 @@ const mockDataProduct = {
 
 function SingleProductPage() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [count, setCount] = useState(1);
-  const [active, setActive] = useState(false);
-
-  const handleCountChange = (value) => {
-    if (value === 1 || value > mockDataProduct.quantity) {
-      setActive(false);
-    } else if (value > 2) {
-      setActive(true);
-    }
-    setCount(value);
-  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -177,31 +168,76 @@ function SingleProductPage() {
               ))}
             </Swiper>
           </div>
+
           <div className={styles.infoWrapper}>
             <div className={styles.title_action}>
               <h1 className={styles.title}>{mockDataProduct.name}</h1>
-              {/* <button className={styles.action}>
+              <button className={styles.action} type="button">
                 <FavouriteIcon className={styles.styleIcon} />
-              </button> */}
-            </div>
-
-            <div className={styles.countWrapper}>
-              <button
-                className={styles.countBtn}
-                onClick={() => handleCountChange(count - 1)}
-                disabled={count === 1}
-              >
-                <MinusIcon className={styles.countIcon} />
-              </button>
-              <span>{count}</span>
-              <button
-                className={styles.countBtn}
-                onClick={() => handleCountChange(count + 1)}
-                disabled={count >= mockDataProduct.quantity}
-              >
-                <PlusIcon className={styles.countIcon} />
               </button>
             </div>
+            <div className={styles.ratingWrapper}>
+              <RatingStars rate={mockDataProduct.rate} />
+              <p className={styles.ratingText}>
+                ({mockDataProduct.reviews.length} customer review<span>s</span>)
+              </p>
+            </div>
+            <p className={styles.descShort}>
+              {mockDataProduct.description.short}
+            </p>
+            <p className={styles.price}>${mockDataProduct.currentPrice}</p>
+            <div className={styles.buttonWrapper}>
+              <ButtonCount />
+              <Button
+                type="button"
+                text="Add to Cart"
+                className="orangeBtn"
+                onClick={() => {
+                  navigate('/cart');
+                }}
+              />
+            </div>
+            <ul className={styles.infoLlist}>
+              <li className={styles.item}>
+                <span className={styles.property}>Category:</span>
+                <span className={styles.value}>{mockDataProduct.category}</span>
+              </li>
+              <li className={styles.item}>
+                <span className={styles.property}>Size:</span>
+                <span className={styles.value}>30 ml</span>
+                {/* тут має бути поле size */}
+              </li>
+              <li className={styles.item}>
+                <span className={styles.property}>Plant Type:</span>
+                <span className={styles.value}>
+                  {mockDataProduct.plantType}
+                </span>
+              </li>
+              <li className={styles.item}>
+                <span className={styles.property}>THC:</span>
+                <span className={styles.value}>{mockDataProduct.thc}mg/g</span>
+              </li>
+              <li className={styles.item}>
+                <span className={styles.property}>CBD:</span>
+                <span className={styles.value}>{mockDataProduct.cbd}%</span>
+              </li>
+              <li className={styles.item}>
+                <span className={styles.property}>Effects:</span>
+                <span className={styles.value}>
+                  {mockDataProduct.effects.join(', ')}
+                </span>
+              </li>
+              <li className={styles.item}>
+                <span className={styles.property}>Tags:</span>
+                <span className={styles.value}>
+                  {mockDataProduct.tags.join(', ')}
+                </span>
+              </li>
+              <li className={styles.item}>
+                <span className={styles.property}>SKU:</span>
+                <span className={styles.value}>{mockDataProduct.itemNo}</span>
+              </li>
+            </ul>
           </div>
           {/* <PopularProducts /> */}
         </Container>
