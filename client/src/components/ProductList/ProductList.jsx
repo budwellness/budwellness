@@ -16,7 +16,7 @@ function ProductList({ products, error }) {
       ) : (
         <div className={styles.productList__productsWrapper}>
           {products?.map((product) => (
-            <ProductCard product={product} key={product.id} />
+            <ProductCard product={product} key={product.itemNo} />
           ))}
         </div>
       )}

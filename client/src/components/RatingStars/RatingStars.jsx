@@ -1,15 +1,15 @@
 import React from 'react';
-
 import ReactStars from 'react-rating-stars-component';
 import PropTypes from 'prop-types';
 import styles from './RatingStars.module.scss';
 
-export default function RatingStars({ size, rate, edit }) {
+export default function RatingStars({ rate, edit }) {
   return (
     <ReactStars
       classNames={styles.mainRating}
       count={5}
-      size={size}
+      size={25}
+      isHalf
       value={rate}
       edit={edit}
       color="#c6c6c6"
@@ -21,7 +21,6 @@ export default function RatingStars({ size, rate, edit }) {
 }
 
 RatingStars.propTypes = {
-  size: PropTypes.number.isRequired,
   rate: PropTypes.number,
   edit: PropTypes.bool,
 };

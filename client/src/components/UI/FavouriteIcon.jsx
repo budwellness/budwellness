@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FavoriteIcon(props) {
+function FavouriteIcon(props) {
   return (
     <svg
       viewBox="0 0 16 14"
@@ -13,4 +13,4 @@ function FavoriteIcon(props) {
   );
 }
 
-export default FavoriteIcon;
+export default FavouriteIcon;

@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 65vh;
     margin-top: 130px;
-    @include dflex-column-jcfs-aic;
+    @include dflex-column-jcc-aifs;
 
     &__errorWrapper {
         margin-top: 10px;
@@ -19,7 +19,6 @@
         
         @include _320 {
             margin-top: 20px;
-            @include dflex-column-jcfs-aic;
         }
         @include _576 {
             margin: 0;

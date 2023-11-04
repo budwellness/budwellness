@@ -5,7 +5,7 @@ import cn from 'classnames';
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
-import FavoriteIcon from '../UI/FavoriteIcon';
+import FavouriteIcon from '../UI/FavouriteIcon';
 import styles from './ProductCard.module.scss';
 
 function ProductCard({ onClick, product }) {
@@ -88,7 +88,7 @@ function ProductCard({ onClick, product }) {
             className={styles.productCard__media__buttonAddFavorites}
             onClick={() => {}}
           >
-            <FavoriteIcon className={styles.favoriteIcon} />
+            <FavouriteIcon className={styles.favoriteIcon} />
           </ButtonIcon>
         </div>
       </div>
