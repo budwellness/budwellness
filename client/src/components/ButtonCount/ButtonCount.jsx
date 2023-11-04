@@ -62,7 +62,7 @@ const mockDataProduct = {
 
 function ButtonCount() {
   const [count, setCount] = useState(1);
-  const [active, setActive] = useState(false);
+  const [, setActive] = useState(false);
 
   const handleCountChange = (value) => {
     if (value === 1 || value > mockDataProduct.quantity) {
