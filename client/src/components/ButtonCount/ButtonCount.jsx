@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MinusIcon from '../UI/MinusIcon';
 import PlusIcon from '../UI/PlusIcon';
 import styles from './ButtonCount.module.scss';
@@ -61,24 +61,37 @@ const mockDataProduct = {
 };
 
 function ButtonCount() {
+  const [count, setCount] = useState(1);
+  const [active, setActive] = useState(false);
+
+  const handleCountChange = (value) => {
+    if (value === 1 || value > mockDataProduct.quantity) {
+      setActive(false);
+    } else if (value > 2) {
+      setActive(true);
+    }
+    setCount(value);
+  };
   return (
-    // <div className={styles.countWrapper}>
-    //   <button
-    //     className={styles.countBtn}
-    //     onClick={() => handleCountChange(count - 1)}
-    //     disabled={count === 1}
-    //   >
-    //     <MinusIcon className={styles.countIcon} />
-    //   </button>
-    //   <span>{count}</span>
-    //   <button
-    //     className={styles.countBtn}
-    //     onClick={() => handleCountChange(count + 1)}
-    //     disabled={count >= mockDataProduct.quantity}
-    //   >
-    //     <PlusIcon className={styles.countIcon} />
-    //   </button>
-    // </div>
+    <div className={styles.countWrapper}>
+      <button
+        type="button"
+        className={styles.countBtn}
+        onClick={() => handleCountChange(count - 1)}
+        disabled={count === 1}
+      >
+        <MinusIcon className={styles.countIcon} />
+      </button>
+      <span>{count}</span>
+      <button
+        type="button"
+        className={styles.countBtn}
+        onClick={() => handleCountChange(count + 1)}
+        disabled={count >= mockDataProduct.quantity}
+      >
+        <PlusIcon className={styles.countIcon} />
+      </button>
+    </div>
   );
 }
 
