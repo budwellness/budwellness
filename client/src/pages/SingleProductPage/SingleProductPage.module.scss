@@ -91,7 +91,6 @@
   box-shadow: 1px 2px 15px rgba(33, 72, 66, 0.07);
   border-radius: 24px;
   width: 110px;
-  border: 1px solid black;
 }
 .countBtn {
   border: none;
@@ -109,4 +108,8 @@ span {
   width: 13px;
   height: 17px;
   fill: $main-green;
+}
+
+.countBtn:disabled .countIcon {
+  fill: grey;
 }
