@@ -13,15 +13,13 @@ import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
-import Button from './components/Button/Button';
 
 function App() {
-  const { data, error } = useGetAllProductsQuery();
+  const { data: products, error } = useGetAllProductsQuery();
 
-  // eslint-disable-next-line no-console
-  console.log('DATA: ', data);
-  // eslint-disable-next-line no-console
-  console.log('error: ', error);
+  // console.log('DATA: ', products);
+
+  // console.log('error: ', error);
 
   return (
     <>
@@ -35,8 +33,7 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
-      <Button />
+      <Footer products={products} error={error} />
     </>
   );
 }
