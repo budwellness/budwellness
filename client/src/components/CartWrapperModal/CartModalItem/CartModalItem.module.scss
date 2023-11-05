@@ -24,9 +24,9 @@
 .main {
   display: flex;
   flex-wrap: wrap;
-  //align-items: flex-end;
+  align-items: flex-end;
   justify-content: space-between;
-  //width: calc(100% - 130px);
+  width: calc(100% - 130px);
 }
 
 .mainTitleLink {

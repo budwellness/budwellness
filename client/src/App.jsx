@@ -19,7 +19,7 @@ import CartModal from './components/CartModal/CartModal';
 function App() {
   const { data, error } = useGetAllProductsQuery();
 
-  const [showCartModal, setShowCartModal] = useState(true);
+  const [showCartModal, setShowCartModal] = useState(false);
 
   // eslint-disable-next-line no-console
   console.log('DATA: ', data);
