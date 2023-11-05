@@ -10,14 +10,12 @@ import LoginIcon from './icons/LoginIcon';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
-import CartModal from '../CartModal/CartModal';
 
 import styles from './Header.module.scss';
 
-function Header() {
+function Header({ setShowCartModal }) {
   const [showBurger, setShowBurger] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showCartModal, setShowCartModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -52,9 +50,6 @@ function Header() {
 
   const handleModal = () => {
     setShowModal(!showModal);
-  };
-  const handleCartModal = () => {
-    setShowCartModal(!showCartModal);
   };
 
   return (
@@ -111,23 +106,31 @@ function Header() {
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
             </Link>
-            <Link to="/" className={styles.header_userLink} onClick={handleCartModal}>
+            <Link to="/" className={styles.header_userLink} onClick={setShowCartModal}>
               <CartIcon />
             </Link>
           </div>
         </div>
       </Container>
-      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} />
+      {/* <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} /> */}
       {showModal && (
         <Modal handleModal={handleModal}>
           <LoginForm setShowModal={setShowModal} />
         </Modal>
       )}
+      {}
       {/* eslint-disable-next-line max-len */}
-      {/* eslint-disable-next-line max-len,jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />}
+      {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />} */}
     </header>
   );
 }
+
+Header.propTypes = {
+  setShowCartModal: () => {},
+};
+
+Header.defaultProps = {
+  setShowCartModal: () => {},
+};
 
 export default Header;

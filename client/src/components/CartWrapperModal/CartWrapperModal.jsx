@@ -7,8 +7,7 @@ import styles from './CartWrapperModal.module.scss';
 function CartWrapperModal() {
   return (
     <>
-      <ul>
-        <CartModalItem />
+      <ul className={styles.list}>
         <CartModalItem />
       </ul>
       <div className={styles.footer}>

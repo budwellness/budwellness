@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -14,9 +14,12 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import Button from './components/Button/Button';
+import CartModal from './components/CartModal/CartModal';
 
 function App() {
   const { data, error } = useGetAllProductsQuery();
+
+  const [showCartModal, setShowCartModal] = useState(true);
 
   // eslint-disable-next-line no-console
   console.log('DATA: ', data);
@@ -25,7 +28,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header setShowCartModal={setShowCartModal} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
@@ -37,6 +40,7 @@ function App() {
       </Routes>
       <Footer />
       <Button />
+      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} />
     </>
   );
 }

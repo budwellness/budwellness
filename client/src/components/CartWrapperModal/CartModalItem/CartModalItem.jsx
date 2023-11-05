@@ -57,26 +57,26 @@ const {
 function CartModalItem() {
   return (
     <li className={styles.cartItem}>
-      <div>
+      <div className={styles.wrapperImg}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a href="#">
-          <img src={imageUrls[0]} alt={name} width={100} height={100} />
+          <img src={imageUrls[0]} alt={name} />
         </a>
       </div>
-      <div className={styles.content}>
+      <div className={styles.main}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#">{name}</a>
-        <span>
+        <a href="#" className={styles.mainTitleLink}>{name}</a>
+        <span className={styles.mainPrice}>
           $
           {currentPrice}
         </span>
-        <div>
+        <div className={styles.count}>
           <span>-</span>
           <input type="text" value="1" />
           <span>+</span>
         </div>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#">remove</a>
+        <a className={styles.removeLink} href="#">remove</a>
       </div>
     </li>
   );
