@@ -244,8 +244,21 @@ span {
   background-color: $main-orange;
 }
 
-.aboutProduct:hover {
+// .aboutProduct:hover {
+//   cursor: pointer;
+// }
+.aboutProduct:hover::after {
   cursor: pointer;
+  animation: underline 0.5s ease-in-out;
+}
+
+@keyframes underline {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
 .paginationWrap {

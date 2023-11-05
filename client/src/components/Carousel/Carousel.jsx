@@ -152,9 +152,9 @@ function Carousel() {
                 <div className={styles.paginationWrap}>
                   <h2 className={styles.title}>Sour Diesel</h2>
                   <p className={styles.info}>
-                    This strain features a pungent flavor profile that smells
-                    like diesel. It helps to help relieve symptoms associated
-                    with depression, pain, and stress
+                    This strain features a pungent smells like diesel. It helps
+                    to relieve symptoms associated with depression, pain, and
+                    stress
                   </p>
                   <ul className={styles.list}>
                     <div className={styles.link}>

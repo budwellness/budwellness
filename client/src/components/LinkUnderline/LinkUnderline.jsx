@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 import styles from './LinkUnderline.module.scss';
 
-export default function LinkUnderline({
-  to, children, style, type, onClick,
-}) {
+export default function LinkUnderline({ to, children, style, type, onClick }) {
   const Component = type ? 'button' : Link;
 
   return (
