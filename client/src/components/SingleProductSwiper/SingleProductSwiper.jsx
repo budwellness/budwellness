@@ -1,16 +1,15 @@
-/* eslint-disable */
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Container from '../../components/Container/Container';
-import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
-import ButtonCount from '../../components/ButtonCount/ButtonCount';
-import RatingStars from '../../components/RatingStars/RatingStars';
-import Button from '../../components/Button/Button';
-import PopularProducts from '../../components/PopularProducts/PopularProducts';
-import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProductSwiper';
-import FavouriteIcon from '../../components/UI/FavouriteIcon';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
+import ArrowPrevIcon from '../UI/ArrowPrevIcon';
+import ArrowNextIcon from '../UI/ArrowNextIcon';
 
-import styles from './SingleProductPage.module.scss';
+import styles from './SingleProductSwiper.module.scss';
+
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+
+SwiperCore.use([Navigation, Thumbs]);
 
 const mockDataProduct = {
   enabled: true,
@@ -94,102 +93,57 @@ const mockDataProduct = {
   },
 };
 
-function SingleProductPage() {
-  const navigate = useNavigate();
-
+function SingleProductSwiper() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <>
-      <PagePreviewHeader
-        title="Single Product"
-        text="Discover nature's remedy for peace and balance"
-      />
-      <Container>
-        <div className={styles.wrapper}>
-          <div className={styles.swiperWrap}>
-            <SingleProductSwiper />
-          </div>
-
-          <div className={styles.infoWrapp}>
-            <div className={styles.title_action}>
-              <h1 className={styles.title}>{mockDataProduct.name}</h1>
-              <button className={styles.action} type="button">
-                <FavouriteIcon className={styles.styleIcon} />
-              </button>
-            </div>
-            <div className={styles.ratingWrapper}>
-              <RatingStars rate={mockDataProduct.rate} />
-              <p className={styles.ratingText}>
-                ({mockDataProduct.reviews.length} customer review
-                <span>s</span>)
-              </p>
-            </div>
-            <p className={styles.descShort}>
-              {mockDataProduct.description.short}
-            </p>
-            <p className={styles.price}>${mockDataProduct.currentPrice}</p>
-            <div className={styles.buttonWrapper}>
-              <ButtonCount />
-              <Button
-                type="button"
-                text="Add to Cart"
-                className="orangeBtn"
-                onClick={() => {
-                  navigate('/cart');
-                }}
-              />
-            </div>
-            <ul className={styles.infoLlist}>
-              <li className={styles.item}>
-                <span className={styles.property}>Category:</span>
-                <span className={styles.value}>{mockDataProduct.category}</span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Size:</span>
-                <span className={styles.value}>30 ml</span>
-                {/* тут має бути поле size */}
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Plant Type:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.plantType}
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>THC:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.thc}
-                  mg/g
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>CBD:</span>
-                <span className={styles.value}>{mockDataProduct.cbd}%</span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Effects:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.effects.join(', ')}
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Tags:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.tags.join(', ')}
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>SKU:</span>
-                <span className={styles.value}>{mockDataProduct.itemNo}</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className={styles.tabsWrapp}></div>
+    <div className={styles.wrap}>
+      <Swiper
+        loop
+        spaceBetween={10}
+        navigation={{
+          nextEl: '.next-button',
+          prevEl: '.prev-button',
+        }}
+        thumbs={{ swiper: thumbsSwiper }}
+        className={styles.myMainSwiper}
+      >
+        {mockDataProduct.imageUrls.map((image, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <SwiperSlide key={index}>
+            <picture key={image}>
+              <img className={styles.singleImg} src={image} alt="product" />
+            </picture>
+          </SwiperSlide>
+        ))}
+        <div className={`${styles.nextBtn} next-button`}>
+          <ArrowNextIcon className={styles.arrowNext} />
         </div>
-        <PopularProducts />
-      </Container>
-    </>
+        <div className={`${styles.prevBtn} prev-button`}>
+          <ArrowPrevIcon className={styles.arrowPrev} />
+        </div>
+      </Swiper>
+
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        loop
+        spaceBetween={10}
+        slidesPerView={2}
+        freeMode
+        watchSlidesVisibility
+        watchSlidesProgress
+        className={styles.mySwiper}
+      >
+        {mockDataProduct.imageUrls.map((image, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <SwiperSlide key={index} className={styles.swiperSlide}>
+            <picture key={image}>
+              <img className={styles.singleImg} src={image} alt="product" />
+            </picture>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 }
 
-export default SingleProductPage;
+export default SingleProductSwiper;
