@@ -1,0 +1,44 @@
+.linkUnderline {
+  margin-bottom: 20px;
+  color: $secondary-green;
+  font-family: $font-nunito;
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: capitalize;
+  position: relative;
+  padding-bottom: 5px;
+  background: 0 0;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  line-height: 1.5;
+
+  @media (min-width: 576px) {
+    margin-bottom: 0;
+  }
+
+  &:hover:after {
+    animation: underline 0.5s ease-in-out;
+  }
+
+  @keyframes underline {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #258f67;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+  }
+}

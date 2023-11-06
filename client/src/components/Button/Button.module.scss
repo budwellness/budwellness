@@ -1,0 +1,32 @@
+.btn {
+  font-size: 17px;
+  padding: 10px 25px;
+  height: 48px;
+  border-radius: 24px;
+  font-weight: 700;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+}
+
+.orangeBtn {
+  background-color: $main-orange;
+  color: $main-green;
+  border: none;
+}
+
+.orangeBtn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.whiteBtn {
+  background-color: #fff;
+  color: $secondary-green;
+  border: 1px solid $secondary-green;
+}
+
+.whiteBtn:hover {
+  background-color: $secondary-green;
+  color: $white-text-color;
+  cursor: pointer;
+}

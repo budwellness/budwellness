@@ -1,0 +1,83 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.wrapper {
+  background-image: url(./images/pagePreviewHeader-bg.webp);
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-position: center;
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 70px;
+  @include for-size(768px) {
+    padding-bottom: 80px;
+  }
+  @include for-size(992px) {
+    padding-bottom: 90px;
+  }
+}
+
+.title {
+  padding-top: 60px;
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: 900;
+  font-family: 'Nunito Sans', sans-serif;
+  color: $main-green;
+  @include for-size(768px) {
+    font-size: 40px;
+  }
+  @include for-size(992px) {
+    font-size: 56px;
+    padding-top: 80px;
+  }
+}
+
+.text {
+  font-size: 17px;
+  color: $main-text-color;
+  line-height: 24px;
+  max-width: 500px;
+  margin: 0 auto;
+  @include for-size(992px) {
+    padding-bottom: 90px;
+  }
+  @include for-size(1200px) {
+    padding-bottom: 120px;
+  }
+}
+
+.linkWpapper {
+  margin-top: 20px;
+  font-size: 17px;
+  font-family: 'Nunito Sans', sans-serif;
+  @include for-size(992px) {
+    margin-top: -60px;
+  }
+}
+
+.link {
+  color: $secondary-green;
+  position: relative;
+  padding-right: 8px;
+  text-decoration: none;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: $secondary-green;
+}
+
+span {
+  font-size: 17px;
+  color: $main-text-color;
+  line-height: 1.5;
+}
