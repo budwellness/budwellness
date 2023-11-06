@@ -1,0 +1,158 @@
+.productCard {
+    @include dflex-column-jcfs-aic;
+    overflow: hidden;
+    font-size: 14px;
+    background: $color-white;
+    border-radius: 16px;
+    transition: .3s ease-in-out;
+
+    &:is(:hover, :focus) {
+        box-shadow: 0 0 15px rgba(37,143,103,.20
+        );
+        transition: .3s ease-in-out;
+    }
+    @include _320 {
+        min-width: 280px;
+        margin-bottom: 30px;
+    }
+    @include _992 {
+        max-width: 320px;
+    }
+
+    &__media {
+        position: relative;
+        width: 100%;
+        margin-bottom: 10px;
+        background-color: $color-white;
+
+        &__productLink {
+            min-width: 290px;;
+            overflow: hidden;
+
+            &__imageWrapper {
+                position: relative;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                
+                &__image {
+                    max-width: 290px;
+                    max-height: 200px;
+                }
+            }
+        }
+
+        &__buttonAddFavorites {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            height: 40px;
+            width: 40px;
+            @include dflex-jcc-aic;
+            background: $color-white;
+            border-radius: 50%;
+            border: 1px solid $main-orange;
+            cursor: pointer;
+
+            &:is(:hover, :focus) {
+                background-color: $main-orange;
+                color: $white-text-color;
+                transition: .5s ease-in-out;
+
+                .favoriteIcon {
+                    fill: $white-text-color;
+                    transition: .5s ease-in-out;
+                }
+                
+            }
+
+            .favoriteIcon {
+                fill: $main-orange;
+                width: 19px;
+                height: 16px;
+
+            }
+            
+        }
+       
+        &__saleLabel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 30px 0 0 30px;
+            padding: 3px 15px;
+            background-color: $secondary-green;
+            border-radius: 16px;
+            z-index: 10;
+           
+            &__saleText {
+                font-weight: 600;
+                color: $white-text-color;
+            }
+        }     
+    }
+    &__main {
+        width: 100%;
+        padding: 0 30px 30px;
+        @include dflex-column-jcfs-aic;
+        text-align: center;
+    
+
+        &__rating {
+            height: 22px;
+        }
+        &__titleLink {        
+            margin: 10px 0;
+            max-width: 260px;
+            min-height: 23px;
+            font-family: $font-nunito;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.3;
+            text-decoration: none;  
+            color: $main-green;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            @include _768 {
+                min-height: 52px;
+            }
+            
+
+            &:is(:hover, :focus) {
+                color: $secondary-green;
+                transition: .3s ease-in-out;
+            }
+            
+        }
+        &__property span {
+            font-weight: 600;
+            color: $main-green;
+        }
+        &__productPrices {
+            width: 100%;
+            margin: 15px 0 20px;
+            @include dflex-jcc-aic;
+            font-size: 22px;
+            line-height: 1.1;
+            font-family: $font-nunito;
+
+            &__previousPrice {
+                margin-right: 15px;
+                font-weight: 700;
+                color: $secondary-text-color;
+                text-decoration: line-through;
+            }
+            &__currentPrice {
+            color: $main-green;
+            font-weight: 800;                  
+            }
+        }
+
+        .whiteBtn {
+            font-family: $font-nunito;
+            background-color: $color-white;
+        }
+    }
+}
+
