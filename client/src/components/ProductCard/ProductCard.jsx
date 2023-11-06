@@ -59,7 +59,7 @@ function ProductCard({ onClick, product }) {
   }
 
   return (
-
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <div className={cn(styles.productCard, styles[classNames])}>
       <div className={styles.productCard__media}>
         <Link
@@ -86,7 +86,7 @@ function ProductCard({ onClick, product }) {
           )}
           <ButtonIcon
             className={styles.productCard__media__buttonAddFavorites}
-            onClick={() => {}}
+            onClick={() => { }}
           >
             <FavouriteIcon className={styles.favoriteIcon} />
           </ButtonIcon>

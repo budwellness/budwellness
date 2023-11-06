@@ -6,18 +6,17 @@ import HomePage from './pages/HomePage/HomePage';
 import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
 
-import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
+// import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
-import CartModal from './components/CartModal/CartModal';
+import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
-  const [showCartModal, setShowCartModal] = useState(false);
 
   // console.log('DATA: ', products);
 
@@ -36,7 +35,6 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer products={products} error={error} />
-      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} />
     </>
   );
 }
