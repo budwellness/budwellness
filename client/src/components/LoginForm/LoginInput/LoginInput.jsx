@@ -14,9 +14,18 @@ function LoginInput(props) {
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className={className}>
       <p className="">{label}</p>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Field type={type} className="form-item" name={name} placeholder={placeholder} {...field} />
-      {!!meta.error && meta.touched && <ErrorMessage name={name} className="error-input" component="p" />}
+      {}
+      <Field
+        type={type}
+        className="form-item"
+        name={name}
+        placeholder={placeholder}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...field}
+      />
+      {!!meta.error && meta.touched && (
+        <ErrorMessage name={name} className="error-input" component="p" />
+      )}
     </label>
   );
 }
