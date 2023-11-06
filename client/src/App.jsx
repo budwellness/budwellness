@@ -13,12 +13,12 @@ import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
-import Button from './components/Button/Button';
+import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 
 function App() {
-  // const { data, error } = useGetAllProductsQuery();
+  const { data: products, error } = useGetAllProductsQuery();
 
-  // console.log('DATA: ', data);
+  // console.log('DATA: ', products);
 
   // console.log('error: ', error);
 
@@ -34,8 +34,7 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
-      <Button />
+      <Footer products={products} error={error} />
     </>
   );
 }

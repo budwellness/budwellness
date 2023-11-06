@@ -15,7 +15,8 @@ function TestProductCard(props) {
     action: {
       toggleWishlistHandler,
       toggleCartHandler,
-      increaseCartQuantityHandler
+      increaseCartQuantityHandler,
+      decreaseCartQuantityHandler,
     },
   } = props
 
@@ -156,7 +157,7 @@ function TestProductCard(props) {
       >
         Toggle Cart</button>
       <div className={styles.qntyWrap}>
-        <button onClick={() => { }}>-</button>
+        <button onClick={() => decreaseCartQuantityHandler(product._id, token)}>-</button>
         <span>Cart Quantity</span>
         <button onClick={() => increaseCartQuantityHandler(product._id, token)}>+</button>
         <p>{cartProductQuantity}</p>

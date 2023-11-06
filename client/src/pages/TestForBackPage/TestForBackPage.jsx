@@ -42,6 +42,7 @@ import {
   addItemToCartAction,
   removeItemFromCartAction,
   increaseCartItemQuantityAction,
+  decreaseCartItemQuantityAction,
 } from '../../store/cart/cart.slice'
 import {
   useLazyGetCartQuery,
@@ -279,8 +280,7 @@ function TestForBackPage() {
   const decreaseCartQuantityHandler = (productId, token) => {
     try {
       decreaseCartQuantity({ productId, token })
-      //добавить логику удаления из стора
-      dispatch()
+      dispatch(decreaseCartItemQuantityAction(productId))
     } catch (error) {
       log(error)
     }
@@ -405,7 +405,12 @@ function TestForBackPage() {
         <TestProductCard
           key={product._id}
           product={product}
-          action={{ toggleWishlistHandler, toggleCartHandler, increaseCartQuantityHandler }}
+          action={{
+            toggleWishlistHandler,
+            toggleCartHandler,
+            increaseCartQuantityHandler,
+            decreaseCartQuantityHandler,
+          }}
         />
       )
     }
