@@ -1,0 +1,35 @@
+.productList {
+    width: 100%;
+    min-height: 65vh;
+    margin-top: 130px;
+    @include dflex-column-jcc-aifs;
+
+    &__errorWrapper {
+        margin-top: 10px;
+        max-width: 700px;
+        text-align: center;
+        font-family: $font-nunito;
+        color: $main-orange;
+        font-size: 40px;
+    }
+
+    &__productsWrapper {
+        width: 100%;
+        background-color: $color-white; 
+        
+        @include _320 {
+            margin-top: 20px;
+        }
+        @include _576 {
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2vw;
+        }
+        @include _768 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2vw;
+        }
+    }
+}

@@ -120,7 +120,7 @@ function Header({ setShowCartModal }) {
       )}
       {}
       {/* eslint-disable-next-line max-len */}
-      {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />}*/}
+      {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />} */}
     </header>
   );
 }
