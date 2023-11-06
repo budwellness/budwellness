@@ -25,13 +25,21 @@ $font-nunito: 'Nunito Sans', sans-serif;
     @content;
   }
 }
-
+@mixin _576 {
+    @media (min-width: 576px) {
+        @content;
+    }
+}
 @mixin _768 {
   @media (min-width: 768px) {
     @content;
   }
 }
-
+@mixin _992 {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
 @mixin _1380 {
   @media (min-width: 1380px) {
     @content;
