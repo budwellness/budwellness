@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -13,9 +13,11 @@ import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
+import CartModal from './components/CartModal/CartModal';
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
+  const [showCartModal, setShowCartModal] = useState(false);
 
   // console.log('DATA: ', products);
 
@@ -23,7 +25,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header setShowCartModal={setShowCartModal} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
@@ -34,6 +36,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer products={products} error={error} />
+      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} />
     </>
   );
 }
