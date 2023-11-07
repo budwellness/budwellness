@@ -61,7 +61,7 @@ function CartModalItem() {
     <li className={styles.cartItem}>
       <div className={styles.wrapperImg}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href='#'>
+        <a href="#">
           <img src={imageUrls[0]} alt={name} />
         </a>
       </div>
