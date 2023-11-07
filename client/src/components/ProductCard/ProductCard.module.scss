@@ -1,6 +1,6 @@
 .productCard {
     @include dflex-column-jcfs-aic;
-    overflow: hidden;
+    max-width: 450px;
     font-size: 14px;
     background: $color-white;
     border-radius: 16px;
@@ -12,11 +12,8 @@
         transition: .3s ease-in-out;
     }
     @include _320 {
-        min-width: 280px;
+        min-width: 237px;
         margin-bottom: 30px;
-    }
-    @include _992 {
-        max-width: 320px;
     }
 
     &__media {
@@ -26,7 +23,7 @@
         background-color: $color-white;
 
         &__productLink {
-            min-width: 290px;;
+            width: 100%;
             overflow: hidden;
 
             &__imageWrapper {
@@ -36,45 +33,15 @@
                 justify-content: center;
                 
                 &__image {
-                    max-width: 290px;
-                    max-height: 200px;
+                    display: block;
+                    width: 100%;
+                    max-height: 250px;
+                    object-fit: contain;
+                    aspect-ratio: 1;
                 }
             }
         }
 
-        &__buttonAddFavorites {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            height: 40px;
-            width: 40px;
-            @include dflex-jcc-aic;
-            background: $color-white;
-            border-radius: 50%;
-            border: 1px solid $main-orange;
-            cursor: pointer;
-
-            &:is(:hover, :focus) {
-                background-color: $main-orange;
-                color: $white-text-color;
-                transition: .5s ease-in-out;
-
-                .favoriteIcon {
-                    fill: $white-text-color;
-                    transition: .5s ease-in-out;
-                }
-                
-            }
-
-            .favoriteIcon {
-                fill: $main-orange;
-                width: 19px;
-                height: 16px;
-
-            }
-            
-        }
-       
         &__saleLabel {
             position: absolute;
             top: 0;
@@ -83,42 +50,83 @@
             padding: 3px 15px;
             background-color: $secondary-green;
             border-radius: 16px;
-            z-index: 10;
-           
-            &__saleText {
-                font-weight: 600;
-                color: $white-text-color;
-            }
-        }     
+            font-weight: 600;
+            color: $white-text-color;
+        }    
+        
+        &__overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: fit-content;
+            padding: 30px;
+
+            &__action {
+                display: flex;
+                flex-direction: column;
+
+                .buttonAddFavorites,
+                .buttonViewSingleProduct {
+                    height: 40px;
+                    width: 40px;
+                    margin-bottom: 20px;
+                    @include dflex-jcc-aic;
+                    background: $color-white;
+                    border-radius: 50%;
+                    border: 1px solid $main-orange;
+                    cursor: pointer;
+        
+                    &:is(:hover, :focus) {
+                        background-color: $main-orange;
+                        color: $white-text-color;
+                        transition: .5s ease-in-out;
+        
+                        .favoriteIcon,
+                        .eyeIcon {
+                            fill: $white-text-color;
+                            transition: .5s ease-in-out;
+                        }             
+                    }
+        
+                    .favoriteIcon,
+                    .eyeIcon {
+                        fill: $main-orange;
+                        width: 19px;
+                        height: 16px;
+                    }          
+                }
+            } 
+        }
     }
+
     &__main {
         width: 100%;
         padding: 0 30px 30px;
         @include dflex-column-jcfs-aic;
         text-align: center;
     
-
-        &__rating {
-            height: 22px;
-        }
         &__titleLink {        
             margin: 10px 0;
-            max-width: 260px;
+            max-width: 280px;
             min-height: 23px;
             font-family: $font-nunito;
             font-weight: 700;
             font-size: 20px;
             line-height: 1.3;
-            text-decoration: none;  
+            text-decoration: none; 
+            text-wrap: balance;
             color: $main-green;
             cursor: pointer;
             transition: .3s ease-in-out;
 
-            @include _768 {
+            @include _576 {
                 min-height: 52px;
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
             }
             
-
             &:is(:hover, :focus) {
                 color: $secondary-green;
                 transition: .3s ease-in-out;

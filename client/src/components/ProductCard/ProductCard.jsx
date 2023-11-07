@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
 import FavouriteIcon from '../UI/FavouriteIcon';
+import EyeIcon from '../UI/EyeIcon';
 import styles from './ProductCard.module.scss';
 
 function ProductCard({ onClick, product }) {
@@ -76,20 +77,26 @@ function ProductCard({ onClick, product }) {
             />
           </div>
         </Link>
-        <div className={styles.overlay}>
-          {previousPrice !== currentPrice && (
-            <div className={styles.productCard__media__saleLabel}>
-              <span className={styles.productCard__media__saleLabel__saleText}>
-                Sale
-              </span>
-            </div>
-          )}
-          <ButtonIcon
-            className={styles.productCard__media__buttonAddFavorites}
-            onClick={() => {}}
-          >
-            <FavouriteIcon className={styles.favoriteIcon} />
-          </ButtonIcon>
+        {previousPrice !== currentPrice && (
+          <span className={styles.productCard__media__saleLabel}>
+            Sale
+          </span>
+        )}
+        <div className={styles.productCard__media__overlay}>
+          <div className={styles.productCard__media__overlay__action}>
+            <ButtonIcon
+              className={styles.buttonViewSingleProduct}
+              onClick={() => {}}
+            >
+              <EyeIcon className={styles.eyeIcon} />
+            </ButtonIcon>
+            <ButtonIcon
+              className={styles.buttonAddFavorites}
+              onClick={() => {}}
+            >
+              <FavouriteIcon className={styles.favoriteIcon} />
+            </ButtonIcon>
+          </div>
         </div>
       </div>
       <div className={styles.productCard__main}>
