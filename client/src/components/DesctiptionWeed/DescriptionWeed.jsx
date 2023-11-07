@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import styles from './DescriptionWeed.module.scss';
 import Button from '../Button/Button';
