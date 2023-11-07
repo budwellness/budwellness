@@ -65,8 +65,16 @@ function LoginForm(props) {
         <LoginInput name="loginOrEmail" type="text" placeholder="Login" label="Login" />
         <LoginInput name="password" type="text" placeholder="Password" label="Password" />
         <div className={styles.footerInput}>
-          <button className={styles.btn} type="submit">login</button>
-          <button className={styles.btn} type="button" onClick={() => setShowModal(false)}>cancel</button>
+          <button className={styles.btn} type="submit">
+            login
+          </button>
+          <button
+            className={styles.btn}
+            type="button"
+            onClick={() => setShowModal(false)}
+          >
+            cancel
+          </button>
         </div>
       </Form>
     </Formik>

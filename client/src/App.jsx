@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // COMPONENT IMPORTS:
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
 import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
@@ -130,7 +129,10 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer products={products} error={error} />
-      <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} />
+      <CartModal
+        showCartModal={showCartModal}
+        setShowCartModal={setShowCartModal}
+      />
     </>
   );
 }
