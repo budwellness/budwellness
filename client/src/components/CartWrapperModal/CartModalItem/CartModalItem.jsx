@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './CartModalItem.module.scss';
+import ButtonCount from '../../ButtonCount/ButtonCount.jsx';
 
 const {
   imageUrls, name, currentPrice,
@@ -59,7 +60,7 @@ function CartModalItem() {
     <li className={styles.cartItem}>
       <div className={styles.wrapperImg}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#">
+        <a href='#'>
           <img src={imageUrls[0]} alt={name} />
         </a>
       </div>
@@ -70,11 +71,7 @@ function CartModalItem() {
           $
           {currentPrice}
         </span>
-        <div className={styles.count}>
-          <span>-</span>
-          <input type="text" value="1" />
-          <span>+</span>
-        </div>
+        <ButtonCount />
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a className={styles.removeLink} href="#">remove</a>
       </div>

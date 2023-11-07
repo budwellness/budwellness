@@ -18,13 +18,12 @@
       margin-right: 30px;
     }
   }
-
 }
 
 .main {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   width: calc(100% - 130px);
 }
