@@ -13,6 +13,7 @@ import LoginForm from '../LoginForm/LoginForm';
 
 import styles from './Header.module.scss';
 import Nav from '../Nav/Nav';
+import Search from '../Search/Search.jsx';
 
 function Header({ setShowCartModal }) {
   const [showBurger, setShowBurger] = useState(false);
@@ -68,27 +69,21 @@ function Header({ setShowCartModal }) {
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
           </span>
-          <Link to="/">
+          <Link to='/'>
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
           </Link>
           <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
-            <form className={styles.header_userSearchForm}>
-              <input className={styles.header_userSearchInput} type="text" placeholder="Search..." />
-              {/* eslint-disable-next-line react/button-has-type */}
-              <button className={styles.header_userSearchButton}>
-                <SearchIcon />
-              </button>
-            </form>
-            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
+            <Search />
+            <Link to='/' className={styles.header_userLink} onClick={handleModal}>
               <LoginIcon />
             </Link>
-            <Link to="/wishlist" className={styles.header_userLink}>
+            <Link to='/wishlist' className={styles.header_userLink}>
               <WishlistIcon />
             </Link>
-            <Link to="/" className={styles.header_userLink} onClick={setShowCartModal}>
+            <Link to='/' className={styles.header_userLink} onClick={setShowCartModal}>
               <CartIcon />
             </Link>
           </div>

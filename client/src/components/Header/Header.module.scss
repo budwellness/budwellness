@@ -129,65 +129,6 @@
   }
 }
 
-.header_userSearchForm {
-  display: inline;
-  margin-right: 130px;
-  position: relative;
-
-  @media (max-width: 1199.98px) {
-    margin-right: 0;
-  }
-}
-
-.header_userSearchInput {
-  display: inline;
-  padding: 0 20px;
-  height: 40px;
-  border: 1px solid #c6c6c6;
-  border-radius: 20px;
-  background: #fff;
-  outline: none;
-  cursor: pointer;
-
-  @media (max-width: 767.98px) {
-    display: none;
-  }
-}
-
-.header_userSearchButton {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: 0;
-
-  border-radius: 50%;
-  background: #efc368;
-  fill: #214842;
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    width: 15px;
-    height: 15px;
-  }
-
-  @media (max-width: 767.98px) {
-    position: static;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-  }
-}
-
 .header_userLink {
   display: flex;
   width: 40px;
