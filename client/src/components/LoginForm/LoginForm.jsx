@@ -20,11 +20,29 @@ function LoginForm({ setShowModal }) {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className={styles.form}>
-        <LoginInput name="login" type="text" placeholder="Login" label="Login" />
-        <LoginInput name="password" type="text" placeholder="Password" label="Password" />
+        <LoginInput
+          name="login"
+          type="text"
+          placeholder="Login"
+          label="Login"
+        />
+        <LoginInput
+          name="password"
+          type="text"
+          placeholder="Password"
+          label="Password"
+        />
         <div className={styles.footerInput}>
-          <button className={styles.btn} type="submit">login</button>
-          <button className={styles.btn} type="button" onClick={() => setShowModal(false)}>cancel</button>
+          <button className={styles.btn} type="submit">
+            login
+          </button>
+          <button
+            className={styles.btn}
+            type="button"
+            onClick={() => setShowModal(false)}
+          >
+            cancel
+          </button>
         </div>
       </Form>
     </Formik>
