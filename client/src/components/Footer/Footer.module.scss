@@ -1,35 +1,46 @@
 .footer {
   background-color: $main-green;
   min-width: 320px;
-  height: 100px;
+  height: 100%;
 
   @include _320 {
-    background-color: black;
+    background-color: lightgoldenrodyellow;
   }
 
   @include _768 {
-    background-color: purple;
+    background-color: lightsteelblue;
+  }
+
+  @include _1380 {
+    background-color: lightgray;
   }
 
   .container {
     position: relative;
     margin: 0 auto;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    background-color: $background-image-hover;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
     @include dflex-jcsb-aic;
+    flex-direction: column;
 
     @include _1380 {
-      max-width: calc(1380px - 2rem);
+      max-width: calc(1374px - 1.5rem);
     }
 
     &__main {
+      width: 100%;
       padding: 10px 0;
-      display: inline-block;
-      @include dflex-jcc-aic;
+      background-color: $main-green;
+
+      @include dflex-jcsb-aic;
 
       &__content {
         color: $white-text-color;
+      }
+      .doneIcon {
+        fill: $main-orange;
+        width: 18px;
+        height: 18px;
       }
     }
 
@@ -39,9 +50,6 @@
       background-color: $background-image-hover;
     }
 
-    span {
-      color: $secondary-green;
-    }
   }
 }
 

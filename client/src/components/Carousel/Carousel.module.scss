@@ -5,7 +5,7 @@
 }
 
 .heroWrrap {
-  padding-top: 90px;
+  //padding-top: 90px;
   @include for-size(1200px) {
     background: linear-gradient(to right, white 50%, $main-green 50%);
   }
@@ -26,6 +26,7 @@
 .staticContainer {
   @include for-size(1200px) {
     width: 40%;
+    padding-top: 150px;
   }
 }
 
@@ -124,6 +125,7 @@ span {
     display: flex;
   }
   @include for-size(1200px) {
+    padding-top: 150px;
     width: 60%;
     background: linear-gradient(
       to right,
@@ -233,6 +235,10 @@ span {
   padding-bottom: 30px;
 }
 
+.aboutProduct:hover {
+  cursor: pointer;
+}
+
 .aboutProduct::after {
   content: '';
   position: absolute;
@@ -243,8 +249,21 @@ span {
   background-color: $main-orange;
 }
 
-.aboutProduct:hover {
+// .aboutProduct:hover {
+//   cursor: pointer;
+// }
+.aboutProduct:hover::after {
   cursor: pointer;
+  animation: underline 0.5s ease-in-out;
+}
+
+@keyframes underline {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
 .paginationWrap {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -8,20 +8,52 @@ import WishlistIcon from './icons/WishlistIcon';
 import CartIcon from './icons/CartIcon';
 import LoginIcon from './icons/LoginIcon';
 import Container from '../Container/Container';
+import Modal from '../Modal/Modal';
+import LoginForm from '../LoginForm/LoginForm';
 
 import styles from './Header.module.scss';
-import Modal from '../Modal/Modal';
 
-function Header() {
+function Header({ setShowCartModal }) {
   const [showBurger, setShowBurger] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollY } = window;
+
+      if (scrollY >= 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      if (scrollY >= 400) {
+        // eslint-disable-next-line no-use-before-define
+        setSticky(true);
+      } else {
+        // eslint-disable-next-line no-use-before-define
+        setSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const [sticky, setSticky] = useState(false);
+
+  // ========================================================
 
   const handleModal = () => {
     setShowModal(!showModal);
   };
 
   return (
-    <header className={styles.header}>
+    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
       <Container>
         <div className={styles.wrapp}>
           {/* eslint-disable-next-line max-len */}
@@ -74,19 +106,31 @@ function Header() {
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
             </Link>
-            <Link to="/cart" className={styles.header_userLink}>
+            <Link to="/" className={styles.header_userLink} onClick={setShowCartModal}>
               <CartIcon />
             </Link>
           </div>
         </div>
       </Container>
+      {/* <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} /> */}
       {showModal && (
         <Modal handleModal={handleModal}>
-          <div className="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus accusantium autem dolor et illo iusto laboriosam magni maxime obcaecati?</div>
+          <LoginForm setShowModal={setShowModal} />
         </Modal>
       )}
+      {}
+      {/* eslint-disable-next-line max-len */}
+      {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />} */}
     </header>
   );
 }
+
+Header.propTypes = {
+  setShowCartModal: () => {},
+};
+
+Header.defaultProps = {
+  setShowCartModal: () => {},
+};
 
 export default Header;
