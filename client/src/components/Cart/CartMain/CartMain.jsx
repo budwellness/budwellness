@@ -144,7 +144,11 @@ export default function CartMain() {
     <div className={styles.cart_main}>
       <h3 className={styles.cart_mainHeader}>
         Products
-        <span>{currentCart.length} Items</span>
+        <span>
+          {currentCart.length}
+          {' '}
+          Items
+        </span>
       </h3>
       <CartList items={currentCart} />
       <div className={styles.cart_mainAction}>
