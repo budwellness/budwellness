@@ -9,6 +9,10 @@ function CartWrapperModal() {
     <>
       <ul className={styles.list}>
         <CartModalItem />
+        <CartModalItem />
+        <CartModalItem />
+        <CartModalItem />
+        <CartModalItem />
       </ul>
       <div className={styles.footer}>
         <span className={styles.footerTitle}>Total</span>

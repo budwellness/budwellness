@@ -1,8 +1,9 @@
 import React from 'react';
 
-import styles from './CartModalItem.module.scss';
 import ButtonCount from '../../ButtonCount/ButtonCount';
 import LinkUnderline from '../../LinkUnderline/LinkUnderline';
+
+import styles from './CartModalItem.module.scss';
 
 const {
   imageUrls, name, currentPrice,
@@ -73,7 +74,7 @@ function CartModalItem() {
           {currentPrice}
         </span>
         <ButtonCount />
-        <LinkUnderline style={{order: 4}}>Remove</LinkUnderline>
+        <LinkUnderline style={{ order: 4, marginTop: '10px' }}>Remove</LinkUnderline>
       </div>
     </li>
   );
