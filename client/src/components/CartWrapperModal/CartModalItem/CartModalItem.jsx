@@ -73,7 +73,7 @@ function CartModalItem() {
           {currentPrice}
         </span>
         <ButtonCount />
-        <LinkUnderline style={null}>Remove</LinkUnderline>
+        <LinkUnderline style={{order: 4}}>Remove</LinkUnderline>
       </div>
     </li>
   );

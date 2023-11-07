@@ -38,8 +38,8 @@
   
   @media (max-width: 757.98px) {
     display: inline-block;
-    max-width: 170px;
-    order: 1;
+    max-width: 190px;
+    order: 0;
     flex-grow: 1;
   }
 }
@@ -52,6 +52,7 @@
   
   @media (max-width: 757.98px) {
     order: 3;
+    width: 50%;
   }
 }
 
