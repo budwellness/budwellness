@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // COMPONENTS IMPORT:
 import Container from '../Container/Container';
@@ -25,30 +25,49 @@ import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 import styles from './Header.module.scss';
 
 function Header(props) {
-
   const {
     actions: {
       setShowCartModal,
       getCart,
       getWishlist,
-    }
-  } = props
+    },
+  } = props;
+
+
 
   /* --------------------------- INIT HOOKS: --------------------------- */
+
+  const dispatch = useDispatch();
+
+  /* --------------------------- LOCAL STATE: --------------------------- */
+
   const [showBurger, setShowBurger] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist
+    (state) => state.wishlist,
   );
 
   const { isUserLogin } = useSelector(
-    (state) => state.user
+    (state) => state.user,
   );
 
-  const { cart: cartStoreData } = useSelector(state => state.cart)
+  const { cart: cartStoreData } = useSelector((state) => state.cart);
+
+  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    dispatch(userLogutUserAction());
+  };
+
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,10 +98,6 @@ function Header(props) {
   const [sticky, setSticky] = useState(false);
 
   // ========================================================
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
 
   return (
     <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
@@ -141,7 +156,7 @@ function Header(props) {
                 <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>
-            <Link to="/" className={styles.header_userLink} onClick={setShowCartModal}>
+            <Link className={styles.header_userLink} onClick={setShowCartModal}>
               <CartIcon />
               {isUserLogin && cartStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
@@ -149,13 +164,17 @@ function Header(props) {
             </Link>
           </div>
         </div>
+        {showModal && (
+          isUserLogin
+            ?
+            <button className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
+            :
+            <Modal handleModal={handleModal}>
+              <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
+            </Modal>
+        )}
       </Container>
       {/* <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} /> */}
-      {showModal && (
-        <Modal handleModal={handleModal}>
-          <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
-        </Modal>
-      )}
       { }
       {/* eslint-disable-next-line max-len */}
       {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />} */}
