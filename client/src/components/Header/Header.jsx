@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
 import LogoIcon from './icons/LogoIcon';
-import SearchIcon from './icons/SearchIcon';
 import WishlistIcon from './icons/WishlistIcon';
 import CartIcon from './icons/CartIcon';
 import LoginIcon from './icons/LoginIcon';
@@ -13,7 +12,7 @@ import LoginForm from '../LoginForm/LoginForm';
 
 import styles from './Header.module.scss';
 import Nav from '../Nav/Nav';
-import Search from '../Search/Search.jsx';
+import Search from '../Search/Search';
 
 function Header({ setShowCartModal }) {
   const [showBurger, setShowBurger] = useState(false);
@@ -69,7 +68,7 @@ function Header({ setShowCartModal }) {
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
           </span>
-          <Link to='/'>
+          <Link to="/">
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
@@ -77,13 +76,13 @@ function Header({ setShowCartModal }) {
           <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
             <Search />
-            <Link to='/' className={styles.header_userLink} onClick={handleModal}>
+            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
               <LoginIcon />
             </Link>
-            <Link to='/wishlist' className={styles.header_userLink}>
+            <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
             </Link>
-            <Link to='/' className={styles.header_userLink} onClick={setShowCartModal}>
+            <Link to="/" className={styles.header_userLink} onClick={setShowCartModal}>
               <CartIcon />
             </Link>
           </div>
