@@ -10,7 +10,7 @@ export default function CartMain() {
   const currentCart = [
     {
       _id: 'somethingId_1',
-      cartQuantity: 5,
+      cartQuantity: 1,
       product: {
         size: 30,
         sizeType: 'ml',
@@ -73,7 +73,7 @@ export default function CartMain() {
     },
     {
       _id: 'somethingId_2',
-      cartQuantity: 3,
+      cartQuantity: 1,
       product: {
         size: 3.5,
         sizeType: 'g',

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cN from 'classnames';
 
 import CloseIcon from '../../../UI/CloseIcon';
+import ButtonCount from '../../../ButtonCount/ButtonCount';
 
 import styles from './CartCard.module.scss';
 
@@ -44,7 +45,9 @@ export default function CartCard({ card }) {
             ${(card.product.currentPrice * card.cartQuantity).toFixed(2)}
           </span>
         </div>
-        <div className={styles.quantity}>- {card.cartQuantity} +</div>
+        <div className={styles.quantity}>
+          <ButtonCount quantity={card.product.quantity} />
+        </div>
         <button type="button" className={styles.btnClose} onClick={() => {}}>
           <CloseIcon className={styles.iconClose} />
         </button>
