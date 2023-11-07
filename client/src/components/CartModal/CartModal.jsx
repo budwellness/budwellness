@@ -7,7 +7,6 @@ import CloseIcon from '../../assets/icons/closeIcon';
 
 import styles from './CartModal.module.scss';
 
- 
 function CartModal({ showCartModal, setShowCartModal }) {
   return (
     <div className={cn(styles.cartModal, { [styles.openCart]: showCartModal })}>

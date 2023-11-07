@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -81,11 +80,13 @@ export default function PopularSwiper() {
             <div className={styles.mainPrice}>
               {productItem.previousPrice !== productItem.currentPrice && (
                 <span className={cN(styles.price, styles.priceOld)}>
-                  ${productItem.previousPrice.toFixed(2)}
+                  $
+                  {productItem.previousPrice.toFixed(2)}
                 </span>
               )}
               <span className={styles.price}>
-                ${productItem.currentPrice.toFixed(2)}
+                $
+                {productItem.currentPrice.toFixed(2)}
               </span>
             </div>
           </div>

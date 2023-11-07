@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import cN from 'classnames';
@@ -33,17 +32,20 @@ export default function CartCard({ card }) {
         <div className={styles.wrapper_price}>
           {card.product.previousPrice !== card.product.currentPrice && (
             <span className={cN(styles.price, styles.priceOld)}>
-              ${card.product.previousPrice.toFixed(2)}
+              $
+              {card.product.previousPrice.toFixed(2)}
             </span>
           )}
           <span className={styles.price}>
-            ${card.product.currentPrice.toFixed(2)}
+            $
+            {card.product.currentPrice.toFixed(2)}
           </span>
         </div>
         <div className={cN(styles.wrapper_price, styles.wrapper_priceSubtotal)}>
           <h5 className={styles.priceSubtotal_title}>Subtotal</h5>
           <span className={styles.priceSubtotal_total}>
-            ${(card.product.currentPrice * card.cartQuantity).toFixed(2)}
+            $
+            {(card.product.currentPrice * card.cartQuantity).toFixed(2)}
           </span>
         </div>
         <div className={styles.quantity}>
