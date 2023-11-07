@@ -8,9 +8,13 @@
   top: 75px;
   left: 0;
   right: 0;
-  background: #fff;
+  background: 0;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
+
+  a {
+    color: $main-green;
+  }
 
   @media (min-width: 1199.98px) {
     position: sticky;
@@ -31,7 +35,7 @@
   padding: 0;
   list-style: none;
 
-  gap: 10px;
+  gap: 30px;
 
   @media (max-width: 1199.98px) {
     flex-direction: column;
