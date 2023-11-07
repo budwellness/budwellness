@@ -11,7 +11,6 @@
   padding-bottom: 30px;
   z-index: 10000;
 
-
   svg {
     width: 48px;
     height: 45px;
@@ -38,7 +37,9 @@
   display: none;
   position: sticky;
   top: 0;
-  transition: padding 0.5s, display 0.5s;
+  transition:
+    padding 0.5s,
+    display 0.5s;
 }
 
 .wrapp {
@@ -53,7 +54,6 @@
   font-style: normal;
   font-weight: 900;
   line-height: 20px;
-
 
   @media (max-width: 1199.99px) {
     display: none;
@@ -229,6 +229,7 @@
 }
 
 .header_userLink {
+  position: relative;
   display: flex;
   width: 40px;
   height: 40px;
@@ -242,7 +243,6 @@
   }
 }
 
-
 //==========================================
 .overLayCartModal {
   position: fixed;
@@ -251,4 +251,20 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wishlistCounter {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  background-color: red;
+  position: absolute;
+  font-size: 12px;
+  right: -5%;
+  bottom: -5%;
+  border-radius: 50%;
+  color: white;
 }

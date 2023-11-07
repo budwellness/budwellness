@@ -59,7 +59,7 @@ function ProductCard({ onClick, product }) {
   }
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
+
     <div className={cn(styles.productCard, styles[classNames])}>
       <div className={styles.productCard__media}>
         <Link
@@ -144,7 +144,7 @@ ProductCard.propTypes = {
     imageUrls: PropTypes.arrayOf(PropTypes.string),
     thc: PropTypes.number.isRequired,
     cbd: PropTypes.number.isRequired,
-    itemNo: PropTypes.number.isRequired,
+    itemNo: PropTypes.string.isRequired,
     previousPrice: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
