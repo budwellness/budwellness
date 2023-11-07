@@ -12,6 +12,7 @@ import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
 
 import styles from './Header.module.scss';
+import Nav from '../Nav/Nav';
 
 function Header({ setShowCartModal }) {
   const [showBurger, setShowBurger] = useState(false);
@@ -72,26 +73,7 @@ function Header({ setShowCartModal }) {
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
           </Link>
-          <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
-            <ul className={styles.header_navList}>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/">Home</Link>
-              </li>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/shop">Shop</Link>
-              </li>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/news">News</Link>
-              </li>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
-                <Link to="/pages">Pages</Link>
-              </li>
-            </ul>
-          </nav>
+          <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
             <form className={styles.header_userSearchForm}>
               <input className={styles.header_userSearchInput} type="text" placeholder="Search..." />
@@ -118,7 +100,6 @@ function Header({ setShowCartModal }) {
           <LoginForm setShowModal={setShowModal} />
         </Modal>
       )}
-      {}
       {/* eslint-disable-next-line max-len */}
       {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />} */}
     </header>
@@ -126,11 +107,13 @@ function Header({ setShowCartModal }) {
 }
 
 Header.propTypes = {
-  setShowCartModal: () => {},
+  setShowCartModal: () => {
+  },
 };
 
 Header.defaultProps = {
-  setShowCartModal: () => {},
+  setShowCartModal: () => {
+  },
 };
 
 export default Header;

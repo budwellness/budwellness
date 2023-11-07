@@ -67,23 +67,6 @@
   color: $secondary-green;
 }
 
-.header_navList {
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 25.5px;
-  padding: 0;
-
-  @media (max-width: 1199.98px) {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  a {
-    color: $main-green;
-  }
-}
 
 .header_navItem {
   display: inline-block;
@@ -129,27 +112,6 @@
 
 .toggleBtn.active .shortLine {
   width: 100%;
-}
-
-.list {
-  margin-left: 60px;
-  @media (max-width: 1199.98px) {
-    display: none;
-  }
-}
-
-.mobileNav {
-  padding-top: 30px;
-
-  @media (max-width: 1199.98px) {
-    display: block;
-    position: absolute;
-    top: 10vh;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    background-color: #fff;
-  }
 }
 
 .header_user {

@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import CartWrapperModal from '../CartWrapperModal/CartWrapperModal';
-import CloseIcon from '../../assets/icons/CloseIcon.jsx';
+import CloseIcon from '../../assets/icons/CloseIcon';
 
 import styles from './CartModal.module.scss';
 
