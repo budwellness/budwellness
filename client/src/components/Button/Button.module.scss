@@ -4,6 +4,7 @@
   height: 48px;
   border-radius: 24px;
   font-weight: 700;
+  font-family: $font-nunito;
   transition-timing-function: ease-in-out;
   transition-duration: 0.5s;
 }
@@ -20,9 +21,9 @@
 }
 
 .whiteBtn {
-  background-color: #fff;
   color: $secondary-green;
   border: 1px solid $secondary-green;
+  background-color: $color-white;
 }
 
 .whiteBtn:hover {

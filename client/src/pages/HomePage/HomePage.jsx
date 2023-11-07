@@ -7,7 +7,6 @@ import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 function HomePage() {
   return (
     <>
-      <div>HomePage</div>
       <ScrollToTop />
       <Carousel />
       <Categories />
