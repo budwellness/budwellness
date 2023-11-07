@@ -1,7 +1,8 @@
 import React from 'react';
 
 import styles from './CartModalItem.module.scss';
-import ButtonCount from '../../ButtonCount/ButtonCount.jsx';
+import ButtonCount from '../../ButtonCount/ButtonCount';
+import LinkUnderline from '../../LinkUnderline/LinkUnderline';
 
 const {
   imageUrls, name, currentPrice,
@@ -72,8 +73,7 @@ function CartModalItem() {
           {currentPrice}
         </span>
         <ButtonCount />
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a className={styles.removeLink} href="#">remove</a>
+        <LinkUnderline style={null}>Remove</LinkUnderline>
       </div>
     </li>
   );
