@@ -155,15 +155,6 @@ function Header(props) {
             </Modal>
         )}
       </Container>
-      {/* <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} /> */}
-      {/* {showModal && (
-        <Modal handleModal={handleModal}>
-          <LoginForm setShowModal={setShowModal} />
-        </Modal>
-      )} */}
-      {}
-      { }
-      {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />} */}
     </header>
   );
 }
