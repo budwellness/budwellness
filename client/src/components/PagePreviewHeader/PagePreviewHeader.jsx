@@ -18,7 +18,7 @@ function PagePreviewHeader({ title, text }) {
           <NavLink to="/" className={styles.link}>
             Home &nbsp;/
           </NavLink>
-          <span>{title}</span>
+          <span className={styles.span}>{title}</span>
         </Container>
       </div>
     </>

@@ -22,7 +22,7 @@ function ButtonCount({ quantity }) {
       >
         <MinusIcon className={styles.countIcon} />
       </button>
-      <span>{count}</span>
+      <span className={styles.count}>{count}</span>
       <button
         type="button"
         className={styles.countBtn}

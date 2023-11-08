@@ -16,7 +16,8 @@
     &__productsWrapper {
         width: 100%;
         background-color: $color-white; 
-        
+        @include dflex-column-jcfs-aic;
+
         @include _320 {
             margin-top: 20px;
         }
@@ -25,6 +26,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2vw;
+            align-items: flex-start;
         }
         @include _768 {
             display: grid;

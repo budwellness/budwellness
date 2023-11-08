@@ -85,9 +85,10 @@
   max-width: 40%;
 }
 
-.ratingText span {
+.span {
   @extend .ratingText;
   color: $main-green;
+  font-weight: 700;
 }
 
 .descShort {
