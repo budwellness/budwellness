@@ -25,7 +25,7 @@ export default function LinkUnderline({
 LinkUnderline.propTypes = {
   to: PropTypes.string,
   children: PropTypes.string,
-  style: PropTypes.shape,
+  style: PropTypes.shape({}),
   type: PropTypes.string,
   onClick: PropTypes.func,
 };

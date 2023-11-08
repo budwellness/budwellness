@@ -6,7 +6,6 @@ import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
 import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
-import './App.scss';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
@@ -14,9 +13,11 @@ import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
 import Footer from './components/Footer/Footer';
 
+import './App.scss';
+
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
-  const [showCartModal, setShowCartModal] = useState(false);
+  const [showCartModal, setShowCartModal] = useState(true);
 
   // console.log('DATA: ', products);
 
@@ -39,6 +40,7 @@ function App() {
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
       />
+      {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)} />}
     </>
   );
 }
