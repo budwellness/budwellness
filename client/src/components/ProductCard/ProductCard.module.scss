@@ -7,12 +7,12 @@
     transition: .3s ease-in-out;
 
     &:is(:hover, :focus) {
-        box-shadow: 0 0 15px rgba(37,143,103,.20
-        );
+        box-shadow: 0 0 15px rgba(37, 143, 103, .20);
         transition: .3s ease-in-out;
     }
+
     @include _320 {
-        min-width: 237px;
+        min-width: 234px;
         margin-bottom: 30px;
     }
 
@@ -31,7 +31,7 @@
                 width: 100%;
                 display: flex;
                 justify-content: center;
-                
+
                 &__image {
                     display: block;
                     width: 100%;
@@ -52,8 +52,8 @@
             border-radius: 16px;
             font-weight: 600;
             color: $white-text-color;
-        }    
-        
+        }
+
         &__overlay {
             position: absolute;
             top: 0;
@@ -75,27 +75,27 @@
                     border-radius: 50%;
                     border: 1px solid $main-orange;
                     cursor: pointer;
-        
+
                     &:is(:hover, :focus) {
                         background-color: $main-orange;
                         color: $white-text-color;
                         transition: .5s ease-in-out;
-        
+
                         .favoriteIcon,
                         .eyeIcon {
                             fill: $white-text-color;
                             transition: .5s ease-in-out;
-                        }             
+                        }
                     }
-        
+
                     .favoriteIcon,
                     .eyeIcon {
                         fill: $main-orange;
                         width: 19px;
                         height: 16px;
-                    }          
+                    }
                 }
-            } 
+            }
         }
     }
 
@@ -104,8 +104,8 @@
         padding: 0 30px 30px;
         @include dflex-column-jcfs-aic;
         text-align: center;
-    
-        &__titleLink {        
+
+        &__titleLink {
             margin: 10px 0;
             max-width: 280px;
             min-height: 23px;
@@ -113,7 +113,7 @@
             font-weight: 700;
             font-size: 20px;
             line-height: 1.3;
-            text-decoration: none; 
+            text-decoration: none;
             text-wrap: balance;
             color: $main-green;
             cursor: pointer;
@@ -126,17 +126,21 @@
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
             }
-            
+
             &:is(:hover, :focus) {
                 color: $secondary-green;
                 transition: .3s ease-in-out;
             }
-            
+
         }
+
         &__property span {
+            font-family: $font-montserrat;
             font-weight: 600;
+            font-size: 14px;
             color: $main-green;
         }
+
         &__productPrices {
             width: 100%;
             margin: 15px 0 20px;
@@ -151,9 +155,10 @@
                 color: $secondary-text-color;
                 text-decoration: line-through;
             }
+
             &__currentPrice {
-            color: $main-green;
-            font-weight: 800;                  
+                color: $main-green;
+                font-weight: 800;
             }
         }
 
@@ -163,4 +168,3 @@
         }
     }
 }
-

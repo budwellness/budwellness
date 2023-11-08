@@ -68,7 +68,6 @@ function ProductCard({ onClick, product }) {
         <RatingStars
           classNames={styles.productCard__main__rating}
           rate={rate}
-          size={20}
         />
         <Link
           to={`/product/${itemNo}`}
