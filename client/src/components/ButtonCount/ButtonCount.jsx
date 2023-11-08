@@ -26,7 +26,7 @@ function ButtonCount({ quantity }) {
       <button
         type="button"
         className={styles.countBtn}
-        onClick={() => handleCountChange(count + 11)}
+        onClick={() => handleCountChange(count + 1)}
         disabled={count === quantity}
       >
         <PlusIcon className={styles.countIcon} />
