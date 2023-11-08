@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
@@ -80,10 +81,10 @@ function Header(props) {
       }
 
       if (scrollY >= 400) {
-        // eslint-disable-next-line no-use-before-define
+
         setSticky(true);
       } else {
-        // eslint-disable-next-line no-use-before-define
+
         setSticky(false);
       }
     };
@@ -100,11 +101,16 @@ function Header(props) {
   // ========================================================
 
   return (
-    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
+    <header
+      className={cn(styles.header, {
+        [styles.scrolled]: scrolled,
+        [styles.sticky]: sticky,
+      })}
+    >
       <Container>
         <div className={styles.wrapp}>
-          {/* eslint-disable-next-line max-len */}
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+          { }
+          { }
           <span
             className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
             onClick={() => setShowBurger(!showBurger)}
@@ -117,37 +123,59 @@ function Header(props) {
           <Link to="/">
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
-            <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
+            <span className={cn(styles.header_logoTitle, styles.accentColor)}>
+              Wellness
+            </span>
           </Link>
           <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
             <ul className={styles.header_navList}>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
                 <Link to="/">Home</Link>
               </li>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
                 <Link to="/shop">Shop</Link>
               </li>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
                 <Link to="/news">News</Link>
               </li>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-              <li className={styles.header_navItem} onClick={() => setShowBurger(false)}>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
                 <Link to="/pages">Pages</Link>
               </li>
             </ul>
           </nav>
           <div className={styles.header_user}>
             <form className={styles.header_userSearchForm}>
-              <input className={styles.header_userSearchInput} type="text" placeholder="Search..." />
-              {/* eslint-disable-next-line react/button-has-type */}
+              <input
+                className={styles.header_userSearchInput}
+                type="text"
+                placeholder="Search..."
+              />
+              { }
               <button className={styles.header_userSearchButton}>
                 <SearchIcon />
               </button>
             </form>
-            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
+            <Link
+              to="/"
+              className={styles.header_userLink}
+              onClick={handleModal}
+            >
               <LoginIcon />
             </Link>
             <Link to="/wishlist" className={styles.header_userLink}>

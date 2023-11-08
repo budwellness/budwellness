@@ -13,6 +13,7 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
+import Footer from './components/Footer/Footer'
 
 // USER IMPORTS:
 import {

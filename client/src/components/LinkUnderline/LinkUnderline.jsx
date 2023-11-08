@@ -1,21 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import styles from './LinkUnderline.module.scss';
+// CART IMPORTS:
+import { useRemoveFromCartMutation } from '../../store/serverResponse/danitApi.cart';
 
+import styles from './LinkUnderline.module.scss';
+import { removeItemFromCartAction } from '../../store/cart/cart.slice';
+
+
+
+const log = console.log
 export default function LinkUnderline({
-  to, children, style, type, onClick,
+  to, children, style, type, productId
 }) {
+
+  /* --------------------------- INIT HOOKS: --------------------------- */
+
+  const dispatch = useDispatch()
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { token: tokenReduxStore } = useSelector(
+    (state) => state.user
+  );
+
+  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
+
+  const [removeFromCart, { isSuccess: isSuccessRemoveFromCart }] = useRemoveFromCartMutation()
   const Component = type ? 'button' : Link;
+
+  /* --------------------------- COMPONENT HANDLERS: --------------------------- */
+
+  const removeFromServerCartHandler = () => {
+    const requestData = {
+      productId,
+      token: tokenReduxStore,
+    };
+    try {
+      removeFromCart(requestData)
+    } catch (error) {
+      log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccessRemoveFromCart) {
+      dispatch(removeItemFromCartAction(productId));
+    }
+  }, [isSuccessRemoveFromCart]);
+
+  /* ------------------------------------------------ */
 
   return (
     <Component
       to={type ? undefined : to}
       className={styles.linkUnderline}
-      style={style}
+      // style={style}
       type={type}
-      onClick={onClick}
+      onClick={removeFromServerCartHandler}
     >
       {children}
     </Component>
@@ -25,15 +67,14 @@ export default function LinkUnderline({
 LinkUnderline.propTypes = {
   to: PropTypes.string,
   children: PropTypes.string,
-  style: PropTypes.shape,
+  // style: PropTypes.shape,
   type: PropTypes.string,
-  onClick: PropTypes.func,
 };
 
 LinkUnderline.defaultProps = {
   to: '/',
   children: 'LinkUnderline',
-  style: {},
+  // style: {},
   type: '',
-  onClick: () => {},
+  // onClick: () => { },
 };

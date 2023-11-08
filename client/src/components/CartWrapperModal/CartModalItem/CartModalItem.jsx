@@ -1,6 +1,8 @@
 import React from 'react';
 
 import styles from './CartModalItem.module.scss';
+import ButtonCount from '../../ButtonCount/ButtonCount';
+import LinkUnderline from '../../LinkUnderline/LinkUnderline';
 
 // const {
 //   imageUrls, name, currentPrice,
@@ -56,8 +58,6 @@ import styles from './CartModalItem.module.scss';
 
 function CartModalItem(props) {
 
-  console.log(props);
-
   const {
     products: {
       product
@@ -80,12 +80,11 @@ function CartModalItem(props) {
           {product.currentPrice}
         </span>
         <div className={styles.count}>
-          <span>-</span>
-          <input type="text" value="1" />
-          <span>+</span>
+          <ButtonCount quantity={1} />
         </div>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a className={styles.removeLink} href="#">remove</a>
+        {/* <a className={styles.removeLink} href="#">remove</a> */}
+        <LinkUnderline type={'button'} productId={product._id}>Remove</LinkUnderline>
       </div>
     </li>
   );

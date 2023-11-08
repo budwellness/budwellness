@@ -12,7 +12,6 @@ function CartWrapperModal() {
 
 
   const cartProducts = cartStoreData.map((product) => (<CartModalItem key={product._id} products={product} />))
-  console.log('cartProducts', cartProducts);
 
   return (
     <>

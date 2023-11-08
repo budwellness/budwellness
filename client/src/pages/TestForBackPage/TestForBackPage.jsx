@@ -58,7 +58,7 @@ import styles from './TestForBackPage.module.scss';
 const { log } = console;
 
 function TestForBackPage() {
-  /* --------------------------- INIT HOOKS: --------------------------- */
+
   const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
