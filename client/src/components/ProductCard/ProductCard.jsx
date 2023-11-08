@@ -6,6 +6,9 @@ import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
 import FavouriteIcon from '../UI/FavouriteIcon';
+import EyeIcon from '../UI/EyeIcon';
+import getThcCategory from '../../helpers/functionGetThcCategory';
+import getCbdCategory from '../../helpers/functionGetCbdCategory';
 import styles from './ProductCard.module.scss';
 
 function ProductCard({ onClick, product }) {
@@ -20,43 +23,6 @@ function ProductCard({ onClick, product }) {
     name,
     classNames,
   } = product;
-
-  let cbdCategory;
-  let thcCategory;
-
-  switch (true) {
-    case cbd >= 0.1 && cbd <= 1:
-      cbdCategory = '0.10-1.00%';
-      break;
-    case cbd >= 2 && cbd <= 5:
-      cbdCategory = '2.00-5.00%';
-      break;
-    case cbd >= 5 && cbd <= 20:
-      cbdCategory = '5.00-20.00%';
-      break;
-    case cbd >= 20 && cbd <= 50:
-      cbdCategory = '20.00-50.00%';
-      break;
-    default:
-      cbdCategory = 'unknown';
-  }
-
-  switch (true) {
-    case thc >= 0.2 && thc <= 10:
-      thcCategory = '0.20-10.00%';
-      break;
-    case thc >= 11 && thc <= 20:
-      thcCategory = '11.00-20.00%';
-      break;
-    case thc >= 21 && thc <= 30:
-      thcCategory = '21.00-30.00%';
-      break;
-    case thc >= 31 && thc <= 40:
-      thcCategory = '31.00- 40.00%';
-      break;
-    default:
-      thcCategory = 'unknown';
-  }
 
   return (
 
@@ -76,27 +42,32 @@ function ProductCard({ onClick, product }) {
             />
           </div>
         </Link>
-        <div className={styles.overlay}>
-          {previousPrice !== currentPrice && (
-            <div className={styles.productCard__media__saleLabel}>
-              <span className={styles.productCard__media__saleLabel__saleText}>
-                Sale
-              </span>
-            </div>
-          )}
-          <ButtonIcon
-            className={styles.productCard__media__buttonAddFavorites}
-            onClick={() => { }}
-          >
-            <FavouriteIcon className={styles.favoriteIcon} />
-          </ButtonIcon>
+        {previousPrice !== currentPrice && (
+          <span className={styles.productCard__media__saleLabel}>
+            Sale
+          </span>
+        )}
+        <div className={styles.productCard__media__overlay}>
+          <div className={styles.productCard__media__overlay__action}>
+            <ButtonIcon
+              className={styles.buttonViewSingleProduct}
+              onClick={() => { }}
+            >
+              <EyeIcon className={styles.eyeIcon} />
+            </ButtonIcon>
+            <ButtonIcon
+              className={styles.buttonAddFavorites}
+              onClick={() => { }}
+            >
+              <FavouriteIcon className={styles.favoriteIcon} />
+            </ButtonIcon>
+          </div>
         </div>
       </div>
       <div className={styles.productCard__main}>
         <RatingStars
           classNames={styles.productCard__main__rating}
           rate={rate}
-          size={20}
         />
         <Link
           to={`/product/${itemNo}`}
@@ -108,12 +79,12 @@ function ProductCard({ onClick, product }) {
           <div className={styles.productCard__main__property_thc}>
             <span>THC</span>
             {' '}
-            {thcCategory}
+            {getThcCategory(thc)}
           </div>
           <div className={styles.productCard__main__property_cbd}>
             <span>CBD</span>
             {' '}
-            {cbdCategory}
+            {getCbdCategory(cbd)}
           </div>
         </div>
         <div className={styles.productCard__main__productPrices}>
