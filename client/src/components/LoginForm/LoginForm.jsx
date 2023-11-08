@@ -26,6 +26,8 @@ function LoginForm(props) {
     }
   } = props
 
+  console.log(setShowModal)
+
   const initialValues = {
     loginOrEmail: 'customer@gmail.com',
     password: '1111111',
@@ -71,7 +73,7 @@ function LoginForm(props) {
           <button
             className={styles.btn}
             type="button"
-            onClick={() => setShowModal(false)}
+            // onClick={() => setShowModal(false)}
           >
             cancel
           </button>

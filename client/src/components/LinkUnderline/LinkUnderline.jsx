@@ -67,14 +67,14 @@ export default function LinkUnderline({
 LinkUnderline.propTypes = {
   to: PropTypes.string,
   children: PropTypes.string,
-  // style: PropTypes.shape,
+  style: PropTypes.shape({}),
   type: PropTypes.string,
 };
 
 LinkUnderline.defaultProps = {
   to: '/',
   children: 'LinkUnderline',
-  // style: {},
+  style: {},
   type: '',
-  // onClick: () => { },
+  onClick: () => {},
 };

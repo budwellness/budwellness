@@ -1,5 +1,3 @@
-/* Modal.module.scss */
-
 .modalWrapper {
   position: fixed;
   top: 0;
@@ -25,6 +23,16 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 20px;
   cursor: pointer;
+
+  svg {
+    transition: fill 0.2s;
+    fill: #c6c6c6;
+    width: 24px;
+    height: 28px;
+  }
+
+  svg:hover {
+    fill: #214842;
+  }
 }

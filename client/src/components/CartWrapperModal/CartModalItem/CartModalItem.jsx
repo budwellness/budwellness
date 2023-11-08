@@ -1,8 +1,9 @@
 import React from 'react';
 
-import styles from './CartModalItem.module.scss';
 import ButtonCount from '../../ButtonCount/ButtonCount';
 import LinkUnderline from '../../LinkUnderline/LinkUnderline';
+
+import styles from './CartModalItem.module.scss';
 
 // const {
 //   imageUrls, name, currentPrice,

@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 // COMPONENTS: 
 import CartWrapperModal from '../CartWrapperModal/CartWrapperModal';
-import CloseIcon from '../../assets/icons/closeIcon';
+import CloseIcon from '../../assets/icons/CloseIcon';
 
 // CART IMPORTS:
 import { useLazyGetCartQuery } from '../../store/serverResponse/danitApi.cart';
