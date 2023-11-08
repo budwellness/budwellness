@@ -120,7 +120,7 @@ function SingleProductPage() {
               <RatingStars rate={mockDataProduct.rate} />
               <p className={styles.ratingText}>
                 ({mockDataProduct.reviews.length} customer review
-                <span>s</span>)
+                <span className={styles.span}>s</span>)
               </p>
             </div>
             <p className={styles.descShort}>

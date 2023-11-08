@@ -5,9 +5,13 @@
 }
 
 .heroWrrap {
-  //padding-top: 90px;
+  padding-top: 90px;
+  @include for-size(768px) {
+    padding-top: 130px;
+  }
   @include for-size(1200px) {
     background: linear-gradient(to right, white 50%, $main-green 50%);
+    padding-top: 0;
   }
 }
 
@@ -101,9 +105,10 @@
   flex-direction: column;
 }
 
-span {
+.tel {
   font-size: 14px;
   color: $main-text-color;
+  font-family: $font-montserrat;
 }
 
 .linkTel {
@@ -290,6 +295,9 @@ span {
   }
   @include for-size(992px) {
     bottom: 230px;
+  }
+  @include for-size(1200px) {
+    bottom: 270px;
   }
 }
 

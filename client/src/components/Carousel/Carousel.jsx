@@ -76,8 +76,8 @@ function Carousel() {
                 <PhoneIcon className={styles.phoneImgFill} />
               </span>
               <div className={styles.phoneNumText}>
-                <span>Phone number</span>
-                <a href="+38(068)-548-46-98" className={styles.linkTel}>
+                <span className={styles.tel}>Phone number</span>
+                <a href="tel: +38(068)-548-46-98" className={styles.linkTel}>
                   +38(068)-548-46-98
                 </a>
               </div>
