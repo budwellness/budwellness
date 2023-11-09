@@ -6,14 +6,20 @@ import countTotalPrice from '../../helpers/countTotalPrice';
 
 import styles from './CartWrapperModal.module.scss';
 
-
 function CartWrapperModal() {
+  /* --------------------------- REDUX STATE: --------------------------- */
   const { cart: cartStoreData } = useSelector((state) => state.cart);
 
+  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   const countTotalPriceHandler = () => countTotalPrice(cartStoreData);
 
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const cartProducts = cartStoreData.map((product) => (
-    <CartModalItem key={product._id} products={product} />
+    <CartModalItem
+      // eslint-disable-next-line no-underscore-dangle
+      key={product._id}
+      products={product}
+    />
   ));
 
   return (

@@ -57,7 +57,17 @@ export default ButtonCount;
 
 ButtonCount.propTypes = {
   productQuantity: PropTypes.number,
+  cartQuantity: PropTypes.number,
+  actions: PropTypes.shape({
+    increaseCartQuantityHandler: PropTypes.func,
+    decreaseCartQuantityHandler: PropTypes.func,
+  }),
 };
 ButtonCount.defaultProps = {
   productQuantity: 1,
+  cartQuantity: 0,
+  actions: {
+    increaseCartQuantityHandler: () => { },
+    decreaseCartQuantityHandler: () => { },
+  },
 };

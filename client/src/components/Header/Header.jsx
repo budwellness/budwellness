@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // COMPONENTS IMPORT:
 import Container from '../Container/Container';
@@ -18,10 +20,8 @@ import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
 import {
-  userLoginUserAction,
   userLogutUserAction,
 } from '../../store/user/user.slice';
-import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 
 import styles from './Header.module.scss';
 
@@ -43,6 +43,7 @@ function Header(props) {
   const [showBurger, setShowBurger] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [sticky, setSticky] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
@@ -92,8 +93,6 @@ function Header(props) {
     };
   }, []);
 
-  const [sticky, setSticky] = useState(false);
-
   // ========================================================
 
   return (
@@ -138,7 +137,7 @@ function Header(props) {
         </div>
         {showModal && (
           isUserLogin
-            ? <button className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
+            ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
             : (
               <Modal handleModal={handleModal}>
                 <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
@@ -151,11 +150,21 @@ function Header(props) {
 }
 
 Header.propTypes = {
+  actions: PropTypes.shape({
+    setShowCartModal: PropTypes.func,
+    getCart: PropTypes.func,
+    getWishlist: PropTypes.func,
+  }),
   setShowCartModal: () => { },
 };
 
 Header.defaultProps = {
   setShowCartModal: () => { },
+  actions: {
+    setShowCartModal: () => { },
+    getCart: () => { },
+    getWishlist: () => { },
+  },
 };
 
 export default Header;

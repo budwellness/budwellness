@@ -1,5 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { toast } from 'react-toastify';
 
 // COMPONENT IMPORTS:
@@ -68,7 +71,6 @@ function CartModalItem(props) {
     try {
       decreaseCartQuantity(requestData);
       dispatch(decreaseCartItemQuantityAction(product._id));
-      return true;
     } catch (error) {
       log(error);
       toast.error('Something went wrong...');
@@ -104,5 +106,31 @@ function CartModalItem(props) {
     </li>
   );
 }
+
+CartModalItem.propTypes = {
+  products: PropTypes.shape({
+    cartQuantity: PropTypes.number,
+    product: PropTypes.shape({
+      _id: PropTypes.string,
+      name: PropTypes.string,
+      imageUrls: PropTypes.arrayOf(PropTypes.string),
+      currentPrice: PropTypes.number,
+      quantity: PropTypes.number,
+    }),
+  }),
+};
+
+CartModalItem.defaultProps = {
+  products: {
+    cartQuantity: 0,
+    product: {
+      _id: '',
+      name: '',
+      imageUrls: [],
+      currentPrice: 0,
+      quantity: 0,
+    },
+  },
+};
 
 export default CartModalItem;

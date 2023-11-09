@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { loginUser, uploadSingleProduct } from '../../helpers/sendRequest';
 import {
   //   mockProductApiExample,
