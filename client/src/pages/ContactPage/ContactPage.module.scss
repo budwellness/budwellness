@@ -1,0 +1,267 @@
+@mixin for-size($size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    gap: 40px;
+
+    @include for-size(768px) {
+        padding: 90px 0;
+    }
+
+    @include for-size(992px) {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding-top: 160px;
+    }
+
+    @include for-size(1200px) {
+        gap: 90px;
+        padding-top: 160px;
+    }
+
+    &__content {
+        min-width: 100%;
+        text-align: center;
+
+        @include for-size(576px) {
+            min-width: 403px;
+            text-align: left;
+        }
+
+        @include for-size(992px) {
+            min-width: 503px;
+            text-align: left;
+        }
+
+        @include for-size(1200px) {
+            width: 100%;
+        }
+    }
+
+    &__contentForm {
+        min-width: 100%;
+        text-align: center;
+
+        @include for-size(576px) {
+            min-width: 403px;
+            text-align: left;
+        }
+
+        @include for-size(992px) {
+            min-width: 403px;
+            text-align: left;
+        }
+
+        @include for-size(1200px) {
+            width: 100%;
+        }
+    }
+}
+
+.title {
+    width: 100%;
+    font-size: 30px;
+    line-height: 1.3;
+    color: $main-green;
+    font-family: $font-nunito;
+    margin: 0;
+    margin-bottom: 15px;
+
+    @include for-size(992px) {
+        min-width: 403px;
+    }
+
+    @include for-size(1200px) {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+}
+
+.description {
+    width: 100%;
+
+    @include for-size(992px) {
+        min-width: 100%;
+    }
+
+    @include for-size(1200px) {
+        font-size: 17px;
+        line-height: 1.5;
+        font-family: $font-montserrat;
+        color: $main-text-color;
+
+    }
+}
+
+.form {
+    display: grid;
+    width: 100%;
+    margin-bottom: 20px;
+
+    @include for-size(992px) {
+        min-width: 100%;
+    }
+
+    @include for-size(1200px) {
+        display: grid;
+        margin-bottom: 30px;
+    }
+
+    &__subtitle {
+        font-weight: 700;
+        font-size: 17px;
+        color: $main-green;
+        font-family: $font-nunito;
+        margin-bottom: 5px;
+
+        @include for-size(992px) {
+            margin-bottom: 15px;
+        }
+
+        @include for-size(1200px) {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__message {
+        border-radius: 24px;
+        border: 1px solid $secondary-text-color;
+        padding: 13px 20px;
+    }
+
+    &__messageText {
+        border-radius: 24px;
+        border: 1px solid $secondary-text-color;
+        padding: 13px 20px;
+        min-height: 220px;
+        @include for-size(992px) {
+            margin-bottom: 40px;
+        }
+    }
+}
+
+
+
+
+.map {
+    @include for-size(320px) {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    @include for-size(992px) {
+        min-width: 403px;
+    }
+}
+
+__message {
+    border-radius: 24px;
+    border: 1px solid $secondary-text-color;
+    padding: 13px 20px;
+
+    &messageText {
+        border-radius: 24px;
+        border: 1px solid $secondary-text-color;
+        padding: 13px 20px;
+        min-height: 220px;
+    }
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+
+    &__item {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-direction: column;
+        align-items: center;
+
+        @include for-size(576px) {
+            flex-direction: row;
+            align-items: start;
+        }
+
+        @include for-size(1200px) {
+            flex-direction: row;
+            align-items: start;
+        }
+    }
+
+    &__desc {
+        display: grid;
+    }
+
+    &__link {
+        text-decoration: none;
+        font-size: 17px;
+        line-height: 1.5;
+        font-family: $font-montserrat;
+        color: $main-green;
+        margin: 0;
+    }
+}
+
+.phoneImgFill {
+    width: 40px;
+    height: 40px;
+    fill: $main-orange;
+    background-color: $main-green;
+    border-radius: 50%;
+}
+
+.locationImgFill {
+    width: 40px;
+    height: 40px;
+    fill: $main-green;
+    background-color: $main-orange;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.messageImgFill {
+    width: 40px;
+    height: 40px;
+    fill: $main-green;
+    background-color: $main-orange;
+    padding: 10px;
+}
+
+.socialList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+    margin-top: 44px;
+    justify-content: center;
+
+    @include for-size(576px) {
+        justify-content: left;
+    }
+
+    @include for-size(1200px) {
+        justify-content: left;
+    }
+
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}

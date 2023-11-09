@@ -108,7 +108,7 @@ function Header({ setShowCartModal }) {
                 className={styles.header_navItem}
                 onClick={() => setShowBurger(false)}
               >
-                <Link to="/pages">Pages</Link>
+                <Link to="/contact">Contacts</Link>
               </li>
             </ul>
           </nav>
