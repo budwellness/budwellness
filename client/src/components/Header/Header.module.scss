@@ -10,15 +10,15 @@
   padding-top: 30px;
   padding-bottom: 30px;
   z-index: 10000;
+}
 
-  a {
-    text-decoration: none;
-    color: #000;
-    text-transform: capitalize;
+.logoLink{
+  text-decoration: none;
+  color: #000;
+  text-transform: capitalize;
 
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
 }
 
 .header.scrolled {
