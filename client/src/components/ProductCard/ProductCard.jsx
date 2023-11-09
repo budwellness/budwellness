@@ -7,11 +7,11 @@ import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
 import FavouriteIcon from '../UI/FavouriteIcon';
 import EyeIcon from '../UI/EyeIcon';
-import getThcCategory from '../../helpers/functionGetThcCategory';
-import getCbdCategory from '../../helpers/functionGetCbdCategory';
+import getThcCategory from '../../helpers/getThcCategory';
+import getCbdCategory from '../../helpers/getCbdCategory';
 import styles from './ProductCard.module.scss';
 
-function ProductCard({ onClick, product }) {
+function ProductCard({ setShowModalAddToCart, onClick, product }) {
   const {
     imageUrls,
     previousPrice,
@@ -51,7 +51,7 @@ function ProductCard({ onClick, product }) {
           <div className={styles.productCard__media__overlay__action}>
             <ButtonIcon
               className={styles.buttonViewSingleProduct}
-              onClick={() => {}}
+              onClick={setShowModalAddToCart}
             >
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
@@ -124,6 +124,7 @@ ProductCard.propTypes = {
   }),
   // eslint-disable-next-line react/require-default-props
   onClick: PropTypes.func,
+  setShowModalAddToCart: PropTypes.bool.isRequired,
 };
 
 export default ProductCard;

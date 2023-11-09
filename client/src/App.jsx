@@ -12,12 +12,14 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
+import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import Footer from './components/Footer/Footer';
+import Modal from './components/Modal/Modal';
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
   const [showCartModal, setShowCartModal] = useState(false);
-
+  const [showModalAddToCart, setShowModalAddToCart] = useState(false);
   // console.log('DATA: ', products);
 
   // console.log('error: ', error);
@@ -34,11 +36,25 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer products={products} error={error} />
+      <Footer
+        products={products}
+        error={error}
+        setShowModalAddToCart={setShowModalAddToCart}
+      />
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
       />
+      {showModalAddToCart && (
+        <Modal>
+          <ModalAddToCart
+            // productId={products?.product.id}
+            // name={products?.product.name}
+            showModalAddToCart={showModalAddToCart}
+            setShowModalAddToCart={setShowModalAddToCart}
+          />
+        </Modal>
+      )}
     </>
   );
 }
