@@ -10,7 +10,6 @@ import Instagram from '../../components/Instagram/Instagram';
 function HomePage() {
   return (
     <>
-      <div>HomePage</div>
       <ScrollToTop />
       <Carousel />
       <Categories />

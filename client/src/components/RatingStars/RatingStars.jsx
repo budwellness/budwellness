@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ReactStars from 'react-rating-stars-component';
 import PropTypes from 'prop-types';
 import styles from './RatingStars.module.scss';

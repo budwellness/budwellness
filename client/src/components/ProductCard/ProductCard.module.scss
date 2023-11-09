@@ -1,0 +1,170 @@
+.productCard {
+    @include dflex-column-jcfs-aic;
+    max-width: 450px;
+    font-size: 14px;
+    background: $color-white;
+    border-radius: 16px;
+    transition: .3s ease-in-out;
+
+    &:is(:hover, :focus) {
+        box-shadow: 0 0 15px rgba(37, 143, 103, .20);
+        transition: .3s ease-in-out;
+    }
+
+    @include _320 {
+        min-width: 234px;
+        margin-bottom: 30px;
+    }
+
+    &__media {
+        position: relative;
+        width: 100%;
+        margin-bottom: 10px;
+        background-color: $color-white;
+
+        &__productLink {
+            width: 100%;
+            overflow: hidden;
+
+            &__imageWrapper {
+                position: relative;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                &__image {
+                    display: block;
+                    width: 100%;
+                    max-height: 250px;
+                    object-fit: contain;
+                    aspect-ratio: 1;
+                }
+            }
+        }
+
+        &__saleLabel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 30px 0 0 30px;
+            padding: 3px 15px;
+            background-color: $secondary-green;
+            border-radius: 16px;
+            font-weight: 600;
+            color: $white-text-color;
+        }
+
+        &__overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: fit-content;
+            padding: 30px;
+
+            &__action {
+                display: flex;
+                flex-direction: column;
+
+                .buttonAddFavorites,
+                .buttonViewSingleProduct {
+                    height: 40px;
+                    width: 40px;
+                    margin-bottom: 20px;
+                    @include dflex-jcc-aic;
+                    background: $color-white;
+                    border-radius: 50%;
+                    border: 1px solid $main-orange;
+                    cursor: pointer;
+
+                    &:is(:hover, :focus) {
+                        background-color: $main-orange;
+                        color: $white-text-color;
+                        transition: .5s ease-in-out;
+
+                        .favoriteIcon,
+                        .eyeIcon {
+                            fill: $white-text-color;
+                            transition: .5s ease-in-out;
+                        }
+                    }
+
+                    .favoriteIcon,
+                    .eyeIcon {
+                        fill: $main-orange;
+                        width: 19px;
+                        height: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__main {
+        width: 100%;
+        padding: 0 30px 30px;
+        @include dflex-column-jcfs-aic;
+        text-align: center;
+
+        &__titleLink {
+            margin: 10px 0;
+            max-width: 280px;
+            min-height: 23px;
+            font-family: $font-nunito;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.3;
+            text-decoration: none;
+            text-wrap: balance;
+            color: $main-green;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            @include _576 {
+                min-height: 52px;
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+            }
+
+            &:is(:hover, :focus) {
+                color: $secondary-green;
+                transition: .3s ease-in-out;
+            }
+
+        }
+
+        &__property span {
+            font-family: $font-montserrat;
+            font-weight: 600;
+            font-size: 14px;
+            color: $main-green;
+        }
+
+        &__productPrices {
+            width: 100%;
+            margin: 15px 0 20px;
+            @include dflex-jcc-aic;
+            font-size: 22px;
+            line-height: 1.1;
+            font-family: $font-nunito;
+
+            &__previousPrice {
+                margin-right: 15px;
+                font-weight: 700;
+                color: $secondary-text-color;
+                text-decoration: line-through;
+            }
+
+            &__currentPrice {
+                color: $main-green;
+                font-weight: 800;
+            }
+        }
+
+        .whiteBtn {
+            font-family: $font-nunito;
+            background-color: $color-white;
+        }
+    }
+}
