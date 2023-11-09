@@ -21,7 +21,6 @@ function ButtonCount(props) {
 
   const [count, setCount] = useState(cartQuantity);
 
-
   const handleCountChange = (value) => {
     setCount(value);
   };

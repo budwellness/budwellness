@@ -2,11 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import CartModalItem from './CartModalItem/CartModalItem';
 import Button from '../Button/Button';
+import countTotalPrice from '../../helpers/countTotalPrice';
 
 import styles from './CartWrapperModal.module.scss';
 
+
 function CartWrapperModal() {
   const { cart: cartStoreData } = useSelector((state) => state.cart);
+
+  const countTotalPriceHandler = () => countTotalPrice(cartStoreData);
 
   const cartProducts = cartStoreData.map((product) => (
     <CartModalItem key={product._id} products={product} />
@@ -22,7 +26,10 @@ function CartWrapperModal() {
       </ul>
       <div className={styles.footer}>
         <span className={styles.footerTitle}>Total</span>
-        <span className={styles.footerPrice}>$29.43</span>
+        <span className={styles.footerPrice}>
+          $
+          {countTotalPriceHandler()}
+        </span>
       </div>
       <Button
         type="button"

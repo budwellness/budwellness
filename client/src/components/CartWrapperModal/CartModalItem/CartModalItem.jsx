@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-// COMPONENT IMPORTS: 
+// COMPONENT IMPORTS:
 import ButtonCount from '../../ButtonCount/ButtonCount';
 import LinkUnderline from '../../LinkUnderline/LinkUnderline';
 
@@ -18,7 +18,7 @@ import {
 
 import styles from './CartModalItem.module.scss';
 
-const log = console.log;
+const { log } = console;
 
 function CartModalItem(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
@@ -29,11 +29,9 @@ function CartModalItem(props) {
     },
   } = props;
 
-
-
   /* --------------------------- INIT HOOKS: --------------------------- */
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
@@ -68,14 +66,14 @@ function CartModalItem(props) {
       token: tokenReduxStore,
     };
     try {
-      decreaseCartQuantity(requestData)
-      dispatch(decreaseCartItemQuantityAction(product._id))
+      decreaseCartQuantity(requestData);
+      dispatch(decreaseCartItemQuantityAction(product._id));
       return true;
     } catch (error) {
       log(error);
       toast.error('Something went wrong...');
     }
-  }
+  };
 
   return (
     <li className={styles.cartItem}>
