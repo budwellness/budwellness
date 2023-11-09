@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
+import CloseIcon from '../../assets/icons/CloseIcon';
 
 function Modal({ handleModal, children }) {
   const handleCloseModal = (e) => {
@@ -16,7 +17,7 @@ function Modal({ handleModal, children }) {
         {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
         <span className={styles.close} onClick={handleModal}>
-          &times;
+          <CloseIcon />
         </span>
         {children}
       </div>

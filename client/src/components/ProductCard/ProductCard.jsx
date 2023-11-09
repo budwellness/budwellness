@@ -51,13 +51,13 @@ function ProductCard({ onClick, product }) {
           <div className={styles.productCard__media__overlay__action}>
             <ButtonIcon
               className={styles.buttonViewSingleProduct}
-              onClick={() => {}}
+              onClick={() => { }}
             >
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
             <ButtonIcon
               className={styles.buttonAddFavorites}
-              onClick={() => {}}
+              onClick={() => { }}
             >
               <FavouriteIcon className={styles.favoriteIcon} />
             </ButtonIcon>
@@ -115,7 +115,7 @@ ProductCard.propTypes = {
     imageUrls: PropTypes.arrayOf(PropTypes.string),
     thc: PropTypes.number.isRequired,
     cbd: PropTypes.number.isRequired,
-    itemNo: PropTypes.number.isRequired,
+    itemNo: PropTypes.string.isRequired,
     previousPrice: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
