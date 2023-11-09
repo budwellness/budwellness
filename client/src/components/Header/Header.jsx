@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -9,7 +10,7 @@ import PropTypes from 'prop-types';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
-import Nav from '../Nav/Nav';
+// import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
 
 // ICONS IMPORT:
@@ -99,8 +100,8 @@ function Header(props) {
     <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
       <Container>
         <div className={styles.wrapp}>
-          {/* eslint-disable-next-line max-len */}
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+          { }
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <span
             className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
             onClick={() => setShowBurger(!showBurger)}
