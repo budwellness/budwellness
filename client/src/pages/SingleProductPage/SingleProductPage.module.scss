@@ -108,7 +108,7 @@
 
 .buttonWrapper {
   display: flex;
-  gap: 30px;
+  // gap: 30px;
   padding-bottom: 30px;
 }
 
@@ -141,4 +141,105 @@
 .tabsWrapp {
   border-radius: 25px;
   box-shadow: 3px 3px 5px 2px rgba(192, 192, 192, 0.5);
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.tabDesc {
+}
+
+.tabTitleWrapp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tabTitle {
+  font-family: $font-nunito;
+  font-size: 20px;
+  color: $main-green;
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.activeTabTitle .tabTitle {
+  color: $secondary-green;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  fill: $main-green;
+  transition: fill 0.3s ease;
+  transform-origin: center;
+}
+
+.activeArrow {
+  width: 30px;
+  height: 30px;
+  fill: $secondary-green;
+  animation: rotateArrow 0.3s ease forwards;
+}
+
+@keyframes rotateArrow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.tabContent {
+  display: none;
+}
+.text {
+  line-height: 1.5;
+}
+
+.showContent {
+  display: block;
+}
+
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
+.downAnimation {
+  animation: slideDown 0.5s ease;
+}
+
+.reviewWrrap {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px;
+}
+
+.fullName {
+  font-weight: 600;
+  font-family: $font-nunito;
+  font-size: 18px;
+}
+
+.reviewDate {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.span {
+  font-weight: 600;
+  font-size: 17px;
 }
