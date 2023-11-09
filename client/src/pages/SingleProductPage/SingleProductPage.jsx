@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
@@ -11,6 +11,7 @@ import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProd
 import FavouriteIcon from '../../components/UI/FavouriteIcon';
 
 import styles from './SingleProductPage.module.scss';
+import ArrowDownIcon from '../../components/UI/ArrowDownIcon';
 
 const mockDataProduct = {
   enabled: true,
@@ -97,6 +98,21 @@ const mockDataProduct = {
 function SingleProductPage() {
   const navigate = useNavigate();
 
+  const [toggle, setToggle] = useState(0);
+
+  // function updateToggle(index) {
+  //   setToggle(index);
+  // }
+  function updateToggle(index) {
+    if (toggle === index) {
+      // Якщо поточне значення toggle співпадає з індексом, сховати контент (встановити toggle в 0)
+      setToggle(0);
+    } else {
+      // Інакше показати контент, встановивши toggle в потрібний індекс
+      setToggle(index);
+    }
+  }
+
   return (
     <>
       <PagePreviewHeader
@@ -128,7 +144,7 @@ function SingleProductPage() {
             </p>
             <p className={styles.price}>${mockDataProduct.currentPrice}</p>
             <div className={styles.buttonWrapper}>
-              <ButtonCount />
+              {/* <ButtonCount /> */}
               <Button
                 type="button"
                 text="Add to Cart"
@@ -183,10 +199,90 @@ function SingleProductPage() {
               </li>
             </ul>
           </div>
-
-          <div className={styles.tabsWrapp}></div>
         </div>
-        <PopularProducts />
+
+        <div className={styles.tabsWrapp}>
+          <div className={styles.tabDesc}>
+            <div
+              className={
+                toggle === 1
+                  ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                  : styles.tabTitleWrapp
+              }
+              onClick={() => {
+                updateToggle(1);
+              }}
+            >
+              <h4 className={styles.tabTitle}>Description</h4>
+              <ArrowDownIcon
+                className={toggle === 1 ? styles.activeArrow : styles.arrow}
+              />
+            </div>
+            <div
+              className={toggle === 1 ? styles.showContent : styles.tabContent}
+            >
+              <p className={`${styles.text} ${styles.downAnimation}`}>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum
+                saepe porro, aut officia commodi incidunt placeat recusandae
+                quam ipsam necessitatibus minus.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.tabRev}>
+            <div
+              className={
+                toggle === 2
+                  ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                  : styles.tabTitleWrapp
+              }
+              onClick={() => {
+                updateToggle(2);
+              }}
+            >
+              <h4 className={styles.tabTitle}>
+                Reviews({mockDataProduct.reviews.length})
+              </h4>
+              <ArrowDownIcon
+                className={toggle === 2 ? styles.activeArrow : styles.arrow}
+              />
+            </div>
+            <div
+              className={toggle === 2 ? styles.showContent : styles.tabContent}
+            >
+              {mockDataProduct.reviews.map((review, index) => (
+                <div
+                  key={index}
+                  className={`${styles.text} ${styles.downAnimation}`}
+                >
+                  <ul className={styles.reviewWrrap}>
+                    <li className={styles.fullName}>{review.fullName}</li>
+                    <li className={styles.reviewDate}>{review.reviewDate}</li>
+                    <li>{review.feedback}</li>
+                    {review.benefit && (
+                      <li>
+                        <span className={styles.span}>Benefits:</span>
+                        <br />
+                        {review.benefit}
+                      </li>
+                    )}
+                    {review.disadvantages && (
+                      <li>
+                        <span className={styles.span}>Disadvantages:</span>
+                        <br />
+                        {review.disadvantages}
+                      </li>
+                    )}
+                  </ul>
+                  {index !== mockDataProduct.reviews.length - 1 && (
+                    <hr className={styles.hrLine} />
+                  )}{' '}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* <PopularProducts /> */}
       </Container>
     </>
   );
