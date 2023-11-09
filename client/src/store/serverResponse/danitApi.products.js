@@ -10,17 +10,17 @@ export const danitApiProducts = createApi({
     getAllProducts: build.query({
       query: () => API.API_GET_ALL_PRODUCTS,
     }),
-    // addProduct: build.mutation({
-    //   query: ({ token, ...patch }) => ({
-    //     url: API.API_ADD_PRODUCT,
-    //     method: 'POST',
-    //     headers: {
-    //       Authorization: token,
-    //       'Content-type': 'application/json',
-    //     },
-    //     body: patch,
-    //   }),
-    // }),
+    addProduct: build.mutation({
+      query: ({ token, product }) => ({
+        url: API.API_ADD_PRODUCT,
+        method: 'POST',
+        headers: {
+          Authorization: token,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      }),
+    }),
     getSingleProduct: build.mutation({
       query: (itemNo) => ({
         url: `${API.API_GET_ONE_PRODUCT}/${itemNo}`,
@@ -47,4 +47,5 @@ export const {
   useLazyGetAllProductsQuery,
   useGetSingleProductMutation,
   useSearchForProductsMutation,
+  useAddProductMutation,
 } = danitApiProducts;

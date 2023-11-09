@@ -12,7 +12,6 @@ function CartWrapperModal() {
     <CartModalItem key={product._id} products={product} />
   ));
 
-  console.log(cartStoreData);
   return (
     <>
       <ul className={styles.list}>

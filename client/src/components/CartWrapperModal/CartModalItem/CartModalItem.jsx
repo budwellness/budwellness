@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 // COMPONENT IMPORTS: 
 import ButtonCount from '../../ButtonCount/ButtonCount';
@@ -55,6 +56,7 @@ function CartModalItem(props) {
       dispatch(increaseCartItemQuantityAction(product._id));
     } catch (error) {
       log(error);
+      toast.error('Something went wrong...');
     }
   };
 
@@ -68,8 +70,10 @@ function CartModalItem(props) {
     try {
       decreaseCartQuantity(requestData)
       dispatch(decreaseCartItemQuantityAction(product._id))
+      return true;
     } catch (error) {
-      log(error)
+      log(error);
+      toast.error('Something went wrong...');
     }
   }
 

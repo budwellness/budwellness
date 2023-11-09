@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { userMockData } from './mockedTestData';
+import { userMockData, productsJSON } from './mockedTestData';
 import { uploadHandler } from './vanilaJsHelpers';
 
 // COMPONENTS: 
@@ -15,6 +15,7 @@ import {
   useLazyGetAllProductsQuery,
   useGetSingleProductMutation,
   useSearchForProductsMutation,
+  useAddProductMutation,
 } from '../../store/serverResponse/danitApi.products';
 
 // USER IMPORTS: 
@@ -90,6 +91,8 @@ function TestForBackPage() {
 
   const [searchForProducts, { data: searchForProductsData }] =
     useSearchForProductsMutation();
+
+  const [uploadProductToDataBase] = useAddProductMutation();
 
   // USER API:
 
@@ -286,6 +289,22 @@ function TestForBackPage() {
     }
   }
 
+  /* ------------------------------------------------ */
+
+  const productsToDateBaseHandler = () => {
+    productsJSON.forEach(product => {
+      const requestData = {
+        token: tokenReduxStore,
+        product,
+      }
+      try {
+        uploadProductToDataBase(requestData)
+      } catch (error) {
+        log(error)
+      }
+    })
+  }
+
   // const getSingleProductHandler = (itemNo) => {
   //   getSingleProduct(itemNo);
   //   log(singleProductData);
@@ -436,6 +455,9 @@ function TestForBackPage() {
           </button>
           <button type="button" onClick={() => showCartStoreHandler()}>
             Cart store
+          </button>
+          <button type="button" onClick={() => productsToDateBaseHandler()}>
+            Products to DB
           </button>
         </div>
         <div className={styles.btnWrapper}>
