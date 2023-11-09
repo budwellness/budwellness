@@ -52,6 +52,7 @@ import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products
 
 
 const log = console.log
+import ContactPage from './pages/ContactPage/ContactPage';
 
 function App() {
 
@@ -131,10 +132,11 @@ function App() {
       <Header actions={{ setShowCartModal, getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/shop" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

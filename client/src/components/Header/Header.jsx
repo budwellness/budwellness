@@ -115,7 +115,38 @@ function Header(props) {
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
           </Link>
-          <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
+          <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
+            <ul className={styles.header_navList}>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
+                <Link to="/">Home</Link>
+              </li>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
+                <Link to="/shop">Shop</Link>
+              </li>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
+                <Link to="/news">News</Link>
+              </li>
+              { }
+              <li
+                className={styles.header_navItem}
+                onClick={() => setShowBurger(false)}
+              >
+                <Link to="/contact">Contacts</Link>
+              </li>
+            </ul>
+          </nav>
           <div className={styles.header_user}>
             <Search />
             <Link to="/" className={styles.header_userLink} onClick={handleModal}>
