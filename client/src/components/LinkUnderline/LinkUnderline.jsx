@@ -9,24 +9,21 @@ import { useRemoveFromCartMutation } from '../../store/serverResponse/danitApi.c
 import styles from './LinkUnderline.module.scss';
 import { removeItemFromCartAction } from '../../store/cart/cart.slice';
 
-
-
-const log = console.log
+const { log } = console;
 export default function LinkUnderline({
-  to, children, style, type, productId
+  to, children, style, type, productId,
 }) {
-
   /* --------------------------- INIT HOOKS: --------------------------- */
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   /* --------------------------- REDUX STATE: --------------------------- */
   const { token: tokenReduxStore } = useSelector(
-    (state) => state.user
+    (state) => state.user,
   );
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
-  const [removeFromCart, { isSuccess: isSuccessRemoveFromCart }] = useRemoveFromCartMutation()
+  const [removeFromCart, { isSuccess: isSuccessRemoveFromCart }] = useRemoveFromCartMutation();
   const Component = type ? 'button' : Link;
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
@@ -37,7 +34,7 @@ export default function LinkUnderline({
       token: tokenReduxStore,
     };
     try {
-      removeFromCart(requestData)
+      removeFromCart(requestData);
     } catch (error) {
       log(error);
     }

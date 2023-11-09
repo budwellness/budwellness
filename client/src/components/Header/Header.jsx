@@ -10,13 +10,11 @@ import LoginForm from '../LoginForm/LoginForm';
 import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
 
-
 // ICONS IMPORT:
 import LogoIcon from './icons/LogoIcon';
 import WishlistIcon from './icons/WishlistIcon';
 import CartIcon from './icons/CartIcon';
 import LoginIcon from './icons/LoginIcon';
-
 
 // USER IMPORTS:
 import {
@@ -27,7 +25,6 @@ import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 
 import styles from './Header.module.scss';
 
-
 function Header(props) {
   const {
     actions: {
@@ -36,8 +33,6 @@ function Header(props) {
       getWishlist,
     },
   } = props;
-
-
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -84,12 +79,8 @@ function Header(props) {
       }
 
       if (scrollY >= 400) {
-        // eslint-disable-next-line no-use-before-define
-
         setSticky(true);
       } else {
-        // eslint-disable-next-line no-use-before-define
-
         setSticky(false);
       }
     };
@@ -147,12 +138,12 @@ function Header(props) {
         </div>
         {showModal && (
           isUserLogin
-            ?
-            <button className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
-            :
-            <Modal handleModal={handleModal}>
-              <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
-            </Modal>
+            ? <button className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
+            : (
+              <Modal handleModal={handleModal}>
+                <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
+              </Modal>
+            )
         )}
       </Container>
     </header>

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import cn from 'classnames';
+import { toast } from 'react-toastify';
 
 // COMPONENTS: 
 import CartWrapperModal from '../CartWrapperModal/CartWrapperModal';
@@ -37,7 +38,6 @@ function CartModal({ showCartModal, setShowCartModal }) {
   // делаем запрос на сервер в зависимости от окна закрыто оно или нет
 
 
-
   return (
     <div className={cn(styles.cartModal, { [styles.openCart]: showCartModal })}>
       <div className={styles.cartHeader}>
@@ -45,7 +45,10 @@ function CartModal({ showCartModal, setShowCartModal }) {
         <button
           className={styles.closeBtn}
           type="button"
-          onClick={() => setShowCartModal(false)}
+          onClick={() => {
+            setShowCartModal(false)
+            toast.success('Woohoo')
+          }}
         >
           <CloseIcon />
         </button>

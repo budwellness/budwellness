@@ -12,6 +12,7 @@ import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 import { userLoginUserAction } from '../../store/user/user.slice';
 
 import styles from './LoginForm.module.scss';
+import { toast } from 'react-toastify';
 
 
 
@@ -47,6 +48,7 @@ function LoginForm(props) {
 
   const isLoginSuccessHandler = () => {
     if (loginIsSuccess && loginUserToken) {
+      toast.success('You was successfuly logged in!')
       dispatch(userLoginUserAction(loginUserToken));
       localStorage.setItem('token', loginUserToken);
       getWishlist(loginUserToken);
@@ -73,7 +75,7 @@ function LoginForm(props) {
           <button
             className={styles.btn}
             type="button"
-            // onClick={() => setShowModal(false)}
+          // onClick={() => setShowModal(false)}
           >
             cancel
           </button>

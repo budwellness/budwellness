@@ -1,27 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import CartModalItem from './CartModalItem/CartModalItem';
 import Button from '../Button/Button';
 
 import styles from './CartWrapperModal.module.scss';
-import { useSelector } from 'react-redux';
 
 function CartWrapperModal() {
+  const { cart: cartStoreData } = useSelector((state) => state.cart);
 
-  const { cart: cartStoreData } = useSelector(state => state.cart)
+  const cartProducts = cartStoreData.map((product) => (
+    <CartModalItem key={product._id} products={product} />
+  ));
 
-
-
-  const cartProducts = cartStoreData.map((product) => (<CartModalItem key={product._id} products={product} />))
-
+  console.log(cartStoreData);
   return (
     <>
       <ul className={styles.list}>
         {cartProducts.length === 0
-          ?
-          <p> Cart is empty...</p>
-          :
-          cartProducts
-        }
+          ? <p> Cart is empty...</p>
+          : cartProducts}
 
       </ul>
       <div className={styles.footer}>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 // COMPONENT IMPORTS:
 import Header from './components/Header/Header';
@@ -41,6 +42,7 @@ import {
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 
@@ -52,8 +54,10 @@ import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products
 const log = console.log
 
 function App() {
+
   const { data: products, error } = useGetAllProductsQuery();
   const [showCartModal, setShowCartModal] = useState(false);
+
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector(
@@ -119,6 +123,11 @@ function App() {
 
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        theme="colored"
+      />
       <Header actions={{ setShowCartModal, getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -134,8 +143,8 @@ function App() {
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
       />
-      {/* eslint-disable-next-line max-len */}
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      { }
+      { }
       {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)} />}
     </>
   );
