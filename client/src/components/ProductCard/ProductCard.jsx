@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
@@ -13,6 +14,7 @@ import EyeIcon from '../UI/EyeIcon';
 
 import getThcCategory from '../../helpers/functionGetThcCategory';
 import getCbdCategory from '../../helpers/functionGetCbdCategory';
+
 import styles from './ProductCard.module.scss';
 
 function ProductCard(props) {
@@ -38,13 +40,13 @@ function ProductCard(props) {
   } = product;
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
-  const [isExistInWishlist, setIsExistInWishlist] = useState(null);
-  const [isExistInCart, setIsExistInCart] = useState(null);
+  const [isExistInWishlist, setIsExistInWishlist] = useState(false);
+  const [isExistInCart, setIsExistInCart] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
   const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
-  const { cart: cartStoreData } = useSelector(state => state.cart);
+  const { cart: cartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
@@ -58,6 +60,7 @@ function ProductCard(props) {
   };
 
   /* ------------------------------------------------ */
+
   const wishlistButtonStateHandler = (
     globalUserState,
     globalUserDataState,
@@ -67,7 +70,7 @@ function ProductCard(props) {
     if (globalUserState) {
       if (globalUserDataState.length > 0) {
         localButtonStateSetter(
-          globalUserDataState.some((p) => p._id === product._id)
+          globalUserDataState.some((p) => p._id === product._id),
         );
       } else if (localButtonState) {
         localButtonStateSetter(!localButtonState);
@@ -76,8 +79,37 @@ function ProductCard(props) {
       localButtonStateSetter(false);
     }
   };
+
   /* ------------------------------------------------ */
 
+  // CART:
+
+  const toggleCartWithLoginHandler = () => {
+    if (isUserLogin) {
+      toggleCartHandler(product, tokenReduxStore)
+    } else {
+      console.log('Please login first');
+    }
+  };
+
+  /* ------------------------------------------------ */
+
+  const CartButtonStateHandler = (
+    globalUserState,
+    globalUserDataState,
+    localButtonState,
+    localButtonStateSetter,
+  ) => {
+    if (globalUserState) {
+      if (globalUserDataState.length > 0) {
+        localButtonStateSetter(globalUserDataState.some((p) => p.product._id === product._id));
+      } else if (localButtonState) {
+        localButtonStateSetter(!localButtonState);
+      }
+    } else {
+      localButtonStateSetter(false);
+    }
+  };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -89,6 +121,16 @@ function ProductCard(props) {
       setIsExistInWishlist,
     ),
     [wishlistStoreData, isUserLogin],
+  );
+
+  useEffect(
+    () => CartButtonStateHandler(
+      isUserLogin,
+      cartStoreData,
+      isExistInCart,
+      setIsExistInCart,
+    ),
+    [cartStoreData, isUserLogin],
   );
 
   return (
@@ -173,7 +215,14 @@ function ProductCard(props) {
             {currentPrice.toFixed(2)}
           </span>
         </div>
-        <Button className="whiteBtn" text="Add to cart" onClick={() => { }} />
+        <Button
+          className={cn({
+            ["whiteBtn"]: !isExistInCart,
+            ["whiteBtn_active"]: isExistInCart,
+          })}
+          text={isExistInCart ? "Remove from cart" : "Add to cart"}
+          onClick={toggleCartWithLoginHandler}
+        />
       </div>
     </div>
   );

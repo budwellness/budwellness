@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
 import ProductCard from '../ProductCard/ProductCard';
 // PRODUCT IMPORTS:
@@ -72,17 +73,23 @@ function ProductList() {
     if (isExist) {
       try {
         removeProductFromCart({ productId: product._id, token });
-        dispatch(removeItemFromCartAction(product));
+        dispatch(removeItemFromCartAction(product._id));
+        toast.warn('Product was removed from cart!');
       } catch (error) {
         log(error);
+        toast.error('Something went wrong...');
       }
     } else {
       try {
         addProductToCart({ productId: product._id, token })
           .unwrap()
-          .then((response) => dispatch(addItemToCartAction(response.products)));
+          .then((response) => {
+            dispatch(addItemToCartAction(response.products));
+            toast.success('Product was added to cart!');
+          });
       } catch (error) {
         log(error);
+        toast.error('Something went wrong...');
       }
     }
   };
