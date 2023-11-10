@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
@@ -16,6 +17,8 @@ import getThcCategory from '../../helpers/functionGetThcCategory';
 import getCbdCategory from '../../helpers/functionGetCbdCategory';
 
 import styles from './ProductCard.module.scss';
+
+const { log } = console;
 
 function ProductCard(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
@@ -55,7 +58,7 @@ function ProductCard(props) {
     if (isUserLogin) {
       toggleWishlistHandler(product, tokenReduxStore);
     } else {
-      console.log('Please login first');
+      log('Please login first');
     }
   };
 
@@ -86,9 +89,9 @@ function ProductCard(props) {
 
   const toggleCartWithLoginHandler = () => {
     if (isUserLogin) {
-      toggleCartHandler(product, tokenReduxStore)
+      toggleCartHandler(product, tokenReduxStore);
     } else {
-      console.log('Please login first');
+      log('Please login first');
     }
   };
 
@@ -217,10 +220,14 @@ function ProductCard(props) {
         </div>
         <Button
           className={cn({
-            ["whiteBtn"]: !isExistInCart,
-            ["whiteBtn_active"]: isExistInCart,
+            whiteBtn: !isExistInCart,
+            whiteBtn_active: isExistInCart,
           })}
-          text={isExistInCart ? "Remove from cart" : "Add to cart"}
+          text={
+            isExistInCart
+              ? 'Remove from cart'
+              : 'Add to cart'
+          }
           onClick={toggleCartWithLoginHandler}
         />
       </div>
