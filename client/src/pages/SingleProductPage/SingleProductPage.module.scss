@@ -196,6 +196,7 @@
 .tabContent {
   display: none;
 }
+
 .text {
   line-height: 1.5;
 }
@@ -242,4 +243,27 @@
 .span {
   font-weight: 600;
   font-size: 17px;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  // border: 0.2px solid black;
+  // border-collapse: separate;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border: 0.2px solid black;
+  @include for-size(992px) {
+    flex-wrap: nowrap;
+  }
+}
+.table td {
+  // border-right: 0.2px solid black;
+  padding: 8px;
+  // width: 20%;
 }

@@ -100,15 +100,10 @@ function SingleProductPage() {
 
   const [toggle, setToggle] = useState(0);
 
-  // function updateToggle(index) {
-  //   setToggle(index);
-  // }
   function updateToggle(index) {
     if (toggle === index) {
-      // Якщо поточне значення toggle співпадає з індексом, сховати контент (встановити toggle в 0)
       setToggle(0);
     } else {
-      // Інакше показати контент, встановивши toggle в потрібний індекс
       setToggle(index);
     }
   }
@@ -222,9 +217,9 @@ function SingleProductPage() {
               className={toggle === 1 ? styles.showContent : styles.tabContent}
             >
               <p className={`${styles.text} ${styles.downAnimation}`}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum
-                saepe porro, aut officia commodi incidunt placeat recusandae
-                quam ipsam necessitatibus minus.
+                {mockDataProduct.description.short} <br />
+                <br />
+                {mockDataProduct.description.completion}
               </p>
             </div>
           </div>
@@ -279,6 +274,44 @@ function SingleProductPage() {
                   )}{' '}
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div className={styles.tabAddInfo}>
+            <div
+              className={
+                toggle === 3
+                  ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                  : styles.tabTitleWrapp
+              }
+              onClick={() => {
+                updateToggle(3);
+              }}
+            >
+              <h4 className={styles.tabTitle}>Additional Information</h4>
+              <ArrowDownIcon
+                className={toggle === 3 ? styles.activeArrow : styles.arrow}
+              />
+            </div>
+            <div
+              className={toggle === 3 ? styles.showContent : styles.tabContent}
+            >
+              <table className={styles.table}>
+                <tr className={styles.row}>
+                  <td>Ingredients:</td>
+                  <td>{mockDataProduct.additionalInformation.ingredients}</td>
+                </tr>
+                <tr className={styles.row}>
+                  <td>Flavors:</td>
+                  <td>{mockDataProduct.additionalInformation.flavors}</td>
+                </tr>
+                <tr className={styles.row}>
+                  <td>Recommended Usage:</td>
+                  <td>
+                    {mockDataProduct.additionalInformation.recommendedUsage}
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
