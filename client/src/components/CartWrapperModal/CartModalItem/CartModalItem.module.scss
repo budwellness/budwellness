@@ -41,6 +41,9 @@
   text-decoration: none;
   color: $main-green;
 
+  //=====================================
+  max-width: 200px;
+
   @media (max-width: 757.98px) {
     display: inline-block;
     max-width: 190px;

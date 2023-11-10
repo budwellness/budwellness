@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
-// import Nav from '../Nav/Nav';
+import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
 
 // ICONS IMPORT:
@@ -100,7 +100,7 @@ function Header(props) {
     <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
       <Container>
         <div className={styles.wrapp}>
-          { }
+          {}
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <span
             className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
@@ -111,43 +111,12 @@ function Header(props) {
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
           </span>
-          <Link to="/">
+          <Link to="/" className={styles.logoLink}>
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
           </Link>
-          <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
-            <ul className={styles.header_navList}>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/">Home</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/shop">Shop</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/news">News</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/contact">Contacts</Link>
-              </li>
-            </ul>
-          </nav>
+          <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
             <Search />
             <Link to="/" className={styles.header_userLink} onClick={handleModal}>
@@ -156,13 +125,13 @@ function Header(props) {
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
-                <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
+              <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>
             <Link className={styles.header_userLink} onClick={setShowCartModal}>
               <CartIcon />
               {isUserLogin && cartStoreData.length > 0 && (
-                <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
+              <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
               )}
             </Link>
           </div>
@@ -187,15 +156,20 @@ Header.propTypes = {
     getCart: PropTypes.func,
     getWishlist: PropTypes.func,
   }),
-  setShowCartModal: () => { },
+  setShowCartModal: () => {
+  },
 };
 
 Header.defaultProps = {
-  setShowCartModal: () => { },
+  setShowCartModal: () => {
+  },
   actions: {
-    setShowCartModal: () => { },
-    getCart: () => { },
-    getWishlist: () => { },
+    setShowCartModal: () => {
+    },
+    getCart: () => {
+    },
+    getWishlist: () => {
+    },
   },
 };
 

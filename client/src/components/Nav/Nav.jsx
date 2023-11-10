@@ -12,19 +12,19 @@ function Nav({ showBurger, setShowBurger }) {
       <ul className={styles.list}>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <li className={styles.item} onClick={() => setShowBurger(false)}>
-          <Link to="/">Home</Link>
+          <Link to="/" className={styles.itemLink}>Home</Link>
         </li>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <li className={styles.item} onClick={() => setShowBurger(false)}>
-          <Link to="/shop">Shop</Link>
+          <Link to="/shop" className={styles.itemLink}>Shop</Link>
         </li>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <li className={styles.item} onClick={() => setShowBurger(false)}>
-          <Link to="/news">News</Link>
+          <Link to="/news" className={styles.itemLink}>News</Link>
         </li>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <li className={styles.item} onClick={() => setShowBurger(false)}>
-          <Link to="/pages">Pages</Link>
+          <Link to="/pages" className={styles.itemLink}>Pages</Link>
         </li>
       </ul>
     </nav>

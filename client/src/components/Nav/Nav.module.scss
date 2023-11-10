@@ -3,7 +3,6 @@
   height: 0;
   font-weight: 700;
   font-size: 20px;
-  color: #214842;
   position: absolute;
   top: 75px;
   left: 0;
@@ -12,9 +11,6 @@
   overflow: hidden;
   transition: height 0.3s ease-in-out;
 
-  a {
-    color: $main-green;
-  }
 
   @media (min-width: 1199.98px) {
     position: sticky;
@@ -37,9 +33,15 @@
 
   gap: 30px;
 
+
   @media (max-width: 1199.98px) {
     flex-direction: column;
     gap: 50px;
     background-color: white;
   }
+}
+
+.itemLink {
+  color: $main-green;
+  text-decoration: none;
 }
