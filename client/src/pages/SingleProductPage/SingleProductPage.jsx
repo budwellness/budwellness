@@ -98,7 +98,7 @@ const mockDataProduct = {
 function SingleProductPage() {
   const navigate = useNavigate();
 
-  const [toggle, setToggle] = useState(0);
+  const [toggle, setToggle] = useState(1);
 
   function updateToggle(index) {
     if (toggle === index) {
@@ -195,7 +195,7 @@ function SingleProductPage() {
             </ul>
           </div>
         </div>
-
+        {/* 
         <div className={styles.tabsWrapp}>
           <div className={styles.tabDesc}>
             <div
@@ -298,15 +298,15 @@ function SingleProductPage() {
             >
               <table className={styles.table}>
                 <tr className={styles.row}>
-                  <td>Ingredients:</td>
+                  <td className={styles.rowTitle}>Ingredients:</td>
                   <td>{mockDataProduct.additionalInformation.ingredients}</td>
                 </tr>
                 <tr className={styles.row}>
-                  <td>Flavors:</td>
+                  <td className={styles.rowTitle}>Flavors:</td>
                   <td>{mockDataProduct.additionalInformation.flavors}</td>
                 </tr>
                 <tr className={styles.row}>
-                  <td>Recommended Usage:</td>
+                  <td className={styles.rowTitle}>Recommended Usage:</td>
                   <td>
                     {mockDataProduct.additionalInformation.recommendedUsage}
                   </td>
@@ -314,8 +314,261 @@ function SingleProductPage() {
               </table>
             </div>
           </div>
+        </div> */}
+
+        {/* <div className={styles.tabsWrapp}>
+          <div className={styles.titlesWrap}>
+            <div
+              className={
+                toggle === 1
+                  ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                  : styles.tabTitleWrapp
+              }
+              onClick={() => {
+                updateToggle(1);
+              }}
+            >
+              <h4 className={styles.tabTitle}>Description</h4>
+              <ArrowDownIcon
+                className={toggle === 1 ? styles.activeArrow : styles.arrow}
+              />
+            </div>
+
+            <div
+              className={
+                toggle === 2
+                  ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                  : styles.tabTitleWrapp
+              }
+              onClick={() => {
+                updateToggle(2);
+              }}
+            >
+              <h4 className={styles.tabTitle}>
+                Reviews({mockDataProduct.reviews.length})
+              </h4>
+              <ArrowDownIcon
+                className={toggle === 2 ? styles.activeArrow : styles.arrow}
+              />
+            </div>
+            <div
+              className={
+                toggle === 3
+                  ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                  : styles.tabTitleWrapp
+              }
+              onClick={() => {
+                updateToggle(3);
+              }}
+            >
+              <h4 className={styles.tabTitle}>Additional Information</h4>
+              <ArrowDownIcon
+                className={toggle === 3 ? styles.activeArrow : styles.arrow}
+              />
+            </div>
+          </div>
+
+          <div className={styles.contentsWrapp}>
+            <div
+              className={toggle === 1 ? styles.showContent : styles.tabContent}
+            >
+              <p className={`${styles.text} ${styles.downAnimation}`}>
+                {mockDataProduct.description.short} <br />
+                <br />
+                {mockDataProduct.description.completion}
+              </p>
+            </div>
+
+            <div
+              className={toggle === 2 ? styles.showContent : styles.tabContent}
+            >
+              {mockDataProduct.reviews.map((review, index) => (
+                <div
+                  key={index}
+                  className={`${styles.text} ${styles.downAnimation}`}
+                >
+                  <ul className={styles.reviewWrrap}>
+                    <li className={styles.fullName}>{review.fullName}</li>
+                    <li className={styles.reviewDate}>{review.reviewDate}</li>
+                    <li>{review.feedback}</li>
+                    {review.benefit && (
+                      <li>
+                        <span className={styles.span}>Benefits:</span>
+                        <br />
+                        {review.benefit}
+                      </li>
+                    )}
+                    {review.disadvantages && (
+                      <li>
+                        <span className={styles.span}>Disadvantages:</span>
+                        <br />
+                        {review.disadvantages}
+                      </li>
+                    )}
+                  </ul>
+                  {index !== mockDataProduct.reviews.length - 1 && (
+                    <hr className={styles.hrLine} />
+                  )}{' '}
+                </div>
+              ))}
+            </div>
+
+            <div
+              className={toggle === 3 ? styles.showContent : styles.tabContent}
+            >
+              <table className={`${styles.table} ${styles.downAnimation}`}>
+                <tr className={styles.row}>
+                  <td className={styles.rowTitle}>Ingredients:</td>
+                  <td>{mockDataProduct.additionalInformation.ingredients}</td>
+                </tr>
+                <tr className={styles.row}>
+                  <td className={styles.rowTitle}>Flavors:</td>
+                  <td>{mockDataProduct.additionalInformation.flavors}</td>
+                </tr>
+                <tr className={styles.row}>
+                  <td className={styles.rowTitle}>Recommended Usage:</td>
+                  <td>
+                    {mockDataProduct.additionalInformation.recommendedUsage}
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div> */}
+
+        <div className={styles.tabsWrapp}>
+          <div className={styles.title_content}>
+            <div className={styles.titlesWrap}>
+              <div
+                className={
+                  toggle === 1
+                    ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                    : styles.tabTitleWrapp
+                }
+                onClick={() => {
+                  updateToggle(1);
+                }}
+              >
+                <h4 className={styles.tabTitle}>Description</h4>
+                <ArrowDownIcon
+                  className={toggle === 1 ? styles.activeArrow : styles.arrow}
+                />
+              </div>
+
+              <div
+                className={
+                  toggle === 2
+                    ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                    : styles.tabTitleWrapp
+                }
+                onClick={() => {
+                  updateToggle(2);
+                }}
+              >
+                <h4 className={styles.tabTitle}>
+                  Reviews({mockDataProduct.reviews.length})
+                </h4>
+                <ArrowDownIcon
+                  className={toggle === 2 ? styles.activeArrow : styles.arrow}
+                />
+              </div>
+              <div
+                className={
+                  toggle === 3
+                    ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                    : styles.tabTitleWrapp
+                }
+                onClick={() => {
+                  updateToggle(3);
+                }}
+              >
+                <h4 className={styles.tabTitle}>Additional Information</h4>
+                <ArrowDownIcon
+                  className={toggle === 3 ? styles.activeArrow : styles.arrow}
+                />
+              </div>
+            </div>
+
+            <div className={styles.contentsWrapp}>
+              <div
+                className={
+                  toggle === 1 ? styles.showContent : styles.tabContent
+                }
+              >
+                <p className={`${styles.text} ${styles.downAnimation}`}>
+                  {mockDataProduct.description.short} <br />
+                  <br />
+                  {mockDataProduct.description.completion}
+                </p>
+              </div>
+
+              <div
+                className={
+                  toggle === 2 ? styles.showContent : styles.tabContent
+                }
+              >
+                {mockDataProduct.reviews.map((review, index) => (
+                  <div
+                    key={index}
+                    className={`${styles.text} ${styles.downAnimation}`}
+                  >
+                    <ul className={styles.reviewWrrap}>
+                      <li className={styles.fullName}>{review.fullName}</li>
+                      <li className={styles.reviewDate}>{review.reviewDate}</li>
+                      <li>{review.feedback}</li>
+                      {review.benefit && (
+                        <li>
+                          <span className={styles.span}>Benefits:</span>
+                          <br />
+                          {review.benefit}
+                        </li>
+                      )}
+                      {review.disadvantages && (
+                        <li>
+                          <span className={styles.span}>Disadvantages:</span>
+                          <br />
+                          {review.disadvantages}
+                        </li>
+                      )}
+                    </ul>
+                    {index !== mockDataProduct.reviews.length - 1 && (
+                      <hr className={styles.hrLine} />
+                    )}{' '}
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className={
+                  toggle === 3 ? styles.showContent : styles.tabContent
+                }
+              >
+                <table className={`${styles.table} ${styles.downAnimation}`}>
+                  <tr className={styles.row}>
+                    <td className={styles.rowTitle}>Ingredients:</td>
+                    <td>
+                      {mockDataProduct.additionalInformation.ingredients.toLocaleLowerCase()}
+                    </td>
+                  </tr>
+                  <tr className={styles.row}>
+                    <td className={styles.rowTitle}>Flavors:</td>
+                    <td>
+                      {mockDataProduct.additionalInformation.flavors.toLocaleLowerCase()}
+                    </td>
+                  </tr>
+                  <tr className={styles.row}>
+                    <td className={styles.rowTitle}>Recommended Usage:</td>
+                    <td>
+                      {mockDataProduct.additionalInformation.recommendedUsage.toLocaleLowerCase()}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-        {/* <PopularProducts /> */}
+
+        <PopularProducts />
       </Container>
     </>
   );

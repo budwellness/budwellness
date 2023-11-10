@@ -144,9 +144,33 @@
   padding: 20px;
   margin-top: 50px;
   margin-bottom: 100px;
+  // @include for-size(768px) {
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
+}
+
+.title_content {
+  @include for-size(992px) {
+    width: 70%;
+    margin: 60px auto;
+  }
 }
 
 .tabDesc {
+  // @include for-size(768px) {
+  //   display: flex;
+  // } не використовую
+}
+
+.titlesWrap {
+  @include for-size(768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+  // @include for-size(1200px) {
+  //   width: 80%;
+  // }
 }
 
 .tabTitleWrapp {
@@ -154,6 +178,10 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  // @include for-size(992px) {
+  //   padding-right: 10px;
+  //   padding-left: 10px;
+  // }
 }
 
 .tabTitle {
@@ -175,6 +203,9 @@
   fill: $main-green;
   transition: fill 0.3s ease;
   transform-origin: center;
+  @include for-size(768px) {
+    display: none;
+  }
 }
 
 .activeArrow {
@@ -182,6 +213,9 @@
   height: 30px;
   fill: $secondary-green;
   animation: rotateArrow 0.3s ease forwards;
+  @include for-size(768px) {
+    display: none;
+  }
 }
 
 @keyframes rotateArrow {
@@ -193,6 +227,12 @@
   }
 }
 
+// .contentsWrapp {
+//   @include for-size(1200px) {
+//     width: 80%;
+//   }
+// }
+
 .tabContent {
   display: none;
 }
@@ -203,6 +243,13 @@
 
 .showContent {
   display: block;
+  // width: 100;
+}
+
+.activeContent {
+  // @include for-size(768px) {
+  //   height: 400px;
+  // } не використовую
 }
 
 @keyframes slideDown {
@@ -211,13 +258,13 @@
     opacity: 0;
   }
   to {
-    max-height: 1000px;
+    max-height: 500px;
     opacity: 1;
   }
 }
 
 .downAnimation {
-  animation: slideDown 0.5s ease;
+  animation: slideDown 0.8s ease;
 }
 
 .reviewWrrap {
@@ -246,24 +293,43 @@
 }
 
 .table {
-  display: flex;
-  flex-direction: column;
-  // border: 0.2px solid black;
+  // display: flex;
+  // flex-direction: column;
+  display: grid;
+  border: 0.2px solid black;
   // border-collapse: separate;
   border-collapse: collapse;
-  width: 100%;
 }
 
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  border: 0.2px solid black;
+  display: grid;
+  border-bottom: 0.2px solid black;
   @include for-size(992px) {
-    flex-wrap: nowrap;
+    grid-template-columns: 25% 75%;
   }
 }
+
+.row:last-child {
+  border-bottom: none;
+}
+
 .table td {
-  // border-right: 0.2px solid black;
-  padding: 8px;
-  // width: 20%;
+  padding: 10px;
+  @include for-size(992px) {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+  }
+}
+
+.table td:first-child {
+  border-bottom: 0.2px solid black;
+  @include for-size(992px) {
+    border-bottom: none;
+    border-right: 0.2px solid black;
+  }
+}
+
+.rowTitle {
+  font-weight: 700;
 }
