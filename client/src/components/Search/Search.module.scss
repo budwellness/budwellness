@@ -23,6 +23,12 @@
   @media (max-width: 767.98px) {
     display: none;
   }
+
+  &:focus {
+    &::placeholder {
+      color: transparent;
+    }
+  }
 }
 
 .header_userSearchButton {

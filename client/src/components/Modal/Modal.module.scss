@@ -15,7 +15,7 @@
   width: auto;
   max-width: 80%;
   padding: 40px 20px;
-  border-radius: 8px;
+  border-radius: 16px;
   position: relative;
 }
 
@@ -28,8 +28,8 @@
   svg {
     transition: fill 0.2s;
     fill: #c6c6c6;
-    width: 24px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
   }
 
   svg:hover {
