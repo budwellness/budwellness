@@ -140,7 +140,7 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer products={products} error={error} />
+      <Footer />
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
