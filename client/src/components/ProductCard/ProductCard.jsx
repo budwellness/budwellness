@@ -15,6 +15,8 @@ import EyeIcon from '../UI/EyeIcon';
 
 import getThcCategory from '../../helpers/functionGetThcCategory';
 import getCbdCategory from '../../helpers/functionGetCbdCategory';
+import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
+import cartButtonStateHandler from '../../helpers/cartButtonStateHandler';
 
 import styles from './ProductCard.module.scss';
 
@@ -62,29 +64,6 @@ function ProductCard(props) {
     }
   };
 
-  /* ------------------------------------------------ */
-
-  const wishlistButtonStateHandler = (
-    globalUserState,
-    globalUserDataState,
-    localButtonState,
-    localButtonStateSetter,
-  ) => {
-    if (globalUserState) {
-      if (globalUserDataState.length > 0) {
-        localButtonStateSetter(
-          globalUserDataState.some((p) => p._id === product._id),
-        );
-      } else if (localButtonState) {
-        localButtonStateSetter(!localButtonState);
-      }
-    } else {
-      localButtonStateSetter(false);
-    }
-  };
-
-  /* ------------------------------------------------ */
-
   // CART:
 
   const toggleCartWithLoginHandler = () => {
@@ -92,25 +71,6 @@ function ProductCard(props) {
       toggleCartHandler(product, tokenReduxStore);
     } else {
       log('Please login first');
-    }
-  };
-
-  /* ------------------------------------------------ */
-
-  const CartButtonStateHandler = (
-    globalUserState,
-    globalUserDataState,
-    localButtonState,
-    localButtonStateSetter,
-  ) => {
-    if (globalUserState) {
-      if (globalUserDataState.length > 0) {
-        localButtonStateSetter(globalUserDataState.some((p) => p.product._id === product._id));
-      } else if (localButtonState) {
-        localButtonStateSetter(!localButtonState);
-      }
-    } else {
-      localButtonStateSetter(false);
     }
   };
 
@@ -122,16 +82,18 @@ function ProductCard(props) {
       wishlistStoreData,
       isExistInWishlist,
       setIsExistInWishlist,
+      product._id,
     ),
     [wishlistStoreData, isUserLogin],
   );
 
   useEffect(
-    () => CartButtonStateHandler(
+    () => cartButtonStateHandler(
       isUserLogin,
       cartStoreData,
       isExistInCart,
       setIsExistInCart,
+      product._id,
     ),
     [cartStoreData, isUserLogin],
   );
@@ -241,7 +203,7 @@ ProductCard.propTypes = {
     imageUrls: PropTypes.arrayOf(PropTypes.string),
     thc: PropTypes.number.isRequired,
     cbd: PropTypes.number.isRequired,
-    itemNo: PropTypes.number.isRequired,
+    itemNo: PropTypes.string.isRequired,
     previousPrice: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,

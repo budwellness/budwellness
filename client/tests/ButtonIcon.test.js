@@ -7,7 +7,7 @@ import ButtonIcon from '../src/components/ButtonIcon/ButtonIcon';
 describe('ButtonIcon Component', () => {
   test('should render the button with provided children', () => {
     const { getByText } = render(
-      <ButtonIcon classNames="custom-class">Click Me</ButtonIcon>
+      <ButtonIcon classNames="custom-class">Click Me</ButtonIcon>,
     );
     const buttonElement = getByText('Click Me');
     expect(buttonElement).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('ButtonIcon Component', () => {
 
   test('should apply custom classNames to the button', () => {
     const { container } = render(
-      <ButtonIcon classNames="custom-class">Click Me</ButtonIcon>
+      <ButtonIcon classNames="custom-class">Click Me</ButtonIcon>,
     );
     const buttonElement = container.querySelector('.custom-class');
     expect(buttonElement).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('ButtonIcon Component', () => {
     const { getByText } = render(
       <ButtonIcon classNames="custom-class" onClick={onClickMock}>
         Click Me
-      </ButtonIcon>
+      </ButtonIcon>,
     );
     const buttonElement = getByText('Click Me');
     fireEvent.click(buttonElement);
@@ -35,7 +35,7 @@ describe('ButtonIcon Component', () => {
 
   test('should have default onClick as a no-op function if not provided', () => {
     const { getByText } = render(
-      <ButtonIcon classNames="custom-class">Click Me</ButtonIcon>
+      <ButtonIcon classNames="custom-class">Click Me</ButtonIcon>,
     );
     const buttonElement = getByText('Click Me');
     fireEvent.click(buttonElement);

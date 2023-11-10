@@ -14,7 +14,7 @@ describe('Testing App component', () => {
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </Provider>
+      </Provider>,
     );
   });
 });
