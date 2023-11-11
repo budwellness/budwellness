@@ -17,10 +17,19 @@
 
   display: flex;
   flex-direction: column;
-
   transform: translateX(100%);
 
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $secondary-green;
+    width: 2px;
+    border-radius: 6px;
+  }
 
   &.openCart {
     transform: translateX(0);
@@ -47,6 +56,8 @@
   svg {
     transition: fill 0.2s;
     fill: #c6c6c6;
+    width: 20px;
+    height: 20px;
   }
 
   svg:hover {
