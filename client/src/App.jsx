@@ -160,15 +160,6 @@ function App() {
                 showCartModal={showCartModal}
                 setShowCartModal={setShowCartModal}
             />
-            {showModal && (
-                isUserLogin
-                    ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
-                    : (
-                        <Modal handleModal={handleModal}>
-                            <LoginForm actions={{setShowModal, getCart, getWishlist}}/>
-                        </Modal>
-                    )
-            )}
             {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)}/>}
         </>
     );
