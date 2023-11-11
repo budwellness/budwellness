@@ -27,7 +27,7 @@ export default function PopularProducts() {
           text="All Products"
           className="orangeBtn"
           onClick={() => {
-            navigate('/products');
+            navigate('/shop');
           }}
         />
       </section>

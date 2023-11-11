@@ -1,0 +1,70 @@
+@mixin for-size($size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 80px;
+    @include for-size(320px) {
+        padding: 0 12px;
+    }
+}
+.instaTitle{
+    font-family: Nunito Sans;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1.2;
+    color: $main-green;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.instaDesc {
+    font-family: Montserrat;
+    color: $main-text-color;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 500px;
+    margin: 0;
+}
+
+.instaSwipe {
+    position: relative;
+    @include for-size(567px) {
+        height: 270px;
+    }
+}
+
+.instaSwipe:hover {
+    filter: brightness(50%);
+    transition: all 0.5s ease;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 24px;
+        height: 24px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 0;
+        background-image: url(./iconmonstr-instagram-11.svg);
+
+    }
+}
+
+.instaImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

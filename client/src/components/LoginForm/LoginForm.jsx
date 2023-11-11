@@ -1,38 +1,73 @@
-/* eslint-disable import/no-unresolved */
-import React from 'react';
-
+/* eslint-disable */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
-
 import PropTypes from 'prop-types';
+
+// COMPONENTS: 
 import LoginInput from './LoginInput/LoginInput';
 
+// USER IMPORTS: 
+import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
+import { userLoginUserAction } from '../../store/user/user.slice';
+
 import styles from './LoginForm.module.scss';
+import { toast } from 'react-toastify';
 
-function LoginForm({ setShowModal }) {
+
+
+
+function LoginForm(props) {
+
+  const {
+    actions: {
+      setShowModal,
+      getCart,
+      getWishlist,
+    }
+  } = props
+
+  console.log(setShowModal)
+
   const initialValues = {
-    login: '',
-    password: '',
+    loginOrEmail: 'customer@gmail.com',
+    password: '1111111',
   };
 
-  const onSubmit = () => {
-    // here will be the logic of the request to the server
+  /* --------------------------- INIT HOOKS: --------------------------- */
+
+  const dispatch = useDispatch();
+
+  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
+
+  // USER API:
+  const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
+    useLoginUserMutation();
+
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
+  const isLoginSuccessHandler = () => {
+    if (loginIsSuccess && loginUserToken) {
+      toast.success('You was successfuly logged in!')
+      dispatch(userLoginUserAction(loginUserToken));
+      localStorage.setItem('token', loginUserToken);
+      getWishlist(loginUserToken);
+      getCart(loginUserToken);
+    }
   };
+
+  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess]);
+
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik initialValues={initialValues} onSubmit={(values) => {
+      console.log('something happen');
+      console.log(values);
+      loginUser(values)
+    }}>
       <Form className={styles.form}>
-        <LoginInput
-          name="login"
-          type="text"
-          placeholder="Login"
-          label="Login"
-        />
-        <LoginInput
-          name="password"
-          type="text"
-          placeholder="Password"
-          label="Password"
-        />
+        <LoginInput name="loginOrEmail" type="text" placeholder="Login" label="Login" />
+        <LoginInput name="password" type="text" placeholder="Password" label="Password" />
         <div className={styles.footerInput}>
           <button className={styles.btn} type="submit">
             login
@@ -40,7 +75,7 @@ function LoginForm({ setShowModal }) {
           <button
             className={styles.btn}
             type="button"
-            onClick={() => setShowModal(false)}
+          // onClick={() => setShowModal(false)}
           >
             cancel
           </button>

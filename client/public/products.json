@@ -16,8 +16,15 @@
     "plantType": "Sativa",
     "thc": 10,
     "cbd": 1,
-    "effects": ["Giggly", "Relaxed", "Sleepy"],
-    "tags": ["Cannabis", "edible"],
+    "effects": [
+      "Giggly",
+      "Relaxed",
+      "Sleepy"
+    ],
+    "tags": [
+      "Cannabis",
+      "edible"
+    ],
     "itemNo": 867443,
     "description": {
       "short": "Bhang® Milk Chocolate starts with sustainably-sourced and fair-trade cacao and is Powered by INDIVA™. Produced in Indiva’s state-of-the-art facility based in London, Ontario, and backed by a fifth generation chocolatier, Bhang® MilkChocolate offers a cannabis-free flavour that offer just the right hint of sweetness.",
@@ -65,8 +72,15 @@
     "plantType": "Hybrid",
     "thc": 10,
     "cbd": 5,
-    "effects": ["Giggly", "Relaxed", "Sleepy"],
-    "tags": ["Cannabis", "edible"],
+    "effects": [
+      "Giggly",
+      "Relaxed",
+      "Sleepy"
+    ],
+    "tags": [
+      "Cannabis",
+      "edible"
+    ],
     "itemNo": 192929,
     "description": {
       "short": "Olli’s Chocolate Brownies are the perfect blend between culinary and cannabis. Each package contains two small batch, nut-free brownies made for sharing. Each brownie contains 5 mg THC and 2.5 mg CBD, uses thoughtful ingredients and provides a chewy, soft and decadent chocolate flavour curated by Olli’s Michelin-starred trained Executive Chef.",
@@ -118,8 +132,15 @@
     "plantType": "Hybrid",
     "thc": 10,
     "cbd": 10,
-    "effects": ["Anesthetic", "Relaxed", "Sleepy"],
-    "tags": ["Cannabis", "oil"],
+    "effects": [
+      "Anesthetic",
+      "Relaxed",
+      "Sleepy"
+    ],
+    "tags": [
+      "Cannabis",
+      "oil"
+    ],
     "itemNo": 333221,
     "description": {
       "short": "CBD oil is a whole-plant extract containing a full spectrum of naturally occurring synergistic cannabinoids and terpenes with a potency of 60mg/mL. NuLeaf Naturals suggests a starting dose of ten drops (30mg) daily or as needed.",
@@ -167,8 +188,15 @@
     "plantType": "Hybrid",
     "thc": 10,
     "cbd": 30,
-    "effects": ["Aroused", "Euphoric", "Giggly"],
-    "tags": ["Cannabis", "oil"],
+    "effects": [
+      "Aroused",
+      "Euphoric",
+      "Giggly"
+    ],
+    "tags": [
+      "Cannabis",
+      "oil"
+    ],
     "itemNo": 887686,
     "description": {
       "short": "Papa & Barkley’s tinctures are vegan and fast-metabolizing, with a customizable dosage experience, carefully crafted with whole-plant extraction. Our solventless, chemical-free infusion process preserves the plant’s full spectrum of cannabinoids, terpenes, and phytonutrients for maximum therapeutic benefits.",
@@ -216,8 +244,15 @@
     "plantType": "Sativa",
     "thc": 29,
     "cbd": 0.1,
-    "effects": ["Relaxed", "Euphoric", "Hungry"],
-    "tags": ["Cannabis", "flower"],
+    "effects": [
+      "Relaxed",
+      "Euphoric",
+      "Hungry"
+    ],
+    "tags": [
+      "Cannabis",
+      "flower"
+    ],
     "itemNo": 423221,
     "description": {
       "short": "This exotic hybrid strain is a mix of Wedding Cake x Unicorn Poop with vanilla cake & kush aromas.",
@@ -265,8 +300,15 @@
     "plantType": "Hybrid",
     "thc": 27,
     "cbd": 1,
-    "effects": ["Giggly", "Relaxed", "Anesthetic"],
-    "tags": ["Cannabis", "flower"],
+    "effects": [
+      "Giggly",
+      "Relaxed",
+      "Anesthetic"
+    ],
+    "tags": [
+      "Cannabis",
+      "flower"
+    ],
     "itemNo": 978006,
     "description": {
       "short": "Pink Diablo Weed Strain is an Indica dominant hybrid marijuana that is popular for its sedative effects, stunning colouring and sweet, spicy flavour. It is a crossbreed of the famous Pink Kush and Diablo strains, with a high THC content of 25%.",
@@ -314,8 +356,15 @@
     "plantType": "Indica",
     "thc": 17,
     "cbd": 0.1,
-    "effects": ["Sleepy", "Relaxed", "Hungry"],
-    "tags": ["Cannabis", "pre-rolls"],
+    "effects": [
+      "Sleepy",
+      "Relaxed",
+      "Hungry"
+    ],
+    "tags": [
+      "Cannabis",
+      "pre-rolls"
+    ],
     "itemNo": 444666,
     "description": {
       "short": "Our king size pre-filled cones are filled with over a gram of high CBD hemp flower. We use fresh, premium buds with absolutely no trim or shake to provide the best overall smoking experience.",
@@ -363,8 +412,15 @@
     "plantType": "Indica",
     "thc": 0.2,
     "cbd": 16,
-    "effects": ["Energetic", "Relaxed", "Happy"],
-    "tags": ["Cannabis", "pre-rolls"],
+    "effects": [
+      "Energetic",
+      "Relaxed",
+      "Happy"
+    ],
+    "tags": [
+      "Cannabis",
+      "pre-rolls"
+    ],
     "itemNo": 534670,
     "description": {
       "short": "The infused pre-roll has evolved. The Habit Chillum is packed with 1 full gram of cannabis excellence.",
@@ -395,7 +451,6 @@
       "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
     }
   },
-
   {
     "enabled": true,
     "imageUrls": [
@@ -413,8 +468,15 @@
     "plantType": "Sativa",
     "thc": 10,
     "cbd": 1,
-    "effects": ["Stimulating", "Buzzy", "Energetic"],
-    "tags": ["Cannabis", "beverage"],
+    "effects": [
+      "Stimulating",
+      "Buzzy",
+      "Energetic"
+    ],
+    "tags": [
+      "Cannabis",
+      "beverage"
+    ],
     "itemNo": 123456,
     "description": {
       "short": "No messing around with this tropical fruit, high-intensity flavoured potion. 10 mg THC. Enjoy straight up, right out of the can.",
@@ -445,7 +507,6 @@
       "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
     }
   },
-
   {
     "enabled": true,
     "imageUrls": [
@@ -463,8 +524,15 @@
     "plantType": "Sativa",
     "thc": 10,
     "cbd": 1,
-    "effects": ["Euphoric", "Hazy", "Tipsy"],
-    "tags": ["Cannabis", "beverage"],
+    "effects": [
+      "Euphoric",
+      "Hazy",
+      "Tipsy"
+    ],
+    "tags": [
+      "Cannabis",
+      "beverage"
+    ],
     "itemNo": 234567,
     "description": {
       "short": "Small, potent and ready-to-go. Prepare for the bold taste of this dark, full-flavoured 10mg THC, carbonated drink in a 222mL sleek can.",
@@ -495,7 +563,6 @@
       "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
     }
   },
-
   {
     "enabled": true,
     "imageUrls": [
@@ -513,8 +580,15 @@
     "plantType": "Hybrid",
     "thc": 22,
     "cbd": 1,
-    "effects": ["Euphoric", "Cerebral high", "Relaxed"],
-    "tags": ["Cannabis", "Seeds"],
+    "effects": [
+      "Euphoric",
+      "Cerebral high",
+      "Relaxed"
+    ],
+    "tags": [
+      "Cannabis",
+      "Seeds"
+    ],
     "itemNo": 345678,
     "description": {
       "short": "Purple Cookie Kush Feminized seeds come from two well-known strains, Girl Scout Cookies and Purple Kush. The 60% indica / 40% sativa heritage leads to a well-balanced hybrid flower. Flavours range from grapes to sandalwood, and the terpene profile is a concoction of many complimentary aromas. Purple Cookie Kush Feminized is a short plant with good yields. Bud formation is dense, similar to many Kush strains.",
@@ -545,7 +619,6 @@
       "recommendedUsage": "Many use this strain to help treat insomnia and aid them in getting a good night's rest."
     }
   },
-
   {
     "enabled": true,
     "imageUrls": [
@@ -563,8 +636,15 @@
     "plantType": "Hybrid",
     "thc": 22,
     "cbd": 1,
-    "effects": ["Stimulating", "Energetic", "Happy"],
-    "tags": ["Cannabis", "Seeds"],
+    "effects": [
+      "Stimulating",
+      "Energetic",
+      "Happy"
+    ],
+    "tags": [
+      "Cannabis",
+      "Seeds"
+    ],
     "itemNo": 456789,
     "description": {
       "short": "Pure Power Plant Feminized by White Label is a fast-flowering 40% indica, 60% sativa strain. It produces abundant yields, and can be grown indoors, or outdoors in a warm climate. The plants produce a skunky, vanilla-wood aroma while growing, which is also evident in the taste. The sativa dominance results in a talkative, uplifting high.",
