@@ -12,16 +12,9 @@ import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
 import FavouriteIcon from '../UI/FavouriteIcon';
 import EyeIcon from '../UI/EyeIcon';
-<<<<<<< HEAD
+
 import getThcCategory from '../../helpers/getThcCategory';
 import getCbdCategory from '../../helpers/getCbdCategory';
-import styles from './ProductCard.module.scss';
-
-function ProductCard({ setShowModalAddToCart, onClick, product }) {
-=======
-
-import getThcCategory from '../../helpers/functionGetThcCategory';
-import getCbdCategory from '../../helpers/functionGetCbdCategory';
 import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../helpers/cartButtonStateHandler';
 
@@ -39,7 +32,6 @@ function ProductCard(props) {
     product,
   } = props;
 
->>>>>>> dev
   const {
     imageUrls,
     previousPrice,
@@ -133,11 +125,7 @@ function ProductCard(props) {
           <div className={styles.productCard__media__overlay__action}>
             <ButtonIcon
               className={styles.buttonViewSingleProduct}
-<<<<<<< HEAD
-              onClick={setShowModalAddToCart}
-=======
               onClick={() => { }}
->>>>>>> dev
             >
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
@@ -223,15 +211,10 @@ ProductCard.propTypes = {
     classNames: PropTypes.string,
   }),
   // eslint-disable-next-line react/require-default-props
-<<<<<<< HEAD
-  onClick: PropTypes.func,
-  setShowModalAddToCart: PropTypes.bool.isRequired,
-=======
   actions: PropTypes.shape({
     toggleWishlistHandler: PropTypes.func,
     toggleCartHandler: PropTypes.func,
   }),
->>>>>>> dev
 };
 
 export default ProductCard;

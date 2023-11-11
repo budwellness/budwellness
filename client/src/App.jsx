@@ -55,16 +55,11 @@ function App() {
   const { data: products, error } = useGetAllProductsQuery();
   const [showModal, setShowModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
-<<<<<<< HEAD
-  const [showModalAddToCart, setShowModalAddToCart] = useState(false);
-  // console.log('DATA: ', products);
-=======
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector(
     (state) => state.user,
   );
->>>>>>> dev
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -156,32 +151,12 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-<<<<<<< HEAD
-      <Footer
-        products={products}
-        error={error}
-        setShowModalAddToCart={setShowModalAddToCart}
-      />
-=======
       <Footer />
->>>>>>> dev
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
       />
-<<<<<<< HEAD
-      {showModalAddToCart && (
-        <Modal>
-          <ModalAddToCart
-            product={products?.product}
-            showModalAddToCart={showModalAddToCart}
-            setShowModalAddToCart={setShowModalAddToCart}
-          />
-        </Modal>
-      )}
-=======
       {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)} />}
->>>>>>> dev
     </>
   );
 }

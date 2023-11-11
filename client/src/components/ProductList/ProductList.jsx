@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
 import ProductCard from '../ProductCard/ProductCard';
@@ -16,10 +17,6 @@ import {
   removeItemFromWishListAction,
 } from '../../store/wishlist/wishList.slice';
 
-<<<<<<< HEAD
-function ProductList({ setShowModalAddToCart, products, error }) {
-  // console.log(products);
-=======
 // CART IMPORTS:
 import {
   addItemToCartAction,
@@ -103,7 +100,6 @@ function ProductList() {
     isError: isErrorAllProductsData,
     // isLoading: isLoadingAllProductsData
   } = useGetAllProductsQuery();
->>>>>>> dev
 
   return (
     <div className={styles.productList}>
@@ -113,13 +109,6 @@ function ProductList() {
         </div>
       ) : (
         <div className={styles.productList__productsWrapper}>
-<<<<<<< HEAD
-          {products?.map((product) => (
-            <ProductCard
-              product={product}
-              key={product.itemNo}
-              setShowModalAddToCart={setShowModalAddToCart}
-=======
           {AllProductsData?.map((product) => (
             <ProductCard
               actions={
@@ -130,7 +119,6 @@ function ProductList() {
               }
               product={product}
               key={product._id}
->>>>>>> dev
             />
           ))}
         </div>
@@ -139,15 +127,4 @@ function ProductList() {
   );
 }
 
-<<<<<<< HEAD
-ProductList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types, react/require-default-props
-  products: PropTypes.arrayOf(PropTypes.object),
-  // eslint-disable-next-line react/require-default-props
-  error: PropTypes.string,
-  setShowModalAddToCart: PropTypes.bool.isRequired,
-};
-
-=======
->>>>>>> dev
 export default ProductList;
