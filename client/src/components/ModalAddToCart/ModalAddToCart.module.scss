@@ -1,8 +1,9 @@
-.modalAddToCart {
-    width: 50vW;
+.containerModalAddToCart {
+    // width: 50vW;
+    max-height: 60vh;
 
-    .productSwiper {
-        height: 100%;
+    .about_main {
+        
         z-index: 1900;
     }
 }

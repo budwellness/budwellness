@@ -48,8 +48,7 @@ function App() {
       {showModalAddToCart && (
         <Modal>
           <ModalAddToCart
-            // productId={products?.product.id}
-            // name={products?.product.name}
+            product={products?.product}
             showModalAddToCart={showModalAddToCart}
             setShowModalAddToCart={setShowModalAddToCart}
           />
