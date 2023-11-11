@@ -166,11 +166,9 @@
 .titlesWrap {
   @include for-size(768px) {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-around;
+    padding-bottom: 25px;
   }
-  // @include for-size(1200px) {
-  //   width: 80%;
-  // }
 }
 
 .tabTitleWrapp {
@@ -178,10 +176,31 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  // @include for-size(992px) {
-  //   padding-right: 10px;
-  //   padding-left: 10px;
-  // }
+  position: relative;
+  @include for-size(768px) {
+    width: 35%;
+    justify-content: space-around;
+  }
+  &:hover::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: $secondary-green;
+    animation: underline 0.5s ease-in-out;
+    top: 100%;
+  }
+}
+
+@keyframes underline {
+  0% {
+    // left: 0;
+    width: 0;
+  }
+  100% {
+    // left: 0;
+    width: 100%;
+  }
 }
 
 .tabTitle {
@@ -191,10 +210,29 @@
   font-weight: 700;
   margin: 0;
   padding-bottom: 15px;
+  // position: relative;
+  &:hover {
+    color: $secondary-green;
+  }
+  // &.activeTabtitle {
+  //   color: $secondary-green;
+  // }
 }
 
 .activeTabTitle .tabTitle {
   color: $secondary-green;
+  @include for-size(768px) {
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 3px;
+      background: $secondary-green;
+      animation: underline 0.5s ease-in-out;
+      top: 100%;
+      right: 0;
+    }
+  }
 }
 
 .arrow {
@@ -224,6 +262,15 @@
   }
   to {
     transform: rotate(180deg);
+  }
+}
+
+.titlesWrapHr {
+  display: none;
+  @include for-size(768px) {
+    display: block;
+    position: relative;
+    bottom: 30px;
   }
 }
 
@@ -297,7 +344,6 @@
   // flex-direction: column;
   display: grid;
   border: 0.2px solid black;
-  // border-collapse: separate;
   border-collapse: collapse;
 }
 
