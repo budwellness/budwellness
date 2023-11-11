@@ -6,8 +6,20 @@ import PlusIcon from '../UI/PlusIcon';
 
 import styles from './ButtonCount.module.scss';
 
-function ButtonCount({ quantity }) {
-  const [count, setCount] = useState(1);
+function ButtonCount(props) {
+  /* --------------------------- INIT PROPS: --------------------------- */
+  const {
+    productQuantity,
+    cartQuantity,
+    actions: {
+      increaseCartQuantityHandler,
+      decreaseCartQuantityHandler,
+    },
+  } = props;
+
+  /* --------------------------- COMPONENT STATE: --------------------------- */
+
+  const [count, setCount] = useState(cartQuantity);
 
   const handleCountChange = (value) => {
     setCount(value);
@@ -17,7 +29,10 @@ function ButtonCount({ quantity }) {
       <button
         type="button"
         className={styles.countBtn}
-        onClick={() => handleCountChange(count - 1)}
+        onClick={() => {
+          decreaseCartQuantityHandler();
+          handleCountChange(count - 1);
+        }}
         disabled={count === 1}
       >
         <MinusIcon className={styles.countIcon} />
@@ -26,8 +41,11 @@ function ButtonCount({ quantity }) {
       <button
         type="button"
         className={styles.countBtn}
-        onClick={() => handleCountChange(count + 11)}
-        disabled={count === quantity}
+        onClick={() => {
+          increaseCartQuantityHandler();
+          handleCountChange(count + 1);
+        }}
+        disabled={count === productQuantity}
       >
         <PlusIcon className={styles.countIcon} />
       </button>
@@ -38,8 +56,18 @@ function ButtonCount({ quantity }) {
 export default ButtonCount;
 
 ButtonCount.propTypes = {
-  quantity: PropTypes.number,
+  productQuantity: PropTypes.number,
+  cartQuantity: PropTypes.number,
+  actions: PropTypes.shape({
+    increaseCartQuantityHandler: PropTypes.func,
+    decreaseCartQuantityHandler: PropTypes.func,
+  }),
 };
 ButtonCount.defaultProps = {
-  quantity: 1,
+  productQuantity: 1,
+  cartQuantity: 0,
+  actions: {
+    increaseCartQuantityHandler: () => { },
+    decreaseCartQuantityHandler: () => { },
+  },
 };

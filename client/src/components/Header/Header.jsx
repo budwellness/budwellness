@@ -1,23 +1,73 @@
-/* eslint-disable */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import LogoIcon from './icons/LogoIcon';
-import SearchIcon from './icons/SearchIcon';
-import WishlistIcon from './icons/WishlistIcon';
-import CartIcon from './icons/CartIcon';
-import LoginIcon from './icons/LoginIcon';
+// COMPONENTS IMPORT:
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
+import Nav from '../Nav/Nav';
+import Search from '../Search/Search';
+import ButtonHeader from '../ButtonHeader/ButtonHeader';
+
+// ICONS IMPORT:
+import LogoIcon from './icons/LogoIcon';
+import WishlistIcon from './icons/WishlistIcon';
+import CartIcon from './icons/CartIcon';
+import LoginIcon from './icons/LoginIcon';
+
+// USER IMPORTS:
+import {
+  userLogutUserAction,
+} from '../../store/user/user.slice';
 
 import styles from './Header.module.scss';
 
-function Header({ setShowCartModal }) {
+function Header(props) {
+  const {
+    actions: {
+      handleModal,
+      showModal,
+      setShowModal,
+      setShowCartModal,
+      getCart,
+      getWishlist,
+    },
+  } = props;
+
+  /* --------------------------- INIT HOOKS: --------------------------- */
+
+  const dispatch = useDispatch();
+
+  /* --------------------------- LOCAL STATE: --------------------------- */
+
   const [showBurger, setShowBurger] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [sticky, setSticky] = useState(false);
+
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist,
+  );
+
+  const { isUserLogin } = useSelector(
+    (state) => state.user,
+  );
+
+  const { cart: cartStoreData } = useSelector((state) => state.cart);
+
+  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
+
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    dispatch(userLogutUserAction());
+  };
+
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,10 +80,8 @@ function Header({ setShowCartModal }) {
       }
 
       if (scrollY >= 400) {
-         
         setSticky(true);
       } else {
-         
         setSticky(false);
       }
     };
@@ -45,25 +93,14 @@ function Header({ setShowCartModal }) {
     };
   }, []);
 
-  const [sticky, setSticky] = useState(false);
-
   // ========================================================
 
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
   return (
-    <header
-      className={cn(styles.header, {
-        [styles.scrolled]: scrolled,
-        [styles.sticky]: sticky,
-      })}
-    >
+    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
       <Container>
         <div className={styles.wrapp}>
-          { }
-          { }
+          {}
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <span
             className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
             onClick={() => setShowBurger(!showBurger)}
@@ -73,96 +110,63 @@ function Header({ setShowCartModal }) {
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
           </span>
-          <Link to="/">
+          <Link to="/" className={styles.logoLink}>
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
-            <span className={cn(styles.header_logoTitle, styles.accentColor)}>
-              Wellness
-            </span>
+            <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
           </Link>
-          <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
-            <ul className={styles.header_navList}>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/">Home</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/shop">Shop</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/news">News</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/contact">Contacts</Link>
-              </li>
-            </ul>
-          </nav>
+          <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
-            <form className={styles.header_userSearchForm}>
-              <input
-                className={styles.header_userSearchInput}
-                type="text"
-                placeholder="Search..."
-              />
-              { }
-              <button className={styles.header_userSearchButton}>
-                <SearchIcon />
-              </button>
-            </form>
-            <Link
-              to="/"
-              className={styles.header_userLink}
-              onClick={handleModal}
-            >
+            <Search />
+            <ButtonHeader className={styles.header_userLink} onClick={handleModal}>
               <LoginIcon />
-            </Link>
+            </ButtonHeader>
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
+              {isUserLogin && wishlistStoreData.length > 0 && (
+              <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
+              )}
             </Link>
-            <Link
-              to="/"
-              className={styles.header_userLink}
-              onClick={setShowCartModal}
-            >
+            <ButtonHeader className={styles.header_userLink} onClick={setShowCartModal}>
               <CartIcon />
-            </Link>
+              {isUserLogin && cartStoreData.length > 0 && (
+              <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
+              )}
+            </ButtonHeader>
           </div>
         </div>
+        {showModal && (
+          isUserLogin
+            ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
+            : (
+              <Modal handleModal={handleModal}>
+                <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
+              </Modal>
+            )
+        )}
       </Container>
-      {/* <CartModal showCartModal={showCartModal} setShowCartModal={setShowCartModal} /> */}
-      {showModal && (
-        <Modal handleModal={handleModal}>
-          <LoginForm setShowModal={setShowModal} />
-        </Modal>
-      )}
-      {}
-      { }
-      {/* {showCartModal && <div className={styles.overLayCartModal} onClick={() => setShowCartModal(false)} />} */}
     </header>
   );
 }
 
 Header.propTypes = {
-  setShowCartModal: () => {},
+  actions: PropTypes.shape({
+    handleModal: PropTypes.func.isRequired,
+    showModal: PropTypes.func.isRequired,
+    setShowModal: PropTypes.func.isRequired,
+    setShowCartModal: PropTypes.func.isRequired,
+    getCart: PropTypes.func.isRequired,
+    getWishlist: PropTypes.func.isRequired,
+  }),
 };
 
 Header.defaultProps = {
-  setShowCartModal: () => {},
+  actions: {
+    setShowCartModal: () => {},
+    getCart: () => {},
+    getWishlist: () => {},
+    handleModal: () => {},
+  },
 };
 
 export default Header;
