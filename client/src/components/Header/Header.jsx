@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 
 // COMPONENTS IMPORT:
@@ -21,156 +21,159 @@ import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
 import {
-  userLogutUserAction,
+    userLogutUserAction,
 } from '../../store/user/user.slice';
 
 import styles from './Header.module.scss';
+import ButtonHeader from "../ButtonHeader/ButtonHeader.jsx";
 
 function Header(props) {
-  const {
-    actions: {
-      setShowCartModal,
-      getCart,
-      getWishlist,
-    },
-  } = props;
+    const {
+        actions: {
+            handleModal,
+            showModal,
+            setShowModal,
+            setShowCartModal,
+            getCart,
+            getWishlist,
+        },
+    } = props;
 
-  /* --------------------------- INIT HOOKS: --------------------------- */
+    /* --------------------------- INIT HOOKS: --------------------------- */
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  /* --------------------------- LOCAL STATE: --------------------------- */
+    /* --------------------------- LOCAL STATE: --------------------------- */
 
-  const [showBurger, setShowBurger] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [sticky, setSticky] = useState(false);
+    const [showBurger, setShowBurger] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [sticky, setSticky] = useState(false);
 
-  /* --------------------------- REDUX STATE: --------------------------- */
-  const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist,
-  );
+    /* --------------------------- REDUX STATE: --------------------------- */
+    const {wishList: wishlistStoreData} = useSelector(
+        (state) => state.wishlist,
+    );
 
-  const { isUserLogin } = useSelector(
-    (state) => state.user,
-  );
+    const {isUserLogin} = useSelector(
+        (state) => state.user,
+    );
 
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+    const {cart: cartStoreData} = useSelector((state) => state.cart);
 
-  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
+    /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
-  };
-
-  /* --------------------------- COMPONENT LOGIC: --------------------------- */
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollY } = window;
-
-      if (scrollY >= 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-
-      if (scrollY >= 400) {
-        setSticky(true);
-      } else {
-        setSticky(false);
-      }
+    const logoutHandler = () => {
+        localStorage.removeItem('token');
+        dispatch(userLogutUserAction());
     };
 
-    window.addEventListener('scroll', handleScroll);
+    /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    useEffect(() => {
+        const handleScroll = () => {
+            const {scrollY} = window;
 
-  // ========================================================
+            if (scrollY >= 100) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
 
-  return (
-    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
-      <Container>
-        <div className={styles.wrapp}>
-          {}
-          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-          <span
-            className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
-            onClick={() => setShowBurger(!showBurger)}
-          >
-            <span className={cn(styles.line, styles.shortLine)} />
-            <span className={styles.line} />
-            <span className={cn(styles.line, styles.shortLine)} />
-            <span className={styles.line} />
+            if (scrollY >= 400) {
+                setSticky(true);
+            } else {
+                setSticky(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    // ========================================================
+
+    return (
+        <header className={cn(styles.header, {[styles.scrolled]: scrolled, [styles.sticky]: sticky})}>
+            <Container>
+                <div className={styles.wrapp}>
+                    {}
+                    {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                    <span
+                        className={cn(styles.toggleBtn, {[styles.active]: showBurger})}
+                        onClick={() => setShowBurger(!showBurger)}
+                    >
+            <span className={cn(styles.line, styles.shortLine)}/>
+            <span className={styles.line}/>
+            <span className={cn(styles.line, styles.shortLine)}/>
+            <span className={styles.line}/>
           </span>
-          <Link to="/" className={styles.logoLink}>
-            <LogoIcon />
-            <span className={styles.header_logoTitle}>Bud</span>
-            <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
-          </Link>
-          <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
-          <div className={styles.header_user}>
-            <Search />
-            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
-              <LoginIcon />
-            </Link>
-            <Link to="/wishlist" className={styles.header_userLink}>
-              <WishlistIcon />
-              {isUserLogin && wishlistStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
-              )}
-            </Link>
-            <Link className={styles.header_userLink} onClick={setShowCartModal}>
-              <CartIcon />
-              {isUserLogin && cartStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
-              )}
-            </Link>
-          </div>
-        </div>
-        {showModal && (
-          isUserLogin
-            ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
-            : (
-              <Modal handleModal={handleModal}>
-                <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
-              </Modal>
-            )
-        )}
-      </Container>
-    </header>
-  );
+                    <Link to="/" className={styles.logoLink}>
+                        <LogoIcon/>
+                        <span className={styles.header_logoTitle}>Bud</span>
+                        <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
+                    </Link>
+                    <Nav showBurger={showBurger} setShowBurger={setShowBurger}/>
+                    <div className={styles.header_user}>
+                        <Search/>
+                        <ButtonHeader className={styles.header_userLink} onClick={handleModal}>
+                            <LoginIcon/>
+                        </ButtonHeader>
+                        <Link to="/wishlist" className={styles.header_userLink}>
+                            <WishlistIcon/>
+                            {isUserLogin && wishlistStoreData.length > 0 && (
+                                <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
+                            )}
+                        </Link>
+                        <ButtonHeader className={styles.header_userLink} onClick={setShowCartModal}>
+                            <CartIcon/>
+                            {isUserLogin && cartStoreData.length > 0 && (
+                                <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
+                            )}
+                        </ButtonHeader>
+                    </div>
+                </div>
+                {showModal && (
+                    isUserLogin
+                        ?
+                        <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
+                        : (
+                            <Modal handleModal={handleModal}>
+                                <LoginForm actions={{setShowModal, getCart, getWishlist}}/>
+                            </Modal>
+                        )
+                )}
+            </Container>
+        </header>
+    );
 }
 
 Header.propTypes = {
-  actions: PropTypes.shape({
-    setShowCartModal: PropTypes.func,
-    getCart: PropTypes.func,
-    getWishlist: PropTypes.func,
-  }),
-  setShowCartModal: () => {
-  },
+    actions: PropTypes.shape({
+        setShowModal: PropTypes.func,
+        setShowCartModal: PropTypes.func,
+        getCart: PropTypes.func,
+        getWishlist: PropTypes.func,
+    }),
+    setShowCartModal: () => {
+    },
 };
 
 Header.defaultProps = {
-  setShowCartModal: () => {
-  },
-  actions: {
     setShowCartModal: () => {
     },
-    getCart: () => {
+    actions: {
+        setShowCartModal: () => {
+        },
+        getCart: () => {
+        },
+        getWishlist: () => {
+        },
+        handleModal: () => {
+        }
     },
-    getWishlist: () => {
-    },
-  },
 };
 
 export default Header;
