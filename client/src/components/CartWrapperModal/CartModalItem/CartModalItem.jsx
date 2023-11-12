@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { toast } from 'react-toastify';
 
 // COMPONENT IMPORTS:

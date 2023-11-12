@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { toast } from 'react-toastify';
@@ -28,7 +29,7 @@ import { useAddToCartMutation, useRemoveFromCartMutation } from '../../store/ser
 
 const { log } = console;
 
-function ProductList() {
+function ProductList({ setShowModalAddToCart }) {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
 
@@ -115,6 +116,7 @@ function ProductList() {
                 {
                   toggleWishlistHandler,
                   toggleCartHandler,
+                  setShowModalAddToCart,
                 }
               }
               product={product}
@@ -126,5 +128,9 @@ function ProductList() {
     </div>
   );
 }
+
+ProductList.propTypes = {
+  setShowModalAddToCart: PropTypes.bool.isRequired,
+};
 
 export default ProductList;

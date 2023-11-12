@@ -55,6 +55,7 @@ function App() {
   const { data: products, error } = useGetAllProductsQuery();
   const [showModal, setShowModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [showModalAddToCart, setShowModalAddToCart] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector(
@@ -151,12 +152,24 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
+      <Footer
+        products={products}
+        error={error}
+        setShowModalAddToCart={setShowModalAddToCart} />
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
       />
       {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)} />}
+      {showModalAddToCart && (
+        <Modal handleModal={handleModal} >
+          <ModalAddToCart
+            product={products?.product}
+            showModalAddToCart={showModalAddToCart}
+            setShowModalAddToCart={setShowModalAddToCart}
+          />
+        </Modal>
+      )}
     </>
   );
 }

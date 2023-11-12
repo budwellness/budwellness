@@ -28,6 +28,7 @@ function ProductCard(props) {
     actions: {
       toggleWishlistHandler,
       toggleCartHandler,
+      setShowModalAddToCart,
     },
     product,
   } = props;
@@ -104,12 +105,12 @@ function ProductCard(props) {
       <div className={styles.productCard__media}>
         <Link
           to={`/product/${itemNo}`}
-          className={styles.productCard__media__productLink}
+          className={styles.productCard__img_link}
         >
-          <div className={styles.productCard__media__productLink__imageWrapper}>
+          <div className={styles.productCard__img_wrapper}>
             <img
               className={
-                styles.productCard__media__productLink__imageWrapper__image
+                styles.productCard__img
               }
               src={imageUrls[0]}
               alt={name}
@@ -117,22 +118,22 @@ function ProductCard(props) {
           </div>
         </Link>
         {previousPrice !== currentPrice && (
-          <span className={styles.productCard__media__saleLabel}>
+          <span className={styles.productCard__saleLabel}>
             Sale
           </span>
         )}
-        <div className={styles.productCard__media__overlay}>
-          <div className={styles.productCard__media__overlay__action}>
+        <div className={styles.productCard__overlay}>
+          <div className={styles.productCard__action}>
             <ButtonIcon
-              className={styles.buttonViewSingleProduct}
-              onClick={() => { }}
+              className={styles.btn__viewSingleProduct}
+              onClick={setShowModalAddToCart}
             >
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
             <ButtonIcon
               className={cn({
-                [styles.buttonAddFavorites]: !isExistInWishlist,
-                [styles.buttonAddFavorites_active]: isExistInWishlist,
+                [styles.btn__addToFavorites]: !isExistInWishlist,
+                [styles.btn__addToFavorites_active]: isExistInWishlist,
               })}
               onClick={toggleWishlistWithLoginHandler}
             >
@@ -143,38 +144,37 @@ function ProductCard(props) {
       </div>
       <div className={styles.productCard__main}>
         <RatingStars
-          classNames={styles.productCard__main__rating}
           rate={rate}
         />
         <Link
           to={`/product/${itemNo}`}
-          className={styles.productCard__main__titleLink}
+          className={styles.productCard__title_link}
         >
           {name}
         </Link>
-        <div className={styles.productCard__main__property}>
-          <div className={styles.productCard__main__property_thc}>
+        <div className={styles.productCard__propertys}>
+          <div className={styles.productCard__property_thc}>
             <span>THC</span>
             {' '}
             {getThcCategory(thc)}
           </div>
-          <div className={styles.productCard__main__property_cbd}>
+          <div className={styles.productCard__property_cbd}>
             <span>CBD</span>
             {' '}
             {getCbdCategory(cbd)}
           </div>
         </div>
-        <div className={styles.productCard__main__productPrices}>
+        <div className={styles.productCard__productPrices}>
           {previousPrice !== currentPrice && (
             <span
-              className={styles.productCard__main__productPrices__previousPrice}
+              className={styles.productCard__previousPrice}
             >
               $
               {previousPrice.toFixed(2)}
             </span>
           )}
           <span
-            className={styles.productCard__main__productPrices__currentPrice}
+            className={styles.productCard__currentPrice}
           >
             $
             {currentPrice.toFixed(2)}
@@ -214,6 +214,7 @@ ProductCard.propTypes = {
   actions: PropTypes.shape({
     toggleWishlistHandler: PropTypes.func,
     toggleCartHandler: PropTypes.func,
+    setShowModalAddToCart: PropTypes.func,
   }),
 };
 
