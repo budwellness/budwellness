@@ -29,11 +29,12 @@ function Filter() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.filter__categories}>
+      <div className={`${styles.filter__categories} ${styles.filter__item1}`}>
         <h4 className={styles.filter__name}>Product Categories</h4>
         <label htmlFor="All" className={styles.filter__label}>
           <input
             type="radio"
+            id="All"
             value="All"
             className={styles.filter__input}
             checked={selectedCategories.includes('All')}
@@ -44,6 +45,7 @@ function Filter() {
         <label htmlFor="On Sale" className={styles.filter__label}>
           <input
             type="radio"
+            id="On Sale"
             value="On Sale"
             className={styles.filter__input}
             checked={selectedCategories.includes('On Sale')}
@@ -54,6 +56,7 @@ function Filter() {
         <label htmlFor="Flowers" className={styles.filter__label}>
           <input
             type="radio"
+            id="Flowers"
             value="Flowers"
             className={styles.filter__input}
             checked={selectedCategories.includes('Flowers')}
@@ -64,6 +67,7 @@ function Filter() {
         <label htmlFor="Pre-Rolls" className={styles.filter__label}>
           <input
             type="radio"
+            id="Pre-Rolls"
             value="Pre-Rolls"
             className={styles.filter__input}
             checked={selectedCategories.includes('Pre-Rolls')}
@@ -74,6 +78,7 @@ function Filter() {
         <label htmlFor="Edible" className={styles.filter__label}>
           <input
             type="radio"
+            id="Edible"
             value="Edible"
             className={styles.filter__input}
             checked={selectedCategories.includes('Edible')}
@@ -84,6 +89,7 @@ function Filter() {
         <label htmlFor="Oils" className={styles.filter__label}>
           <input
             type="radio"
+            id="Oils"
             value="Oils"
             className={styles.filter__input}
             checked={selectedCategories.includes('Oils')}
@@ -94,6 +100,7 @@ function Filter() {
         <label htmlFor="Beverage" className={styles.filter__label}>
           <input
             type="radio"
+            id="Beverage"
             value="Beverage"
             className={styles.filter__input}
             checked={selectedCategories.includes('Beverage')}
@@ -104,6 +111,7 @@ function Filter() {
         <label htmlFor="Seeds" className={styles.filter__label}>
           <input
             type="radio"
+            id="Seeds"
             value="Seeds"
             className={styles.filter__input}
             checked={selectedCategories.includes('Seeds')}
@@ -118,6 +126,7 @@ function Filter() {
         <label htmlFor="indicaDominant" className={styles.filter__label}>
           <input
             type="radio"
+            id="indicaDominant"
             value="Indica-Dominant"
             className={styles.filter__input}
             checked={selectedPlantTypes.includes('Indica-Dominant')}
@@ -128,6 +137,7 @@ function Filter() {
         <label htmlFor="sativaDominant" className={styles.filter__label}>
           <input
             type="radio"
+            id="sativaDominant"
             value="Sativa-Dominant"
             className={styles.filter__input}
             checked={selectedPlantTypes.includes('Sativa-Dominant')}
@@ -138,6 +148,7 @@ function Filter() {
         <label htmlFor="hybrid" className={styles.filter__label}>
           <input
             type="radio"
+            id="hybrid"
             value="Hybrid"
             className={styles.filter__input}
             checked={selectedPlantTypes.includes('Hybrid')}
@@ -174,6 +185,7 @@ function Filter() {
         <label htmlFor="zeroToTen" className={styles.filter__label}>
           <input
             type="radio"
+            id="zeroToTen"
             value="0.2-10%"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('0.2-10%')}
@@ -184,6 +196,7 @@ function Filter() {
         <label htmlFor="elevenToTwenty" className={styles.filter__label}>
           <input
             type="radio"
+            id="elevenToTwenty"
             value="11-20%"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('11-20%')}
@@ -194,6 +207,7 @@ function Filter() {
         <label htmlFor="twentyOneToThirty" className={styles.filter__label}>
           <input
             type="radio"
+            id="twentyOneToThirty"
             value="21-30%"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('21-30%')}
@@ -201,9 +215,10 @@ function Filter() {
           />
           21-30%
         </label>
-        <label htmlFor="thirtyOneToFourty" className={styles.filter__label}>
+        <label htmlFor="thirtyOneToForty" className={styles.filter__label}>
           <input
             type="radio"
+            id="thirtyOneToForty"
             value="31-40%"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('31-40%')}
@@ -218,6 +233,7 @@ function Filter() {
         <label htmlFor="zeroToOne" className={styles.filter__label}>
           <input
             type="radio"
+            id="zeroToOne"
             checked={selectedCBDRange.includes('0.1-1%')}
             value="0.1-1%"
             className={styles.filter__input}
@@ -228,6 +244,7 @@ function Filter() {
         <label htmlFor="twoToFive" className={styles.filter__label}>
           <input
             type="radio"
+            id="twoToFive"
             value="2-5%"
             className={styles.filter__input}
             checked={selectedCBDRange.includes('2-5%')}
@@ -238,6 +255,7 @@ function Filter() {
         <label htmlFor="sixToTwenty" className={styles.filter__label}>
           <input
             type="radio"
+            id="sixToTwenty"
             value="6-20%"
             className={styles.filter__input}
             checked={selectedCBDRange.includes('6-20%')}
@@ -248,6 +266,7 @@ function Filter() {
         <label htmlFor="twentyOneToFifty" className={styles.filter__label}>
           <input
             type="radio"
+            id="twentyOneToFifty"
             value="21-50%"
             className={styles.filter__input}
             checked={selectedCBDRange.includes('21-50%')}

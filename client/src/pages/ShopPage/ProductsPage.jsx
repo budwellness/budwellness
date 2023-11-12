@@ -3,8 +3,8 @@ import Container from '../../components/Container/Container';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
 import Filter from '../../components/Filter/Filter';
+// import ProductList from '../../components/ProductList/ProductList';
 import styles from './ProductsPage.module.scss';
-import ProductCard from '../../components/ProductCard/ProductCard';
 
 function ProductsPage() {
   return (
@@ -15,8 +15,8 @@ function ProductsPage() {
       />
       <Container>
         <div className={styles.wrapperContainer}>
+          {/* <ProductList products={products} error={error} /> */}
           <Filter />
-          <ProductCard />
         </div>
         <PopularProducts />
       </Container>
