@@ -26,13 +26,11 @@ import {
 } from '../../store/user/user.slice';
 
 import styles from './Header.module.scss';
+import { setModal } from '../../store/modal/modal.slice';
 
 function Header(props) {
   const {
     actions: {
-      handleModal,
-      showModal,
-      setShowModal,
       setShowCartModal,
       getCart,
       getWishlist,
@@ -59,6 +57,7 @@ function Header(props) {
   );
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
@@ -92,6 +91,11 @@ function Header(props) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  /* --------------------------- COMPONENT Modal: --------------------------- */
+  const handleModal = () => {
+    dispatch(setModal(!isOpenModal));
+  };
 
   // ========================================================
 
@@ -135,12 +139,12 @@ function Header(props) {
             </ButtonHeader>
           </div>
         </div>
-        {showModal && (
+        {isOpenModal && (
           isUserLogin
             ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
             : (
               <Modal handleModal={handleModal}>
-                <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
+                <LoginForm actions={{ handleModal, getCart, getWishlist }} />
               </Modal>
             )
         )}
