@@ -105,8 +105,8 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
-      <Header actions={{ setShowCartModal, getCart, getWishlist }} />
-      {/* <Routes>
+      {/* <Header actions={{ setShowCartModal, getCart, getWishlist }} />
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />

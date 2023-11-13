@@ -1,17 +1,21 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Container from '../../components/Container/Container';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
-import ButtonCount from '../../components/ButtonCount/ButtonCount';
+// import ButtonCount from '../../components/ButtonCount/ButtonCount';
 import RatingStars from '../../components/RatingStars/RatingStars';
 import Button from '../../components/Button/Button';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProductSwiper';
+// import FormikField from './FormikField/FormikField';
+import Tabs from './Tabs/Tabs';
+
 import FavouriteIcon from '../../components/UI/FavouriteIcon';
+// import ArrowDownIcon from '../../components/UI/ArrowDownIcon';
 
 import styles from './SingleProductPage.module.scss';
-import ArrowDownIcon from '../../components/UI/ArrowDownIcon';
 
 const mockDataProduct = {
   enabled: true,
@@ -98,15 +102,15 @@ const mockDataProduct = {
 function SingleProductPage() {
   const navigate = useNavigate();
 
-  const [toggle, setToggle] = useState(1);
+  // const [toggle, setToggle] = useState(1);
 
-  function updateToggle(index) {
-    if (toggle === index) {
-      setToggle(0);
-    } else {
-      setToggle(index);
-    }
-  }
+  // function updateToggle(index) {
+  //   if (toggle === index) {
+  //     setToggle(0);
+  //   } else {
+  //     setToggle(index);
+  //   }
+  // }
 
   return (
     <>
@@ -316,7 +320,9 @@ function SingleProductPage() {
           </div>
         </div> */}
 
-        <div className={styles.tabsWrapp}>
+        <Tabs />
+
+        {/* <div className={styles.tabsWrapp}>
           <div className={styles.title_content}>
             <div className={styles.titlesWrap}>
               <div
@@ -412,12 +418,17 @@ function SingleProductPage() {
                           {review.disadvantages}
                         </li>
                       )}
-                    </ul>
-                    {index !== mockDataProduct.reviews.length - 1 && (
+                    </ul> */}
+        {/* {index !== mockDataProduct.reviews.length - 1 && (
                       <hr className={styles.hrLine} />
-                    )}{' '}
+                    )}{' '} */}
+        {/* <hr className={styles.hrLine} />
                   </div>
                 ))}
+                <div className={styles.formReview}>
+                  <h4 className={styles.formTitle}>Add Review</h4>
+                  <FormikField />
+                </div>
               </div>
 
               <div
@@ -448,8 +459,7 @@ function SingleProductPage() {
               </div>
             </div>
           </div>
-        </div>
-
+        </div> */}
         <PopularProducts />
       </Container>
     </>
