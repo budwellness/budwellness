@@ -45,7 +45,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {useGetAllProductsQuery} from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
-import styles from './components/Header/Header.module.scss';
+
 
 const {log} = console;
 
@@ -104,16 +104,6 @@ function App() {
 
     /* ------------------------------------------------ */
 
-    /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
-
-    // const handleModal = () => {
-    //   setShowModal(!showModal);
-    // };
-
-    // const logoutHandler = () => {
-    //   localStorage.removeItem('token');
-    //   dispatch(userLogutUserAction());
-    // };
 
     /* ------------------------------------------------ */
 
