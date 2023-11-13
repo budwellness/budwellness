@@ -1,20 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useRemoveFromCartMutation } from '../store/serverResponse/danitApi.cart';
 import { toast } from 'react-toastify';
+import { useRemoveFromCartMutation } from '../store/serverResponse/danitApi.cart';
+import { removeItemFromCartAction } from '../store/cart/cart.slice';
 
-const useRemoveFromCart = (
-  product,
-  tokenReduxStore,
-  removeItemFromCartAction
-) => {
+const useRemoveFromCart = () => {
   const dispatch = useDispatch();
-  const [removeFromCart, { isSuccess: isSuccessRemoveFromCart }] =
-    useRemoveFromCartMutation();
-  const removeFromServerCartHandler = () => {
+  const [removeFromCart, { isSuccess: isSuccessRemoveFromCart }] = useRemoveFromCartMutation();
+  const removeFromServerCartHandler = (productId, token) => {
     const requestData = {
-      productId: product._id,
-      token: tokenReduxStore,
+      productId,
+      token,
     };
     try {
       removeFromCart(requestData);
@@ -25,10 +21,10 @@ const useRemoveFromCart = (
 
   useEffect(() => {
     if (isSuccessRemoveFromCart) {
-      dispatch(removeItemFromCartAction(product._id));
+      dispatch(removeItemFromCartAction(productId));
       toast.success('Item was successfully removed from cart!');
     }
-  }, [dispatch, isSuccessRemoveFromCart, product._id]);
+  }, [dispatch, isSuccessRemoveFromCart, productId]);
 
   return removeFromServerCartHandler;
 };
