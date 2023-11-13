@@ -1,17 +1,34 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/react-in-jsx-scope */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Filter.module.scss';
 
+
+const { log } = console;
+
 function Filter() {
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState('All');
   const [selectedPlantTypes, setSelectedPlantTypes] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
 
+  const [filterParams, setFilterParams] = useState({});
+
+  log('selectedCategories', selectedCategories)
+
+  useEffect(() => {
+    const filterParamHandler = () => {
+
+    }
+  }, [selectedCategories, selectedPlantTypes])
+  // log('selectedPlantTypes', selectedPlantTypes)
+  // log('priceRange', priceRange)
+  // log('selectedTHCRange', selectedTHCRange)
+  // log('selectedCBDRange', setSelectedCBDRange)
+
   const handleCategoryChange = (category) => {
-    setSelectedCategories([category]);
+    setSelectedCategories(category);
   };
   const handlePlantTypeChange = (plantType) => {
     setSelectedPlantTypes([plantType]);
