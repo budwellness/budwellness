@@ -123,14 +123,21 @@ function SingleProductPage() {
             <div className={styles.ratingWrapper}>
               <RatingStars rate={mockDataProduct.rate} />
               <p className={styles.ratingText}>
-                ({mockDataProduct.reviews.length} customer review
-                <span className={styles.span}>s</span>)
+                (
+                {mockDataProduct.reviews.length}
+                {' '}
+                customer review
+                <span className={styles.span}>s</span>
+                )
               </p>
             </div>
             <p className={styles.descShort}>
               {mockDataProduct.description.short}
             </p>
-            <p className={styles.price}>${mockDataProduct.currentPrice}</p>
+            <p className={styles.price}>
+              $
+              {mockDataProduct.currentPrice}
+            </p>
             <div className={styles.buttonWrapper}>
               {/* <ButtonCount /> */}
               <Button
@@ -167,7 +174,10 @@ function SingleProductPage() {
               </li>
               <li className={styles.item}>
                 <span className={styles.property}>CBD:</span>
-                <span className={styles.value}>{mockDataProduct.cbd}%</span>
+                <span className={styles.value}>
+                  {mockDataProduct.cbd}
+                  %
+                </span>
               </li>
               <li className={styles.item}>
                 <span className={styles.property}>Effects:</span>
