@@ -8,38 +8,52 @@ function StaticInfo() {
 
   useEffect(() => {
     const spanNum = refNum.current;
-    let number = 120;
-    const time = 3000;
-    const step = 2;
-    const totalNumber = 180;
-    const t = Math.round(time / (totalNumber / step));
-    const interval = setInterval(() => {
-      number += step;
-      if (number > totalNumber) {
-        clearInterval(interval);
-        number = totalNumber;
+    const handleScroll = () => {
+      const rect = spanNum.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        let number = 120;
+        const time = 3000;
+        const step = 2;
+        const totalNumber = 180;
+        const t = Math.round(time / (totalNumber / step));
+        const interval = setInterval(() => {
+          number += step;
+          if (number >= totalNumber) {
+            clearInterval(interval);
+            number = totalNumber;
+          }
+          spanNum.innerText = `${number}+`;
+        }, t);
+        window.removeEventListener('scroll', handleScroll);
       }
-      spanNum.innerHTML = `${number}+`;
-    }, t);
-    return () => clearInterval(interval);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     const spanRate = refRate.current;
-    let number = 60;
-    const time = 3000;
-    const step = 3;
-    const totalNumberRate = 100;
-    const tRate = Math.round(time / (totalNumberRate / step));
-    const intervalRate = setInterval(() => {
-      number += step;
-      if (number > totalNumberRate) {
-        clearInterval(intervalRate);
-        number = totalNumberRate;
+    const handleScroll = () => {
+      const rect = spanRate.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        let number = 60;
+        const time = 3000;
+        const step = 2;
+        const totalNumber = 100;
+        const t = Math.round(time / (totalNumber / step));
+        const interval = setInterval(() => {
+          number += step;
+          if (number >= totalNumber) {
+            clearInterval(interval);
+            number = totalNumber;
+          }
+          spanRate.innerText = `${number}%`;
+        }, t);
+        window.removeEventListener('scroll', handleScroll);
       }
-      spanRate.innerHTML = `${number}%`;
-    }, tRate);
-    return () => clearInterval(intervalRate);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (

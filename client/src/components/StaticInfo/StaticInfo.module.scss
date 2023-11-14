@@ -61,7 +61,7 @@
     .data {
       font-family: $font-nunito;
       font-size: 36px;
-      color: #258f67;
+      color: $secondary-green;
       font-weight: 900;
       @include for-size(768px) {
         font-size: 40px;
