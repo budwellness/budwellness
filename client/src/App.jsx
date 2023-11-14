@@ -19,26 +19,21 @@ import Footer from './components/Footer/Footer';
 import Modal from './components/Modal/Modal';
 
 // USER IMPORTS:
-import {
-  useLoginUserMutation,
-} from './store/serverResponse/danitApi.auth';
+import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
 
 import {
-  userLoginUserAction, userLogutUserAction,
+  userLoginUserAction,
+  userLogutUserAction,
 } from './store/user/user.slice';
 
 // WISHLIST IMPORTS:
 import { setWishlistAction } from './store/wishlist/wishList.slice';
 
-import {
-  useLazyGetWishlistQuery,
-} from './store/serverResponse/danitApi.wishlist';
+import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
 // CART IMPORTS:
 import { setCartAction } from './store/cart/cart.slice';
-import {
-  useLazyGetCartQuery,
-} from './store/serverResponse/danitApi.cart';
+import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
@@ -47,20 +42,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
-import styles from './components/Header/Header.module.scss';
 
 const { log } = console;
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
+<<<<<<< HEAD
   const [showModal, setShowModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
   const [showModalAddToCart, setShowModalAddToCart] = useState(false);
+=======
+>>>>>>> dev
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { isUserLogin } = useSelector(
-    (state) => state.user,
-  );
+  const { isUserLogin } = useSelector((state) => state.user);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -74,13 +69,8 @@ function App() {
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
-  const [
-    getCart,
-    {
-      data: userCartData,
-      isSuccess: isSuccessUserCartData,
-    },
-  ] = useLazyGetCartQuery();
+  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
+    useLazyGetCartQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -108,17 +98,6 @@ function App() {
 
   /* ------------------------------------------------ */
 
-  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
-  };
-
   /* ------------------------------------------------ */
 
   const initUserCardOnLoad = () => {
@@ -138,10 +117,7 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
-      <Header actions={{
-        handleModal, showModal, setShowModal, setShowCartModal, getCart, getWishlist,
-      }}
-      />
+      <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
@@ -152,6 +128,7 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+<<<<<<< HEAD
       <Footer
         products={products}
         error={error}
@@ -170,6 +147,10 @@ function App() {
           />
         </Modal>
       )}
+=======
+      <Footer />
+      <CartModal />
+>>>>>>> dev
     </>
   );
 }

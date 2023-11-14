@@ -13,20 +13,14 @@ const { log } = console;
 export default function LinkUnderline(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
-    to,
-    children,
-    style,
-    type,
-    productId,
+    to, children, style, type, productId, isDisabled,
   } = props;
 
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { token: tokenReduxStore } = useSelector(
-    (state) => state.user,
-  );
+  const { token: tokenReduxStore } = useSelector((state) => state.user);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
@@ -61,7 +55,14 @@ export default function LinkUnderline(props) {
       className={styles.linkUnderline}
       style={style}
       type={type}
-      onClick={type === 'button' ? removeFromServerCartHandler : () => { log('Error is here...=)'); }}
+      disabled={isDisabled}
+      onClick={
+        type === 'button'
+          ? removeFromServerCartHandler
+          : () => {
+            log('Error is here...=)');
+          }
+      }
     >
       {children}
     </Component>
@@ -74,6 +75,7 @@ LinkUnderline.propTypes = {
   style: PropTypes.shape({}),
   type: PropTypes.string,
   productId: PropTypes.string,
+  isDisabled: PropTypes.bool,
 };
 
 LinkUnderline.defaultProps = {
@@ -82,4 +84,5 @@ LinkUnderline.defaultProps = {
   style: {},
   type: '',
   productId: '',
+  isDisabled: false,
 };
