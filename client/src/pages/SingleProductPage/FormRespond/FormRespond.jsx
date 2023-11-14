@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import {
+  Formik, Form, Field, ErrorMessage,
+} from 'formik';
 import * as yup from 'yup';
 import Button from '../../../components/Button/Button';
 import styles from './FormRespond.module.scss';
@@ -32,7 +34,7 @@ function FormRespond() {
       initialValues={initialValues}
       onSubmit={() => {}}
       validationSchema={validationSchema}
-      validateOnBlur:true
+      validateOnBlur
     >
       {({ handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
