@@ -1,4 +1,5 @@
-/* eslint-disable */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable  jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import FormRespond from '../FormRespond/FormRespond';
 import ArrowDownIcon from '../../../components/UI/ArrowDownIcon';
@@ -129,7 +130,8 @@ function Tabs() {
           >
             <h4 className={styles.tabTitle}>
               Reviews(
-              {mockDataProduct.reviews.length})
+              {mockDataProduct.reviews.length}
+              )
             </h4>
             <ArrowDownIcon
               className={toggle === 2 ? styles.activeArrow : styles.arrow}
@@ -151,75 +153,14 @@ function Tabs() {
             />
           </div>
         </div>
-        {/* <div className={styles.titlesWrap}>
-          <select
-            value={toggle}
-            onChange={(e) => updateToggle(parseInt(e.target.value))}
-            className={styles.titlesWrap}
-          />
-          <option
-            value={1}
-            className={
-              toggle === 1
-                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
-                : styles.tabTitleWrapp
-            }
-            onClick={() => {
-              updateToggle(1);
-            }}
-          >
-            <h4 className={styles.tabTitle}>Description</h4>
-            <ArrowDownIcon
-              className={toggle === 1 ? styles.activeArrow : styles.arrow}
-            />
-          </option>
-
-          <option
-            value={2}
-            className={
-              toggle === 2
-                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
-                : styles.tabTitleWrapp
-            }
-            onClick={() => {
-              updateToggle(2);
-            }}
-          >
-            <h4 className={styles.tabTitle}>
-              Reviews(
-              {mockDataProduct.reviews.length})
-            </h4>
-            <ArrowDownIcon
-              className={toggle === 2 ? styles.activeArrow : styles.arrow}
-            />
-          </option>
-
-          <option
-            value={3}
-            className={
-              toggle === 3
-                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
-                : styles.tabTitleWrapp
-            }
-            onClick={() => {
-              updateToggle(3);
-            }}
-          >
-            <h4 className={styles.tabTitle}>Additional Information</h4>
-            <ArrowDownIcon
-              className={toggle === 3 ? styles.activeArrow : styles.arrow}
-            />
-          </option>
-        </div> */}
-
-        {/* <hr className={styles.titlesWrapHr} /> */}
 
         <div className={styles.contentsWrapp}>
           <div
             className={toggle === 1 ? styles.showContent : styles.tabContent}
           >
             <p className={`${styles.text} ${styles.downAnimation}`}>
-              {mockDataProduct.description.short} <br />
+              {mockDataProduct.description.short}
+              <br />
               <br />
               {mockDataProduct.description.completion}
             </p>
@@ -228,9 +169,9 @@ function Tabs() {
           <div
             className={toggle === 2 ? styles.showContent : styles.tabContent}
           >
-            {mockDataProduct.reviews.map((review, index) => (
+            {mockDataProduct.reviews.map((review) => (
               <div
-                key={index}
+                key={review}
                 className={`${styles.text} ${styles.downAnimation}`}
               >
                 <ul className={styles.reviewWrrap}>

@@ -32,7 +32,9 @@ function FormRespond() {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={() => {}}
+      onSubmit={(values, { resetForm }) => {
+        resetForm();
+      }}
       validationSchema={validationSchema}
       validateOnBlur
     >

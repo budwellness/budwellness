@@ -9,10 +9,6 @@
   box-shadow: 3px 3px 5px 2px rgba(192, 192, 192, 0.5);
   padding: 20px;
   margin-top: 50px;
-  // @include for-size(768px) {
-  //   display: flex;
-  //   justify-content: space-between;
-  // }
 }
 
 .title_content {
@@ -22,17 +18,10 @@
   }
 }
 
-.tabDesc {
-  // @include for-size(768px) {
-  //   display: flex;
-  // } не використовую
-}
-
 .titlesWrap {
   border-bottom: 3px solid $secondary-green;
   @include for-size(768px) {
     display: flex;
-    // justify-content: space-around;
     margin-bottom: 25px;
     border-bottom: 1px solid grey;
   }
@@ -59,24 +48,13 @@
       top: 100%;
     }
   }
-  // &:hover::after {
-  //   position: absolute;
-  //   content: '';
-  //   width: 100%;
-  //   height: 3px;
-  //   background: $secondary-green;
-  //   animation: underline 0.5s ease-in-out;
-  //   top: 100%;
-  // }
 }
 
 @keyframes underline {
   0% {
-    // left: 0;
     width: 0;
   }
   100% {
-    // left: 0;
     width: 100%;
   }
 }
@@ -88,13 +66,9 @@
   font-weight: 700;
   margin: 0;
   padding-bottom: 15px;
-  // position: relative;
   &:hover {
     color: $secondary-green;
   }
-  // &.activeTabtitle {
-  //   color: $secondary-green;
-  // }
 }
 
 .activeTabTitle .tabTitle {
@@ -143,21 +117,6 @@
   }
 }
 
-// .titlesWrapHr {
-//   display: none;
-//   @include for-size(768px) {
-//     display: block;
-//     position: relative;
-//     bottom: 30px;
-//   }
-// } не використовую
-
-// .contentsWrapp {
-//   @include for-size(1200px) {
-//     width: 80%;
-//   }
-// }
-
 .tabContent {
   display: none;
 }
@@ -168,13 +127,6 @@
 
 .showContent {
   display: block;
-  // width: 100;
-}
-
-.activeContent {
-  // @include for-size(768px) {
-  //   height: 400px;
-  // } не використовую
 }
 
 @keyframes slideDown {
@@ -219,8 +171,6 @@
 }
 
 .table {
-  // display: flex;
-  // flex-direction: column;
   display: grid;
   border: 1px solid $main-text-color;
   border-collapse: collapse;

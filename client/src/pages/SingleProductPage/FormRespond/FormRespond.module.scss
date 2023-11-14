@@ -5,12 +5,7 @@
 }
 
 .wrapper_name_email {
-  // display: flex;
-  // flex-direction: column;
-  // flex: 1;
   @include for-size(992px) {
-    // flex-direction: row;
-    // display: flex;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5%;
@@ -22,22 +17,8 @@
   display: grid;
   width: 100%;
   margin-bottom: 20px;
-  // grid-template-columns: 1fr;
-
-  @include for-size(992px) {
-    // width: calc(50% - 40px);
-    // min-width: 100%;
-    // grid-template-columns: repeat(2, 1fr);
-  }
-
-  &:last-child {
-    @include for-size(992px) {
-      width: 100%;
-    }
-  }
 
   @include for-size(1200px) {
-    // display: grid;
     margin-bottom: 30px;
   }
 
@@ -78,12 +59,12 @@
     min-height: 135px;
     resize: none;
     @include for-size(992px) {
-      margin-bottom: 40px;
     }
   }
 }
 
 .buttonWrapp {
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   width: 100%;
