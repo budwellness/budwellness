@@ -104,7 +104,7 @@ function SingleProductPage() {
     <>
       <ScrollToTop />
       <PagePreviewHeader
-        title="Single Product"
+        title="Buy now and enjoy"
         text="Discover nature's remedy for peace and balance"
       />
       <Container>
