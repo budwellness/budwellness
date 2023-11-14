@@ -7,14 +7,28 @@ import CartIcon from '../../UI/CartIcon';
 import FavouriteIcon from '../../UI/FavouriteIcon';
 import EyeIcon from '../../UI/EyeIcon';
 import RatingStars from '../../RatingStars/RatingStars';
+import useToggleCart from '../../../hooks/useToggleCart';
 
 import styles from './PopularSwiperSlide.module.scss';
+import { useSelector } from 'react-redux';
+import useToggleWishlist from '../../../hooks/useToggleWishlist';
 
 function PopularSwiperSlide(props) {
-
+    /* --------------------------- INIT PROPS: --------------------------- */
     const {
         products: productItem,
     } = props
+    /* --------------------------- INIT HOOKS: --------------------------- */
+    const toggleCartHandler = useToggleCart();
+    const toggleWishlistHandler = useToggleWishlist();
+
+
+    /* --------------------------- REDUX STATE: --------------------------- */
+    const { cart: cartStoreData } = useSelector((state) => state.cart);
+    const { token: tokenReduxStore } = useSelector((state) => state.user);
+    const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
+
+
 
     return (
         <div className={styles.wpapper}>
@@ -28,7 +42,7 @@ function PopularSwiperSlide(props) {
                             <button
                                 type="button"
                                 className={styles.actionLink}
-                                onClick={() => toggleCartHandler(productItem._id, tokenReduxStore)}
+                                onClick={() => toggleCartHandler(productItem._id, tokenReduxStore, cartStoreData)}
                             >
                                 <CartIcon className={styles.styleIcon} />
                             </button>
@@ -37,7 +51,7 @@ function PopularSwiperSlide(props) {
                             <button
                                 type="button"
                                 className={styles.actionLink}
-                                onClick={() => { }}
+                                onClick={() => toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData)}
                             >
                                 <FavouriteIcon className={styles.styleIcon} />
                             </button>
