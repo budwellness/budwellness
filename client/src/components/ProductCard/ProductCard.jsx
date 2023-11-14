@@ -28,7 +28,6 @@ function ProductCard(props) {
     actions: {
       toggleWishlistHandler,
       toggleCartHandler,
-      setShowModalAddToCart,
     },
     product,
   } = props;
@@ -100,7 +99,6 @@ function ProductCard(props) {
   );
 
   return (
-
     <div className={cn(styles.productCard, styles[classNames])}>
       <div className={styles.productCard__media}>
         <Link
@@ -109,24 +107,22 @@ function ProductCard(props) {
         >
           <div className={styles.productCard__img_wrapper}>
             <img
-              className={
-                styles.productCard__img
-              }
+              className={styles.productCard__img}
               src={imageUrls[0]}
               alt={name}
             />
           </div>
         </Link>
         {previousPrice !== currentPrice && (
-          <span className={styles.productCard__saleLabel}>
-            Sale
-          </span>
+          <span className={styles.productCard__saleLabel}>Sale</span>
         )}
         <div className={styles.productCard__overlay}>
           <div className={styles.productCard__action}>
             <ButtonIcon
               className={styles.btn__viewSingleProduct}
-              onClick={setShowModalAddToCart}
+              onClick={() => {
+                // setShowModalAddToCart();
+              }}
             >
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
@@ -143,41 +139,31 @@ function ProductCard(props) {
         </div>
       </div>
       <div className={styles.productCard__main}>
-        <RatingStars
-          rate={rate}
-        />
+        <RatingStars rate={rate} />
         <Link
           to={`/product/${itemNo}`}
           className={styles.productCard__title_link}
         >
-          {name}
+          <h3 className={styles.productCard__title}>{name}</h3>
         </Link>
-        <div className={styles.productCard__propertys}>
-          <div className={styles.productCard__property_thc}>
+        <ul className={styles.productCard__propertys}>
+          <li className={styles.productCard__propertys_item}>
             <span>THC</span>
-            {' '}
-            {getThcCategory(thc)}
-          </div>
-          <div className={styles.productCard__property_cbd}>
+            {` ${getThcCategory(thc)}`}
+          </li>
+          <li className={styles.productCard__propertys_item}>
             <span>CBD</span>
-            {' '}
-            {getCbdCategory(cbd)}
-          </div>
-        </div>
-        <div className={styles.productCard__productPrices}>
+            {` ${getCbdCategory(cbd)}`}
+          </li>
+        </ul>
+        <div className={styles.productCard__prices_wrapper}>
           {previousPrice !== currentPrice && (
-            <span
-              className={styles.productCard__previousPrice}
-            >
-              $
-              {previousPrice.toFixed(2)}
+            <span className={styles.productCard__previous_price}>
+              {`$${previousPrice.toFixed(2)}`}
             </span>
           )}
-          <span
-            className={styles.productCard__currentPrice}
-          >
-            $
-            {currentPrice.toFixed(2)}
+          <span className={styles.productCard__current_price}>
+            {`$${currentPrice.toFixed(2)}`}
           </span>
         </div>
         <Button
@@ -185,11 +171,7 @@ function ProductCard(props) {
             whiteBtn: !isExistInCart,
             whiteBtn_active: isExistInCart,
           })}
-          text={
-            isExistInCart
-              ? 'Remove from cart'
-              : 'Add to cart'
-          }
+          text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
           onClick={toggleCartWithLoginHandler}
         />
       </div>

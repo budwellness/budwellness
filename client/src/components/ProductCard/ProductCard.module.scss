@@ -138,38 +138,51 @@
       margin: 10px 0;
       max-width: 280px;
       min-height: 23px;
-      font-family: $font-nunito;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 1.3;
       text-decoration: none;
-      text-wrap: balance;
       color: $main-green;
       cursor: pointer;
-      transition: 0.3s ease-in-out;
+      transition: color 0.3s ease-in-out;
 
-      @include _576 {
-        min-height: 52px;
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
+      .productCard__title {
+        margin: 0;
+        font-family: $font-nunito;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1.3;
+        text-wrap: balance;
+        text-transform: capitalize;
+        
+        @include _576 {
+          min-height: 52px;
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+        }
+
+        &:is(:hover, :focus) {
+          color: $secondary-green;
+          transition: 0.3s ease-in-out;
+        }
       }
+    }
+    .productCard__propertys {
+      margin: 0;
+      padding: 0;
 
-      &:is(:hover, :focus) {
-        color: $secondary-green;
-        transition: 0.3s ease-in-out;
+      .productCard__propertys_item {
+        font-family: $font-montserrat;
+        font-size: 14px;
+        color: $main-green;
+        list-style-type: none;
+
+        & span {
+          font-weight: 600;
+        }
       }
     }
 
-    .productCard__propertys span {
-      font-family: $font-montserrat;
-      font-weight: 600;
-      font-size: 14px;
-      color: $main-green;
-    }
-
-    .productCard__productPrices {
+    .productCard__prices_wrapper {
       width: 100%;
       margin: 15px 0 20px;
       @include dflex-jcc-aic;
@@ -177,14 +190,14 @@
       line-height: 1.1;
       font-family: $font-nunito;
 
-      .productCard__previousPrice {
+      .productCard__previous_price {
         margin-right: 15px;
         font-weight: 700;
         color: $secondary-text-color;
         text-decoration: line-through;
       }
 
-      .productCard__currentPrice {
+      .productCard__current_price {
         color: $main-green;
         font-weight: 800;
       }

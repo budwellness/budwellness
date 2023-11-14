@@ -155,7 +155,7 @@ function App() {
       <Footer
         products={products}
         error={error}
-        setShowModalAddToCart={setShowModalAddToCart} />
+      />
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
