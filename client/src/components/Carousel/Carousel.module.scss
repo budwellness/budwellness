@@ -10,7 +10,7 @@
     padding-top: 130px;
   }
   @include for-size(1200px) {
-    background: linear-gradient(to right, white 50%, $main-green 50%);
+    background: linear-gradient(to right, #fafaf5 50%, $main-green 50%);
     padding-top: 0;
   }
 }
@@ -134,7 +134,7 @@
     width: 60%;
     background: linear-gradient(
       to right,
-      $white-text-color 23%,
+      #fafaf5 23%,
       $main-green 23%,
       $main-green 90%,
       $main-green 90%

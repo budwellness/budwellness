@@ -15,7 +15,6 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
 import Footer from './components/Footer/Footer';
-import StaticInfo from './components/StaticInfo/StaticInfo';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
@@ -134,7 +133,7 @@ function App() {
           getWishlist,
         }}
       />
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
@@ -143,9 +142,8 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Routes> */}
-      <StaticInfo />
-      {/* <Footer /> */}
+      </Routes>
+      <Footer />
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
