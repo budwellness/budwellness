@@ -105,7 +105,7 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
-      {/* <Header actions={{ setShowCartModal, getCart, getWishlist }} />
+      <Header actions={{ setShowCartModal, getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
@@ -115,9 +115,8 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Routes> */}
-      <SingleProductPage />
-      {/* <Footer products={products} error={error} /> */}
+      </Routes>
+      <Footer products={products} error={error} />
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}

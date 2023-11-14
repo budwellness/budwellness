@@ -4,19 +4,40 @@
   }
 }
 
+.wrapper_name_email {
+  // display: flex;
+  // flex-direction: column;
+  // flex: 1;
+  @include for-size(992px) {
+    // flex-direction: row;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5%;
+  }
+}
+
 .form {
+  position: relative;
   display: grid;
   width: 100%;
   margin-bottom: 20px;
-  grid-template-columns: 1fr;
+  // grid-template-columns: 1fr;
 
   @include for-size(992px) {
+    // width: calc(50% - 40px);
     // min-width: 100%;
-    grid-template-columns: repeat(2, 1fr);
+    // grid-template-columns: repeat(2, 1fr);
+  }
+
+  &:last-child {
+    @include for-size(992px) {
+      width: 100%;
+    }
   }
 
   @include for-size(1200px) {
-    display: grid;
+    // display: grid;
     margin-bottom: 30px;
   }
 
@@ -40,6 +61,14 @@
     border-radius: 24px;
     border: 1px solid $secondary-text-color;
     padding: 13px 20px;
+  }
+
+  &__errorMessage {
+    position: absolute;
+    bottom: -20px;
+    color: red;
+    font-size: 14px;
+    padding-top: 5px;
   }
 
   &__messageText {

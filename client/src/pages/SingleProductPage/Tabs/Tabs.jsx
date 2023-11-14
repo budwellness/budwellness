@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import FormikField from '../FormikField/FormikField';
+import FormRespond from '../FormRespond/FormRespond';
 import ArrowDownIcon from '../../../components/UI/ArrowDownIcon';
 import styles from './Tabs.module.scss';
 
@@ -151,8 +151,68 @@ function Tabs() {
             />
           </div>
         </div>
+        {/* <div className={styles.titlesWrap}>
+          <select
+            value={toggle}
+            onChange={(e) => updateToggle(parseInt(e.target.value))}
+            className={styles.titlesWrap}
+          />
+          <option
+            value={1}
+            className={
+              toggle === 1
+                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                : styles.tabTitleWrapp
+            }
+            onClick={() => {
+              updateToggle(1);
+            }}
+          >
+            <h4 className={styles.tabTitle}>Description</h4>
+            <ArrowDownIcon
+              className={toggle === 1 ? styles.activeArrow : styles.arrow}
+            />
+          </option>
 
-        <hr className={styles.titlesWrapHr} />
+          <option
+            value={2}
+            className={
+              toggle === 2
+                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                : styles.tabTitleWrapp
+            }
+            onClick={() => {
+              updateToggle(2);
+            }}
+          >
+            <h4 className={styles.tabTitle}>
+              Reviews(
+              {mockDataProduct.reviews.length})
+            </h4>
+            <ArrowDownIcon
+              className={toggle === 2 ? styles.activeArrow : styles.arrow}
+            />
+          </option>
+
+          <option
+            value={3}
+            className={
+              toggle === 3
+                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                : styles.tabTitleWrapp
+            }
+            onClick={() => {
+              updateToggle(3);
+            }}
+          >
+            <h4 className={styles.tabTitle}>Additional Information</h4>
+            <ArrowDownIcon
+              className={toggle === 3 ? styles.activeArrow : styles.arrow}
+            />
+          </option>
+        </div> */}
+
+        {/* <hr className={styles.titlesWrapHr} /> */}
 
         <div className={styles.contentsWrapp}>
           <div
@@ -200,7 +260,7 @@ function Tabs() {
             ))}
             <div className={styles.formReview}>
               <h4 className={styles.formTitle}>Add Review</h4>
-              <FormikField />
+              <FormRespond />
             </div>
           </div>
 

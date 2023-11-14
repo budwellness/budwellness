@@ -29,10 +29,12 @@
 }
 
 .titlesWrap {
+  border-bottom: 3px solid $secondary-green;
   @include for-size(768px) {
     display: flex;
     // justify-content: space-around;
-    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid grey;
   }
 }
 
@@ -141,14 +143,14 @@
   }
 }
 
-.titlesWrapHr {
-  display: none;
-  @include for-size(768px) {
-    display: block;
-    position: relative;
-    bottom: 30px;
-  }
-}
+// .titlesWrapHr {
+//   display: none;
+//   @include for-size(768px) {
+//     display: block;
+//     position: relative;
+//     bottom: 30px;
+//   }
+// } не використовую
 
 // .contentsWrapp {
 //   @include for-size(1200px) {
