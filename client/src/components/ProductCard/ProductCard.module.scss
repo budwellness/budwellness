@@ -94,6 +94,7 @@
             height: 16px;
           }
         }
+
         .btn__addToFavorites_active,
         .btn__viewSingleProduct_active {
           height: 40px;
@@ -151,7 +152,7 @@
         line-height: 1.3;
         text-wrap: balance;
         text-transform: capitalize;
-        
+
         @include _576 {
           min-height: 52px;
           display: -webkit-box;
@@ -166,6 +167,7 @@
         }
       }
     }
+
     .productCard__propertys {
       margin: 0;
       padding: 0;

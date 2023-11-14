@@ -196,7 +196,7 @@ ProductCard.propTypes = {
   actions: PropTypes.shape({
     toggleWishlistHandler: PropTypes.func,
     toggleCartHandler: PropTypes.func,
-    setShowModalAddToCart: PropTypes.func,
+    // setShowModalAddToCart: PropTypes.func,
   }),
 };
 

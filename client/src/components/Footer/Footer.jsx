@@ -1,16 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Button from '../Button/Button';
 import ProductList from '../ProductList/ProductList';
 import styles from './Footer.module.scss';
 import DoneIcon from '../UI/DoneIcon';
 
-function Footer(props) {
-  // eslint-disable-next-line react/prop-types
-  const { setShowModalAddToCart, error, products } = props;
-  // console.log(products);
-  // console.log(setShowModalAddToCart);
+function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -21,21 +16,10 @@ function Footer(props) {
           <Button />
           <div className={styles.container__secondary}>secondary</div>
         </div>
-        <ProductList
-          products={products}
-          error={error}
-          setShowModalAddToCart={setShowModalAddToCart}
-        />
+        <ProductList />
       </div>
     </footer>
   );
 }
-
-ProductList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  products: PropTypes.arrayOf(PropTypes.object),
-  setShowModalAddToCart: PropTypes.bool.isRequired,
-  error: PropTypes.string,
-};
 
 export default Footer;

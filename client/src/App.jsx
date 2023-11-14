@@ -14,9 +14,9 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
-import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
+// import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import Footer from './components/Footer/Footer';
-import Modal from './components/Modal/Modal';
+// import Modal from './components/Modal/Modal';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
@@ -47,12 +47,6 @@ const { log } = console;
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
-<<<<<<< HEAD
-  const [showModal, setShowModal] = useState(false);
-  const [showCartModal, setShowCartModal] = useState(false);
-  const [showModalAddToCart, setShowModalAddToCart] = useState(false);
-=======
->>>>>>> dev
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector((state) => state.user);
@@ -128,17 +122,9 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-<<<<<<< HEAD
-      <Footer
-        products={products}
-        error={error}
-      />
-      <CartModal
-        showCartModal={showCartModal}
-        setShowCartModal={setShowCartModal}
-      />
-      {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)} />}
-      {showModalAddToCart && (
+      <Footer />
+      <CartModal />
+      {/* {showModalAddToCart && (
         <Modal handleModal={handleModal} >
           <ModalAddToCart
             product={products?.product}
@@ -146,11 +132,7 @@ function App() {
             setShowModalAddToCart={setShowModalAddToCart}
           />
         </Modal>
-      )}
-=======
-      <Footer />
-      <CartModal />
->>>>>>> dev
+      )} */}
     </>
   );
 }
