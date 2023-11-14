@@ -40,14 +40,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
-import styles from './components/Header/Header.module.scss';
 
 const { log } = console;
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
-  const [showModal, setShowModal] = useState(false);
-  const [showCartModal, setShowCartModal] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector((state) => state.user);
@@ -93,17 +90,6 @@ function App() {
 
   /* ------------------------------------------------ */
 
-  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
-  };
-
   /* ------------------------------------------------ */
 
   const initUserCardOnLoad = () => {
@@ -123,16 +109,7 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
-      <Header
-        actions={{
-          handleModal,
-          showModal,
-          setShowModal,
-          setShowCartModal,
-          getCart,
-          getWishlist,
-        }}
-      />
+      <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
@@ -144,16 +121,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
-      <CartModal
-        showCartModal={showCartModal}
-        setShowCartModal={setShowCartModal}
-      />
-      {showCartModal && (
-        <div
-          className="overLayCartModal"
-          onClick={() => setShowCartModal(false)}
-        />
-      )}
+      <CartModal />
     </>
   );
 }

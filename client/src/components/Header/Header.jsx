@@ -25,15 +25,14 @@ import {
   userLogutUserAction,
 } from '../../store/user/user.slice';
 
+import { setModal } from '../../store/modal/modal.slice';
+import { setCartModal } from '../../store/cartModal/cartModal.slice';
+
 import styles from './Header.module.scss';
 
 function Header(props) {
   const {
     actions: {
-      handleModal,
-      showModal,
-      setShowModal,
-      setShowCartModal,
       getCart,
       getWishlist,
     },
@@ -59,6 +58,7 @@ function Header(props) {
   );
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
@@ -92,6 +92,15 @@ function Header(props) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  /* --------------------------- COMPONENT Modal: --------------------------- */
+  const handleModal = () => {
+    dispatch(setModal(!isOpenModal));
+  };
+
+  const handleOpenCartModal = () => {
+    dispatch(setCartModal(true));
+  };
 
   // ========================================================
 
@@ -127,7 +136,7 @@ function Header(props) {
               <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>
-            <ButtonHeader className={styles.header_userLink} onClick={setShowCartModal}>
+            <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
               <CartIcon />
               {isUserLogin && cartStoreData.length > 0 && (
               <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
@@ -135,12 +144,12 @@ function Header(props) {
             </ButtonHeader>
           </div>
         </div>
-        {showModal && (
+        {isOpenModal && (
           isUserLogin
             ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
             : (
               <Modal handleModal={handleModal}>
-                <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
+                <LoginForm actions={{ handleModal, getCart, getWishlist }} />
               </Modal>
             )
         )}
@@ -154,7 +163,6 @@ Header.propTypes = {
     handleModal: PropTypes.func.isRequired,
     showModal: PropTypes.func.isRequired,
     setShowModal: PropTypes.func.isRequired,
-    setShowCartModal: PropTypes.func.isRequired,
     getCart: PropTypes.func.isRequired,
     getWishlist: PropTypes.func.isRequired,
   }),
@@ -162,7 +170,6 @@ Header.propTypes = {
 
 Header.defaultProps = {
   actions: {
-    setShowCartModal: () => {},
     getCart: () => {},
     getWishlist: () => {},
     handleModal: () => {},
