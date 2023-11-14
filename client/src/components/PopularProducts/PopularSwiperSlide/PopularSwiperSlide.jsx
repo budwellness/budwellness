@@ -17,18 +17,16 @@ function PopularSwiperSlide(props) {
     /* --------------------------- INIT PROPS: --------------------------- */
     const {
         products: productItem,
-    } = props
-    /* --------------------------- INIT HOOKS: --------------------------- */
-    const toggleCartHandler = useToggleCart();
-    const toggleWishlistHandler = useToggleWishlist();
-
+        actions: {
+            toggleCartHandler,
+            toggleWishlistHandler,
+        }
+    } = props;
 
     /* --------------------------- REDUX STATE: --------------------------- */
     const { cart: cartStoreData } = useSelector((state) => state.cart);
     const { token: tokenReduxStore } = useSelector((state) => state.user);
     const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
-
-
 
     return (
         <div className={styles.wpapper}>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
 import { useDispatch, useSelector } from 'react-redux';
-import cN from 'classnames';
+
 
 // COMPONENT IMPORTS:
 
@@ -27,6 +27,8 @@ import { useAddToCartMutation, useRemoveFromCartMutation } from '../../../store/
 import useRemoveFromCart from '../../../hooks/useRemoveFromCart';
 import { addItemToCartAction, removeItemFromCartAction } from '../../../store/cart/cart.slice';
 import { toast } from 'react-toastify';
+import useToggleCart from '../../../hooks/useToggleCart';
+import useToggleWishlist from '../../../hooks/useToggleWishlist';
 
 SwiperCore.use([Pagination, Autoplay]);
 
@@ -38,7 +40,8 @@ export default function PopularSwiper() {
 
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
-
+  const toggleCartHandler = useToggleCart();
+  const toggleWishlistHandler = useToggleWishlist();
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { token: tokenReduxStore } = useSelector((state) => state.user);
@@ -62,32 +65,8 @@ export default function PopularSwiper() {
   const [removeProductFromCart] = useRemoveFromCartMutation();
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
-  const toggleCartHandler = (productId, token) => {
-    const isExist = cartStoreData.some((p) => p.product._id === productId);
 
-    if (isExist) {
-      try {
-        removeProductFromCart({ productId, token });
-        dispatch(removeItemFromCartAction(productId));
-        toast.warn('Product was removed from cart!');
-      } catch (error) {
-        log(error);
-        toast.error('Something went wrong...');
-      }
-    } else {
-      try {
-        addProductToCart({ productId, token })
-          .unwrap()
-          .then((response) => {
-            dispatch(addItemToCartAction(response.products));
-            toast.success('Product was added to cart!');
-          });
-      } catch (error) {
-        log(error);
-        toast.error('Something went wrong...');
-      }
-    }
-  };
+
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
 
@@ -97,7 +76,15 @@ export default function PopularSwiper() {
         filteredProductsData.products
           ?.map((productItem) => (
             <SwiperSlide key={productItem.itemNo} className={styles.slide}>
-              <PopularSwiperSlide products={productItem} />
+              <PopularSwiperSlide
+                products={productItem}
+                actions={
+                  {
+                    toggleCartHandler,
+                    toggleWishlistHandler
+                  }
+                }
+              />
             </SwiperSlide>
           )),
       );
