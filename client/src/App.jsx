@@ -19,7 +19,10 @@ import Footer from './components/Footer/Footer';
 // USER IMPORTS:
 import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
 
-import { userLoginUserAction } from './store/user/user.slice';
+import {
+  userLoginUserAction,
+  userLogutUserAction,
+} from './store/user/user.slice';
 
 // WISHLIST IMPORTS:
 import { setWishlistAction } from './store/wishlist/wishList.slice';
@@ -36,12 +39,14 @@ import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
-
-const log = console.log;
 import ContactPage from './pages/ContactPage/ContactPage';
+import styles from './components/Header/Header.module.scss';
+
+const { log } = console;
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
+  const [showModal, setShowModal] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
@@ -88,6 +93,19 @@ function App() {
 
   /* ------------------------------------------------ */
 
+  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    dispatch(userLogutUserAction());
+  };
+
+  /* ------------------------------------------------ */
+
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
       dispatch(setCartAction(userCartData.products));
@@ -105,7 +123,16 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
-      <Header actions={{ setShowCartModal, getCart, getWishlist }} />
+      <Header
+        actions={{
+          handleModal,
+          showModal,
+          setShowModal,
+          setShowCartModal,
+          getCart,
+          getWishlist,
+        }}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
@@ -116,13 +143,11 @@ function App() {
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer products={products} error={error} />
+      <Footer />
       <CartModal
         showCartModal={showCartModal}
         setShowCartModal={setShowCartModal}
       />
-      {}
-      {}
       {showCartModal && (
         <div
           className="overLayCartModal"

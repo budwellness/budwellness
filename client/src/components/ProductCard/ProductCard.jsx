@@ -1,17 +1,37 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
+import { useSelector } from 'react-redux';
+// COMPONENT IMPORTS:
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
 import FavouriteIcon from '../UI/FavouriteIcon';
 import EyeIcon from '../UI/EyeIcon';
+
 import getThcCategory from '../../helpers/functionGetThcCategory';
 import getCbdCategory from '../../helpers/functionGetCbdCategory';
+import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
+import cartButtonStateHandler from '../../helpers/cartButtonStateHandler';
+
 import styles from './ProductCard.module.scss';
 
-function ProductCard({ onClick, product }) {
+const { log } = console;
+
+function ProductCard(props) {
+  /* --------------------------- INIT PROPS: --------------------------- */
+  const {
+    actions: {
+      toggleWishlistHandler,
+      toggleCartHandler,
+    },
+    product,
+  } = props;
+
   const {
     imageUrls,
     previousPrice,
@@ -23,6 +43,60 @@ function ProductCard({ onClick, product }) {
     name,
     classNames,
   } = product;
+
+  /* --------------------------- COMPONENT STATE: --------------------------- */
+  const [isExistInWishlist, setIsExistInWishlist] = useState(false);
+  const [isExistInCart, setIsExistInCart] = useState(false);
+
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
+  const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
+  const { cart: cartStoreData } = useSelector((state) => state.cart);
+
+  /* --------------------------- COMPONENT HANDLERS: --------------------------- */
+
+  // WISHLIST:
+  const toggleWishlistWithLoginHandler = () => {
+    if (isUserLogin) {
+      toggleWishlistHandler(product, tokenReduxStore);
+    } else {
+      log('Please login first');
+    }
+  };
+
+  // CART:
+
+  const toggleCartWithLoginHandler = () => {
+    if (isUserLogin) {
+      toggleCartHandler(product, tokenReduxStore);
+    } else {
+      log('Please login first');
+    }
+  };
+
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
+  useEffect(
+    () => wishlistButtonStateHandler(
+      isUserLogin,
+      wishlistStoreData,
+      isExistInWishlist,
+      setIsExistInWishlist,
+      product._id,
+    ),
+    [wishlistStoreData, isUserLogin],
+  );
+
+  useEffect(
+    () => cartButtonStateHandler(
+      isUserLogin,
+      cartStoreData,
+      isExistInCart,
+      setIsExistInCart,
+      product._id,
+    ),
+    [cartStoreData, isUserLogin],
+  );
 
   return (
 
@@ -56,8 +130,11 @@ function ProductCard({ onClick, product }) {
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
             <ButtonIcon
-              className={styles.buttonAddFavorites}
-              onClick={() => { }}
+              className={cn({
+                [styles.buttonAddFavorites]: !isExistInWishlist,
+                [styles.buttonAddFavorites_active]: isExistInWishlist,
+              })}
+              onClick={toggleWishlistWithLoginHandler}
             >
               <FavouriteIcon className={styles.favoriteIcon} />
             </ButtonIcon>
@@ -103,7 +180,18 @@ function ProductCard({ onClick, product }) {
             {currentPrice.toFixed(2)}
           </span>
         </div>
-        <Button className="whiteBtn" text="Add to cart" onClick={onClick} />
+        <Button
+          className={cn({
+            whiteBtn: !isExistInCart,
+            whiteBtn_active: isExistInCart,
+          })}
+          text={
+            isExistInCart
+              ? 'Remove from cart'
+              : 'Add to cart'
+          }
+          onClick={toggleCartWithLoginHandler}
+        />
       </div>
     </div>
   );
@@ -123,7 +211,10 @@ ProductCard.propTypes = {
     classNames: PropTypes.string,
   }),
   // eslint-disable-next-line react/require-default-props
-  onClick: PropTypes.func,
+  actions: PropTypes.shape({
+    toggleWishlistHandler: PropTypes.func,
+    toggleCartHandler: PropTypes.func,
+  }),
 };
 
 export default ProductCard;

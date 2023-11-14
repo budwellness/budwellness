@@ -9,6 +9,7 @@ import Button from '../../components/Button/Button';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProductSwiper';
 import Tabs from './Tabs/Tabs';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 import FavouriteIcon from '../../components/UI/FavouriteIcon';
 
@@ -101,6 +102,7 @@ function SingleProductPage() {
 
   return (
     <>
+      <ScrollToTop />
       <PagePreviewHeader
         title="Single Product"
         text="Discover nature's remedy for peace and balance"
@@ -121,21 +123,14 @@ function SingleProductPage() {
             <div className={styles.ratingWrapper}>
               <RatingStars rate={mockDataProduct.rate} />
               <p className={styles.ratingText}>
-                (
-                {mockDataProduct.reviews.length}
-                {' '}
-                customer review
-                <span className={styles.span}>s</span>
-                )
+                ({mockDataProduct.reviews.length} customer review
+                <span className={styles.span}>s</span>)
               </p>
             </div>
             <p className={styles.descShort}>
               {mockDataProduct.description.short}
             </p>
-            <p className={styles.price}>
-              $
-              {mockDataProduct.currentPrice}
-            </p>
+            <p className={styles.price}>${mockDataProduct.currentPrice}</p>
             <div className={styles.buttonWrapper}>
               {/* <ButtonCount /> */}
               <Button
@@ -172,10 +167,7 @@ function SingleProductPage() {
               </li>
               <li className={styles.item}>
                 <span className={styles.property}>CBD:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.cbd}
-                  %
-                </span>
+                <span className={styles.value}>{mockDataProduct.cbd}%</span>
               </li>
               <li className={styles.item}>
                 <span className={styles.property}>Effects:</span>

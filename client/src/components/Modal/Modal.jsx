@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Modal.module.scss';
 import CloseIcon from '../../assets/icons/CloseIcon';
+import styles from './Modal.module.scss';
 
 function Modal({ handleModal, children }) {
   const handleCloseModal = (e) => {

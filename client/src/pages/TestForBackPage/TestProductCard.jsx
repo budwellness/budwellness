@@ -28,7 +28,7 @@ function TestProductCard(props) {
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
 
-  const [isExistInWishlist, setIsExistInWishlist] = useState(null);
+  const [isExistInWishlist, setIsExistInWishlist] = useState(false);
   const [isExistInCart, setIsExistInCart] = useState(null);
   const [cartProductQuantity, setCartProductQuantity] = useState(0);
 

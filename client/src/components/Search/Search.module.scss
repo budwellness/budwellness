@@ -1,7 +1,8 @@
 .header_userSearchForm {
   display: inline;
-  margin-right: 130px;
+  margin-right: 75px;
   position: relative;
+
 
   @media (max-width: 1199.98px) {
     margin-right: 0;
@@ -17,9 +18,16 @@
   background: #fff;
   outline: none;
   cursor: pointer;
+  width: 250px;
 
   @media (max-width: 767.98px) {
     display: none;
+  }
+
+  &:focus {
+    &::placeholder {
+      color: transparent;
+    }
   }
 }
 
