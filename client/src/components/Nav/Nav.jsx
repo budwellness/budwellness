@@ -24,7 +24,7 @@ function Nav({ showBurger, setShowBurger }) {
         </li>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <li className={styles.item} onClick={() => setShowBurger(false)}>
-          <Link to="/pages" className={styles.itemLink}>Pages</Link>
+          <Link to="/contact" className={styles.itemLink}>Contact</Link>
         </li>
       </ul>
     </nav>
