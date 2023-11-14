@@ -51,7 +51,6 @@ const {log} = console;
 
 function App() {
     const {data: products, error} = useGetAllProductsQuery();
-    const [showCartModal, setShowCartModal] = useState(false);
 
     /* --------------------------- REDUX STATE: --------------------------- */
     const {isUserLogin} = useSelector(
@@ -124,7 +123,7 @@ function App() {
                 autoClose={3000}
                 theme="colored"
             />
-            <Header actions={{setShowCartModal, getCart, getWishlist}}
+            <Header actions={{ getCart, getWishlist}}
             />
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
@@ -137,11 +136,7 @@ function App() {
                 <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
             <Footer/>
-            <CartModal
-                showCartModal={showCartModal}
-                setShowCartModal={setShowCartModal}
-            />
-            {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)}/>}
+            <CartModal />
         </>
     );
 }
