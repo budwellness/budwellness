@@ -101,7 +101,7 @@ function CartModalItem(props) {
         </div>
         { }
         {/* <a className={styles.removeLink} href="#">remove</a> */}
-        <LinkUnderline type="button" productId={product._id}>Remove</LinkUnderline>
+        <LinkUnderline type="button" productId={product._id} style={{ order: 4, marginTop: '10px' }}>Remove</LinkUnderline>
       </div>
     </li>
   );

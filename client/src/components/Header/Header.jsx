@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
@@ -10,8 +10,9 @@ import PropTypes from 'prop-types';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
-// import Nav from '../Nav/Nav';
+import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
+import ButtonHeader from '../ButtonHeader/ButtonHeader';
 
 // ICONS IMPORT:
 import LogoIcon from './icons/LogoIcon';
@@ -24,12 +25,14 @@ import {
   userLogutUserAction,
 } from '../../store/user/user.slice';
 
+import { setModal } from '../../store/modal/modal.slice';
+import { setCartModal } from '../../store/cartModal/cartModal.slice';
+
 import styles from './Header.module.scss';
 
 function Header(props) {
   const {
     actions: {
-      setShowCartModal,
       getCart,
       getWishlist,
     },
@@ -42,7 +45,6 @@ function Header(props) {
   /* --------------------------- LOCAL STATE: --------------------------- */
 
   const [showBurger, setShowBurger] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [sticky, setSticky] = useState(false);
 
@@ -56,12 +58,9 @@ function Header(props) {
   );
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
 
   const logoutHandler = () => {
     localStorage.removeItem('token');
@@ -94,13 +93,22 @@ function Header(props) {
     };
   }, []);
 
+  /* --------------------------- COMPONENT Modal: --------------------------- */
+  const handleModal = () => {
+    dispatch(setModal(!isOpenModal));
+  };
+
+  const handleOpenCartModal = () => {
+    dispatch(setCartModal(true));
+  };
+
   // ========================================================
 
   return (
     <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
       <Container>
         <div className={styles.wrapp}>
-          { }
+          {}
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <span
             className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
@@ -111,68 +119,37 @@ function Header(props) {
             <span className={cn(styles.line, styles.shortLine)} />
             <span className={styles.line} />
           </span>
-          <Link to="/">
+          <Link to="/" className={styles.logoLink}>
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
             <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
           </Link>
-          <nav className={`${showBurger ? styles.mobileNav : styles.list}`}>
-            <ul className={styles.header_navList}>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/">Home</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/shop">Shop</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/news">News</Link>
-              </li>
-              { }
-              <li
-                className={styles.header_navItem}
-                onClick={() => setShowBurger(false)}
-              >
-                <Link to="/contact">Contacts</Link>
-              </li>
-            </ul>
-          </nav>
+          <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
             <Search />
-            <Link to="/" className={styles.header_userLink} onClick={handleModal}>
+            <ButtonHeader className={styles.header_userLink} onClick={handleModal}>
               <LoginIcon />
-            </Link>
+            </ButtonHeader>
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
-                <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
+              <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>
-            <Link className={styles.header_userLink} onClick={setShowCartModal}>
+            <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
               <CartIcon />
               {isUserLogin && cartStoreData.length > 0 && (
-                <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
+              <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
               )}
-            </Link>
+            </ButtonHeader>
           </div>
         </div>
-        {showModal && (
+        {isOpenModal && (
           isUserLogin
             ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
             : (
               <Modal handleModal={handleModal}>
-                <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
+                <LoginForm actions={{ handleModal, getCart, getWishlist }} />
               </Modal>
             )
         )}
@@ -183,19 +160,19 @@ function Header(props) {
 
 Header.propTypes = {
   actions: PropTypes.shape({
-    setShowCartModal: PropTypes.func,
-    getCart: PropTypes.func,
-    getWishlist: PropTypes.func,
+    handleModal: PropTypes.func.isRequired,
+    showModal: PropTypes.func.isRequired,
+    setShowModal: PropTypes.func.isRequired,
+    getCart: PropTypes.func.isRequired,
+    getWishlist: PropTypes.func.isRequired,
   }),
-  setShowCartModal: () => { },
 };
 
 Header.defaultProps = {
-  setShowCartModal: () => { },
   actions: {
-    setShowCartModal: () => { },
-    getCart: () => { },
-    getWishlist: () => { },
+    getCart: () => {},
+    getWishlist: () => {},
+    handleModal: () => {},
   },
 };
 

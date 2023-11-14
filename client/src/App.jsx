@@ -14,30 +14,24 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
-import Footer from './components/Footer/Footer'
+import Footer from './components/Footer/Footer';
 
 // USER IMPORTS:
-import {
-  useLoginUserMutation
-} from './store/serverResponse/danitApi.auth'
+import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
 
 import {
   userLoginUserAction,
-} from './store/user/user.slice'
+  userLogutUserAction,
+} from './store/user/user.slice';
 
 // WISHLIST IMPORTS:
 import { setWishlistAction } from './store/wishlist/wishList.slice';
 
-import {
-  useLazyGetWishlistQuery,
-} from './store/serverResponse/danitApi.wishlist'
+import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
 // CART IMPORTS:
 import { setCartAction } from './store/cart/cart.slice';
-import {
-  useLazyGetCartQuery,
-} from './store/serverResponse/danitApi.cart'
-
+import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
@@ -45,25 +39,15 @@ import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
-
-
-
-
-
-
-const log = console.log
 import ContactPage from './pages/ContactPage/ContactPage';
 
+const { log } = console;
+
 function App() {
-
   const { data: products, error } = useGetAllProductsQuery();
-  const [showCartModal, setShowCartModal] = useState(false);
-
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { isUserLogin } = useSelector(
-    (state) => state.user
-  );
+  const { isUserLogin } = useSelector((state) => state.user);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -71,20 +55,14 @@ function App() {
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
-
   // WISHLIST API:
   const [
     getWishlist,
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
-  const [
-    getCart,
-    {
-      data: userCartData,
-      isSuccess: isSuccessUserCartData,
-    }
-  ] = useLazyGetCartQuery();
+  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
+    useLazyGetCartQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -96,7 +74,7 @@ function App() {
       log('token is present, put it into store...');
       dispatch(userLoginUserAction(localStorageToken));
       getWishlist(localStorageToken);
-      getCart(localStorageToken)
+      getCart(localStorageToken);
     }
   };
 
@@ -112,13 +90,15 @@ function App() {
 
   /* ------------------------------------------------ */
 
+  /* ------------------------------------------------ */
+
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
-      dispatch(setCartAction(userCartData.products))
+      dispatch(setCartAction(userCartData.products));
     }
-  }
+  };
 
-  useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData])
+  useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
 
@@ -129,7 +109,7 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
-      <Header actions={{ setShowCartModal, getCart, getWishlist }} />
+      <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
@@ -141,13 +121,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
-      <CartModal
-        showCartModal={showCartModal}
-        setShowCartModal={setShowCartModal}
-      />
-      { }
-      { }
-      {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)} />}
+      <CartModal />
     </>
   );
 }

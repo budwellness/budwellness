@@ -1,0 +1,219 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.tabsWrapp {
+  border-radius: 25px;
+  box-shadow: 3px 3px 5px 2px rgba(192, 192, 192, 0.5);
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.title_content {
+  @include for-size(992px) {
+    width: 70%;
+    margin: 60px auto;
+  }
+}
+
+.titlesWrap {
+  border-bottom: 3px solid $secondary-green;
+  @include for-size(768px) {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 1px solid grey;
+  }
+}
+
+.tabTitleWrapp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  @include for-size(768px) {
+    width: 35%;
+    justify-content: space-around;
+  }
+  @include for-size(768px) {
+    &:hover::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 3px;
+      background: $secondary-green;
+      animation: underline 0.5s ease-in-out;
+      top: 100%;
+    }
+  }
+}
+
+@keyframes underline {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.tabTitle {
+  font-family: $font-nunito;
+  font-size: 20px;
+  color: $main-green;
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 15px;
+  &:hover {
+    color: $secondary-green;
+  }
+}
+
+.activeTabTitle .tabTitle {
+  color: $secondary-green;
+  @include for-size(768px) {
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 3px;
+      background: $secondary-green;
+      animation: underline 0.5s ease-in-out;
+      top: 100%;
+      right: 0;
+    }
+  }
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  fill: $main-green;
+  transition: fill 0.3s ease;
+  transform-origin: center;
+  @include for-size(768px) {
+    display: none;
+  }
+}
+
+.activeArrow {
+  width: 30px;
+  height: 30px;
+  fill: $secondary-green;
+  animation: rotateArrow 0.3s ease forwards;
+  @include for-size(768px) {
+    display: none;
+  }
+}
+
+@keyframes rotateArrow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.tabContent {
+  display: none;
+}
+
+.text {
+  line-height: 1.5;
+}
+
+.showContent {
+  display: block;
+}
+
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+.downAnimation {
+  animation: slideDown 0.8s ease;
+}
+
+.reviewWrrap {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px;
+}
+
+.fullName {
+  font-weight: 600;
+  font-family: $font-nunito;
+  font-size: 18px;
+  padding-top: 15px;
+}
+
+.reviewDate {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.span {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.table {
+  display: grid;
+  border: 1px solid $main-text-color;
+  border-collapse: collapse;
+}
+
+.row {
+  display: grid;
+  border-bottom: 1px solid $main-text-color;
+  @include for-size(992px) {
+    grid-template-columns: 25% 75%;
+  }
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.table td {
+  padding: 10px;
+  @include for-size(992px) {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+  }
+}
+
+.table td:first-child {
+  border-bottom: 1px solid $main-text-color;
+  @include for-size(992px) {
+    border-bottom: none;
+    border-right: 1px solid $main-text-color;
+  }
+}
+
+.rowTitle {
+  font-weight: 700;
+}
+
+.formTitle {
+  color: $main-green;
+  font-family: $font-nunito;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  padding-top: 30px;
+}
