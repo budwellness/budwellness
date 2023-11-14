@@ -1,0 +1,42 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.infoWrapper {
+  padding-top: 160px;
+  @include for-size(992px) {
+    display: flex;
+    gap: 40px;
+  }
+}
+
+.info {
+  &__title {
+    font-family: $font-nunito;
+    color: $main-green;
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 800;
+    @include for-size(992px) {
+      font-size: 36px;
+      line-height: 1.2;
+    }
+  }
+
+  &__text {
+    color: $main-text-color;
+    line-height: 1.5;
+  }
+}
+
+.img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  //   height: 250px;
+  @include for-size(992px) {
+    height: auto;
+  }
+}
