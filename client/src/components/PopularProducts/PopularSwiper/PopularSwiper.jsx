@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 // COMPONENT IMPORTS:
 
 import PopularSwiperSlide from '../PopularSwiperSlide/PopularSwiperSlide';
@@ -49,9 +48,7 @@ export default function PopularSwiper() {
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
-
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
-
 
   useEffect(() => {
     if (isSuccessFilteredProductsData) {
@@ -64,7 +61,7 @@ export default function PopularSwiper() {
                 actions={
                   {
                     toggleCartHandler,
-                    toggleWishlistHandler
+                    toggleWishlistHandler,
                   }
                 }
               />
