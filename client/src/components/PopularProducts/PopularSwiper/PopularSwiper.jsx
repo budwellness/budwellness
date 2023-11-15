@@ -23,10 +23,6 @@ import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 
 import styles from './PopularSwiper.module.scss';
-import { useAddToCartMutation, useRemoveFromCartMutation } from '../../../store/serverResponse/danitApi.cart';
-import useRemoveFromCart from '../../../hooks/useRemoveFromCart';
-import { addItemToCartAction, removeItemFromCartAction } from '../../../store/cart/cart.slice';
-import { toast } from 'react-toastify';
 import useToggleCart from '../../../hooks/useToggleCart';
 import useToggleWishlist from '../../../hooks/useToggleWishlist';
 
@@ -39,14 +35,8 @@ export default function PopularSwiper() {
   const [popularCards, setPopularCards] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
-  const dispatch = useDispatch();
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
-
-  /* --------------------------- REDUX STATE: --------------------------- */
-  const { token: tokenReduxStore } = useSelector((state) => state.user);
-  const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   // PRODUCT API:
@@ -56,13 +46,6 @@ export default function PopularSwiper() {
     isLoading: isLoadingFilteredProductsData,
     isSuccess: isSuccessFilteredProductsData,
   } = useGetFilteredProductsQuery(mockFilterQueryString);
-
-  // WISHLIST API:
-  const [removeProductFromWishlist] = useRemoveFromWishlistMutation();
-  const [addProductToWishlist] = useAddProductToWishlistMutation();
-  // CART API:
-  const [addProductToCart] = useAddToCartMutation();
-  const [removeProductFromCart] = useRemoveFromCartMutation();
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
