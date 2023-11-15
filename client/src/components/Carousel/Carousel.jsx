@@ -24,15 +24,15 @@ function Carousel() {
 
   const images = [
     {
-      src: './images/hero01.webp',
+      src: './images/hero01.png',
       alt: 'Image 1',
     },
     {
-      src: './images/hero02.webp',
+      src: './images/hero02.png',
       alt: 'Image 2',
     },
     {
-      src: './images/hero03.webp',
+      src: './images/hero03.png',
       alt: 'Image 3',
     },
   ];
