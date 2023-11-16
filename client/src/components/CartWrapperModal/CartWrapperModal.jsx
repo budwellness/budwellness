@@ -16,7 +16,6 @@ function CartWrapperModal() {
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const cartProducts = cartStoreData.map((product) => (
     <CartModalItem
-      // eslint-disable-next-line no-underscore-dangle
       key={product._id}
       products={product}
     />
