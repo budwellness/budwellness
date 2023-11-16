@@ -158,7 +158,7 @@ function Tabs() {
           <div
             className={toggle === 1 ? styles.showContent : styles.tabContent}
           >
-            <p className={`${styles.text} ${styles.downAnimation}`}>
+            <p className={styles.text}>
               {mockDataProduct.description.short}
               <br />
               <br />
@@ -170,10 +170,7 @@ function Tabs() {
             className={toggle === 2 ? styles.showContent : styles.tabContent}
           >
             {mockDataProduct.reviews.map((review) => (
-              <div
-                key={review}
-                className={`${styles.text} ${styles.downAnimation}`}
-              >
+              <div key={review} className={styles.text}>
                 <ul className={styles.reviewWrrap}>
                   <li className={styles.fullName}>{review.fullName}</li>
                   <li className={styles.reviewDate}>{review.reviewDate}</li>
@@ -208,7 +205,7 @@ function Tabs() {
           <div
             className={toggle === 3 ? styles.showContent : styles.tabContent}
           >
-            <table className={`${styles.table} ${styles.downAnimation}`}>
+            <table className={styles.table}>
               <tr className={styles.row}>
                 <td className={styles.rowTitle}>Ingredients:</td>
                 <td>
