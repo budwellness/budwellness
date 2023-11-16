@@ -8,13 +8,16 @@
   left: 0;
   right: 0;
   z-index: 10000;
-  background: transparent;
+  background: #ffffff;
+  //padding-top: 10px;
+  //padding-bottom: 10px;
   transition: transform 0.3s ease, padding 0.3s ease;
+
 
   &.scrolled {
     transform: translateY(0);
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background: #ffffff;
   }
 
@@ -28,10 +31,12 @@
     text-decoration: none;
   }
 
-  @media (min-width: 1199.98px) {
+  @media (min-width: 1200px) {
     padding-top: 30px;
     padding-bottom: 30px;
     align-items: center;
+    background: transparent;
+
 
     &.scrolled {
       padding-top: 0;
@@ -41,7 +46,7 @@
 }
 
 .logoLink {
-  color: #000;
+  //color: #000;
   text-transform: capitalize;
 
   display: flex;
