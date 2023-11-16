@@ -7,40 +7,54 @@
   top: 0;
   left: 0;
   right: 0;
-  padding-top: 30px;
-  padding-bottom: 30px;
   z-index: 10000;
+  background: #ffffff;
+  //padding-top: 10px;
+  //padding-bottom: 10px;
+  transition: transform 0.3s ease, padding 0.3s ease;
+
+
+  &.scrolled {
+    transform: translateY(0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #ffffff;
+  }
+
+  &.hide {
+    transform: translateY(-100%);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
   a {
     text-decoration: none;
   }
+
+  @media (min-width: 1200px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    align-items: center;
+    background: transparent;
+
+    &.scrolled {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
 }
 
-.logoLink{
-  color: #000;
+.logoLink {
+  //color: #000;
   text-transform: capitalize;
+
 
   display: flex;
   align-items: center;
 }
 
-.header.scrolled {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  transition: padding 0.3s ease;
-  background-color: #ffffff;
-}
 
-.sticky {
-  display: none;
-  position: sticky;
-  top: 0;
-  transition:
-          padding 0.5s,
-          display 0.5s;
-}
-
-.wrapp {
+.wrapper {
   display: flex;
   align-items: center;
 
@@ -70,33 +84,18 @@
 }
 
 
-.header_navItem {
-  display: inline-block;
-  margin-left: 20px;
-  padding-left: 0;
-  color: $main-green;
-  font-family: $font-nunito;
-
-  @media (max-width: 1199.98px) {
-    display: flex;
-    margin-left: 0;
-    text-align: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 25px;
-  }
-}
-
 .toggleBtn {
-  display: none;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   width: 30px;
   height: 28px;
   margin-right: 15px;
+  cursor: pointer;
 
-  @media (max-width: 1199.98px) {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-between;
+  @media (min-width: 1200px) {
+    display: none;
   }
 }
 
@@ -121,74 +120,74 @@
   align-items: center;
   justify-content: end;
   flex-grow: 1;
-  gap: 30px;
+  gap: 10px;
 
   svg {
     width: 15px;
     height: 15px;
   }
 
-  @media (max-width: 1199.98px) {
-    gap: 10px;
+  @media (min-width: 1200px) {
+    gap: 30px;
   }
 }
 
-.header_userLink {
-  position: relative;
+//.header_userLink {
+//  margin-right: 0;
+//
+//  @media (min-width: 1200px) {
+//    position: relative;
+//  }
+//}
 
-  @media (max-width: 1199.98px) {
-    margin-right: 0;
-  }
-}
-
-.header_userSearchInput {
-  display: inline;
-  padding: 0 20px;
-  height: 40px;
-  border: 1px solid #c6c6c6;
-  border-radius: 20px;
-  background: #fff;
-  outline: none;
-  cursor: pointer;
-
-  @media (max-width: 767.98px) {
-    display: none;
-  }
-}
-
-.header_userSearchButton {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: 0;
-
-  border-radius: 50%;
-  background: #efc368;
-  fill: #214842;
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    width: 15px;
-    height: 15px;
-  }
-
-  @media (max-width: 767.98px) {
-    position: static;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-  }
-}
+//.header_userSearchInput {
+//  display: inline;
+//  padding: 0 20px;
+//  height: 40px;
+//  border: 1px solid #c6c6c6;
+//  border-radius: 20px;
+//  background: #fff;
+//  outline: none;
+//  cursor: pointer;
+//
+//  @media (min-width: 768px) {
+//    display: none;
+//  }
+//}
+//
+//.header_userSearchButton {
+//  position: absolute;
+//  right: 0;
+//  top: 0;
+//  bottom: 0;
+//  margin: 0;
+//
+//  border-radius: 50%;
+//  background: #efc368;
+//  fill: #214842;
+//  width: 40px;
+//  height: 40px;
+//  font-size: 16px;
+//  border: none;
+//  cursor: pointer;
+//
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//
+//  svg {
+//    width: 15px;
+//    height: 15px;
+//  }
+//
+//  @media (min-width: 768px) {
+//    position: static;
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//    height: 40px;
+//  }
+//}
 
 .header_userLink {
   display: flex;
@@ -202,6 +201,7 @@
   svg {
     fill: $main-green;
   }
+
   &:hover {
     svg {
       fill: yellow;
@@ -210,14 +210,6 @@
 }
 
 //==========================================
-.overLayCartModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
 
 .wishlistCounter {
   display: block;
