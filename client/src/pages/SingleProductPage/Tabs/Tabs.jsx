@@ -1,19 +1,9 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import Container from '../../components/Container/Container';
-import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
-// import ButtonCount from '../../components/ButtonCount/ButtonCount';
-import RatingStars from '../../components/RatingStars/RatingStars';
-import Button from '../../components/Button/Button';
-import PopularProducts from '../../components/PopularProducts/PopularProducts';
-import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProductSwiper';
-import Tabs from './Tabs/Tabs';
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
-
-import FavouriteIcon from '../../components/UI/FavouriteIcon';
-
-import styles from './SingleProductPage.module.scss';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable  jsx-a11y/no-static-element-interactions */
+import React, { useState } from 'react';
+import FormRespond from '../FormRespond/FormRespond';
+import ArrowDownIcon from '../../../components/UI/ArrowDownIcon';
+import styles from './Tabs.module.scss';
 
 const mockDataProduct = {
   enabled: true,
@@ -97,112 +87,149 @@ const mockDataProduct = {
   },
 };
 
-function SingleProductPage() {
-  const navigate = useNavigate();
+function Tabs() {
+  const [toggle, setToggle] = useState(1);
+
+  function updateToggle(index) {
+    if (toggle === index) {
+      setToggle(0);
+    } else {
+      setToggle(index);
+    }
+  }
 
   return (
-    <>
-      <ScrollToTop />
-      <PagePreviewHeader
-        title="Buy now and enjoy"
-        text="Discover nature's remedy for peace and balance"
-      />
-      <Container>
-        <div className={styles.wrapper}>
-          <div className={styles.swiperWrap}>
-            <SingleProductSwiper />
+    <div className={styles.tabsWrapp}>
+      <div className={styles.title_content}>
+        <div className={styles.titlesWrap}>
+          <div
+            className={
+              toggle === 1
+                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                : styles.tabTitleWrapp
+            }
+            onClick={() => {
+              updateToggle(1);
+            }}
+          >
+            <h4 className={styles.tabTitle}>Description</h4>
+            <ArrowDownIcon
+              className={toggle === 1 ? styles.activeArrow : styles.arrow}
+            />
           </div>
 
-          <div className={styles.infoWrapp}>
-            <div className={styles.title_action}>
-              <h1 className={styles.title}>{mockDataProduct.name}</h1>
-              <button className={styles.action} type="button">
-                <FavouriteIcon className={styles.styleIcon} />
-              </button>
-            </div>
-            <div className={styles.ratingWrapper}>
-              <RatingStars rate={mockDataProduct.rate} />
-              <p className={styles.ratingText}>
-                (
-                {mockDataProduct.reviews.length}
-                {' '}
-                customer review
-                <span className={styles.span}>s</span>
-                )
-              </p>
-            </div>
-            <p className={styles.descShort}>
-              {mockDataProduct.description.short}
-            </p>
-            <p className={styles.price}>
-              $
-              {mockDataProduct.currentPrice}
-            </p>
-            <div className={styles.buttonWrapper}>
-              {/* <ButtonCount /> */}
-              <Button
-                type="button"
-                text="Add to Cart"
-                className="orangeBtn"
-                onClick={() => {
-                  navigate('/cart');
-                }}
-              />
-            </div>
-            <ul className={styles.infoLlist}>
-              <li className={styles.item}>
-                <span className={styles.property}>Category:</span>
-                <span className={styles.value}>{mockDataProduct.category}</span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Size:</span>
-                <span className={styles.value}>30 ml</span>
-                {/* тут має бути поле size */}
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Plant Type:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.plantType}
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>THC:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.thc}
-                  mg/g
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>CBD:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.cbd}
-                  %
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Effects:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.effects.join(', ')}
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>Tags:</span>
-                <span className={styles.value}>
-                  {mockDataProduct.tags.join(', ')}
-                </span>
-              </li>
-              <li className={styles.item}>
-                <span className={styles.property}>SKU:</span>
-                <span className={styles.value}>{mockDataProduct.itemNo}</span>
-              </li>
-            </ul>
+          <div
+            className={
+              toggle === 2
+                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                : styles.tabTitleWrapp
+            }
+            onClick={() => {
+              updateToggle(2);
+            }}
+          >
+            <h4 className={styles.tabTitle}>
+              Reviews(
+              {mockDataProduct.reviews.length}
+              )
+            </h4>
+            <ArrowDownIcon
+              className={toggle === 2 ? styles.activeArrow : styles.arrow}
+            />
+          </div>
+          <div
+            className={
+              toggle === 3
+                ? `${styles.tabTitleWrapp} ${styles.activeTabTitle}`
+                : styles.tabTitleWrapp
+            }
+            onClick={() => {
+              updateToggle(3);
+            }}
+          >
+            <h4 className={styles.tabTitle}>Additional Information</h4>
+            <ArrowDownIcon
+              className={toggle === 3 ? styles.activeArrow : styles.arrow}
+            />
           </div>
         </div>
-        <Tabs />
-        <PopularProducts />
-      </Container>
-    </>
+
+        <div className={styles.contentsWrapp}>
+          <div
+            className={toggle === 1 ? styles.showContent : styles.tabContent}
+          >
+            <p className={styles.text}>
+              {mockDataProduct.description.short}
+              <br />
+              <br />
+              {mockDataProduct.description.completion}
+            </p>
+          </div>
+
+          <div
+            className={toggle === 2 ? styles.showContent : styles.tabContent}
+          >
+            {mockDataProduct.reviews.map((review) => (
+              <div key={review} className={styles.text}>
+                <ul className={styles.reviewWrrap}>
+                  <li className={styles.fullName}>{review.fullName}</li>
+                  <li className={styles.reviewDate}>{review.reviewDate}</li>
+                  <li>{review.feedback}</li>
+                  {review.benefit && (
+                    <li>
+                      <span className={styles.span}>Benefits:</span>
+                      <br />
+                      {review.benefit}
+                    </li>
+                  )}
+                  {review.disadvantages && (
+                    <li>
+                      <span className={styles.span}>Disadvantages:</span>
+                      <br />
+                      {review.disadvantages}
+                    </li>
+                  )}
+                </ul>
+                {/* {index !== mockDataProduct.reviews.length - 1 && (
+                      <hr className={styles.hrLine} />
+                    )}{' '} */}
+                <hr className={styles.hrLine} />
+              </div>
+            ))}
+            <div className={styles.formReview}>
+              <h4 className={styles.formTitle}>Add Review</h4>
+              <FormRespond />
+            </div>
+          </div>
+
+          <div
+            className={toggle === 3 ? styles.showContent : styles.tabContent}
+          >
+            <table className={styles.table}>
+              <tr className={styles.row}>
+                <td className={styles.rowTitle}>Ingredients:</td>
+                <td>
+                  {mockDataProduct.additionalInformation.ingredients.toLocaleLowerCase()}
+                </td>
+              </tr>
+              <tr className={styles.row}>
+                <td className={styles.rowTitle}>Flavors:</td>
+                <td>
+                  {mockDataProduct.additionalInformation.flavors.toLocaleLowerCase()}
+                </td>
+              </tr>
+              <tr className={styles.row}>
+                <td className={styles.rowTitle}>Recommended Usage:</td>
+                <td>
+                  {mockDataProduct.additionalInformation.recommendedUsage.toLocaleLowerCase()}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
-export default SingleProductPage;
+export default Tabs;

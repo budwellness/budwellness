@@ -7,7 +7,10 @@ import PopularProducts from '../../components/PopularProducts/PopularProducts';
 function CartPage() {
   return (
     <>
-      <PagePrevievHeader title="Cart page" />
+      <PagePrevievHeader
+        title="Cart page"
+        text="Explore a world of wellness products in your shopping cart at BadWellness. Elevate your self-care routine with our curated selection of premium items designed to enhance your well-being. Your journey to a healthier and happier you begins here!"
+      />
       <main>
         <Cart />
         <PopularProducts />

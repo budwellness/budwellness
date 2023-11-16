@@ -3,7 +3,7 @@
 /* COLORS */
 $main-green: #214842;
 $main-orange: #efc368;
-$secondary-green: #68b45a;
+$secondary-green: #258f67;
 $color-white: #fff;
 $background-image-hover: rgba(33, 72, 66, 0.6);
 
@@ -26,9 +26,9 @@ $font-nunito: 'Nunito Sans', sans-serif;
   }
 }
 @mixin _576 {
-    @media (min-width: 576px) {
-        @content;
-    }
+  @media (min-width: 576px) {
+    @content;
+  }
 }
 @mixin _768 {
   @media (min-width: 768px) {
@@ -36,9 +36,9 @@ $font-nunito: 'Nunito Sans', sans-serif;
   }
 }
 @mixin _992 {
-    @media (min-width: 992px) {
-        @content;
-    }
+  @media (min-width: 992px) {
+    @content;
+  }
 }
 @mixin _1380 {
   @media (min-width: 1380px) {
