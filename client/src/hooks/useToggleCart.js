@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-
 import { toast } from 'react-toastify';
 import {
   addItemToCartAction,

@@ -1,6 +1,6 @@
-// /*eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import cN from 'classnames';
 import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
@@ -9,12 +9,9 @@ import CartIcon from '../../UI/CartIcon';
 import FavouriteIcon from '../../UI/FavouriteIcon';
 import EyeIcon from '../../UI/EyeIcon';
 import RatingStars from '../../RatingStars/RatingStars';
-import useToggleCart from '../../../hooks/useToggleCart';
-
-import styles from './PopularSwiperSlide.module.scss';
-import useToggleWishlist from '../../../hooks/useToggleWishlist';
 import wishlistButtonStateHandler from '../../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../../helpers/cartButtonStateHandler';
+import styles from './PopularSwiperSlide.module.scss';
 
 function PopularSwiperSlide(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
@@ -78,7 +75,7 @@ function PopularSwiperSlide(props) {
     <div className={styles.wpapper}>
       <div className={styles.media}>
         {productItem.previousPrice !== productItem.currentPrice && (
-        <span className={styles.mediaSale}>Sale</span>
+          <span className={styles.mediaSale}>Sale</span>
         )}
         <div className={styles.mediaOverlay}>
           <ul className={styles.actionList}>
@@ -135,10 +132,10 @@ function PopularSwiperSlide(props) {
         </Link>
         <div className={styles.mainPrice}>
           {productItem.previousPrice !== productItem.currentPrice && (
-          <span className={cN(styles.price, styles.priceOld)}>
-            $
-            {productItem.previousPrice.toFixed(2)}
-          </span>
+            <span className={cN(styles.price, styles.priceOld)}>
+              $
+              {productItem.previousPrice.toFixed(2)}
+            </span>
           )}
           <span className={styles.price}>
             $
@@ -149,5 +146,29 @@ function PopularSwiperSlide(props) {
     </div>
   );
 }
+
+PopularSwiperSlide.propTypes = {
+  // eslint-disable-next-line react/require-default-props
+  products: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    imageUrls: PropTypes.arrayOf(PropTypes.string),
+    previousPrice: PropTypes.number.isRequired,
+    currentPrice: PropTypes.number.isRequired,
+    name: PropTypes.string,
+    itemNo: PropTypes.string.isRequired,
+    rate: PropTypes.number.isRequired,
+  }),
+  actions: PropTypes.shape({
+    toggleCartHandler: PropTypes.func,
+    toggleWishlistHandler: PropTypes.func,
+  }),
+};
+
+PopularSwiperSlide.defaultProps = {
+  actions: {
+    toggleCartHandler: () => { },
+    toggleWishlistHandler: () => { },
+  },
+};
 
 export default PopularSwiperSlide;

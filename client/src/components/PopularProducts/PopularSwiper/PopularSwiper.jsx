@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from 'react';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
-import { useDispatch, useSelector } from 'react-redux';
 
 // COMPONENT IMPORTS:
-
 import PopularSwiperSlide from '../PopularSwiperSlide/PopularSwiperSlide';
 
 // PRODUCT IMPORTS:
 import { useGetFilteredProductsQuery } from '../../../store/serverResponse/danitApi.products';
 
-// WISHLIST IMPORTS:
-import {
-  useAddProductToWishlistMutation,
-  useRemoveFromWishlistMutation,
-} from '../../../store/serverResponse/danitApi.wishlist';
-
 // CART IMPORTS:
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/swiper.min.css';
-
-import styles from './PopularSwiper.module.scss';
 import useToggleCart from '../../../hooks/useToggleCart';
 import useToggleWishlist from '../../../hooks/useToggleWishlist';
 
-SwiperCore.use([Pagination, Autoplay]);
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import styles from './PopularSwiper.module.scss';
 
-const { log } = console;
+SwiperCore.use([Pagination, Autoplay]);
 
 export default function PopularSwiper() {
   /* --------------------------- COMPONENT STATE: --------------------------- */
@@ -46,10 +35,7 @@ export default function PopularSwiper() {
     isSuccess: isSuccessFilteredProductsData,
   } = useGetFilteredProductsQuery(mockFilterQueryString);
 
-  /* --------------------------- COMPONENT HANDLERS: --------------------------- */
-
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
-
   useEffect(() => {
     if (isSuccessFilteredProductsData) {
       setPopularCards(
