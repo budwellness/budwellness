@@ -102,13 +102,13 @@ function ProductList() {
   } = useGetAllProductsQuery();
 
   return (
-    <div className={styles.productList}>
+    <div className={styles.list__products}>
       {isErrorAllProductsData ? (
-        <div className={styles.productList__errorWrapper}>
+        <div className={styles.list__products_error}>
           Oh no, there was an error
         </div>
       ) : (
-        <div className={styles.productList__productsWrapper}>
+        <div className={styles.list__products_wrapper}>
           {AllProductsData?.map((product) => (
             <ProductCard
               actions={
