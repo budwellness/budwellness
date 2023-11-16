@@ -1,35 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import Button from '../Button/Button';
-import ProductList from '../ProductList/ProductList';
-import styles from './Footer.module.scss';
+import Container from '../Container/Container';
 import DoneIcon from '../UI/DoneIcon';
+import styles from './Footer.module.scss';
 
-function Footer(props) {
-  // eslint-disable-next-line react/prop-types
-  const { error, products } = props;
+function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.container__main}>
-          <span>123</span>
-          <div className={styles.container__main__content}>a</div>
-          <DoneIcon className={styles.doneIcon} />
-          <Button />
-          <div className={styles.container__secondary}>secondary</div>
+      <Container>
+        <div className={styles.main__section}>
+          <span>FOOTER</span>
+          <div className={styles.main__content}>
+            <DoneIcon className={styles.doneIcon} />
+          </div>
         </div>
-        <ProductList products={products} error={error} />
-      </div>
+        <div className={styles.secondary__section}>secondary</div>
+      </Container>
     </footer>
   );
 }
-
-ProductList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  products: PropTypes.arrayOf(PropTypes.object),
-
-  error: PropTypes.string,
-};
 
 export default Footer;

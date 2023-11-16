@@ -10,7 +10,7 @@
     padding-top: 130px;
   }
   @include for-size(1200px) {
-    background: linear-gradient(to right, white 50%, $main-green 50%);
+    background: linear-gradient(to right, #fafaf5 50%, $main-green 50%);
     padding-top: 0;
   }
 }
@@ -134,7 +134,7 @@
     width: 60%;
     background: linear-gradient(
       to right,
-      $white-text-color 23%,
+      #fafaf5 23%,
       $main-green 23%,
       $main-green 90%,
       $main-green 90%
@@ -147,8 +147,8 @@
   content: '';
   position: absolute;
   top: 0;
-  left: -12px;
-  right: -12px;
+  left: -11px;
+  right: -11px;
   bottom: 0;
   z-index: -1;
   background: linear-gradient(
@@ -284,6 +284,7 @@
   transition-timing-function: ease;
   transition-duration: 0.3s;
   position: relative;
+  cursor: pointer;
   @include for-size(576px) {
     display: flex;
     justify-content: flex-end;

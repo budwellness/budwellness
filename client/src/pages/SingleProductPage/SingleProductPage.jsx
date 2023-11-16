@@ -1,13 +1,16 @@
-/* eslint-disable */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Container from '../../components/Container/Container';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
-import ButtonCount from '../../components/ButtonCount/ButtonCount';
+// import ButtonCount from '../../components/ButtonCount/ButtonCount';
 import RatingStars from '../../components/RatingStars/RatingStars';
 import Button from '../../components/Button/Button';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProductSwiper';
+import Tabs from './Tabs/Tabs';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+
 import FavouriteIcon from '../../components/UI/FavouriteIcon';
 
 import styles from './SingleProductPage.module.scss';
@@ -99,8 +102,9 @@ function SingleProductPage() {
 
   return (
     <>
+      <ScrollToTop />
       <PagePreviewHeader
-        title="Single Product"
+        title="Buy now and enjoy"
         text="Discover nature's remedy for peace and balance"
       />
       <Container>
@@ -119,16 +123,23 @@ function SingleProductPage() {
             <div className={styles.ratingWrapper}>
               <RatingStars rate={mockDataProduct.rate} />
               <p className={styles.ratingText}>
-                ({mockDataProduct.reviews.length} customer review
-                <span className={styles.span}>s</span>)
+                (
+                {mockDataProduct.reviews.length}
+                {' '}
+                customer review
+                <span className={styles.span}>s</span>
+                )
               </p>
             </div>
             <p className={styles.descShort}>
               {mockDataProduct.description.short}
             </p>
-            <p className={styles.price}>${mockDataProduct.currentPrice}</p>
+            <p className={styles.price}>
+              $
+              {mockDataProduct.currentPrice}
+            </p>
             <div className={styles.buttonWrapper}>
-              <ButtonCount />
+              {/* <ButtonCount /> */}
               <Button
                 type="button"
                 text="Add to Cart"
@@ -163,7 +174,10 @@ function SingleProductPage() {
               </li>
               <li className={styles.item}>
                 <span className={styles.property}>CBD:</span>
-                <span className={styles.value}>{mockDataProduct.cbd}%</span>
+                <span className={styles.value}>
+                  {mockDataProduct.cbd}
+                  %
+                </span>
               </li>
               <li className={styles.item}>
                 <span className={styles.property}>Effects:</span>
@@ -183,9 +197,8 @@ function SingleProductPage() {
               </li>
             </ul>
           </div>
-
-          <div className={styles.tabsWrapp}></div>
         </div>
+        <Tabs />
         <PopularProducts />
       </Container>
     </>

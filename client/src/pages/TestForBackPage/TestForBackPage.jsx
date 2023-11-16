@@ -16,6 +16,8 @@ import {
   useGetSingleProductMutation,
   useSearchForProductsMutation,
   useAddProductMutation,
+  useGetFilteredProductsQuery,
+  useLazyGetFilteredProductsQuery,
 } from '../../store/serverResponse/danitApi.products';
 
 // USER IMPORTS: 
@@ -93,6 +95,18 @@ function TestForBackPage() {
     useSearchForProductsMutation();
 
   const [uploadProductToDataBase] = useAddProductMutation();
+
+  // const {
+  //   data: filteredProductsData,
+  //   isError: isErrorFilteredProductsData
+  // } = useGetFilteredProductsQuery();
+  const [
+    getFilteredProducts,
+    {
+      data: lazyFilteredProductsData,
+      isError: isErrorlazyFilteredProductsData,
+    }
+  ] = useLazyGetFilteredProductsQuery();
 
   // USER API:
 
@@ -418,6 +432,7 @@ function TestForBackPage() {
   //     action={{ toggleWishlistHandler, toggleCartHandler, increaseCartQuantityHandler }}
   //   />
   // ));
+
   const products = allProducts?.map((product, i) => {
     if (i <= 7) {
       return (
@@ -434,6 +449,12 @@ function TestForBackPage() {
       )
     }
   });
+
+  const mockFilterQueryString = '?sort=-rate&perPage=6&startPage=1';
+
+  const getFilteredProductsHandler = () => {
+    getFilteredProducts(mockFilterQueryString);
+  }
 
 
   return (
@@ -458,6 +479,9 @@ function TestForBackPage() {
           </button>
           <button type="button" onClick={() => productsToDateBaseHandler()}>
             Products to DB
+          </button>
+          <button type="button" onClick={() => getFilteredProductsHandler()}>
+            Filtered
           </button>
         </div>
         <div className={styles.btnWrapper}>

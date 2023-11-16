@@ -22,7 +22,7 @@ export default function CartMain() {
       <CartList />
       <div className={styles.cart_mainAction}>
         <LinkUnderline to="/products">Keep Shopping</LinkUnderline>
-        <Button text="Update cart" className="whiteBtn" onClick={() => { }} />
+        <Button text="Contacts" className="whiteBtn" onClick={() => {}} />
       </div>
     </div>
   );

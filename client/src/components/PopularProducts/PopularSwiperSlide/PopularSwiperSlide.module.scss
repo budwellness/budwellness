@@ -88,6 +88,33 @@
               }
             }
           }
+          .actionLink_active {
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $main-orange;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid $color-white;
+            font-size: 16px;
+
+            .styleIcon {
+              fill: $color-white;
+              width: 18px;
+              height: 16px;
+            }
+
+            &:hover {
+              background: $color-white;
+              .styleIcon {
+                fill: $main-orange;
+                transition: 0.3s ease-in-out;
+              }
+            }
+          }
         }
       }
     }
