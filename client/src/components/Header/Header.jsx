@@ -169,9 +169,6 @@ function Header(props) {
 
 Header.propTypes = {
   actions: PropTypes.shape({
-    handleModal: PropTypes.func.isRequired,
-    showModal: PropTypes.func.isRequired,
-    setShowModal: PropTypes.func.isRequired,
     getCart: PropTypes.func.isRequired,
     getWishlist: PropTypes.func.isRequired,
   }),
@@ -181,7 +178,7 @@ Header.defaultProps = {
   actions: {
     getCart: () => {},
     getWishlist: () => {},
-    handleModal: () => {},
+    // handleModal: () => {},
   },
 };
 
