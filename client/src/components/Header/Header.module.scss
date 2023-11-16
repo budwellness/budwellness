@@ -7,16 +7,40 @@
   top: 0;
   left: 0;
   right: 0;
-  padding-top: 30px;
-  padding-bottom: 30px;
   z-index: 10000;
+  background: transparent;
+  transition: transform 0.3s ease, padding 0.3s ease;
+
+  &.scrolled {
+    transform: translateY(0);
+    padding-top: 0;
+    padding-bottom: 0;
+    background: #ffffff;
+  }
+
+  &.hide {
+    transform: translateY(-100%);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
   a {
     text-decoration: none;
   }
+
+  @media (min-width: 1199.98px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    align-items: center;
+
+    &.scrolled {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
 }
 
-.logoLink{
+.logoLink {
   color: #000;
   text-transform: capitalize;
 
@@ -24,23 +48,8 @@
   align-items: center;
 }
 
-.header.scrolled {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  transition: padding 0.3s ease;
-  background-color: #ffffff;
-}
 
-.sticky {
-  display: none;
-  position: sticky;
-  top: 0;
-  transition:
-          padding 0.5s,
-          display 0.5s;
-}
-
-.wrapp {
+.wrapper {
   display: flex;
   align-items: center;
 
@@ -202,6 +211,7 @@
   svg {
     fill: $main-green;
   }
+
   &:hover {
     svg {
       fill: yellow;
@@ -210,14 +220,6 @@
 }
 
 //==========================================
-.overLayCartModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
 
 .wishlistCounter {
   display: block;
