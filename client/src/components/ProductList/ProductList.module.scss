@@ -1,19 +1,16 @@
-.productList {
+.list__products {
     width: 100%;
-    min-height: 65vh;
-    margin-top: 130px;
-    @include dflex-column-jcc-aifs;
+    padding: 50px 0;
+    @include dflex-column-jcfs-aic;
 
-    &__errorWrapper {
-        margin-top: 10px;
+    .list__products_error {
         max-width: 700px;
-        text-align: center;
         font-family: $font-nunito;
         color: $main-orange;
         font-size: 40px;
     }
 
-    &__productsWrapper {
+    .list__products_wrapper {
         width: 100%;
         background-color: $color-white; 
         @include dflex-column-jcfs-aic;

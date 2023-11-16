@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cN from 'classnames';

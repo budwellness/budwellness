@@ -4,7 +4,6 @@
   font-size: 14px;
   background: $color-white;
   border-radius: 16px;
-  transition: 0.3s ease-in-out;
 
   &:is(:hover, :focus) {
     box-shadow: 0 0 15px rgba(37, 143, 103, 0.2);
@@ -16,23 +15,23 @@
     margin-bottom: 30px;
   }
 
-  &__media {
+  .productCard__media {
     position: relative;
     width: 100%;
     margin-bottom: 10px;
     background-color: $color-white;
 
-    &__productLink {
+    .productCard__img_link {
       width: 100%;
       overflow: hidden;
 
-      &__imageWrapper {
+      .productCard__img_wrapper {
         position: relative;
         width: 100%;
         display: flex;
         justify-content: center;
 
-        &__image {
+        .productCard__img {
           display: block;
           width: 100%;
           max-height: 250px;
@@ -42,7 +41,7 @@
       }
     }
 
-    &__saleLabel {
+    .productCard__saleLabel {
       position: absolute;
       top: 0;
       left: 0;
@@ -54,19 +53,19 @@
       color: $white-text-color;
     }
 
-    &__overlay {
+    .productCard__overlay {
       position: absolute;
       top: 0;
       right: 0;
       width: fit-content;
       padding: 30px;
 
-      &__action {
+      .productCard__action {
         display: flex;
         flex-direction: column;
 
-        .buttonAddFavorites,
-        .buttonViewSingleProduct {
+        .btn__addToFavorites,
+        .btn__viewSingleProduct {
           height: 40px;
           width: 40px;
           margin-bottom: 20px;
@@ -76,7 +75,7 @@
           border: 1px solid $main-orange;
           cursor: pointer;
 
-          &:is(:hover) {
+          &:hover {
             background-color: $main-orange;
             color: $white-text-color;
             transition: 0.5s ease-in-out;
@@ -95,8 +94,9 @@
             height: 16px;
           }
         }
-        .buttonAddFavorites_active,
-        .buttonViewSingleProduct_active {
+
+        .btn__addToFavorites_active,
+        .btn__viewSingleProduct_active {
           height: 40px;
           width: 40px;
           margin-bottom: 20px;
@@ -106,8 +106,8 @@
           border: 1px solid $color-white;
           cursor: pointer;
 
-          &:is(:hover) {
-            background-color: $white-text-color;
+          &:hover {
+            background-color: $color-white;
             color: $main-orange;
             transition: 0.5s ease-in-out;
 
@@ -120,7 +120,7 @@
 
           .favoriteIcon,
           .eyeIcon {
-            fill: $white-text-color;
+            fill: $color-white;
             width: 19px;
             height: 16px;
           }
@@ -129,48 +129,62 @@
     }
   }
 
-  &__main {
+  .productCard__main {
     width: 100%;
     padding: 0 30px 30px;
     @include dflex-column-jcfs-aic;
     text-align: center;
 
-    &__titleLink {
+    .productCard__title_link {
       margin: 10px 0;
       max-width: 280px;
       min-height: 23px;
-      font-family: $font-nunito;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 1.3;
       text-decoration: none;
-      text-wrap: balance;
       color: $main-green;
       cursor: pointer;
-      transition: 0.3s ease-in-out;
+      transition: color 0.3s ease-in-out;
 
-      @include _576 {
-        min-height: 52px;
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-      }
+      .productCard__title {
+        margin: 0;
+        font-family: $font-nunito;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1.3;
+        text-wrap: balance;
+        text-transform: capitalize;
 
-      &:is(:hover, :focus) {
-        color: $secondary-green;
-        transition: 0.3s ease-in-out;
+        @include _576 {
+          min-height: 52px;
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+        }
+
+        &:is(:hover, :focus) {
+          color: $secondary-green;
+          transition: 0.3s ease-in-out;
+        }
       }
     }
 
-    &__property span {
-      font-family: $font-montserrat;
-      font-weight: 600;
-      font-size: 14px;
-      color: $main-green;
+    .productCard__propertys {
+      margin: 0;
+      padding: 0;
+
+      .productCard__propertys_item {
+        font-family: $font-montserrat;
+        font-size: 14px;
+        color: $main-green;
+        list-style-type: none;
+
+        & span {
+          font-weight: 600;
+        }
+      }
     }
 
-    &__productPrices {
+    .productCard__prices_wrapper {
       width: 100%;
       margin: 15px 0 20px;
       @include dflex-jcc-aic;
@@ -178,14 +192,14 @@
       line-height: 1.1;
       font-family: $font-nunito;
 
-      &__previousPrice {
+      .productCard__previous_price {
         margin-right: 15px;
         font-weight: 700;
         color: $secondary-text-color;
         text-decoration: line-through;
       }
 
-      &__currentPrice {
+      .productCard__current_price {
         color: $main-green;
         font-weight: 800;
       }
