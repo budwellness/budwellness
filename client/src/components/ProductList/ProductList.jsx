@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
 import ProductCard from '../ProductCard/ProductCard';
