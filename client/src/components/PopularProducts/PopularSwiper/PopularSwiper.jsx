@@ -28,7 +28,7 @@ export default function PopularSwiper() {
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   // PRODUCT API:
-  const mockFilterQueryString = '?sort=-rate&perPage=6&startPage=1';
+  const mockFilterQueryString = 'sort=-rate&perPage=6&startPage=1';
   const {
     data: filteredProductsData,
     isLoading: isLoadingFilteredProductsData,

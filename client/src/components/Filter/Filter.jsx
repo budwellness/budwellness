@@ -53,7 +53,6 @@ function Filter() {
   };
 
   const formHandler = (e) => {
-    // log(new FormData(formRef.current));
     let filterQueryString = '';
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
@@ -61,8 +60,13 @@ function Filter() {
       if (key === 'min' || key === 'max') {
         continue
       }
+      if (value !== 'All') {
+        filterDataArr.push(`${key}=${value}`);
+      } else {
+        continue
+      }
       log(value)
-      filterDataArr.push(`${key}=${value}`);
+
       // log(filterDataArr)
     }
     // log(filterDataArr.join('&'))
@@ -193,7 +197,7 @@ function Filter() {
             name="plantType"
             type="radio"
             id="indicaDominant"
-            value="Indica-Dominant"
+            value="Indica"
             className={styles.filter__input}
             checked={selectedPlantTypes.includes('Indica-Dominant')}
             onChange={() => handlePlantTypeChange('plantType=Indica-Dominant')}
@@ -205,7 +209,7 @@ function Filter() {
             name="plantType"
             type="radio"
             id="sativaDominant"
-            value="Sativa-Dominant"
+            value="Sativa"
             className={styles.filter__input}
             checked={selectedPlantTypes.includes('Sativa-Dominant')}
             onChange={() => handlePlantTypeChange('Sativa-Dominant')}
@@ -255,7 +259,7 @@ function Filter() {
             name="thc"
             type="radio"
             id="zeroToTen"
-            value="0.2-10%"
+            value="10"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('0.2-10%')}
             onChange={() => handleTHCChange('0.2-10%')}

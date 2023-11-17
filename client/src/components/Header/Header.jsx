@@ -55,12 +55,16 @@ function Header(props) {
     (state) => state.wishlist,
   );
 
+
+
+
   const { isUserLogin } = useSelector(
     (state) => state.user,
   );
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
   const { isOpenModal } = useSelector((state) => state.modal);
+
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
@@ -176,8 +180,8 @@ Header.propTypes = {
 
 Header.defaultProps = {
   actions: {
-    getCart: () => {},
-    getWishlist: () => {},
+    getCart: () => { },
+    getWishlist: () => { },
     // handleModal: () => {},
   },
 };
