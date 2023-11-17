@@ -71,6 +71,7 @@
           font-weight: 700;
           font-size: 20px;
           line-height: 1.3;
+          text-transform: capitalize;
 
           @media (min-width: 992px) {
             font-size: 22px;
@@ -127,6 +128,7 @@
           order: 5;
           flex-grow: unset;
           text-align: left;
+          min-width: 125px;
         }
 
         .priceSubtotal_title {
