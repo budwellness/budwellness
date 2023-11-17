@@ -1,0 +1,39 @@
+.btn {
+  font-size: 17px;
+  padding: 10px 25px;
+  min-height: 48px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-family: $font-nunito;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+}
+
+.orangeBtn {
+  background-color: $main-orange;
+  color: $main-green;
+  border: none;
+}
+
+.orangeBtn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.whiteBtn {
+  color: $secondary-green;
+  border: 1px solid $secondary-green;
+  background-color: $color-white;
+}
+
+.whiteBtn:hover {
+  background-color: $secondary-green;
+  color: $white-text-color;
+  cursor: pointer;
+}
+
+.whiteBtn_active {
+  color: $white-text-color;
+  border: 1px solid $secondary-green;
+  background-color: $secondary-green;
+}

@@ -1,0 +1,41 @@
+.footer {
+  width: 100%;
+  background-color: $main-green;
+
+  .main__section{
+    width: 100%;
+    padding: 10px 0;
+    color: $white-text-color;
+    background-color: $main-green;
+    @include dflex-column-jcfs-aic;
+
+    @include _320 {
+      padding: 60px 0;
+    }
+    @include _768 {
+      padding: 90px 0;
+    }
+    @include _992 {
+      padding: 160px 0;
+    }
+
+    .main__content {
+      color: $white-text-color;
+    }
+    .doneIcon {
+      fill: $main-orange;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .secondary__section {
+    display: inline-block;
+    color: $main-orange;
+    background-color: $background-image-hover;
+  }
+
+  
+}
+
+

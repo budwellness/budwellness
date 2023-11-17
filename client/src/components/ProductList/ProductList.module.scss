@@ -1,0 +1,34 @@
+.list__products {
+    width: 100%;
+    padding: 50px 0;
+    @include dflex-column-jcfs-aic;
+
+    .list__products_error {
+        max-width: 700px;
+        font-family: $font-nunito;
+        color: $main-orange;
+        font-size: 40px;
+    }
+
+    .list__products_wrapper {
+        width: 100%;
+        background-color: $color-white; 
+        @include dflex-column-jcfs-aic;
+
+        @include _320 {
+            margin-top: 20px;
+        }
+        @include _576 {
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2vw;
+            align-items: flex-start;
+        }
+        @include _768 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2vw;
+        }
+    }
+}

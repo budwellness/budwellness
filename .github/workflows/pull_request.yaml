@@ -1,0 +1,36 @@
+name: Deploy React App
+on: push
+jobs: 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repo code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+      - name: Test application
+        working-directory: ./client
+        run: npm run test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repo code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+      - name: Lint application
+        working-directory: ./client
+        run: npm run lint
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repo code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+      - name: Build application
+        working-directory: ./client
+        run: npm run build
