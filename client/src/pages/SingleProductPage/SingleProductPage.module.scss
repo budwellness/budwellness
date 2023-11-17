@@ -1,0 +1,138 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.wrapper {
+  @include for-size(992px) {
+    display: flex;
+    gap: 5%;
+  }
+}
+
+.swiperWrap {
+  padding-top: 60px;
+  @include for-size(992px) {
+    width: 40%;
+  }
+}
+
+.infoWrapp {
+  @include for-size(992px) {
+    width: 60%;
+  }
+}
+
+.title_action {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+  @include for-size(992px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.title {
+  font-size: 30px;
+  font-family: $font-nunito;
+  color: $main-green;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-top: 25px;
+}
+
+.action {
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid $main-orange;
+  font-size: 16px;
+
+  .styleIcon {
+    fill: $main-orange;
+    width: 18px;
+    height: 16px;
+  }
+
+  &:hover {
+    background: $main-orange;
+    .styleIcon {
+      fill: $color-white;
+      transition: 0.3s ease-in-out;
+    }
+  }
+}
+
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.ratingText {
+  font-size: 14px;
+  line-height: 1;
+  color: $main-text-color;
+  font-family: $font-montserrat;
+  max-width: 40%;
+}
+
+.span {
+  @extend .ratingText;
+  color: $main-green;
+  font-weight: 700;
+}
+
+.descShort {
+  font-size: 17px;
+  font-family: $font-montserrat;
+  color: $main-green;
+  line-height: 1.5;
+}
+
+.price {
+  font-size: 30px;
+  font-family: $font-nunito;
+  font-weight: 800;
+  line-height: 1.3;
+  color: $main-green;
+}
+
+.buttonWrapper {
+  display: flex;
+  padding-bottom: 30px;
+}
+
+.infoLlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.property {
+  font-family: $font-nunito;
+  color: $main-green;
+  font-weight: 700px;
+  margin-right: 10px;
+  line-height: 1.5;
+  font-size: 17px;
+}
+
+.value {
+  font-family: $font-montserrat;
+  color: $main-text-color;
+  line-height: 1.5;
+  font-size: 17px;
+}

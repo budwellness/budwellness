@@ -5,7 +5,7 @@
 }
 
 .wrapper {
-  background-image: url(./images/pagePreviewHeader-bg.webp);
+  background-image: url(./images/pagePreviewHeader-bg.png);
   background-repeat: no-repeat;
   background-size: initial;
   background-position: center;
@@ -76,7 +76,7 @@
   background-color: $secondary-green;
 }
 
-span {
+.span {
   font-size: 17px;
   color: $main-text-color;
   line-height: 1.5;

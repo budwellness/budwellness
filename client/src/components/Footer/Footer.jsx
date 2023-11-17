@@ -1,19 +1,20 @@
 import React from 'react';
-
+import Container from '../Container/Container';
+import DoneIcon from '../UI/DoneIcon';
 import styles from './Footer.module.scss';
-import SearchIcon from '../UI/SearchIcon';
 
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.container__main}>
-          <span>123</span>
-          <div className={styles.container__main__content}>a</div>
-          <SearchIcon />
+      <Container>
+        <div className={styles.main__section}>
+          <span>FOOTER</span>
+          <div className={styles.main__content}>
+            <DoneIcon className={styles.doneIcon} />
+          </div>
         </div>
-        <div className={styles.container__secondary}>secondary</div>
-      </div>
+        <div className={styles.secondary__section}>secondary</div>
+      </Container>
     </footer>
   );
 }

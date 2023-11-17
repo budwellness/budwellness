@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
@@ -19,17 +20,19 @@ import 'swiper/swiper.min.css';
 SwiperCore.use([EffectFade, Pagination, Autoplay, Controller]);
 
 function Carousel() {
+  const navigate = useNavigate();
+
   const images = [
     {
-      src: './images/hero01.webp',
+      src: './images/hero01.png',
       alt: 'Image 1',
     },
     {
-      src: './images/hero02.webp',
+      src: './images/hero02.png',
       alt: 'Image 2',
     },
     {
-      src: './images/hero03.webp',
+      src: './images/hero03.png',
       alt: 'Image 3',
     },
   ];
@@ -60,7 +63,9 @@ function Carousel() {
               type="button"
               text="Our Products"
               className="orangeBtn"
-              onClick={() => {}}
+              onClick={() => {
+                navigate('/products');
+              }}
             />
             <p className={styles.contactsMessage}>
               Our support team is available 24/7 to resolve any product issues
@@ -71,8 +76,8 @@ function Carousel() {
                 <PhoneIcon className={styles.phoneImgFill} />
               </span>
               <div className={styles.phoneNumText}>
-                <span>Phone number</span>
-                <a href="+38(068)-548-46-98" className={styles.linkTel}>
+                <span className={styles.tel}>Phone number</span>
+                <a href="tel: +38(068)-548-46-98" className={styles.linkTel}>
                   +38(068)-548-46-98
                 </a>
               </div>
@@ -114,7 +119,7 @@ function Carousel() {
             >
               <SwiperSlide>
                 <div className={styles.paginationWrap}>
-                  <h2 className={styles.title}>Purple Hawaiian Haze</h2>
+                  <h2 className={styles.title}>Purple Haze</h2>
                   <p className={styles.info}>
                     This sweet strain will infuses you with an invigorating
                     euphoria perfect for outdoor activities and social
@@ -147,9 +152,9 @@ function Carousel() {
                 <div className={styles.paginationWrap}>
                   <h2 className={styles.title}>Sour Diesel</h2>
                   <p className={styles.info}>
-                    This strain features a pungent flavor profile that smells
-                    like diesel. It helps to help relieve symptoms associated
-                    with depression, pain, and stress
+                    This strain features a pungent smells like diesel. It helps
+                    to relieve symptoms associated with depression, pain, and
+                    stress
                   </p>
                   <ul className={styles.list}>
                     <div className={styles.link}>
