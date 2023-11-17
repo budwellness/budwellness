@@ -7,6 +7,7 @@ import DescriptionWeed from '../../components/DesctiptionWeed/DescriptionWeed';
 import Partners from '../../components/Partners/Partners';
 import Instagram from '../../components/Instagram/Instagram';
 import StaticInfo from '../../components/StaticInfo/StaticInfo';
+import Info from '../../components/Info/Info';
 
 function HomePage() {
   return (
@@ -16,6 +17,7 @@ function HomePage() {
       <Categories />
       <PopularProducts />
       <StaticInfo />
+      <Info />
       <DescriptionWeed />
       <Partners />
       <Instagram />
