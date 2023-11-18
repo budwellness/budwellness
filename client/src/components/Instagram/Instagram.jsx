@@ -44,7 +44,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaOne.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -54,7 +54,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaTwo.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -64,7 +64,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaThree.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -74,7 +74,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaFour.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -84,7 +84,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaFive.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -94,7 +94,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaOne.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -104,7 +104,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaTwo.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -114,7 +114,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaThree.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -124,7 +124,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaFour.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -134,7 +134,7 @@ function Instagram() {
               <img
                 className={styles.instaImage}
                 src="./images/instaFive.webp"
-                alt="oil"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Categories.module.scss';
+import Container from '../Container/Container';
 
 const categoryData = [
   {
@@ -45,31 +46,33 @@ function Categories() {
   };
 
   return (
-    <div className={styles.container}>
-      <ul className={styles.content}>
-        {categoryData.map((category) => (
-          <li
-            className={`${styles['content-categories']} ${
-              selectedCategory === category.name ? styles.selected : ''
-            }`}
-            key={category.id}
-            onClick={() => handleCategoryClick(category.name)}
-            onKeyUp={(e) => {
-              if (e.key === 'Enter') {
-                handleCategoryClick(category.name);
-              }
-            }}
-          >
-            <img
-              className={styles['image-categories']}
-              src={category.image}
-              alt={category.name}
-            />
-            <h4 className={styles['text-categories']}>{category.name}</h4>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+      <div className={styles.container}>
+        <ul className={styles.content}>
+          {categoryData.map((category) => (
+            <li
+              className={`${styles['content-categories']} ${
+                selectedCategory === category.name ? styles.selected : ''
+              }`}
+              key={category.id}
+              onClick={() => handleCategoryClick(category.name)}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  handleCategoryClick(category.name);
+                }
+              }}
+            >
+              <img
+                className={styles['image-categories']}
+                src={category.image}
+                alt={category.name}
+              />
+              <h4 className={styles['text-categories']}>{category.name}</h4>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Container>
   );
 }
 
