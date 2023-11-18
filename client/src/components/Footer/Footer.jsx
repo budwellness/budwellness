@@ -119,7 +119,7 @@ function Footer() {
                     {' '}
                     <img
                       className={styles.instagram__instaImage}
-                      src="./images/footer-insta1.jpeg"
+                      src="/images/footer-insta1.jpeg"
                       alt="instagram"
                     />
                   </a>
@@ -130,7 +130,7 @@ function Footer() {
                     {' '}
                     <img
                       className={styles.instagram__instaImage}
-                      src="./images/footer-insta2.webp"
+                      src="/images/footer-insta2.webp"
                       alt="instagram"
                     />
                   </a>
@@ -141,7 +141,7 @@ function Footer() {
                     {' '}
                     <img
                       className={styles.instagram__instaImage}
-                      src="./images/footer-insta3.webp"
+                      src="/images/footer-insta3.webp"
                       alt="instagram"
                     />
                   </a>
@@ -152,7 +152,7 @@ function Footer() {
                     {' '}
                     <img
                       className={styles.instagram__instaImage}
-                      src="./images/footer-insta4.webp"
+                      src="/images/footer-insta4.webp"
                       alt="instagram"
                     />
                   </a>
@@ -163,7 +163,7 @@ function Footer() {
                     {' '}
                     <img
                       className={styles.instagram__instaImage}
-                      src="./images/footer-insta5.webp"
+                      src="/images/footer-insta5.webp"
                       alt="instagram"
                     />
                   </a>
@@ -174,7 +174,7 @@ function Footer() {
                     {' '}
                     <img
                       className={styles.instagram__instaImage}
-                      src="./images/footer-insta6.webp"
+                      src="/images/footer-insta6.webp"
                       alt="instagram"
                     />
                   </a>
