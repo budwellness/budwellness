@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 // COMPONENT IMPORTS:
+import Modal from '../Modal/Modal';
+import ModalAddToCart from '../ModalAddToCart/ModalAddToCart';
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
@@ -32,6 +34,8 @@ function ProductCard(props) {
     product,
   } = props;
 
+  console.log(product);
+
   const {
     imageUrls,
     previousPrice,
@@ -47,6 +51,9 @@ function ProductCard(props) {
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
   const [isExistInCart, setIsExistInCart] = useState(false);
+
+  /* --------------------------- MODAL STATE: --------------------------- */
+  const [isModalAddToCartOpen, setIsModalAddToCartOpen] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
@@ -72,6 +79,12 @@ function ProductCard(props) {
     } else {
       log('Please login first');
     }
+  };
+
+  // MODAL:
+
+  const handleModal = () => {
+    setIsModalAddToCartOpen(!isModalAddToCartOpen);
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -105,13 +118,13 @@ function ProductCard(props) {
           to={`/product/${itemNo}`}
           className={styles.productCard__img_link}
         >
-          <div className={styles.productCard__img_wrapper}>
+          <picture className={styles.productCard__img_wrapper}>
             <img
               className={styles.productCard__img}
               src={imageUrls[0]}
               alt={name}
             />
-          </div>
+          </picture>
         </Link>
         {previousPrice !== currentPrice && (
           <span className={styles.productCard__saleLabel}>Sale</span>
@@ -120,9 +133,7 @@ function ProductCard(props) {
           <div className={styles.productCard__action}>
             <ButtonIcon
               className={styles.btn__viewSingleProduct}
-              onClick={() => {
-                // setShowModalAddToCart();
-              }}
+              onClick={handleModal}
             >
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
@@ -146,12 +157,12 @@ function ProductCard(props) {
         >
           <h3 className={styles.productCard__title}>{name}</h3>
         </Link>
-        <ul className={styles.productCard__propertys}>
-          <li className={styles.productCard__propertys_item}>
+        <ul className={styles.productCard__properties}>
+          <li className={styles.productCard__properties_item}>
             <span>THC</span>
             {` ${getThcCategory(thc)}`}
           </li>
-          <li className={styles.productCard__propertys_item}>
+          <li className={styles.productCard__properties_item}>
             <span>CBD</span>
             {` ${getCbdCategory(cbd)}`}
           </li>
@@ -175,6 +186,11 @@ function ProductCard(props) {
           onClick={toggleCartWithLoginHandler}
         />
       </div>
+      {isModalAddToCartOpen && (
+        <Modal classNames={styles.add_to_cart__modal} handleModal={handleModal}>
+          <ModalAddToCart product={product} />
+        </Modal>
+      )}
     </div>
   );
 }
@@ -196,7 +212,6 @@ ProductCard.propTypes = {
   actions: PropTypes.shape({
     toggleWishlistHandler: PropTypes.func,
     toggleCartHandler: PropTypes.func,
-    // setShowModalAddToCart: PropTypes.func,
   }),
 };
 
