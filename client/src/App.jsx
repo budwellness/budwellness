@@ -113,7 +113,7 @@ function App() {
         theme="colored"
       />
       <ScrollToTop />
-      <Header actions={{ getCart, getWishlist }} />
+      <Header  />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
