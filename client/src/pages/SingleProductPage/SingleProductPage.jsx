@@ -14,6 +14,8 @@ import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import FavouriteIcon from '../../components/UI/FavouriteIcon';
 // PRODUCT IMPORTS:
 import { useGetProductQuery } from '../../store/serverResponse/danitApi.products';
+// CART IMPORTS:
+import useToggleWishlist from '../../hooks/useToggleWishlist';
 
 import styles from './SingleProductPage.module.scss';
 
@@ -23,6 +25,7 @@ function SingleProductPage() {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const toggleWishlistHandler = useToggleWishlist();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const itemNo = pathname.split('/').at(-1);
@@ -59,7 +62,10 @@ function SingleProductPage() {
                   <button className={styles.action} type="button">
                     <FavouriteIcon
                       className={styles.styleIcon}
-                      onClick={() => {}}
+                      // onClick={() => {}}
+                      onClick={() => {
+                        // toggleWishlistHandler();
+                      }}
                     />
                   </button>
                 </div>
