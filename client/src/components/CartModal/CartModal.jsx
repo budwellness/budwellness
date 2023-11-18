@@ -31,7 +31,6 @@ function CartModal() {
         dispatch(setCartModal(false))
     }
 
-
     return (
         <div className={cn(styles.cartModalWrapper, {[styles.openCart]: isCartModal})}
              onClick={(e) => handleOutSideModal(e)}>
@@ -42,7 +41,7 @@ function CartModal() {
                         className={styles.closeBtn}
                         type="button"
                         onClick={() => {
-                            handleCloseModal(false)
+                            handleCloseModal()
                             toast.success('Woohoo')
                         }}
                     >

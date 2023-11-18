@@ -84,8 +84,5 @@ function LoginForm(props) {
   );
 }
 
-LoginForm.propTypes = {
-  setShowModal: PropTypes.func.isRequired,
-};
 
 export default LoginForm;
