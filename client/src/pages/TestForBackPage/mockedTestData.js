@@ -83,14 +83,16 @@ export const productsJSON = [
   {
     enabled: true,
     imageUrls: [
-      'https://ca.tokyosmoke.com/cdn/shop/products/e96a18b5991250526e86e1ead709a109_1000x.png?v=1599148085',
-      'https://static.wixstatic.com/media/645e3f_38fbb2f262644fb3a766446abd5aeaad~mv2.webp',
-      'https://static.wixstatic.com/media/645e3f_348a1920cbfc402986b118677e654431~mv2.png/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/645e3f_348a1920cbfc402986b118677e654431~mv2.png',
+      './images/milk_chocolate_1.png',
+      './images/milk_chocolate_2.png',
+      './images/milk_chocolate_2.png',
     ],
     quantity: 6,
     rate: 4.4,
     categories: 'Edible',
     name: 'Bhang Milk Chocolate',
+    size: 50,
+    sizeType: 'g',
     currentPrice: 25.0,
     previousPrice: 25.0,
     plantType: 'Sativa',
@@ -102,7 +104,7 @@ export const productsJSON = [
     description: {
       short:
         'Bhang® Milk Chocolate starts with sustainably-sourced and fair-trade cacao and is Powered by INDIVA™. Produced in Indiva’s state-of-the-art facility based in London, Ontario, and backed by a fifth generation chocolatier, Bhang® MilkChocolate offers a cannabis-free flavour that offer just the right hint of sweetness.',
-      completion:
+      complection:
         'Cannabis-infused edible products combine cannabis distillate with premium ingredients. They offer the same delayed onset time and smoke-free experience of capsules and oils, packaged within a tasty snack..',
     },
     reviews: [
@@ -139,14 +141,16 @@ export const productsJSON = [
   {
     enabled: true,
     imageUrls: [
-      'https://ocs.ca/cdn/shop/products/00851653000172_00_compress_330154_1024x1024.jpg?v=1694408215%22%20alt=%22Chocolate%20Brownies%20-%20%22',
-      'https://ocs.ca/cdn/shop/products/00851653000172_01_compress_330154_e87fa6ae-8422-4ea3-aa6c-bd79df3dc07c_1024x1024.jpg?v=1694408215%22%20alt=%22Chocolate%20Brownies%20-%20%22',
-      'https://images.dutchie.com/f0c735369143fdfbe99b17f82f827484?auto=format&fit=fill&fill=solid&ixlib=react-9.5.4&w=344&h=330&dpr=1&q=75',
+      './images/chocolate_brownies_1.png',
+      './images/chocolate_brownies_2.png',
+      './images/chocolate_brownies_3.png',
     ],
     quantity: 10,
     rate: 3.6,
     categories: 'Edible',
     name: 'Chocolate Brownies by Olli',
+    size: 30,
+    sizeType: 'g',
     currentPrice: 7.0,
     previousPrice: 10.0,
     plantType: 'Hybrid',
@@ -158,7 +162,7 @@ export const productsJSON = [
     description: {
       short:
         'Olli’s Chocolate Brownies are the perfect blend between culinary and cannabis. Each package contains two small batch, nut-free brownies made for sharing. Each brownie contains 5 mg THC and 2.5 mg CBD, uses thoughtful ingredients and provides a chewy, soft and decadent chocolate flavour curated by Olli’s Michelin-starred trained Executive Chef.',
-      completion:
+      complection:
         'Olli’s Chocolate Brownies are the perfect blend between culinary and cannabis. Each package contains two small batch, nut-free brownies made for sharing. Each brownie contains 5 mg THC and 2.5 mg CBD, uses thoughtful ingredients and provides a chewy, soft and decadent chocolate flavour curated by Olli’s Michelin-starred trained Executive Chef. Soft and chewy, small batch, bite-sized brownies with a decadent chocolate flavour. Nut-free.',
     },
     reviews: [
@@ -193,20 +197,22 @@ export const productsJSON = [
         'Sugars (sucrose, glucose syrup, fructose, dextrose, cultured (cane) sugar), Enriched wheat flour (Wheat), Canola oil, Liquid whole eggs (Egg), Cocoa powder, Water, Glycerin, Soy lecithin (Soy), Natural and artificial flavour, Salt, Xanthan gum, Rosemary extract, Ascorbic acid, Sunflower oil, Cannabis distillate',
       flavors: 'soft and decadent chocolate',
       recommendedUsage:
-        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half.',
+        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://nuleafnaturals.com/wp-content/uploads/2020/07/NLN_2021_CBD_Oil_Human_900_800px.jpg',
-      'https://nuleafnaturals.com/wp-content/uploads/2020/07/NuLeaf-Oil-900mg-box-bottle.jpg',
-      'https://nuleafnaturals.com/wp-content/uploads/2020/07/CL-2DH-NuLeaf-Bottle-Label-Human-15mL-1-24-22_web_sup_facts.png',
+      './images/spectrum_oil_1.png',
+      './images/spectrum_oil_2.png',
+      './images/spectrum_oil_3.png',
     ],
     quantity: 7,
     rate: 2.3,
     categories: 'Oils',
     name: 'Full Spectrum CBD Oil',
+    size: 30,
+    sizeType: 'ml',
     currentPrice: 88.0,
     previousPrice: 88.0,
     plantType: 'Hybrid',
@@ -218,7 +224,7 @@ export const productsJSON = [
     description: {
       short:
         'CBD oil is a whole-plant extract containing a full spectrum of naturally occurring synergistic cannabinoids and terpenes with a potency of 60mg/mL. NuLeaf Naturals suggests a starting dose of ten drops (30mg) daily or as needed.',
-      completion:
+      complection:
         'This cannabis oil oral spray features a blend of hybrid strains with balanced THC-to-CBD ratios. Good wd. No extras. Our oils are made with cannabis extract and non-GMO, coconut-derived MCT oil that cannot be smoked or vapourized.',
     },
     reviews: [
@@ -248,20 +254,22 @@ export const productsJSON = [
       ingredients: 'Full Spectrum Hemp Extract, Organic Virgin Hemp Seed Oil',
       flavors: 'Earthy and musky, piney and herbal',
       recommendedUsage:
-        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half.',
+        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://images.prom.ua/4209399693_w640_h640_4209399693.jpg',
-      'https://images.prom.ua/4209399692_w640_h640_4209399692.jpg',
-      'https://images.prom.ua/4209399694_w640_h640_4209399694.jpg',
+      './images/spectrum_oil_4.png',
+      './images/spectrum_oil_5.png',
+      './images/spectrum_oil_6.png',
     ],
     quantity: 13,
     rate: 1.7,
     categories: 'Oils',
     name: 'Medipharm Labs CBD50 Plus Formula',
+    size: 30,
+    sizeType: 'ml',
     currentPrice: 90.0,
     previousPrice: 100.0,
     plantType: 'Hybrid',
@@ -273,7 +281,7 @@ export const productsJSON = [
     description: {
       short:
         'Papa & Barkley’s tinctures are vegan and fast-metabolizing, with a customizable dosage experience, carefully crafted with whole-plant extraction. Our solventless, chemical-free infusion process preserves the plant’s full spectrum of cannabinoids, terpenes, and phytonutrients for maximum therapeutic benefits.',
-      completion:
+      complection:
         'Our 30:1 tincture is high in CBD and low in THC and is great for those looking to ease daily stress and discomfort. Best for all cannabis consumers, especially new ones as there will be little to no psychoactive effect. Crafted with only two ingredients, MCT Oil and cannabis oil, and can be felt within 15 minutes, make it a perfect natural solution for those seeking a quick-acting, easy-to-use cannabis solution to improve both body and mind. Papa & Barkley’s tinctures are vegan and fast-metabolizing, with a customizable dosage experience, carefully crafted with whole-plant extraction. Our solventless, chemical-free infusion process preserves the plant’s full spectrum of cannabinoids, terpenes, and phytonutrients for maximum therapeutic benefits.',
     },
     reviews: [
@@ -303,20 +311,22 @@ export const productsJSON = [
       ingredients: 'MCT Oil, Cannabis',
       flavors: 'Tree Nut (Coconut)',
       recommendedUsage:
-        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more.',
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://ocs.ca/cdn/shop/products/00688083011092_a1cc_compressed_110016_1024x1024.jpg?v=1697463553%22',
-      'https://w7a7p5v9.rocketcdn.me/wp-content/uploads/2023/05/doja-ucorn-cake-review-cannabis-photos-4-merry-jade-1024x1024.webp',
-      'https://w7a7p5v9.rocketcdn.me/wp-content/uploads/2023/05/doja-ucorn-cake-review-cannabis-photos-5-merry-jade-1024x1024.webp',
+      './images/doja_unicorn_1.png',
+      './images/doja_unicorn_2.png',
+      './images/doja_unicorn_3.png',
     ],
     quantity: 12,
     rate: 4.8,
     categories: 'Flowers',
     name: 'Doja Unicorn Cake',
+    size: 250,
+    sizeType: 'ml',
     currentPrice: 8.0,
     previousPrice: 8.0,
     plantType: 'Sativa',
@@ -328,7 +338,7 @@ export const productsJSON = [
     description: {
       short:
         'This exotic hybrid strain is a mix of Wedding Cake x Unicorn Poop with vanilla cake & kush aromas.',
-      completion:
+      complection:
         'Doja Ucorn Cake, also known as Wedding Poop, is a high THC hybrid strain created by crossing Wedding Cake and Unicorn Poop. This cultivar is known to smell like vanilla cake and classic Kush. The dominant terpenes include myrcene and limonene. This cultivar produces forest green buds with dark orange hairs.',
     },
     reviews: [
@@ -358,20 +368,22 @@ export const productsJSON = [
       ingredients: 'Wedding Cake and Unicorn Poop',
       flavors: 'Citrus',
       recommendedUsage:
-        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more.',
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-strain-350x420.jpg',
-      'https://www.bulkbuddy.co/wp-content/uploads/2023/10/buy-pink-diablo-weed-350x420.jpg',
-      'https://kamikazi.cc/wp-content/uploads/2021/05/PINK-DIABLO-2KAMIKAZI-2_WEED-DELIVERY-TORONTO.jpg',
+      './images/pink_diablo_1.png',
+      './images/pink_diablo_2.png',
+      './images/pink_diablo_3.png',
     ],
     quantity: 4,
     rate: 3.4,
     categories: 'Flowers',
     name: 'Pink Diablo',
+    size: 20,
+    sizeType: 'g',
     currentPrice: 14.89,
     previousPrice: 20.0,
     plantType: 'Hybrid',
@@ -383,7 +395,7 @@ export const productsJSON = [
     description: {
       short:
         'Pink Diablo Weed Strain is an Indica dominant hybrid marijuana that is popular for its sedative effects, stunning colouring and sweet, spicy flavour. It is a crossbreed of the famous Pink Kush and Diablo strains, with a high THC content of 25%.',
-      completion:
+      complection:
         'Pink Diablo Weed Strain is an Indica dominant hybrid marijuana that is popular for its sedative effects, stunning colouring and sweet, spicy flavour. It is a crossbreed of the famous Pink Kush and Diablo strains, with a high THC content of 25%. Pink Diablo weed strain has a hybrid ratio of 70% Indica, and 30 % Sativa. The high of this strain hits you rapidly and lasts for hours. At first, you will experience an incredible clear-headed high, followed by a soft buzz that overcomes your body. This potent strain will later offer a relaxing body high, and before you realize it, you will have fallen into a deep slumber. The effects of this marijuana strain provide a suitable remedy for depression, loss of appetite, nausea, insomnia, and chronic pain.',
     },
     reviews: [
@@ -413,20 +425,22 @@ export const productsJSON = [
       ingredients: '70% Indica, 30 % Sativa',
       flavors: 'Candy / Earthy / Floral / Fruity / Gassy / Pungent / Sweet',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://leafly-public.imgix.net/products/photos/Yl1zwZDThmTFowPzrqJB_cbd-preroll-bubba-kush.jpg?auto=compress%2Cformat&w=1000&dpr=1',
-      'https://leafly-public.imgix.net/products/photos/dlngcdEgRXaQAlVMxhCd_cbd-flower-king-sized-cone.png?auto=compress%2Cformat&w=1000&dpr=1',
-      'https://136583061.cdn6.editmysite.com/uploads/1/3/6/5/136583061/s648976623680969287_p25_i10_w1080.png?width=800&optimize=medium',
+      './images/bubba_kush_1.png',
+      './images/bubba_kush_2.png',
+      './images/bubba_kush_3.png',
     ],
     quantity: 9,
     rate: 2.9,
     categories: 'Pre-Rolls',
     name: 'Bubba Kush King-Sized Cone',
+    size: 15,
+    sizeType: 'g',
     currentPrice: 14.89,
     previousPrice: 14.89,
     plantType: 'Indica',
@@ -438,7 +452,7 @@ export const productsJSON = [
     description: {
       short:
         'Our king size pre-filled cones are filled with over a gram of high CBD hemp flower. We use fresh, premium buds with absolutely no trim or shake to provide the best overall smoking experience.',
-      completion:
+      complection:
         'Our king size pre-filled cones are filled with over a gram of high CBD hemp flower. We use fresh, premium buds with absolutely no trim or shake to provide the best overall smoking experience. These giant cones contain top-shelf hemp flower, that was slow cured to keep all the rich cannabinoids and terpenes intact. All of our hemp flower strains are grown in the USA and are lab-tested.',
     },
     reviews: [
@@ -468,20 +482,22 @@ export const productsJSON = [
       ingredients: '100% Indica',
       flavors: 'round and deep notes of chocolate and coffee',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://www.coppermountainhemp.com/wp-content/uploads/2021/06/d8-preroll-purple-punch.jpg',
-      'https://cbdworldmall.com/wp-content/uploads/2021/03/delta-8-THC-prerolls.jpeg',
-      'https://delta8pro.com/wp-content/uploads/2022/05/Delta-8-Pro-D8-THC-Infused-Hemp-Pre-Roll-Relaxed.jpg',
+      './images/purple_punch_1.png',
+      './images/purple_punch_2.png',
+      './images/purple_punch_3.png',
     ],
     quantity: 5,
     rate: 1.3,
     categories: 'Pre-Rolls',
     name: 'Purple Punch HHC Chillum',
+    size: 15,
+    sizeType: 'g',
     currentPrice: 45.0,
     previousPrice: 60.0,
     plantType: 'Indica',
@@ -493,7 +509,7 @@ export const productsJSON = [
     description: {
       short:
         'The infused pre-roll has evolved. The Habit Chillum is packed with 1 full gram of cannabis excellence.',
-      completion:
+      complection:
         'Purple Punch is the sweet and sedating union of two indica-dominant classics. By breeding Larry OG with Granddaddy Purple, the astonishing trichome laden Purple Punch was born, smelling of grape candy, blueberry muffins, and tart Kool-Aid. The potency of this strain gives the consumer a one-two punch to the head and body, initially landing between the eyes and settling down into the limbs. Purple Punch is a delicious dessert strain that is best suited for after dinner. Its effects may help with managing nausea, stress, minor body aches, and sleeplessness.',
     },
     reviews: [
@@ -521,22 +537,24 @@ export const productsJSON = [
     ],
     additionalInformation: {
       ingredients: '100% Indica',
-      flavors: 'red wine, chocolate, and citrus.',
+      flavors: 'red wine, chocolate, and citrus',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://ca.tokyosmoke.com/cdn/shop/products/15a213589790471677f2f400e21d828a_1000x.png?v=1607101936',
-      'https://ca.tokyosmoke.com/cdn/shop/products/a73b8ebfca5a84f9b550dc238ba89206_1000x.png?v=1607101944',
-      'https://theounce.ca/wp-content/uploads/2021/03/Cans.jpg',
+      './images/tropical_fruit_1.png',
+      './images/tropical_fruit_2.png',
+      './images/tropical_fruit_3.png',
     ],
     quantity: 11,
     rate: 4.9,
     categories: 'Beverage',
     name: 'XMG Tropical Fruit',
+    size: 250,
+    sizeType: 'ml',
     currentPrice: 7.0,
     previousPrice: 7.0,
     plantType: 'Sativa',
@@ -548,7 +566,7 @@ export const productsJSON = [
     description: {
       short:
         'No messing around with this tropical fruit, high-intensity flavoured potion. 10 mg THC. Enjoy straight up, right out of the can.',
-      completion:
+      complection:
         'These XMG drinks taste different but suffer the same flaws. Mango Pineapple is bright yellow, and Tropical Fruit is pinkish-red. Both smell fruity and sugary, and taste it too. Far and away the best part of these drinks is the effect—a happy buzzy head high. But first you have to choke down the taste.',
     },
     reviews: [
@@ -576,23 +594,25 @@ export const productsJSON = [
     ],
     additionalInformation: {
       ingredients:
-        'Water, cane sugar, citric acid, cannabis emulsion (glycerin, ethyl alcohol, water, polysorbate 80, modified palm oil, sunflower lecithin, THC distillate), concentrates of carrot and blackcurrant (for colour), natural flavor.',
-      flavors: 'tropical fruit.',
+        'Water, cane sugar, citric acid, cannabis emulsion (glycerin, ethyl alcohol, water, polysorbate 80, modified palm oil, sunflower lecithin, THC distillate), concentrates of carrot and blackcurrant (for colour), natural flavor',
+      flavors: 'tropical fruit',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://ca.tokyosmoke.com/cdn/shop/products/Deepspace_1000x.png?v=1594412862',
-      'https://www.deepspace.com/content/dam/deep-space/OG_Cola_Image_1.png',
-      'https://images.dutchie.com/bda075590ceaa7d8990f961a52f0aef7?auto=format&fit=fill&fill=solid&fillColor=%23fff&ixlib=react-9.0.2&w=1446',
+      './images/deep_space_1.png',
+      './images/deep_space_2.png',
+      './images/deep_space_3.png',
     ],
     quantity: 2,
     rate: 3.5,
     categories: 'Beverage',
     name: 'Deep Space Carbonated',
+    size: 250,
+    sizeType: 'ml',
     currentPrice: 10.0,
     previousPrice: 15.0,
     plantType: 'Sativa',
@@ -604,7 +624,7 @@ export const productsJSON = [
     description: {
       short:
         'Small, potent and ready-to-go. Prepare for the bold taste of this dark, full-flavoured 10mg THC, carbonated drink in a 222mL sleek can.',
-      completion:
+      complection:
         'Deep Space by Tweed is a 10mg THC drink and cost $9.20 per 222 ml can.  Using nanoemulsions, Tweed drinks are designed to be fast acting in ten minutes as opposed to 45 minutes for edibles.  From our own personal consumption profile, we do not have a positive view on cannabis edibles and beverages as a meaningful consumption categories compared to dried flowers and concentrates.  That was before we discovered nanoemulsions.  Let’s check this out.',
     },
     reviews: [
@@ -632,23 +652,25 @@ export const productsJSON = [
     ],
     additionalInformation: {
       ingredients:
-        'Carbonated water, Sugar, Distilled Cannabis™ Blend (Vegetable glycerin, Cannabis distillate, Monoglycerides, Soy lecithin, Sucrose monopalmitate), Citric acid, Potassium citrate, Caramel colour, Calcium disodium EDTA, Natural flavours.',
+        'Carbonated water, Sugar, Distilled Cannabis™ Blend (Vegetable glycerin, Cannabis distillate, Monoglycerides, Soy lecithin, Sucrose monopalmitate), Citric acid, Potassium citrate, Caramel colour, Calcium disodium EDTA, Natural flavours',
       flavors: 'bold and mysterious',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl.png',
-      'https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl-4.png',
-      'https://img.sensiseeds.com/en/research/purple-cookie-kush-feminized-xl-5.png',
+      './images/purple_cookie_seeds_1.png',
+      './images/purple_cookie_seeds_2.png',
+      './images/purple_cookie_seeds_3.png',
     ],
     quantity: 8,
     rate: 2.8,
     categories: 'Seeds',
     name: 'Purple Cookie Kush Feminized Seeds',
+    size: 15,
+    sizeType: 'g',
     currentPrice: 20.0,
     previousPrice: 20.0,
     plantType: 'Hybrid',
@@ -660,7 +682,7 @@ export const productsJSON = [
     description: {
       short:
         'Purple Cookie Kush Feminized seeds come from two well-known strains, Girl Scout Cookies and Purple Kush. The 60% indica / 40% sativa heritage leads to a well-balanced hybrid flower. Flavours range from grapes to sandalwood, and the terpene profile is a concoction of many complimentary aromas. Purple Cookie Kush Feminized is a short plant with good yields. Bud formation is dense, similar to many Kush strains.',
-      completion:
+      complection:
         'Purple Cookie Kush Feminized takes the hottest GSC genetics and mashes them with a Purple Kush cultivar that was hand chosen for this project. No corners were cut in creating and selecting the right breeding stock for this fantastic strain. The result is a well-balanced hybrid that retains key qualities from its lineage. The Purple Kush parent of Purple Cookie Kush Feminized has a lot to contribute, as evidenced by the plant morphology. The compact nature and sturdy branching can be attributed to those indica-dominant genetics. Another area that the indica influence is evident is in the terpene profile, which includes scents of spicy hashish and earthiness.',
     },
     reviews: [
@@ -690,20 +712,22 @@ export const productsJSON = [
       ingredients: '60% indica, 40% sativa plant',
       flavors: 'Creamy, flowery, pungent, sweet',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl.png',
-      'https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl-2.png',
-      'https://img.sensiseeds.com/en/feminized-seeds/whitelabel/pure-power-plant-feminised-xl-3.png',
+      './images/seeds_white_label_1.png',
+      './images/seeds_white_label_2.png',
+      './images/seeds_white_label_3.png',
     ],
     quantity: 3,
     rate: 5.0,
     categories: 'Seeds',
     name: 'Pure Power Plant Feminized Seeds by White Label',
+    size: 15,
+    sizeType: 'g',
     currentPrice: 32.0,
     previousPrice: 40.0,
     plantType: 'Hybrid',
@@ -715,7 +739,7 @@ export const productsJSON = [
     description: {
       short:
         'Pure Power Plant Feminized by White Label is a fast-flowering 40% indica, 60% sativa strain. It produces abundant yields, and can be grown indoors, or outdoors in a warm climate. The plants produce a skunky, vanilla-wood aroma while growing, which is also evident in the taste. The sativa dominance results in a talkative, uplifting high.',
-      completion:
+      complection:
         'White Label Pure Power Plant Feminized cannabis seeds are a potent hybrid; made up of 60% sativa and 40% indica. Its exact genetics have been kept a secret, though it’s known that the sativa parent plant is South African, and the indica originates from the US. The slight sativa dominance is evident in the high, which is energising and euphoric. This is a feminized strain, which means that it’s highly unlikely that any male plants will grow from the seeds. This means cultivation is much easier, making it a suitable option for novice growers. Pure Power Plant Feminized also has high resistance to mould, which is another advantage.',
     },
     reviews: [
@@ -746,7 +770,7 @@ export const productsJSON = [
       flavors:
         'Pleasantly musky, citrussy aroma while growing, with a note of skunk',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
 ];
