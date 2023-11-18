@@ -1,61 +1,58 @@
 /* eslint-disable */
 import React from 'react';
 import cn from 'classnames';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 // COMPONENTS: 
 import CartWrapperModal from '../CartWrapperModal/CartWrapperModal';
 import CloseIcon from '../../assets/icons/CloseIcon';
 
 // CART IMPORTS:
-import { useLazyGetCartQuery } from '../../store/serverResponse/danitApi.cart';
+import {useLazyGetCartQuery} from '../../store/serverResponse/danitApi.cart';
 
 import styles from './CartModal.module.scss';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {setCartModal} from "../../store/cartModal/cartModal.slice.js";
 
 
-function CartModal({ showCartModal, setShowCartModal }) {
+function CartModal() {
+    const dispatch = useDispatch()
 
-  /* --------------------------- REDUX STATE: --------------------------- */
-  // const { isUserLogin, token: tokenReduxStore } = useSelector(
-  //   (state) => state.user
-  // );
+    /* --------------------------- REDUX STATE: --------------------------- */
+    const {isCartModal} = useSelector((state) => state.cartModal);
 
-  // const { cart: cartStoreData } = useSelector(state => state.cart)
-
-  // console.log(showCartModal);
-  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
-  // const [
-  //   getCartProducts,
-  //   {
-  //     data: cardProductsData,
-  //     isSuccess: isSuccessCardProductsData,
-  //   },
-  // ] = useLazyGetCartQuery();
-
-  /* --------------------------- COMPONENT LOGIC: --------------------------- */
-
-  // делаем запрос на сервер в зависимости от окна закрыто оно или нет
+    const handleOutSideModal = ({ target }) => {
+        if (!target.closest(`.${styles.cartModal}`)) {
+            return dispatch(setCartModal(false));
+        }
+        return null;
+    };
+    const handleCloseModal =()=> {
+        dispatch(setCartModal(false))
+    }
 
 
-  return (
-    <div className={cn(styles.cartModal, { [styles.openCart]: showCartModal })}>
-      <div className={styles.cartHeader}>
-        <h2 className={styles.cartTitle}>Cart</h2>
-        <button
-          className={styles.closeBtn}
-          type="button"
-          onClick={() => {
-            setShowCartModal(false)
-            toast.success('Woohoo')
-          }}
-        >
-          <CloseIcon />
-        </button>
-      </div>
-      <CartWrapperModal />
-    </div>
-  );
+    return (
+        <div className={cn(styles.cartModalWrapper, {[styles.openCart]: isCartModal})}
+             onClick={(e) => handleOutSideModal(e)}>
+            <div className={cn(styles.cartModal, {[styles.openCart]: isCartModal})}>
+                <div className={styles.cartHeader}>
+                    <h2 className={styles.cartTitle}>Cart</h2>
+                    <button
+                        className={styles.closeBtn}
+                        type="button"
+                        onClick={() => {
+                            handleCloseModal(false)
+                            toast.success('Woohoo')
+                        }}
+                    >
+                        <CloseIcon/>
+                    </button>
+                </div>
+                <CartWrapperModal/>
+            </div>
+        </div>
+    );
 }
 
 export default CartModal;

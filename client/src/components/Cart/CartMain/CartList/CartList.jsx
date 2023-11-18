@@ -1,15 +1,19 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 // COMPONENT IMPORTS:
 import CartCard from '../CartCard/CartCard';
 
+// PRODUCT IMPORTS:
+
 import styles from './CartList.module.scss';
 
 export default function CartList() {
   /* --------------------------- REDUX STATE: --------------------------- */
   const { cart: cartStoreData } = useSelector((state) => state.cart);
+
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
   const arrayItems = cartStoreData.map((product) => (
     <CartCard key={product._id} card={product} />
   ));

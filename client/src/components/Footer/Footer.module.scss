@@ -1,57 +1,41 @@
 .footer {
+  width: 100%;
   background-color: $main-green;
-  min-width: 320px;
-  height: 100%;
 
-  @include _320 {
-    background-color: lightgoldenrodyellow;
-    background-color: $color-white;
-  }
+  .main__section{
+    width: 100%;
+    padding: 10px 0;
+    color: $white-text-color;
+    background-color: $main-green;
+    @include dflex-column-jcfs-aic;
 
-  @include _768 {
-    background-color: lightsteelblue;
-  }
-
-  @include _1380 {
-    background-color: lightgray;
-  }
-
-  .container {
-    position: relative;
-    margin: 0 auto;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-    @include dflex-jcsb-aic;
-    flex-direction: column;
-
-    @include _1380 {
-      max-width: calc(1374px - 1.5rem);
+    @include _320 {
+      padding: 60px 0;
+    }
+    @include _768 {
+      padding: 90px 0;
+    }
+    @include _992 {
+      padding: 160px 0;
     }
 
-    &__main {
-      width: 100%;
-      padding: 10px 0;
-      background-color: $main-green;
-
-      @include dflex-jcsb-aic;
-
-      &__content {
-        color: $white-text-color;
-      }
-      .doneIcon {
-        fill: $main-orange;
-        width: 18px;
-        height: 18px;
-      }
+    .main__content {
+      color: $white-text-color;
     }
-
-    &__secondary {
-      display: inline-block;
-      color: $main-orange;
-      background-color: $background-image-hover;
+    .doneIcon {
+      fill: $main-orange;
+      width: 18px;
+      height: 18px;
     }
-
   }
+
+  .secondary__section {
+    display: inline-block;
+    color: $main-orange;
+    background-color: $background-image-hover;
+  }
+
+  
 }
 
 

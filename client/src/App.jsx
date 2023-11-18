@@ -14,29 +14,27 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
+// import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+// import Modal from './components/Modal/Modal';
 
 // USER IMPORTS:
-import {
-  useLoginUserMutation,
-} from './store/serverResponse/danitApi.auth';
+import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
 
 import {
-  userLoginUserAction, userLogutUserAction,
+  userLoginUserAction,
+  userLogutUserAction,
 } from './store/user/user.slice';
 
 // WISHLIST IMPORTS:
 import { setWishlistAction } from './store/wishlist/wishList.slice';
 
-import {
-  useLazyGetWishlistQuery,
-} from './store/serverResponse/danitApi.wishlist';
+import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
 // CART IMPORTS:
 import { setCartAction } from './store/cart/cart.slice';
-import {
-  useLazyGetCartQuery,
-} from './store/serverResponse/danitApi.cart';
+import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
@@ -45,19 +43,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
-import styles from './components/Header/Header.module.scss';
 
 const { log } = console;
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
-  const [showModal, setShowModal] = useState(false);
-  const [showCartModal, setShowCartModal] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { isUserLogin } = useSelector(
-    (state) => state.user,
-  );
+  const { isUserLogin } = useSelector((state) => state.user);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -71,13 +64,8 @@ function App() {
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
-  const [
-    getCart,
-    {
-      data: userCartData,
-      isSuccess: isSuccessUserCartData,
-    },
-  ] = useLazyGetCartQuery();
+  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
+    useLazyGetCartQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -105,17 +93,6 @@ function App() {
 
   /* ------------------------------------------------ */
 
-  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
-  };
-
   /* ------------------------------------------------ */
 
   const initUserCardOnLoad = () => {
@@ -135,10 +112,8 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
-      <Header actions={{
-        handleModal, showModal, setShowModal, setShowCartModal, getCart, getWishlist,
-      }}
-      />
+      <ScrollToTop />
+      <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
@@ -150,11 +125,16 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
-      <CartModal
-        showCartModal={showCartModal}
-        setShowCartModal={setShowCartModal}
-      />
-      {showCartModal && <div className="overLayCartModal" onClick={() => setShowCartModal(false)} />}
+      <CartModal />
+      {/* {showModalAddToCart && (
+        <Modal handleModal={handleModal} >
+          <ModalAddToCart
+            product={products?.product}
+            showModalAddToCart={showModalAddToCart}
+            setShowModalAddToCart={setShowModalAddToCart}
+          />
+        </Modal>
+      )} */}
     </>
   );
 }

@@ -25,15 +25,14 @@ import {
   userLogutUserAction,
 } from '../../store/user/user.slice';
 
+import { setModal } from '../../store/modal/modal.slice';
+import { setCartModal } from '../../store/cartModal/cartModal.slice';
+
 import styles from './Header.module.scss';
 
 function Header(props) {
   const {
     actions: {
-      handleModal,
-      showModal,
-      setShowModal,
-      setShowCartModal,
       getCart,
       getWishlist,
     },
@@ -46,8 +45,10 @@ function Header(props) {
   /* --------------------------- LOCAL STATE: --------------------------- */
 
   const [showBurger, setShowBurger] = useState(false);
+
   const [scrolled, setScrolled] = useState(false);
-  const [sticky, setSticky] = useState(false);
+  const [hide, setHide] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
@@ -59,6 +60,7 @@ function Header(props) {
   );
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
@@ -68,6 +70,17 @@ function Header(props) {
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
+  /* --------------------------- COMPONENT Modal: --------------------------- */
+  const handleModal = () => {
+    dispatch(setModal(!isOpenModal));
+  };
+
+  const handleOpenCartModal = () => {
+    dispatch(setCartModal(true));
+  };
+
+  // ========================================================
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,10 +93,16 @@ function Header(props) {
       }
 
       if (scrollY >= 400) {
-        setSticky(true);
+        setHide(true);
       } else {
-        setSticky(false);
+        setHide(false);
       }
+
+      if (scrollY < prevScrollY) {
+        setHide(false);
+      }
+
+      setPrevScrollY(scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -91,15 +110,14 @@ function Header(props) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [scrolled, prevScrollY]);
 
-  // ========================================================
+  //= ===================================================
 
   return (
-    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
+    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.hide]: hide })}>
       <Container>
-        <div className={styles.wrapp}>
-          {}
+        <div className={styles.wrapper}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <span
             className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
@@ -124,23 +142,23 @@ function Header(props) {
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
+                <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>
-            <ButtonHeader className={styles.header_userLink} onClick={setShowCartModal}>
+            <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
               <CartIcon />
               {isUserLogin && cartStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
+                <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
               )}
             </ButtonHeader>
           </div>
         </div>
-        {showModal && (
+        {isOpenModal && (
           isUserLogin
             ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
             : (
               <Modal handleModal={handleModal}>
-                <LoginForm actions={{ setShowModal, getCart, getWishlist }} />
+                <LoginForm actions={{ handleModal, getCart, getWishlist }} />
               </Modal>
             )
         )}
@@ -151,10 +169,6 @@ function Header(props) {
 
 Header.propTypes = {
   actions: PropTypes.shape({
-    handleModal: PropTypes.func.isRequired,
-    showModal: PropTypes.func.isRequired,
-    setShowModal: PropTypes.func.isRequired,
-    setShowCartModal: PropTypes.func.isRequired,
     getCart: PropTypes.func.isRequired,
     getWishlist: PropTypes.func.isRequired,
   }),
@@ -162,10 +176,9 @@ Header.propTypes = {
 
 Header.defaultProps = {
   actions: {
-    setShowCartModal: () => {},
     getCart: () => {},
     getWishlist: () => {},
-    handleModal: () => {},
+    // handleModal: () => {},
   },
 };
 
