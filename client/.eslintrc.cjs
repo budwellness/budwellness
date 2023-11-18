@@ -14,6 +14,8 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'no-underscore-dangle': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },

@@ -45,8 +45,10 @@ function Header(props) {
   /* --------------------------- LOCAL STATE: --------------------------- */
 
   const [showBurger, setShowBurger] = useState(false);
+
   const [scrolled, setScrolled] = useState(false);
-  const [sticky, setSticky] = useState(false);
+  const [hide, setHide] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0);
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
@@ -69,30 +71,6 @@ function Header(props) {
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollY } = window;
-
-      if (scrollY >= 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-
-      if (scrollY >= 400) {
-        setSticky(true);
-      } else {
-        setSticky(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   /* --------------------------- COMPONENT Modal: --------------------------- */
   const handleModal = () => {
     dispatch(setModal(!isOpenModal));
@@ -104,11 +82,42 @@ function Header(props) {
 
   // ========================================================
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollY } = window;
+
+      if (scrollY >= 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      if (scrollY >= 400) {
+        setHide(true);
+      } else {
+        setHide(false);
+      }
+
+      if (scrollY < prevScrollY) {
+        setHide(false);
+      }
+
+      setPrevScrollY(scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrolled, prevScrollY]);
+
+  //= ===================================================
+
   return (
-    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.sticky]: sticky })}>
+    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.hide]: hide })}>
       <Container>
-        <div className={styles.wrapp}>
-          {}
+        <div className={styles.wrapper}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <span
             className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
@@ -133,13 +142,13 @@ function Header(props) {
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
+                <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>
             <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
               <CartIcon />
               {isUserLogin && cartStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
+                <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
               )}
             </ButtonHeader>
           </div>
@@ -160,9 +169,6 @@ function Header(props) {
 
 Header.propTypes = {
   actions: PropTypes.shape({
-    handleModal: PropTypes.func.isRequired,
-    showModal: PropTypes.func.isRequired,
-    setShowModal: PropTypes.func.isRequired,
     getCart: PropTypes.func.isRequired,
     getWishlist: PropTypes.func.isRequired,
   }),
@@ -172,7 +178,7 @@ Header.defaultProps = {
   actions: {
     getCart: () => {},
     getWishlist: () => {},
-    handleModal: () => {},
+    // handleModal: () => {},
   },
 };
 

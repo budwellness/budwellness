@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
 import PropTypes from 'prop-types';
+
 import styles from './RatingStars.module.scss';
+
+const { log } = console;
 
 export default function RatingStars({ rate, edit }) {
   return (
@@ -14,8 +17,7 @@ export default function RatingStars({ rate, edit }) {
       edit={edit}
       color="#c6c6c6"
       activeColor="#efc368"
-      // eslint-disable-next-line no-console
-      onChange={(newValue) => console.log(`New value is ${newValue}`)}
+      onChange={(newValue) => log(`New value is ${newValue}`)}
     />
   );
 }
