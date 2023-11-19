@@ -64,11 +64,7 @@ function SingleProductSwiper({ images }) {
 }
 
 SingleProductSwiper.propTypes = {
-  images: PropTypes.array,
-};
-
-SingleProductSwiper.defaultProps = {
-  images: [],
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default SingleProductSwiper;

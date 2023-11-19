@@ -1,22 +1,15 @@
 /* eslint-disable */
 
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import FormRespond from '../FormRespond/FormRespond';
 import ArrowDownIcon from '../../../components/UI/ArrowDownIcon';
 import styles from './Tabs.module.scss';
 
-const { log } = console;
-
 function Tabs(props) {
-  // const {
-  //   description: { short, completion },
-  //   reviews: { fullName, reviewDate, feedback, benefit, disadvantages },
-  //   additionalInformation: { ingredients, flavors, recommendedUsage },
-  // } = props;
   const {
     data: { description, reviews, additionalInformation },
   } = props;
-  log('description: ', description.short);
   const [toggle, setToggle] = useState(1);
 
   function updateToggle(index) {
@@ -90,15 +83,16 @@ function Tabs(props) {
               {description.short}
               <br />
               <br />
-              {description.completion}
+              {description.complection}
             </p>
           </div>
 
           <div
             className={toggle === 2 ? styles.showContent : styles.tabContent}
           >
-            {reviews.map((review) => (
-              <div key={review} className={styles.text}>
+            {reviews.map((review, index) => (
+              // подумати над додаванням id у reviews
+              <div key={index} className={styles.text}>
                 <ul className={styles.reviewWrrap}>
                   <li className={styles.fullName}>{review.fullName}</li>
                   <li className={styles.reviewDate}>{review.reviewDate}</li>
@@ -131,20 +125,24 @@ function Tabs(props) {
             className={toggle === 3 ? styles.showContent : styles.tabContent}
           >
             <table className={styles.table}>
-              <tr className={styles.row}>
-                <td className={styles.rowTitle}>Ingredients:</td>
-                <td>{additionalInformation.ingredients.toLocaleLowerCase()}</td>
-              </tr>
-              <tr className={styles.row}>
-                <td className={styles.rowTitle}>Flavors:</td>
-                <td>{additionalInformation.flavors.toLocaleLowerCase()}</td>
-              </tr>
-              <tr className={styles.row}>
-                <td className={styles.rowTitle}>Recommended Usage:</td>
-                <td>
-                  {additionalInformation.recommendedUsage.toLocaleLowerCase()}
-                </td>
-              </tr>
+              <tbody>
+                <tr className={styles.row}>
+                  <td className={styles.rowTitle}>Ingredients:</td>
+                  <td>
+                    {additionalInformation.ingredients.toLocaleLowerCase()}
+                  </td>
+                </tr>
+                <tr className={styles.row}>
+                  <td className={styles.rowTitle}>Flavors:</td>
+                  <td>{additionalInformation.flavors.toLocaleLowerCase()}</td>
+                </tr>
+                <tr className={styles.row}>
+                  <td className={styles.rowTitle}>Recommended Usage:</td>
+                  <td>
+                    {additionalInformation.recommendedUsage.toLocaleLowerCase()}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -153,9 +151,28 @@ function Tabs(props) {
   );
 }
 
+Tabs.propTypes = {
+  data: PropTypes.shape({
+    description: PropTypes.shape({
+      complection: PropTypes.string.isRequired,
+      short: PropTypes.string.isRequired,
+    }).isRequired,
+    reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        fullName: PropTypes.string.isRequired,
+        reviewRating: PropTypes.number.isRequired,
+        reviewDate: PropTypes.string.isRequired,
+        feedback: PropTypes.string.isRequired,
+        benefit: PropTypes.string.isRequired,
+        disadvantages: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    additionalInformation: PropTypes.shape({
+      flavors: PropTypes.string.isRequired,
+      ingredients: PropTypes.string.isRequired,
+      recommendedUsage: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
 export default Tabs;
-// const {
-//   description: { short, completion },
-//   reviews: { fullName, reviewDate, feedback, benefit, disadvantages },
-//   additionalInformation: { ingredients, flavors, recommendedUsage },
-// } = props;
