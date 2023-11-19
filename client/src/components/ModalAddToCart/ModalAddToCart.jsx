@@ -24,38 +24,40 @@ function ModalAddToCart({
     currentPrice,
   } = product;
   return (
-    <div className={cn(styles.modalAddToCart__container, styles[classNames])}>
+    <div className={cn(styles.modal_AddToCart__container, styles[classNames])}>
       <div className={styles.slider__wrapper}>
         <SingleProductSwiper product={product} />
       </div>
-      <div className={styles.aboutProduct__info_wrapper}>
-        <h2 className={styles.aboutProduct__title}>{name}</h2>
-        <div className={styles.aboutProduct__rate_wrapper}>
+      <div className={styles.about__info_wrapper}>
+        <h2 className={styles.about__title}>{name}</h2>
+        <div className={styles.about__rate_wrapper}>
           <RatingStars rate={rate} />
-          <p className={styles.aboutProduct__rate_text}>
+          <p className={styles.about__rate_text}>
             {`${reviews.length} customer reviews`}
           </p>
         </div>
-        <p className={styles.aboutProduct__descr_short}>
-          {description.short}
-        </p>
-        <div className={styles.aboutProduct__action_wrapper}>
-          <div className={styles.aboutProduct__current_price}>
-            {currentPrice}
-          </div>
-          <Button className="btnOrange" />
-          <ButtonIcon
-            // className={cn({
-            //   [styles.btn__addToFavorites]: !isExistInWishlist,
-            //   [styles.btn__addToFavorites_active]: isExistInWishlist,
-            // })}
-            // onClick={toggleWishlistWithLoginHandler}
+        <p className={styles.about__descr_short}>{description.short}</p>
+        <div className={styles.about__action_wrapper}>
+          <p className={styles.about__current_price}>{`$${currentPrice.toFixed(2)}`}</p>
+          <Button className="orangeBtn" text="Add to Cart" />
+          <ButtonIcon 
+            classNames="btn__addToFavorites"
+          // className={cn({
+          //   [styles.btn__addToFavorites]: !isExistInWishlist,
+          //   [styles.btn__addToFavorites_active]: isExistInWishlist,
+          // })}
+          // onClick={toggleWishlistWithLoginHandler}
           // eslint-disable-next-line react/jsx-closing-bracket-location
           >
             <FavouriteIcon className={styles.favoriteIcon} />
           </ButtonIcon>
         </div>
-        <LinkUnderline to={`/product/${itemNo}`}>View Details</LinkUnderline>
+        <LinkUnderline
+          // style={}
+          to={`/product/${itemNo}`}
+        >
+          View Details
+        </LinkUnderline>
       </div>
     </div>
   );

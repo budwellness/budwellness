@@ -33,8 +33,6 @@ function ProductCard(props) {
     product,
   } = props;
 
-  console.log(product);
-
   const {
     imageUrls,
     previousPrice,
@@ -186,7 +184,7 @@ function ProductCard(props) {
         />
       </div>
       {isModalAddToCartOpen && (
-        <Modal classNames={styles.add_to_cart__modal} handleModal={handleModal}>
+        <Modal classNames={cn('add_to_cart__modal')} handleModal={handleModal}>
           <ModalAddToCart product={product} />
         </Modal>
       )}
