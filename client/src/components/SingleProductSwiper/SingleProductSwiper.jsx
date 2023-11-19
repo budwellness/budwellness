@@ -13,7 +13,6 @@ import 'swiper/swiper.min.css';
 SwiperCore.use([Navigation, Thumbs]);
 
 function SingleProductSwiper({ images }) {
-function SingleProductSwiper({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className={styles.wrap}>

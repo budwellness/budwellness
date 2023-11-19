@@ -54,7 +54,7 @@ function Tabs(props) {
           >
             <h4 className={styles.tabTitle}>
               Reviews(
-              {reviews.length}){reviews.length})
+              {reviews.length})
             </h4>
             <ArrowDownIcon
               className={toggle === 2 ? styles.activeArrow : styles.arrow}
