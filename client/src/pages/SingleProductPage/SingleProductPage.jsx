@@ -1,7 +1,8 @@
 /* eslint-disable */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-// COMPONENT IMPORTS:
+import { useSelector } from 'react-redux';
+
 import Container from '../../components/Container/Container';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
 // import ButtonCount from '../../components/ButtonCount/ButtonCount';
@@ -10,18 +11,30 @@ import Button from '../../components/Button/Button';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProductSwiper';
 import Tabs from './Tabs/Tabs';
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import FavouriteIcon from '../../components/UI/FavouriteIcon';
-// PRODUCT IMPORTS:
+
 import { useGetProductQuery } from '../../store/serverResponse/danitApi.products';
-// CART IMPORTS:
+import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
 
+import cN from 'classnames';
 import styles from './SingleProductPage.module.scss';
 
 const { log } = console;
 
 function SingleProductPage() {
+  /* --------------------------- COMPONENT STATE: --------------------------- */
+  const [isExistInWishlist, setIsExistInWishlist] = useState(false);
+  const [isExistInCart, setIsExistInCart] = useState(false);
+
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { isUserLogin, token: tokenReduxStore } = useSelector(
+    (state) => state.user
+  );
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist
+  );
+
   /* --------------------------- INIT HOOKS: --------------------------- */
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -37,6 +50,26 @@ function SingleProductPage() {
 
   log('data: ', SingleProductData);
 
+  const toggleWishlistWithLoginHandler = () => {
+    if (isUserLogin) {
+      toggleWishlistHandler(itemNo, tokenReduxStore, wishlistStoreData);
+    } else {
+      toast.error('Please login first!');
+    }
+  };
+
+  useEffect(
+    () =>
+      wishlistButtonStateHandler(
+        isUserLogin,
+        wishlistStoreData,
+        isExistInWishlist,
+        setIsExistInWishlist,
+        itemNo._id
+      ),
+    [wishlistStoreData, isUserLogin]
+  );
+
   return (
     <>
       {isLoading ? (
@@ -45,7 +78,6 @@ function SingleProductPage() {
         </h2>
       ) : (
         <>
-          <ScrollToTop />
           <PagePreviewHeader
             title="Buy now and enjoy"
             text="Discover nature's remedy for peace and balance"
@@ -59,12 +91,19 @@ function SingleProductPage() {
               <div className={styles.infoWrapp}>
                 <div className={styles.title_action}>
                   <h1 className={styles.title}>{SingleProductData.name}</h1>
-                  <button className={styles.action} type="button">
+                  {/* <button className={styles.action} type="button"> */}
+                  <button
+                    className={cN({
+                      [styles.action]: !isExistInWishlist,
+                      [styles.action_active]: isExistInWishlist,
+                    })}
+                    type="button"
+                  >
                     <FavouriteIcon
                       className={styles.styleIcon}
                       // onClick={() => {}}
                       onClick={() => {
-                        // toggleWishlistHandler();
+                        toggleWishlistHandler();
                       }}
                     />
                   </button>

@@ -27,8 +27,8 @@ function SingleProductSwiper({ images }) {
         className={styles.myMainSwiper}
       >
         {images.map((image) => (
-          <SwiperSlide key={image}>
-            <picture key={image}>
+          <SwiperSlide key={image} className={styles.swiperSlide}>
+            <picture>
               <img className={styles.singleImg} src={image} alt="product" />
             </picture>
           </SwiperSlide>
@@ -53,7 +53,7 @@ function SingleProductSwiper({ images }) {
       >
         {images.map((image) => (
           <SwiperSlide key={image} className={styles.swiperSlide}>
-            <picture key={image}>
+            <picture>
               <img className={styles.singleImg} src={image} alt="product" />
             </picture>
           </SwiperSlide>
@@ -64,7 +64,6 @@ function SingleProductSwiper({ images }) {
 }
 
 SingleProductSwiper.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   images: PropTypes.array,
 };
 
