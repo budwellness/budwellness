@@ -9,7 +9,7 @@ function NotFoundPage() {
   return (
     <div className={styles.wrapper}>
       <Container>
-        <img src="./images/404.png" alt="Error" className={styles.errorImg} />
+        <img src="/images/404.png" alt="Error" className={styles.errorImg} />
         <div className={styles.errorMain}>
           <h2 className={styles.title}>Page not Found</h2>
           <p className={styles.text}>
