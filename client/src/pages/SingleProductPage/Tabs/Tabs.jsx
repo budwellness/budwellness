@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+/* eslint-disable */
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FormRespond from '../FormRespond/FormRespond';
@@ -52,7 +54,7 @@ function Tabs(props) {
           >
             <h4 className={styles.tabTitle}>
               Reviews(
-              {reviews.length})
+              {reviews.length}){reviews.length})
             </h4>
             <ArrowDownIcon
               className={toggle === 2 ? styles.activeArrow : styles.arrow}
@@ -80,6 +82,7 @@ function Tabs(props) {
             className={toggle === 1 ? styles.showContent : styles.tabContent}
           >
             <p className={styles.text}>
+              {description.short}
               {description.short}
               <br />
               <br />
@@ -176,3 +179,8 @@ Tabs.propTypes = {
 };
 
 export default Tabs;
+// const {
+//   description: { short, completion },
+//   reviews: { fullName, reviewDate, feedback, benefit, disadvantages },
+//   additionalInformation: { ingredients, flavors, recommendedUsage },
+// } = props;

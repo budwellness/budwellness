@@ -46,10 +46,10 @@ function ProductCard(props) {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin, token: tokenReduxStore } = useSelector(
-    (state) => state.user
+    (state) => state.user,
   );
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist
+    (state) => state.wishlist,
   );
   const { cart: cartStoreData } = useSelector((state) => state.cart);
 
@@ -77,27 +77,25 @@ function ProductCard(props) {
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   useEffect(
-    () =>
-      wishlistButtonStateHandler(
-        isUserLogin,
-        wishlistStoreData,
-        isExistInWishlist,
-        setIsExistInWishlist,
-        product._id
-      ),
-    [wishlistStoreData, isUserLogin]
+    () => wishlistButtonStateHandler(
+      isUserLogin,
+      wishlistStoreData,
+      isExistInWishlist,
+      setIsExistInWishlist,
+      product._id,
+    ),
+    [wishlistStoreData, isUserLogin],
   );
 
   useEffect(
-    () =>
-      cartButtonStateHandler(
-        isUserLogin,
-        cartStoreData,
-        isExistInCart,
-        setIsExistInCart,
-        product._id
-      ),
-    [cartStoreData, isUserLogin]
+    () => cartButtonStateHandler(
+      isUserLogin,
+      cartStoreData,
+      isExistInCart,
+      setIsExistInCart,
+      product._id,
+    ),
+    [cartStoreData, isUserLogin],
   );
 
   return (

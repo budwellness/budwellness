@@ -12,8 +12,6 @@ import { useGetProductQuery } from '../../store/serverResponse/danitApi.products
 
 import styles from './SingleProductPage.module.scss';
 
-const { log } = console;
-
 function SingleProductPage() {
   /* --------------------------- INIT HOOKS: --------------------------- */
   // const navigate = useNavigate();
