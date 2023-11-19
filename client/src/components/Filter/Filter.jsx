@@ -5,17 +5,26 @@ import { useEffect, useState, useRef } from 'react';
 
 import styles from './Filter.module.scss';
 import { useLazyGetFilteredProductsQuery } from '../../store/serverResponse/danitApi.products';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateFilterQuertyStringAction } from '../../store/filter/filter.slice';
 
 const { log } = console;
 
 function Filter() {
+  /* --------------------------- INIT HOOKS: --------------------------- */
+  const dispatch = useDispatch();
+
+  /* --------------------------- COMPONENT STATE: --------------------------- */
   const [selectedCategories, setSelectedCategories] = useState('All');
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
-
   const [filterString, setfilterString] = useState({});
+
+  /* --------------------------- REDUX STATE: --------------------------- */
+
+  const { filterQueryString } = useSelector(state => state.filter)
 
   const [
     getFilteredProducts,
@@ -28,12 +37,6 @@ function Filter() {
   ] = useLazyGetFilteredProductsQuery()
 
   const formRef = useRef();
-  // log('selectedCategories', selectedCategories)
-
-  // log('selectedPlantTypes', selectedPlantTypes)
-  // log('priceRange', priceRange)
-  // log('selectedTHCRange', selectedTHCRange)
-  // log('selectedCBDRange', setSelectedCBDRange)
 
   const handleCategoryChange = (category) => {
     setSelectedCategories(category);
@@ -53,7 +56,7 @@ function Filter() {
   };
 
   const formHandler = (e) => {
-    let filterQueryString = '';
+    let filterQueryString = '?';
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
     for (let [key, value] of filterData.entries()) {
@@ -71,6 +74,7 @@ function Filter() {
     }
     // log(filterDataArr.join('&'))
     filterQueryString = filterDataArr.join('&');
+    dispatch(updateFilterQuertyStringAction(filterQueryString));
     log(filterQueryString)
     getFilteredProducts(filterQueryString);
 

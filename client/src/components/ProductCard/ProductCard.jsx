@@ -57,7 +57,7 @@ function ProductCard(props) {
   // WISHLIST:
   const toggleWishlistWithLoginHandler = () => {
     if (isUserLogin) {
-      toggleWishlistHandler(product, tokenReduxStore);
+      toggleWishlistHandler(product, tokenReduxStore, wishlistStoreData);
     } else {
       log('Please login first');
     }
@@ -67,7 +67,7 @@ function ProductCard(props) {
 
   const toggleCartWithLoginHandler = () => {
     if (isUserLogin) {
-      toggleCartHandler(product, tokenReduxStore);
+      toggleCartHandler(product._id, tokenReduxStore, cartStoreData);
     } else {
       log('Please login first');
     }

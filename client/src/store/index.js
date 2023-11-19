@@ -8,6 +8,7 @@ import userReducer from './user/user.slice';
 import wishlistReducer from './wishlist/wishList.slice';
 import cartReducer from './cart/cart.slice';
 import modalReducer from './modal/modal.slice';
+import filterReducer from './filter/filter.slice';
 import cartModalSlice from './cartModal/cartModal.slice';
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   wishlist: wishlistReducer,
   cart: cartReducer,
   modal: modalReducer,
+  filter: filterReducer,
   cartModal: cartModalSlice,
   [danitApiCart.reducerPath]: danitApiCart.reducer,
   [danitApiAuth.reducerPath]: danitApiAuth.reducer,
@@ -25,12 +27,13 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
-    .concat(danitApiCart.middleware)
-    .concat(danitApiProducts.middleware)
-    .concat(danitApiAuth.middleware)
-    .concat(danitApiWishlist.middleware)
-    .concat(localJsonApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(danitApiCart.middleware)
+      .concat(danitApiProducts.middleware)
+      .concat(danitApiAuth.middleware)
+      .concat(danitApiWishlist.middleware)
+      .concat(localJsonApi.middleware),
 });
 
 export default store;
