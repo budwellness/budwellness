@@ -2,6 +2,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Form, Formik} from 'formik';
+import cn from "classnames";
 import PropTypes from 'prop-types';
 
 // COMPONENTS: 
@@ -19,6 +20,8 @@ import ButtonHeader from "../ButtonHeader/ButtonHeader.jsx";
 import GoogleIcon from "./icons/GoogleIcon.jsx";
 import FacebookIcon from "./icons/FacebookIcon.jsx";
 import FaceBookIcon from "../UI/FaceBookIcon.jsx";
+import LogoIcon from "../Header/icons/LogoIcon.jsx";
+import {Link} from "react-router-dom";
 
 
 function LoginForm(props) {
@@ -69,30 +72,37 @@ function LoginForm(props) {
             loginUser(values)
         }}>
             <Form className={styles.form}>
-                <h2 className={styles.title}>Sing In With</h2>
-                <div className={styles.socialLinksWrapper}>
-                    <ButtonHeader href="https://www.facebook.com/" className={styles.facebook}>
-                        <FacebookIcon/>
-                        Facebook
-                    </ButtonHeader>
-                    <ButtonHeader href="https://google.com/" className={styles.google}>
-                        <GoogleIcon/>
-                        Google
-                    </ButtonHeader>
+                <div className={styles.logoIcon}><LogoIcon/></div>
+                <h2 className={styles.title}>Sing in Bud<span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
+                </h2>
+                <div className={styles.wrapperLogin}>
+                    <LoginInput
+                        className={styles.loginInput}
+                        name="loginOrEmail"
+                        type="text"
+                        placeholder="Login"
+                        label="Username or email address"/>
+                    <div className={styles.passwordInput}>
+                        <LoginInput
+                            className={styles.loginInput}
+                            name="password"
+                            type="text"
+                            placeholder="Password"
+                            label="Password"/>
+                        <Link
+                            to="/"
+                            className={styles.forgotPassword}
+                        >
+                            Forgot password?
+                        </Link>
+                        <ButtonHeader className={styles.btnLogin} type="submit">
+                            Sign in
+                        </ButtonHeader>
+                    </div>
                 </div>
-                <LoginInput name="loginOrEmail" type="text" placeholder="Login" label="Login"/>
-                <LoginInput name="password" type="text" placeholder="Password" label="Password"/>
                 <div className={styles.footerInput}>
-                    <button className={styles.btn} type="submit">
-                        login
-                    </button>
-                    <button
-                        className={styles.btn}
-                        type="button"
-                        onClick={handleModal}
-                    >
-                        cancel
-                    </button>
+                    <ButtonHeader className={styles.btnLogin} type="submit">DEMO</ButtonHeader>
+                    <Link to="/" className={styles.createAcc}>Create an account</Link>
                 </div>
             </Form>
         </Formik>
