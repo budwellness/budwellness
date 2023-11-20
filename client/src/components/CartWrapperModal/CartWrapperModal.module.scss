@@ -34,6 +34,7 @@
   background-color: $main-orange;
   color: $main-green;
   border: none;
+  display: inline-block;
 
   &:hover {
     transform: scale(1.1);

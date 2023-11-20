@@ -51,53 +51,53 @@ function Search() {
   }, []);
 
   return (
-      <form onSubmit={(e) => e.preventDefault()} className={styles.header_userSearchForm}>
-        <input
-            className={styles.header_userSearchInput}
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setIsError(false); // Reset error state when typing
-            }}
-        />
-        <button className={styles.header_userSearchButton}>
-          <SearchIcon />
-        </button>
-        {dropdown && (
-            <div ref={dropdownRef}>
-              {isError ? (
-                  <p>{isError}</p>
-              ) : (
-                  <ul className={styles.header_userSearchDropdown}>
-                    {isLoading && <p>Loading...</p>}
-                    {data?.map((item) => (
-                        <li className={styles.userSearchItem} key={item._id}>
-                          <div>
-                            <img
-                                className={styles.userSearchItemLogo}
-                                src={item.imageUrls[0]}
-                                alt={item.name}
-                            />
-                          </div>
-                          <Link
-                              className={styles.userSearchLink}
-                              to={`/product/${item.itemNo}`}
-                              onClick={() => {
-                                setSearch('');
-                                closeDropdown();
-                              }}
-                          >
-                            {item.name}
-                          </Link>
-                        </li>
-                    ))}
-                  </ul>
-              )}
-            </div>
-        )}
-      </form>
+    <form onSubmit={(e) => e.preventDefault()} className={styles.header_userSearchForm}>
+      <input
+        className={styles.header_userSearchInput}
+        type="text"
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setIsError(false); // Reset error state when typing
+        }}
+      />
+      <button type="button" className={styles.header_userSearchButton}>
+        <SearchIcon />
+      </button>
+      {dropdown && (
+        <div ref={dropdownRef}>
+          {isError ? (
+            <p>{isError}</p>
+          ) : (
+            <ul className={styles.header_userSearchDropdown}>
+              {isLoading && <p>Loading...</p>}
+              {data?.map((item) => (
+                <li className={styles.userSearchItem} key={item._id}>
+                  <div>
+                    <img
+                      className={styles.userSearchItemLogo}
+                      src={item.imageUrls[0]}
+                      alt={item.name}
+                    />
+                  </div>
+                  <Link
+                    className={styles.userSearchLink}
+                    to={`/product/${item.itemNo}`}
+                    onClick={() => {
+                      setSearch('');
+                      closeDropdown();
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </form>
   );
 }
 
