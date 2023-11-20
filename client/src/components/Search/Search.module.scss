@@ -3,7 +3,6 @@
   margin-right: 75px;
   position: relative;
 
-
   @media (max-width: 1199.98px) {
     margin-right: 0;
   }
@@ -86,5 +85,20 @@
     //justify-content: center;
     //align-items: center;
     //height: 40px;
+  }
+}
+
+.header_userSearchDropdown {
+  position: absolute;
+  list-style: none;
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+.userSearchItem {
+  text-decoration: none;
+  &:hover {
+    color: red;
+    cursor: pointer;
   }
 }

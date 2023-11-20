@@ -36,7 +36,9 @@ export const danitApiProducts = createApi({
       query: (searchPhrases) => ({
         url: API.API_SEARCH_PRODUCTS,
         method: 'POST',
-        body: searchPhrases,
+        body: {
+          query: searchPhrases,
+        },
       }),
     }),
     getFilteredProducts: build.query({
