@@ -25,10 +25,10 @@ function InfoProduct({ data }) {
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
   const { isUserLogin, token: tokenReduxStore } = useSelector(
-    (state) => state.user,
+    (state) => state.user
   );
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist,
+    (state) => state.wishlist
   );
 
   const toggleWishlistWithLoginHandler = () => {
@@ -48,25 +48,27 @@ function InfoProduct({ data }) {
   };
 
   useEffect(
-    () => wishlistButtonStateHandler(
-      isUserLogin,
-      wishlistStoreData,
-      isExistInWishlist,
-      setIsExistInWishlist,
-      data._id,
-    ),
-    [wishlistStoreData, isUserLogin],
+    () =>
+      wishlistButtonStateHandler(
+        isUserLogin,
+        wishlistStoreData,
+        isExistInWishlist,
+        setIsExistInWishlist,
+        data._id
+      ),
+    [wishlistStoreData, isUserLogin]
   );
 
   useEffect(
-    () => cartButtonStateHandler(
-      isUserLogin,
-      cartStoreData,
-      isExistInCart,
-      setIsExistInCart,
-      data._id,
-    ),
-    [cartStoreData, isUserLogin],
+    () =>
+      cartButtonStateHandler(
+        isUserLogin,
+        cartStoreData,
+        isExistInCart,
+        setIsExistInCart,
+        data._id
+      ),
+    [cartStoreData, isUserLogin]
   );
 
   return (
@@ -87,23 +89,22 @@ function InfoProduct({ data }) {
       <div className={styles.ratingWrapper}>
         <RatingStars rate={data.rate} />
         <p className={styles.ratingText}>
-          (
-          {data.reviews.length}
+          ({data.reviews.length}
           customer review
-          <span className={styles.span}>s</span>
-          )
+          <span className={styles.span}>s</span>)
         </p>
       </div>
       <p className={styles.descShort}>{data.description.short}</p>
-      <p className={styles.price}>
-        {data.currentPrice}
-        $
-      </p>
+      <p className={styles.price}>{data.currentPrice}$</p>
       <div className={styles.buttonWrapper}>
         {/* <ButtonCount /> */}
         <Button
           type="button"
-          className="orangeBtn"
+          // className="orangeBtn"
+          className={cN({
+            orangeBtn: !isExistInCart,
+            whiteBtn_active: isExistInCart,
+          })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
           onClick={() => toggleCartWithLoginHandler()}
         />
@@ -133,10 +134,7 @@ function InfoProduct({ data }) {
         </li>
         <li className={styles.item}>
           <span className={styles.property}>CBD:</span>
-          <span className={styles.value}>
-            {data.cbd}
-            %
-          </span>
+          <span className={styles.value}>{data.cbd}%</span>
         </li>
         <li className={styles.item}>
           <span className={styles.property}>Effects:</span>
@@ -171,7 +169,7 @@ InfoProduct.propTypes = {
         feedback: PropTypes.string.isRequired,
         benefit: PropTypes.string.isRequired,
         disadvantages: PropTypes.string.isRequired,
-      }),
+      })
     ).isRequired,
     currentPrice: PropTypes.number.isRequired,
     categories: PropTypes.string.isRequired,
