@@ -142,7 +142,7 @@ function ProductCard(props) {
                 [styles.btn__add_to_favorites]: !isExistInWishlist,
                 [styles.btn__add_to_favorites_active]: isExistInWishlist,
               })}
-              onClick={() => toggleWishlistWithLoginHandler()}
+              onClick={toggleWishlistWithLoginHandler}
             >
               <FavouriteIcon className={styles.favorite_icon} />
             </ButtonIcon>
@@ -183,7 +183,7 @@ function ProductCard(props) {
             whiteBtn_active: isExistInCart,
           })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
-          onClick={() => toggleCartWithLoginHandler()}
+          onClick={toggleCartWithLoginHandler}
         />
       </div>
       {isModalAddToCartOpen && (
@@ -192,8 +192,6 @@ function ProductCard(props) {
           handleModal={handleModal}
         >
           <ModalAddToCart
-            // toggleCartWithLoginHandler={toggleCartWithLoginHandler}
-            // toggleWishlistWithLoginHandler={toggleWishlistWithLoginHandler}
             product={product}
 
           />

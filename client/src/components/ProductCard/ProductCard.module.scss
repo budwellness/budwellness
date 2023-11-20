@@ -166,13 +166,13 @@
     color: $white-text-color;
     transition: 0.3s ease-in-out;
 
-    svg {
+    .favorite_icon, .eye_icon {
       fill: $white-text-color;
       transition: 0.3s ease-in-out;
     }
   }
 
-  svg {
+  .favorite_icon, .eye_icon {
     fill: $main-orange;
     width: 19px;
     height: 16px;
@@ -190,7 +190,7 @@
   border: 1px solid $main-orange;
   cursor: pointer;
 
-  svg {
+  .favorite_icon, .eye_icon {
     fill: $color-white;
     width: 19px;
     height: 16px;

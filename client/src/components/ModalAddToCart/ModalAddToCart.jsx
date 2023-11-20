@@ -16,7 +16,7 @@ function ModalAddToCart({
   // },
   product,
 }) {
-  console.log(product);
+  // console.log(product);
   const {
     itemNo,
     name,
@@ -69,7 +69,7 @@ ModalAddToCart.propTypes = {
   // eslint-disable-next-line react/require-default-props
   product: PropTypes.shape({
     imageUrls: PropTypes.arrayOf(PropTypes.string),
-    reviews: PropTypes.string,
+    reviews: PropTypes.arrayOf(PropTypes.string),
     description: PropTypes.arrayOf(PropTypes.string),
     itemNo: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
