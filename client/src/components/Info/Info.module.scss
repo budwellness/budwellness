@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap');
+@mixin for-size($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
 
 * {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: $font-nunito;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,7 +13,7 @@
 
 .comp1 {
   height: 532.06px;
-  background-color: #214842;
+  background-color: $main-green;
   position: relative;
   margin-top: 160px;
 }
@@ -79,7 +83,7 @@ p:last-child {
   /* 150% */
 }
 
-@media (max-width: 980px) {
+@include for-size(980px) {
   .comp1 .container p {
     font-size: 24px;
     margin-top: 20px;
@@ -95,7 +99,7 @@ p:last-child {
   }
 }
 
-@media (max-width: 720px) {
+@include for-size(720px) {
   p:first-child {
     font-size: 28px;
   }
@@ -106,7 +110,7 @@ p:last-child {
   }
 }
 
-@media (max-width: 560px) {
+@include for-size(560px) {
   .img-left {
     display: none;
   }
