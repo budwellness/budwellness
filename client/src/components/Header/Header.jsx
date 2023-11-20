@@ -178,7 +178,6 @@ Header.defaultProps = {
   actions: {
     getCart: () => {},
     getWishlist: () => {},
-    // handleModal: () => {},
   },
 };
 
