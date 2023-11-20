@@ -146,25 +146,25 @@ function ContactPage() {
               <li>
                 <a href="https://www.facebook.com/">
                   <span className={styles.visuallyHidden}>Facebook</span>
-                  <FaceBookIcon />
+                  <FaceBookIcon fill="#214842" />
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/">
                   <span className={styles.visuallyHidden}>Instagram</span>
-                  <InstaIcon />
+                  <InstaIcon fill="#214842" />
                 </a>
               </li>
               <li>
                 <a href="https://twitter.com/">
                   <span className={styles.visuallyHidden}>Twitter</span>
-                  <TwitterIcon />
+                  <TwitterIcon fill="#214842" />
                 </a>
               </li>
               <li>
                 <a href="https://www.whatsapp.com/">
                   <span className={styles.visuallyHidden}>WhatsApp</span>
-                  <WhatsAppIcon />
+                  <WhatsAppIcon fill="#214842" />
                 </a>
               </li>
             </ul>
