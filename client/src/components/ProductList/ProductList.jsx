@@ -101,8 +101,6 @@ function ProductList() {
     // isLoading: isLoadingAllProductsData
   } = useGetAllProductsQuery();
 
-  console.log(AllProductsData);
-
   return (
     <div className={styles.list__products}>
       {isErrorAllProductsData ? (
