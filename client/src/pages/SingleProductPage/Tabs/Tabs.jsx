@@ -1,7 +1,5 @@
 /* eslint-disable */
 
-/* eslint-disable */
-
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FormRespond from '../FormRespond/FormRespond';
@@ -179,8 +177,3 @@ Tabs.propTypes = {
 };
 
 export default Tabs;
-// const {
-//   description: { short, completion },
-//   reviews: { fullName, reviewDate, feedback, benefit, disadvantages },
-//   additionalInformation: { ingredients, flavors, recommendedUsage },
-// } = props;

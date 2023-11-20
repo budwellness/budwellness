@@ -8,7 +8,10 @@ import styles from './ProductsPage.module.scss';
 function ProductsPage() {
   return (
     <>
-      <PagePreviewHeader title="Shop" text="Immerse yourself in a unique shopping experience, where your choice is our priority." />
+      <PagePreviewHeader
+        title="Shop"
+        text="Immerse yourself in a unique shopping experience, where your choice is our priority"
+      />
       <Container>
         <main className={styles.shop__main_container}>
           <ProductList />

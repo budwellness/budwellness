@@ -17,10 +17,7 @@ function PopularSwiperSlide(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
     products: productItem,
-    actions: {
-      toggleCartHandler,
-      toggleWishlistHandler,
-    },
+    actions: { toggleCartHandler, toggleWishlistHandler },
   } = props;
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
@@ -29,8 +26,12 @@ function PopularSwiperSlide(props) {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { cart: cartStoreData } = useSelector((state) => state.cart);
-  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
-  const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
+  const { isUserLogin, token: tokenReduxStore } = useSelector(
+    (state) => state.user,
+  );
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist,
+  );
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const toggleWishlistWithLoginHandler = () => {
@@ -107,7 +108,7 @@ function PopularSwiperSlide(props) {
               <button
                 type="button"
                 className={styles.actionLink}
-                onClick={() => { }}
+                onClick={() => {}}
               >
                 <EyeIcon className={styles.styleIcon} />
               </button>
@@ -166,8 +167,8 @@ PopularSwiperSlide.propTypes = {
 
 PopularSwiperSlide.defaultProps = {
   actions: {
-    toggleCartHandler: () => { },
-    toggleWishlistHandler: () => { },
+    toggleCartHandler: () => {},
+    toggleWishlistHandler: () => {},
   },
 };
 
