@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import LogoIcon from '../Header/icons/LogoIcon';
+import LogoIcon from '../Header/icons/LogoIcon';
 import FaceBookIcon from '../UI/FaceBookIcon';
 import InstaIcon from '../UI/InstaIcon';
 import TwitterIcon from '../UI/TwitterIcon';
@@ -20,7 +20,7 @@ function Footer() {
           <div className={styles.footer__content}>
             <div className={styles.about}>
               <Link to="/" className={styles.about__logoLink}>
-                {/* <LogoIcon /> */}
+                <LogoIcon />
                 <span className={styles.about__logoTitle}>Bud</span>
                 <span
                   className={`${styles.about__accentColor} ${styles.about__logoTitle}`}

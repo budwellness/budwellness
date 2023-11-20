@@ -60,15 +60,18 @@
     margin-bottom: 30px;
   }
 
-  @include for-size(576px) {}
-
   &__logoLink {
     @include for-size(320px) {
       margin-bottom: 10px;
     }
-
     text-decoration: none;
     display: flex;
+    svg {
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+      margin-top: -10px;
+    }
   }
 
   &__logoTitle {
