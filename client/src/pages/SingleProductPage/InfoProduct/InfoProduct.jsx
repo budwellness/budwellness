@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cN from 'classnames';
@@ -14,7 +12,7 @@ import cartButtonStateHandler from '../../../helpers/cartButtonStateHandler';
 import RatingStars from '../../../components/RatingStars/RatingStars';
 import Button from '../../../components/Button/Button';
 import FavouriteIcon from '../../../components/UI/FavouriteIcon';
-import ButtonIcon from '../../../components/ButtonIcon/ButtonIcon';
+// import ButtonIcon from '../../../components/ButtonIcon/ButtonIcon';
 
 import styles from './InfoProduct.module.scss';
 
@@ -27,10 +25,10 @@ function InfoProduct({ data }) {
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
   const { isUserLogin, token: tokenReduxStore } = useSelector(
-    (state) => state.user
+    (state) => state.user,
   );
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist
+    (state) => state.wishlist,
   );
 
   const toggleWishlistWithLoginHandler = () => {
@@ -50,27 +48,25 @@ function InfoProduct({ data }) {
   };
 
   useEffect(
-    () =>
-      wishlistButtonStateHandler(
-        isUserLogin,
-        wishlistStoreData,
-        isExistInWishlist,
-        setIsExistInWishlist,
-        data._id
-      ),
-    [wishlistStoreData, isUserLogin]
+    () => wishlistButtonStateHandler(
+      isUserLogin,
+      wishlistStoreData,
+      isExistInWishlist,
+      setIsExistInWishlist,
+      data._id,
+    ),
+    [wishlistStoreData, isUserLogin],
   );
 
   useEffect(
-    () =>
-      cartButtonStateHandler(
-        isUserLogin,
-        cartStoreData,
-        isExistInCart,
-        setIsExistInCart,
-        data._id
-      ),
-    [cartStoreData, isUserLogin]
+    () => cartButtonStateHandler(
+      isUserLogin,
+      cartStoreData,
+      isExistInCart,
+      setIsExistInCart,
+      data._id,
+    ),
+    [cartStoreData, isUserLogin],
   );
 
   return (
@@ -91,13 +87,18 @@ function InfoProduct({ data }) {
       <div className={styles.ratingWrapper}>
         <RatingStars rate={data.rate} />
         <p className={styles.ratingText}>
-          ({data.reviews.length}
+          (
+          {data.reviews.length}
           customer review
-          <span className={styles.span}>s</span>)
+          <span className={styles.span}>s</span>
+          )
         </p>
       </div>
       <p className={styles.descShort}>{data.description.short}</p>
-      <p className={styles.price}>{data.currentPrice}$</p>
+      <p className={styles.price}>
+        {data.currentPrice}
+        $
+      </p>
       <div className={styles.buttonWrapper}>
         {/* <ButtonCount /> */}
         <Button
@@ -132,7 +133,10 @@ function InfoProduct({ data }) {
         </li>
         <li className={styles.item}>
           <span className={styles.property}>CBD:</span>
-          <span className={styles.value}>{data.cbd}%</span>
+          <span className={styles.value}>
+            {data.cbd}
+            %
+          </span>
         </li>
         <li className={styles.item}>
           <span className={styles.property}>Effects:</span>
@@ -154,6 +158,7 @@ function InfoProduct({ data }) {
 InfoProduct.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     rate: PropTypes.number.isRequired,
     description: PropTypes.shape({
       short: PropTypes.string.isRequired,
@@ -166,7 +171,7 @@ InfoProduct.propTypes = {
         feedback: PropTypes.string.isRequired,
         benefit: PropTypes.string.isRequired,
         disadvantages: PropTypes.string.isRequired,
-      })
+      }),
     ).isRequired,
     currentPrice: PropTypes.number.isRequired,
     categories: PropTypes.string.isRequired,
