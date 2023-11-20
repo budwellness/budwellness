@@ -86,7 +86,7 @@ function LoginForm(props) {
                         <LoginInput
                             className={styles.loginInput}
                             name="password"
-                            type="text"
+                            type="password"
                             placeholder="Password"
                             label="Password"/>
                         <Link

@@ -72,6 +72,9 @@
   svg {
     width: 15px;
     height: 15px;
+    &:hover{
+      fill: yellow;
+    }
   }
 
   @media (min-width: 767.98px) {
