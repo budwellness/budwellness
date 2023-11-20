@@ -39,20 +39,17 @@ export default function PopularSwiper() {
   useEffect(() => {
     if (isSuccessFilteredProductsData) {
       setPopularCards(
-        filteredProductsData.products
-          ?.map((productItem) => (
-            <SwiperSlide key={productItem.itemNo} className={styles.slide}>
-              <PopularSwiperSlide
-                products={productItem}
-                actions={
-                  {
-                    toggleCartHandler,
-                    toggleWishlistHandler,
-                  }
-                }
-              />
-            </SwiperSlide>
-          )),
+        filteredProductsData.products?.map((productItem) => (
+          <SwiperSlide key={productItem.itemNo} className={styles.slide}>
+            <PopularSwiperSlide
+              products={productItem}
+              actions={{
+                toggleCartHandler,
+                toggleWishlistHandler,
+              }}
+            />
+          </SwiperSlide>
+        )),
       );
     }
   }, [isSuccessFilteredProductsData, filteredProductsData]);
