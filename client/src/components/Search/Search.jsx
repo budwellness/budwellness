@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SearchIcon from '../Header/icons/SearchIcon';
 
 import styles from './Search.module.scss';
 import useDebounced from '../../hooks/useDebounce';
 import { useSearchForProductsMutation } from '../../store/serverResponse/danitApi.products';
-import { Link } from 'react-router-dom';
 
 function Search() {
   const [search, setSearch] = useState('');
-  const [dropdown, setDropdown] = useState()
+  const [dropdown, setDropdown] = useState();
   const debounced = useDebounced(search);
 
   const [
@@ -17,14 +17,11 @@ function Search() {
       data,
       isError,
       isLoading,
-      isSuccess
-    }
+    },
   ] = useSearchForProductsMutation();
   useEffect(() => {
     if (debounced.length > 2) {
-      searchForProducts(debounced)
-        .unwrap()
-        .then((response) => console.log(response))
+      searchForProducts(debounced);
     }
   }, [debounced]);
 
@@ -47,22 +44,27 @@ function Search() {
         <SearchIcon />
       </button>
       {dropdown && (
-        <ul className={styles.header_userSearchDropdown}>
-          {isLoading && <p>Loading...</p>}
-          {data?.map((item) => (
-            <li
-              className={styles.userSearchItem}
-              key={item._id}
-            >
-              <Link
-                to={`/product/${item.itemNo}`}
-                onClick={() => setSearch('')}
+        isError ? (
+          <p>{isError}</p>
+        ) : (
+          <ul className={styles.header_userSearchDropdown}>
+            {isLoading && <p>Loading...</p>}
+            {data?.map((item) => (
+              <li
+                className={styles.userSearchItem}
+                key={item._id}
               >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <Link
+                  className={styles.userSearchLink}
+                  to={`/product/${item.itemNo}`}
+                  onClick={() => setSearch('')}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )
       )}
     </form>
   );
