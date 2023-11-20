@@ -54,6 +54,13 @@ function Search() {
                 className={styles.userSearchItem}
                 key={item._id}
               >
+                <div>
+                  <img
+                    className={styles.userSearchItemLogo}
+                    src={item.imageUrls[0]}
+                    alt={item.name}
+                  />
+                </div>
                 <Link
                   className={styles.userSearchLink}
                   to={`/product/${item.itemNo}`}

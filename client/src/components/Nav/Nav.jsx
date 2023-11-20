@@ -21,11 +21,11 @@ function Nav({ showBurger, setShowBurger }) {
         <li className={styles.item}>
           <Link to="/shop" className={styles.itemLink} onClick={closeBurgerMenu}>Shop</Link>
         </li>
-        { }
+
         <li className={styles.item}>
           <Link to="/news" className={styles.itemLink} onClick={closeBurgerMenu}>News</Link>
         </li>
-        { }
+
         <li className={styles.item}>
           <Link to="/contact" className={styles.itemLink} onClick={closeBurgerMenu}>Contacts</Link>
         </li>
