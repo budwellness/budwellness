@@ -65,24 +65,6 @@
   height: 45px;
 }
 
-p:first-child {
-  color: #214842;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 43.2px;
-}
-
-p:last-child {
-  margin-top: 15px;
-  color: #556260;
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 25.5px;
-  /* 150% */
-}
-
 @include for-size(980px) {
   .comp1 .container p {
     font-size: 24px;
@@ -99,17 +81,6 @@ p:last-child {
   }
 }
 
-@include for-size(720px) {
-  p:first-child {
-    font-size: 28px;
-  }
-
-  p:last-child {
-    font-size: 16px;
-    text-align: center;
-  }
-}
-
 @include for-size(560px) {
   .img-left {
     display: none;
@@ -119,7 +90,6 @@ p:last-child {
   }
 
   .comp1 .container p {
-    // font-size: 16px;
     line-height: normal;
   }
 }
