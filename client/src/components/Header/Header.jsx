@@ -30,13 +30,13 @@ import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
 
-function Header() {
-  // const {
-  //   actions: {
-  //     getCart,
-  //     getWishlist,
-  //   },
-  // } = props;
+function Header(props) {
+  const {
+    actions: {
+      getCart,
+      getWishlist,
+    },
+  } = props;
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 

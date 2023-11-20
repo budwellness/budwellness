@@ -1,13 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { setCartModal } from '../../store/cartModal/cartModal.slice';
 import CartModalItem from './CartModalItem/CartModalItem';
-import Button from '../Button/Button';
+
 import countTotalPrice from '../../helpers/countTotalPrice';
 
 import styles from './CartWrapperModal.module.scss';
 
 function CartWrapperModal() {
+  /* --------------------------- INIT HOOKS: --------------------------- */
+  const dispatch = useDispatch();
+
   /* --------------------------- REDUX STATE: --------------------------- */
+  // const {isCartModal} = useSelector((state) => state.cartModal);
   const { cart: cartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
@@ -36,12 +42,13 @@ function CartWrapperModal() {
           {countTotalPriceHandler()}
         </span>
       </div>
-      <Button
-        type="button"
-        text="Proceed to checkout"
-        className="orangeBtn"
-        onClick={() => { }}
-      />
+      <Link
+        to="/cart"
+        className={styles.orangeBtn}
+        onClick={() => dispatch(setCartModal(false))}
+      >
+        Proceed to checkout
+      </Link>
     </>
   );
 }
