@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import styles from './ButtonIcon.module.scss';
 
 export default function ButtonIcon(props) {
   const {
@@ -14,7 +13,7 @@ export default function ButtonIcon(props) {
   return (
     <button
       type="button"
-      className={cn(styles.btnIcon, styles[classNames])}
+      className={cn('btn_icon', classNames)}
       onClick={onClick}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...restProps}

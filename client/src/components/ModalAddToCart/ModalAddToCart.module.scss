@@ -1,29 +1,27 @@
-.modal_AddToCart__container {
+.modal_add_to_cart__container {
     max-width: 80vw;
     @include _992 {
+        max-width: 85vw;
         @include dflex-jcc-aifs;
     }
 
     .slider__wrapper {
         width: 100%;
+        margin: 0 0 20px;
+
         @include _992 {
-            max-width: 430px;
-            margin: 0 50px 0 10px;
+            max-width: 380px;
+            margin: 0 40px 0 10px;
         }
     }
 }
-
-
 
 .about__info_wrapper {
     color: $main-green;
 
     @include _992 {
-        padding-right: 30px;
         @include dflex-column-jcfs-aifs;
     }
-
-
 
     .about__title {
         margin: 0 0 15px;
@@ -36,16 +34,24 @@
 
     .about__rate_wrapper {
         margin-bottom: 20px;
-        @include dflex-jcsb-aic;
-        justify-content: flex-start;
+        @include dflex-column-jcfs-aifs;
+        
+        @include _576 {
+            flex-direction: row;
+            @include dflex-jcsb-aic;
+            justify-content: flex-start;
+        }
 
 
         .about__rate_text {
-            margin-left: 20px;
             color: $main-text-color;
+            margin: 10px 0 0;
 
+            @include _576 {
+                margin: 0 0 0 20px;
+            }
+            
         }
-
     }
 
     .about__descr_short {
@@ -61,69 +67,70 @@
         margin: 30px 0;
         @include dflex-jcsb-aic;
         justify-content: flex-start;
+        
 
         .about__current_price {
             margin: 0 30px 0 0;
             font-family: $font-nunito;
             font-weight: 800;
             font-size: 30px;
-
         }
-
-        // .btn__addToFavorites {
-        //   height: 40px;
-        //   width: 40px;
-        //   margin-bottom: 20px;
-        //   @include dflex-jcc-aic;
-        //   background: $color-white;
-        //   border-radius: 50%;
-        //   border: 1px solid $main-orange;
-        //   cursor: pointer;
-
-        //   &:hover {
-        //     background-color: $main-orange;
-        //     color: $white-text-color;
-        //     transition: 0.5s ease-in-out;
-
-        //     .favoriteIcon{
-        //       fill: $white-text-color;
-        //       transition: 0.5s ease-in-out;
-        //     }
-        //   }
-
-        //   .favoriteIcon {
-        //     fill: $main-orange;
-        //     width: 19px;
-        //     height: 16px;
-        //   }
-        // }
-
-        // .btn__addToFavorites_active {
-        //   height: 40px;
-        //   width: 40px;
-        //   margin-bottom: 20px;
-        //   @include dflex-jcc-aic;
-        //   background: $main-orange;
-        //   border-radius: 50%;
-        //   border: 1px solid $color-white;
-        //   cursor: pointer;
-
-        //   &:hover {
-        //     background-color: $color-white;
-        //     color: $main-orange;
-        //     transition: 0.5s ease-in-out;
-
-        //     .favoriteIcon {
-        //       fill: $main-orange;
-        //       transition: 0.5s ease-in-out;
-        //     }
-        //   }
-
-        //   .favoriteIcon {
-        //     fill: $color-white;
-        //     width: 19px;
-        //     height: 16px;
-        //   }
-        // }
     }
+}
+
+.btn__add_to_favorites {
+    height: 40px;
+    width: 40px;
+    margin: 0 30px;
+    @include dflex-jcc-aic;
+    background-color: $color-white;
+    border-radius: 50%;
+    border: 1px solid $color-white;
+    box-shadow: 1px 2px 15px rgba(33,72,66,.17);
+    cursor: pointer;
+
+    &:hover {
+        background-color: $main-orange;
+        color: $white-text-color;
+        transition: 0.5s ease-in-out;
+
+        svg {
+        fill: $color-white;
+        transition: 0.5s ease-in-out;
+        }
+    }
+}
+
+    svg {
+        fill: $main-orange;
+        width: 19px;
+        height: 16px;
+    }
+
+.btn__add_to_favorites_active {
+  height: 40px;
+  width: 40px;
+  margin: 0 30px;
+  @include dflex-jcc-aic;
+  background-color: $main-orange;
+  border-radius: 50%;
+  border: 1px solid $main-orange;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-white;
+    color: $main-orange;
+    transition: 0.5s ease-in-out;
+
+    svg {
+      fill: $main-orange;
+      transition: 0.5s ease-in-out;
+    }
+  }
+
+  svg {
+    fill: $color-white;
+    width: 19px;
+    height: 16px;
+  }
 }
