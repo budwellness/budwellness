@@ -20,7 +20,11 @@ function PhoneIcon(props) {
 }
 
 PhoneIcon.propTypes = {
-  fill: PropTypes.string.isRequired,
+  fill: PropTypes.string,
+};
+
+PhoneIcon.defaultProps = {
+  fill: '#efc368',
 };
 
 export default PhoneIcon;

@@ -14,7 +14,10 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
+// import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+// import Modal from './components/Modal/Modal';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
@@ -109,6 +112,7 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
+      <ScrollToTop />
       <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -122,6 +126,15 @@ function App() {
       </Routes>
       <Footer />
       <CartModal />
+      {/* {showModalAddToCart && (
+        <Modal handleModal={handleModal} >
+          <ModalAddToCart
+            product={products?.product}
+            showModalAddToCart={showModalAddToCart}
+            setShowModalAddToCart={setShowModalAddToCart}
+          />
+        </Modal>
+      )} */}
     </>
   );
 }

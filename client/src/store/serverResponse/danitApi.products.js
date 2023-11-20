@@ -27,6 +27,9 @@ export const danitApiProducts = createApi({
         method: 'GET',
       }),
     }),
+    getProduct: build.query({
+      query: (itemNo) => `${API.API_GET_ONE_PRODUCT}/${itemNo}`,
+    }),
     searchForProducts: build.mutation({
       /* should be JS object like:
             const searchPhrases = {
@@ -39,6 +42,9 @@ export const danitApiProducts = createApi({
         body: searchPhrases,
       }),
     }),
+    getFilteredProducts: build.query({
+      query: (queryString) => `${API.API_GET_FILTERED_PRODUCTS}${queryString}`,
+    }),
   }),
 });
 
@@ -48,4 +54,7 @@ export const {
   useGetSingleProductMutation,
   useSearchForProductsMutation,
   useAddProductMutation,
+  useGetFilteredProductsQuery,
+  useLazyGetFilteredProductsQuery,
+  useGetProductQuery,
 } = danitApiProducts;

@@ -1,98 +1,58 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
-import cN from 'classnames';
-import { useGetAllProductsQuery } from '../../../store/serverResponse/fetchLocalJson';
-import CartIcon from '../../UI/CartIcon';
-import FavouriteIcon from '../../UI/FavouriteIcon';
-import EyeIcon from '../../UI/EyeIcon';
-import RatingStars from '../../RatingStars/RatingStars';
+
+// COMPONENT IMPORTS:
+import PopularSwiperSlide from '../PopularSwiperSlide/PopularSwiperSlide';
+
+// PRODUCT IMPORTS:
+import { useGetFilteredProductsQuery } from '../../../store/serverResponse/danitApi.products';
+
+// CART IMPORTS:
+import useToggleCart from '../../../hooks/useToggleCart';
+import useToggleWishlist from '../../../hooks/useToggleWishlist';
 
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
-
 import styles from './PopularSwiper.module.scss';
 
 SwiperCore.use([Pagination, Autoplay]);
 
 export default function PopularSwiper() {
-  const { data: productsData } = useGetAllProductsQuery();
+  /* --------------------------- COMPONENT STATE: --------------------------- */
+  const [popularCards, setPopularCards] = useState(null);
 
-  const popularCards = productsData
-    ?.slice()
-    ?.sort(({ rate: rateA }, { rate: rateB }) => rateB - rateA)
-    ?.slice(0, 6)
-    ?.map((productItem) => (
-      <SwiperSlide key={productItem.itemNo} className={styles.slide}>
-        <div className={styles.wpapper}>
-          <div className={styles.media}>
-            {productItem.previousPrice !== productItem.currentPrice && (
-              <span className={styles.mediaSale}>Sale</span>
-            )}
-            <div className={styles.mediaOverlay}>
-              <ul className={styles.actionList}>
-                <li className={styles.listItem}>
-                  <button
-                    type="button"
-                    className={styles.actionLink}
-                    onClick={() => {}}
-                  >
-                    <CartIcon className={styles.styleIcon} />
-                  </button>
-                </li>
-                <li className={styles.listItem}>
-                  <button
-                    type="button"
-                    className={styles.actionLink}
-                    onClick={() => {}}
-                  >
-                    <FavouriteIcon className={styles.styleIcon} />
-                  </button>
-                </li>
-                <li className={styles.listItem}>
-                  <button
-                    type="button"
-                    className={styles.actionLink}
-                    onClick={() => {}}
-                  >
-                    <EyeIcon className={styles.styleIcon} />
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <picture>
-              <img
-                className={styles.mediaImg}
-                src={productItem.imageUrls[0]}
-                alt={productItem.name}
-              />
-            </picture>
-          </div>
-          <div className={styles.main}>
-            <RatingStars rate={productItem.rate} />
-            <Link
-              className={styles.mainTitle}
-              to={`/product/${productItem.itemNo}`}
-            >
-              {productItem.name}
-            </Link>
-            <div className={styles.mainPrice}>
-              {productItem.previousPrice !== productItem.currentPrice && (
-                <span className={cN(styles.price, styles.priceOld)}>
-                  $
-                  {productItem.previousPrice.toFixed(2)}
-                </span>
-              )}
-              <span className={styles.price}>
-                $
-                {productItem.currentPrice.toFixed(2)}
-              </span>
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
-    ));
+  /* --------------------------- INIT HOOKS: --------------------------- */
+  const toggleCartHandler = useToggleCart();
+  const toggleWishlistHandler = useToggleWishlist();
+
+  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
+  // PRODUCT API:
+  const mockFilterQueryString = '?sort=-rate&perPage=6&startPage=1';
+  const {
+    data: filteredProductsData,
+    isLoading: isLoadingFilteredProductsData,
+    isSuccess: isSuccessFilteredProductsData,
+  } = useGetFilteredProductsQuery(mockFilterQueryString);
+
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
+  useEffect(() => {
+    if (isSuccessFilteredProductsData) {
+      setPopularCards(
+        filteredProductsData.products?.map((productItem) => (
+          <SwiperSlide key={productItem.itemNo} className={styles.slide}>
+            <PopularSwiperSlide
+              products={productItem}
+              actions={{
+                toggleCartHandler,
+                toggleWishlistHandler,
+              }}
+            />
+          </SwiperSlide>
+        )),
+      );
+    }
+  }, [isSuccessFilteredProductsData, filteredProductsData]);
 
   return (
     <Swiper
@@ -132,7 +92,7 @@ export default function PopularSwiper() {
         },
       }}
     >
-      {popularCards}
+      {isLoadingFilteredProductsData ? <p>Loading...</p> : popularCards}
       <div
         className="myPagination"
         style={{ marginTop: '40px', textAlign: 'center' }}

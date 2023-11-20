@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -13,8 +12,8 @@ import RatingStars from '../RatingStars/RatingStars';
 import FavouriteIcon from '../UI/FavouriteIcon';
 import EyeIcon from '../UI/EyeIcon';
 
-import getThcCategory from '../../helpers/functionGetThcCategory';
-import getCbdCategory from '../../helpers/functionGetCbdCategory';
+import getThcCategory from '../../helpers/getThcCategory';
+import getCbdCategory from '../../helpers/getCbdCategory';
 import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../helpers/cartButtonStateHandler';
 
@@ -25,10 +24,7 @@ const { log } = console;
 function ProductCard(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
-    actions: {
-      toggleWishlistHandler,
-      toggleCartHandler,
-    },
+    actions: { toggleWishlistHandler, toggleCartHandler },
     product,
   } = props;
 
@@ -49,8 +45,12 @@ function ProductCard(props) {
   const [isExistInCart, setIsExistInCart] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
-  const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
+  const { isUserLogin, token: tokenReduxStore } = useSelector(
+    (state) => state.user,
+  );
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist,
+  );
   const { cart: cartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
@@ -99,40 +99,37 @@ function ProductCard(props) {
   );
 
   return (
-
     <div className={cn(styles.productCard, styles[classNames])}>
       <div className={styles.productCard__media}>
         <Link
           to={`/product/${itemNo}`}
-          className={styles.productCard__media__productLink}
+          className={styles.productCard__img_link}
         >
-          <div className={styles.productCard__media__productLink__imageWrapper}>
+          <div className={styles.productCard__img_wrapper}>
             <img
-              className={
-                styles.productCard__media__productLink__imageWrapper__image
-              }
+              className={styles.productCard__img}
               src={imageUrls[0]}
               alt={name}
             />
           </div>
         </Link>
         {previousPrice !== currentPrice && (
-          <span className={styles.productCard__media__saleLabel}>
-            Sale
-          </span>
+          <span className={styles.productCard__saleLabel}>Sale</span>
         )}
-        <div className={styles.productCard__media__overlay}>
-          <div className={styles.productCard__media__overlay__action}>
+        <div className={styles.productCard__overlay}>
+          <div className={styles.productCard__action}>
             <ButtonIcon
-              className={styles.buttonViewSingleProduct}
-              onClick={() => { }}
+              className={styles.btn__viewSingleProduct}
+              onClick={() => {
+                // setShowModalAddToCart();
+              }}
             >
               <EyeIcon className={styles.eyeIcon} />
             </ButtonIcon>
             <ButtonIcon
               className={cn({
-                [styles.buttonAddFavorites]: !isExistInWishlist,
-                [styles.buttonAddFavorites_active]: isExistInWishlist,
+                [styles.btn__addToFavorites]: !isExistInWishlist,
+                [styles.btn__addToFavorites_active]: isExistInWishlist,
               })}
               onClick={toggleWishlistWithLoginHandler}
             >
@@ -142,42 +139,31 @@ function ProductCard(props) {
         </div>
       </div>
       <div className={styles.productCard__main}>
-        <RatingStars
-          classNames={styles.productCard__main__rating}
-          rate={rate}
-        />
+        <RatingStars rate={rate} />
         <Link
           to={`/product/${itemNo}`}
-          className={styles.productCard__main__titleLink}
+          className={styles.productCard__title_link}
         >
-          {name}
+          <h3 className={styles.productCard__title}>{name}</h3>
         </Link>
-        <div className={styles.productCard__main__property}>
-          <div className={styles.productCard__main__property_thc}>
+        <ul className={styles.productCard__propertys}>
+          <li className={styles.productCard__propertys_item}>
             <span>THC</span>
-            {' '}
-            {getThcCategory(thc)}
-          </div>
-          <div className={styles.productCard__main__property_cbd}>
+            {` ${getThcCategory(thc)}`}
+          </li>
+          <li className={styles.productCard__propertys_item}>
             <span>CBD</span>
-            {' '}
-            {getCbdCategory(cbd)}
-          </div>
-        </div>
-        <div className={styles.productCard__main__productPrices}>
+            {` ${getCbdCategory(cbd)}`}
+          </li>
+        </ul>
+        <div className={styles.productCard__prices_wrapper}>
           {previousPrice !== currentPrice && (
-            <span
-              className={styles.productCard__main__productPrices__previousPrice}
-            >
-              $
-              {previousPrice.toFixed(2)}
+            <span className={styles.productCard__previous_price}>
+              {`$${previousPrice.toFixed(2)}`}
             </span>
           )}
-          <span
-            className={styles.productCard__main__productPrices__currentPrice}
-          >
-            $
-            {currentPrice.toFixed(2)}
+          <span className={styles.productCard__current_price}>
+            {`$${currentPrice.toFixed(2)}`}
           </span>
         </div>
         <Button
@@ -185,11 +171,7 @@ function ProductCard(props) {
             whiteBtn: !isExistInCart,
             whiteBtn_active: isExistInCart,
           })}
-          text={
-            isExistInCart
-              ? 'Remove from cart'
-              : 'Add to cart'
-          }
+          text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
           onClick={toggleCartWithLoginHandler}
         />
       </div>
@@ -214,6 +196,7 @@ ProductCard.propTypes = {
   actions: PropTypes.shape({
     toggleWishlistHandler: PropTypes.func,
     toggleCartHandler: PropTypes.func,
+    // setShowModalAddToCart: PropTypes.func,
   }),
 };
 
