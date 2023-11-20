@@ -17,10 +17,7 @@ function PopularSwiperSlide(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
     products: productItem,
-    actions: {
-      toggleCartHandler,
-      toggleWishlistHandler,
-    },
+    actions: { toggleCartHandler, toggleWishlistHandler },
   } = props;
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
@@ -29,8 +26,12 @@ function PopularSwiperSlide(props) {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { cart: cartStoreData } = useSelector((state) => state.cart);
-  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
-  const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
+  const { isUserLogin, token: tokenReduxStore } = useSelector(
+    (state) => state.user
+  );
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist
+  );
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const toggleWishlistWithLoginHandler = () => {
@@ -50,25 +51,27 @@ function PopularSwiperSlide(props) {
   };
 
   useEffect(
-    () => wishlistButtonStateHandler(
-      isUserLogin,
-      wishlistStoreData,
-      isExistInWishlist,
-      setIsExistInWishlist,
-      productItem._id,
-    ),
-    [wishlistStoreData, isUserLogin],
+    () =>
+      wishlistButtonStateHandler(
+        isUserLogin,
+        wishlistStoreData,
+        isExistInWishlist,
+        setIsExistInWishlist,
+        productItem._id
+      ),
+    [wishlistStoreData, isUserLogin]
   );
 
   useEffect(
-    () => cartButtonStateHandler(
-      isUserLogin,
-      cartStoreData,
-      isExistInCart,
-      setIsExistInCart,
-      productItem._id,
-    ),
-    [cartStoreData, isUserLogin],
+    () =>
+      cartButtonStateHandler(
+        isUserLogin,
+        cartStoreData,
+        isExistInCart,
+        setIsExistInCart,
+        productItem._id
+      ),
+    [cartStoreData, isUserLogin]
   );
 
   return (
@@ -107,7 +110,7 @@ function PopularSwiperSlide(props) {
               <button
                 type="button"
                 className={styles.actionLink}
-                onClick={() => { }}
+                onClick={() => {}}
               >
                 <EyeIcon className={styles.styleIcon} />
               </button>
@@ -133,13 +136,11 @@ function PopularSwiperSlide(props) {
         <div className={styles.mainPrice}>
           {productItem.previousPrice !== productItem.currentPrice && (
             <span className={cN(styles.price, styles.priceOld)}>
-              $
-              {productItem.previousPrice.toFixed(2)}
+              ${productItem.previousPrice.toFixed(2)}
             </span>
           )}
           <span className={styles.price}>
-            $
-            {productItem.currentPrice.toFixed(2)}
+            ${productItem.currentPrice.toFixed(2)}
           </span>
         </div>
       </div>
@@ -166,8 +167,8 @@ PopularSwiperSlide.propTypes = {
 
 PopularSwiperSlide.defaultProps = {
   actions: {
-    toggleCartHandler: () => { },
-    toggleWishlistHandler: () => { },
+    toggleCartHandler: () => {},
+    toggleWishlistHandler: () => {},
   },
 };
 
