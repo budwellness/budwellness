@@ -6,12 +6,15 @@ import styles from './Filter.module.scss';
 import { useLazyGetFilteredProductsQuery } from '../../store/serverResponse/danitApi.products';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilterQuertyStringAction } from '../../store/filter/filter.slice';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const { log } = console;
 
 function Filter() {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
+  const { productSlug } = useParams();
+  const navigate = useNavigate();
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [selectedCategories, setSelectedCategories] = useState('All');
@@ -34,6 +37,10 @@ function Filter() {
       isSuccess: isSuccessFilteredProducts,
     }
   ] = useLazyGetFilteredProductsQuery()
+
+
+
+
 
   const formRef = useRef();
 
@@ -62,30 +69,26 @@ function Filter() {
       if (key === 'min' || key === 'max') {
         continue
       }
-      if (value !== 'All') {
-        filterDataArr.push(`${key}=${value}`);
-      } else {
-        continue
-      }
+      filterDataArr.push(`${key}=${value}`);
       log(value)
 
       // log(filterDataArr)
     }
     // log(filterDataArr.join('&'))
     filterQueryString = filterDataArr.join('&');
-    dispatch(updateFilterQuertyStringAction(filterQueryString));
-    log(filterQueryString)
-    getFilteredProducts(filterQueryString);
+    navigate(`/shop/${filterQueryString}`);
+    // dispatch(updateFilterQuertyStringAction(filterQueryString));
+    // getFilteredProducts(filterQueryString);
 
     // пройти циклом по всем инпутам и у которых checked в тру забрать значания
     // разобраться с управляемыми и не управляемыми элементами формы (useRef)
   };
 
-  useEffect(() => {
-    if (isSuccessFilteredProducts) {
-      log(getFilteredProductsData)
-    }
-  }, [isSuccessFilteredProducts])
+  // useEffect(() => {
+  //   if (isSuccessFilteredProducts) {
+  //     log(getFilteredProductsData)
+  //   }
+  // }, [isSuccessFilteredProducts])
 
   return (
     <form
@@ -100,7 +103,7 @@ function Filter() {
             name="categories"
             type="radio"
             id="All"
-            value="All"
+            value="all"
             className={styles.filter__input}
             checked={selectedCategories.includes('All')}
             onChange={() => handleCategoryChange('All')}
@@ -262,10 +265,10 @@ function Filter() {
             name="thc"
             type="radio"
             id="zeroToTen"
-            value="10"
+            value="minCbd=0&maxCbd=10"
             className={styles.filter__input}
-            checked={selectedTHCRange.includes('0.2-10%')}
-            onChange={() => handleTHCChange('0.2-10%')}
+            checked={selectedTHCRange.includes('0-10%')}
+            onChange={() => handleTHCChange('0-10%')}
           />
           0% - 10%
         </label>
@@ -274,10 +277,10 @@ function Filter() {
             name="thc"
             type="radio"
             id="elevenToTwenty"
-            value="11-20%"
+            value="minCbd=10&maxCbd=20"
             className={styles.filter__input}
-            checked={selectedTHCRange.includes('11-20%')}
-            onChange={() => handleTHCChange('11-20%')}
+            checked={selectedTHCRange.includes('10-20%')}
+            onChange={() => handleTHCChange('10-20%')}
           />
           10% - 20%
         </label>
@@ -286,10 +289,10 @@ function Filter() {
             name="thc"
             type="radio"
             id="twentyOneToThirty"
-            value="21-30%"
+            value="minCbd=20&maxCbd=30"
             className={styles.filter__input}
-            checked={selectedTHCRange.includes('21-30%')}
-            onChange={() => handleTHCChange('21-30%')}
+            checked={selectedTHCRange.includes('20-30%')}
+            onChange={() => handleTHCChange('20-30%')}
           />
           20% - 30%
         </label>
@@ -298,12 +301,12 @@ function Filter() {
             name="thc"
             type="radio"
             id="thirtyOneToForty"
-            value="31-40%"
+            value="minCbd=30&maxCbd=50"
             className={styles.filter__input}
-            checked={selectedTHCRange.includes('31-40%')}
-            onChange={() => handleTHCChange('31-40%')}
+            checked={selectedTHCRange.includes('30-50%')}
+            onChange={() => handleTHCChange('30-50%')}
           />
-          30% - 40%
+          30% - 50%
         </label>
       </div>
 
@@ -314,48 +317,48 @@ function Filter() {
             name="cbd"
             type="radio"
             id="zeroToOne"
-            checked={selectedCBDRange.includes('0.1-1%')}
-            value="0.1-1%"
+            checked={selectedCBDRange.includes('0-10%')}
+            value="minCbd=0&maxCbd=10"
             className={styles.filter__input}
-            onChange={() => handleCBDChange('0.1-1%')}
+            onChange={() => handleCBDChange('0-10%')}
           />
-          0 % - 2%
+          0% - 10%
         </label>
         <label htmlFor="twoToFive" className={styles.filter__label}>
           <input
             name="cbd"
             type="radio"
             id="twoToFive"
-            value="2-5%"
+            value="minCbd=10&maxCbd=20"
             className={styles.filter__input}
-            checked={selectedCBDRange.includes('2-5%')}
-            onChange={() => handleCBDChange('2-5%')}
+            checked={selectedCBDRange.includes('10-20%')}
+            onChange={() => handleCBDChange('10-20%')}
           />
-          2% - 5%
+          10% - 20%
         </label>
         <label htmlFor="sixToTwenty" className={styles.filter__label}>
           <input
             name="cbd"
             type="radio"
             id="sixToTwenty"
-            value="6-20%"
+            value="minCbd=20&maxCbd=30"
             className={styles.filter__input}
-            checked={selectedCBDRange.includes('6-20%')}
-            onChange={() => handleCBDChange('6-20%')}
+            checked={selectedCBDRange.includes('20-30%')}
+            onChange={() => handleCBDChange('20-30%')}
           />
-          5% - 20%
+          20% - 30%
         </label>
         <label htmlFor="twentyOneToFifty" className={styles.filter__label}>
           <input
             name="cbd"
             type="radio"
             id="twentyOneToFifty"
-            value="21-50%"
+            value="minCbd=30&maxCbd=50"
             className={styles.filter__input}
-            checked={selectedCBDRange.includes('21-50%')}
-            onChange={() => handleCBDChange('21-50%')}
+            checked={selectedCBDRange.includes('30-50%')}
+            onChange={() => handleCBDChange('30-50%')}
           />
-          20% - 50%
+          30% - 50%
         </label>
       </div>
     </form>

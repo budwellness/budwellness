@@ -123,7 +123,7 @@ function App() {
       <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ProductsPage />} />
+        <Route path="/shop/:productSlug" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />

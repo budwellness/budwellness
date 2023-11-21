@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
 // PRODUCT IMPORTS:
 import {
@@ -24,51 +24,68 @@ function ProductList() {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
-
+  const { productSlug } = useParams();
   /* --------------------------- REDUX STATE: --------------------------- */
 
-  const { filterQueryString } = useSelector((state) => state.filter);
 
-  // const {
-  //   data: AllProductsData,
-  //   isError: isErrorAllProductsData,
-  // } = useGetAllProductsQuery();
 
-  const {
-    data: getFilteredProductsData,
-    isLoading: isLoadingFilteredProducts,
-    isError: isErrorFilteredProducts,
-    isSuccess: isSuccessFilteredProducts,
-  } = useGetFilteredProductsQuery(filterQueryString);
+  const filteredQueryString = (string) => {
+    // http://localhost:4000/api/products/filter/?categories=all&thc=10&cbd=minCbd=0&maxCbd=2&perPage=3&startPage=1
+    const stringToArr = string.split('&');
+    if (stringToArr[0] === 'categories=all' && string === 'categories=all') {
+      return 'perPage=8&startPage=1';
+    }
+    if (stringToArr[0] === 'categories=all' && string !== 'categories=all') {
+      // нужно откусить 0 элемент, и склеить с перпейдж, стартпейдж
+      return `${stringToArr.slice(1).join('&')}&perPage=8&startPage=1`
+    }
+    return `${string}&perPage=8&startPage=1`;
+  };
+
+  const [getFilteredProducts,
+    {
+      data: getLazyFilteredProductsData,
+      isLoading: isLoadingLazyFilteredProducts,
+      isError: isErrorLazyFilteredProducts,
+      isSuccess: isSuccessLazyFilteredProducts,
+    }
+  ] = useLazyGetFilteredProductsQuery();
 
   useEffect(() => {
-    if (isSuccessFilteredProducts) {
-      setProductCards(
-        <div className={styles.list__products_wrapper}>
-          {
-            getFilteredProductsData.products?.map((product) => (
-              <ProductCard
-                actions={
-                  {
-                    toggleWishlistHandler,
-                    toggleCartHandler,
-                  }
-                }
-                product={product}
-                key={product._id}
-              />
-            ))
-          }
-        </div>,
-      );
-    }
-
-    console.log('не успело');
-  }, [filterQueryString, isSuccessFilteredProducts]);
+    log(filteredQueryString(productSlug));
+    getFilteredProducts(filteredQueryString(productSlug))
+      .unwrap()
+      .then((response) => {
+        try {
+          log('OTRABOTAL')
+          log('response: ', response)
+          setProductCards(
+            <div className={styles.list__products_wrapper}>
+              {
+                response.products?.map((product) => (
+                  <ProductCard
+                    actions={
+                      {
+                        toggleWishlistHandler,
+                        toggleCartHandler,
+                      }
+                    }
+                    product={product}
+                    key={product._id}
+                  />
+                ))
+              }
+            </div>,
+          )
+        } catch (error) {
+          log(error, isErrorLazyFilteredProducts)
+        }
+      });
+  }, [productSlug]);
 
   return (
     <div className={styles.list__products}>
-      {isLoadingFilteredProducts ? (
+      {isLoadingLazyFilteredProducts ? (
         <div className={styles.list__products_error}>
           {/* Oh no, there was an error */}
           Loading...
