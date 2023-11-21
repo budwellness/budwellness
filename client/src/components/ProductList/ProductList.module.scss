@@ -1,7 +1,9 @@
 .list__products {
-    width: 100%;
-    padding: 50px 0;
+    max-width: 994px;
     @include dflex-column-jcfs-aic;
+    @include _992 {
+        padding: 50px 0;
+    }
 
     .list__products_error {
         max-width: 700px;
@@ -26,6 +28,11 @@
             align-items: flex-start;
         }
         @include _768 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2vw;
+        }
+        @media (min-width:1200px) {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2vw;

@@ -1,6 +1,6 @@
 /*eslint-disable */
 /* eslint-disable react/react-in-jsx-scope */
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Filter.module.scss';
 
@@ -11,6 +11,7 @@ function Filter() {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const navigate = useNavigate();
   const formRef = useRef();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [selectedCategories, setSelectedCategories] = useState('All');
@@ -36,6 +37,9 @@ function Filter() {
   const handleCBDChange = (cbd) => {
     setSelectedCBDRange([cbd]);
   };
+  const handleResize = () => {
+    setIsFilterOpen(window.innerWidth >= 992);
+  };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -54,7 +58,21 @@ function Filter() {
     navigate(`/shop/${filterQueryString}`);
   };
 
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
+    <div className={styles.filterContainer}>
+    <button onClick={toggleFilter} className={styles.filterButton}>
+      Filters
+    </button>
+    {(window.innerWidth >= 992 || isFilterOpen) && (
     <form
       ref={formRef}
       onChange={formHandler}
@@ -326,6 +344,9 @@ function Filter() {
         </label>
       </div>
     </form>
+    )}
+    </div>
+
   );
 }
 
