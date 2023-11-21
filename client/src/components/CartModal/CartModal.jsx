@@ -21,6 +21,9 @@ function CartModal() {
     /* --------------------------- REDUX STATE: --------------------------- */
     const {isCartModal} = useSelector((state) => state.cartModal);
 
+
+
+
     const handleOutSideModal = ({ target }) => {
         if (!target.closest(`.${styles.cartModal}`)) {
             return dispatch(setCartModal(false));

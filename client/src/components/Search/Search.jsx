@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '../Header/icons/SearchIcon';
 
@@ -10,15 +10,28 @@ function Search() {
   const [search, setSearch] = useState('');
   const [dropdown, setDropdown] = useState();
   const debounced = useDebounced(search);
+  const [isError, setIsError] = useState(false);
 
   const [
     searchForProducts,
     {
       data,
-      isError,
       isLoading,
     },
   ] = useSearchForProductsMutation();
+
+  const dropdownRef = useRef(null);
+
+  const closeDropdown = () => {
+    setDropdown(false);
+  };
+
+  const handleOutsideClick = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      closeDropdown();
+    }
+  };
+
   useEffect(() => {
     if (debounced.length > 2) {
       searchForProducts(debounced);
@@ -27,7 +40,16 @@ function Search() {
 
   useEffect(() => {
     setDropdown(debounced.length > 2 && data?.length > 0);
-  });
+  }, [debounced, data]);
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <form onSubmit={(e) => e.preventDefault()} className={styles.header_userSearchForm}>
       <input
@@ -37,34 +59,43 @@ function Search() {
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
+          setIsError(false); // Reset error state when typing
         }}
       />
-      {/* eslint-disable-next-line react/button-has-type */}
-      <button className={styles.header_userSearchButton}>
+      <button type="button" className={styles.header_userSearchButton}>
         <SearchIcon />
       </button>
       {dropdown && (
-        isError ? (
-          <p>{isError}</p>
-        ) : (
-          <ul className={styles.header_userSearchDropdown}>
-            {isLoading && <p>Loading...</p>}
-            {data?.map((item) => (
-              <li
-                className={styles.userSearchItem}
-                key={item._id}
-              >
-                <Link
-                  className={styles.userSearchLink}
-                  to={`/product/${item.itemNo}`}
-                  onClick={() => setSearch('')}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )
+        <div ref={dropdownRef}>
+          {isError ? (
+            <p>{isError}</p>
+          ) : (
+            <ul className={styles.header_userSearchDropdown}>
+              {isLoading && <p>Loading...</p>}
+              {data?.map((item) => (
+                <li className={styles.userSearchItem} key={item._id}>
+                  <div>
+                    <img
+                      className={styles.userSearchItemLogo}
+                      src={item.imageUrls[0]}
+                      alt={item.name}
+                    />
+                  </div>
+                  <Link
+                    className={styles.userSearchLink}
+                    to={`/product/${item.itemNo}`}
+                    onClick={() => {
+                      setSearch('');
+                      closeDropdown();
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </form>
   );

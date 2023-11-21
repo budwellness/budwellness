@@ -14,10 +14,8 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
-// import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-// import Modal from './components/Modal/Modal';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
@@ -43,8 +41,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
+import isTokenExpired from './helpers/isTokenExpired';
+import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
 
 const { log } = console;
+
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
@@ -72,12 +73,16 @@ function App() {
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
     if (!localStorageToken) {
-      log('User not logged in');
     } else {
-      log('token is present, put it into store...');
-      dispatch(userLoginUserAction(localStorageToken));
-      getWishlist(localStorageToken);
-      getCart(localStorageToken);
+      if (isTokenExpired(localStorageToken)) {
+        log('token expired')
+        dispatch(userLogutUserAction())
+      } else {
+        dispatch(userLoginUserAction(localStorageToken));
+        getWishlist(localStorageToken);
+        getCart(localStorageToken);
+        log('token valid');
+      }
     }
   };
 
@@ -116,7 +121,7 @@ function App() {
       <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ProductsPage />} />
+        <Route path="/shop/:productSlug" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
@@ -126,15 +131,6 @@ function App() {
       </Routes>
       <Footer />
       <CartModal />
-      {/* {showModalAddToCart && (
-        <Modal handleModal={handleModal} >
-          <ModalAddToCart
-            product={products?.product}
-            showModalAddToCart={showModalAddToCart}
-            setShowModalAddToCart={setShowModalAddToCart}
-          />
-        </Modal>
-      )} */}
     </>
   );
 }
