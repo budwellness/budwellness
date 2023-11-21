@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
-import PropTypes from 'prop-types';
 import ArrowPrevIcon from '../UI/ArrowPrevIcon';
 import ArrowNextIcon from '../UI/ArrowNextIcon';
 
@@ -18,6 +18,9 @@ function SingleProductSwiper({ images }) {
     <div className={styles.wrap}>
       <Swiper
         loop
+        touch={false}
+        mousewheel={false}
+        simulateTouch={false}
         spaceBetween={10}
         navigation={{
           nextEl: '.next-button',
@@ -44,6 +47,9 @@ function SingleProductSwiper({ images }) {
       <Swiper
         onSwiper={setThumbsSwiper}
         loop
+        touch={false}
+        mousewheel={false}
+        simulateTouch={false}
         spaceBetween={10}
         slidesPerView={2}
         freeMode

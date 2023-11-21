@@ -1,0 +1,95 @@
+@mixin for-size($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
+
+* {
+  font-family: $font-nunito;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.comp1 {
+  height: 532.06px;
+  background-color: $main-green;
+  position: relative;
+  margin-top: 160px;
+}
+
+.img-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.img-rigth {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+.container {
+  max-width: 1440px;
+  width: 90%;
+  margin: auto;
+}
+
+.comp1 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.comp1 .container p,
+.logo {
+  z-index: 99;
+  position: relative;
+  margin-top: 35px;
+  color: #fff;
+  text-align: center;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 43.2px;
+  max-width: 1000.87px;
+}
+
+.wrapper {
+  width: 48px;
+  height: 45px;
+}
+
+@include for-size(980px) {
+  .comp1 .container p {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
+  .img-rigth {
+    display: none;
+  }
+
+  .img-left {
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+}
+
+@include for-size(560px) {
+  .img-left {
+    display: none;
+  }
+  .container {
+    width: 80%;
+  }
+
+  .comp1 .container p {
+    line-height: normal;
+  }
+}
