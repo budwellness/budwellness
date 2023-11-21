@@ -28,14 +28,14 @@ function ModalAddToCart({
   return (
     <div className={styles.modal_add_to_cart__container}>
       <div className={styles.slider__wrapper}>
-        <SingleProductSwiper product={product} />
+        <SingleProductSwiper images={product.imageUrls} />
       </div>
       <div className={styles.about__info_wrapper}>
         <h2 className={styles.about__title}>{name}</h2>
         <div className={styles.about__rate_wrapper}>
           <RatingStars rate={rate} />
           <p className={styles.about__rate_text}>
-            {`${reviews.length} customer reviews`}
+            {`(${reviews.length} customer reviews)`}
           </p>
         </div>
         <p className={styles.about__descr_short}>{description.short}</p>

@@ -25,11 +25,12 @@
     
         .about__title {
             margin: 0 0 15px;
-            display: block;
+            display: inline-block;
             font-family: $font-nunito;
             font-weight: 800;
             font-size: 36px;
             line-height: 1.2;
+            text-transform: capitalize;
         }
     
         .about__rate_wrapper {
@@ -44,6 +45,8 @@
     
             .about__rate_text {
                 color: $main-text-color;
+                font-family: $font-montserrat;
+                display: inline-block;
                 margin: 10px 0 0;
     
                 @include _576 {
@@ -55,7 +58,8 @@
         .about__descr_short {
             margin: 0 0 30px;
             padding-right: 10px;
-            display: block;
+            display: inline-block;
+            font-family: $font-montserrat;
             font-size: 17px;
             line-height: 1.5;
         }

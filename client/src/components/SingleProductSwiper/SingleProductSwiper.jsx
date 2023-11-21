@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
-import PropTypes from 'prop-types';
 import ArrowPrevIcon from '../UI/ArrowPrevIcon';
 import ArrowNextIcon from '../UI/ArrowNextIcon';
 
