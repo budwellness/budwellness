@@ -63,7 +63,7 @@ function ProductCard(props) {
   // WISHLIST:
   const toggleWishlistWithLoginHandler = () => {
     if (isUserLogin) {
-      toggleWishlistHandler(product, tokenReduxStore);
+      toggleWishlistHandler(product, tokenReduxStore, wishlistStoreData);
     } else {
       log('Please login first');
     }
@@ -73,7 +73,7 @@ function ProductCard(props) {
 
   const toggleCartWithLoginHandler = () => {
     if (isUserLogin) {
-      toggleCartHandler(product, tokenReduxStore);
+      toggleCartHandler(product._id, tokenReduxStore, cartStoreData);
     } else {
       log('Please login first');
     }
@@ -208,7 +208,7 @@ ProductCard.propTypes = {
     imageUrls: PropTypes.arrayOf(PropTypes.string),
     thc: PropTypes.number.isRequired,
     cbd: PropTypes.number.isRequired,
-    itemNo: PropTypes.number.isRequired,
+    itemNo: PropTypes.string.isRequired,
     previousPrice: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,

@@ -5,19 +5,19 @@ function Partners() {
   return (
     <div className={styles.partners}>
       <a className={styles.partners__hemp} href="https://www.hempcare.it/en/">
-        <img src="/public/images/partnerOne.png" alt="Hemp Care" />
+        <img src="/images/partnerOne.png" alt="Hemp Care" />
       </a>
       <a className={styles.partners__green} href="https://www.gtigrows.com/">
-        <img src="/public/images/partnerTwo.png" alt="Green Thumb" />
+        <img src="/images/partnerTwo.png" alt="Green Thumb" />
       </a>
       <a className={styles.partners__verano} href="https://www.verano.com/">
-        <img src="/public/images/partnerThree.png" alt="Verano" />
+        <img src="/images/partnerThree.png" alt="Verano" />
       </a>
       <a className={styles.partners__holy} href="https://www.holyherb.com/">
-        <img src="/public/images/partnerFour.png" alt="Holy Herb" />
+        <img src="/images/partnerFour.png" alt="Holy Herb" />
       </a>
       <a className={styles.partners__cresco} href="https://www.crescolabs.com/">
-        <img src="/public/images/partnerFive.png" alt="Cresco Labs" />
+        <img src="/images/partnerFive.png" alt="Cresco Labs" />
       </a>
     </div>
   );
