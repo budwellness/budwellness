@@ -3,14 +3,14 @@
     @content;
   }
 }
-
-* {
-  font-family: $font-nunito;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+// ТАК НИКОГДА НЕ ДЕЛАЙ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//* {
+//  font-family: $font-nunito;
+//  margin: 0;
+//  padding: 0;
+//  box-sizing: border-box;
+//}
+//=========================================================
 .comp1 {
   height: 532.06px;
   background-color: $main-green;
