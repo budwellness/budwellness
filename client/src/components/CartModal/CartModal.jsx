@@ -21,6 +21,9 @@ function CartModal() {
     /* --------------------------- REDUX STATE: --------------------------- */
     const {isCartModal} = useSelector((state) => state.cartModal);
 
+
+
+
     const handleOutSideModal = ({ target }) => {
         if (!target.closest(`.${styles.cartModal}`)) {
             return dispatch(setCartModal(false));
@@ -30,7 +33,6 @@ function CartModal() {
     const handleCloseModal =()=> {
         dispatch(setCartModal(false))
     }
-
 
     return (
         <div className={cn(styles.cartModalWrapper, {[styles.openCart]: isCartModal})}
@@ -42,7 +44,7 @@ function CartModal() {
                         className={styles.closeBtn}
                         type="button"
                         onClick={() => {
-                            handleCloseModal(false)
+                            handleCloseModal()
                             toast.success('Woohoo')
                         }}
                     >

@@ -41,8 +41,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
+import isTokenExpired from './helpers/isTokenExpired';
+import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
 
 const { log } = console;
+
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
@@ -70,12 +73,16 @@ function App() {
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
     if (!localStorageToken) {
-      log('User not logged in');
     } else {
-      log('token is present, put it into store...');
-      dispatch(userLoginUserAction(localStorageToken));
-      getWishlist(localStorageToken);
-      getCart(localStorageToken);
+      if (isTokenExpired(localStorageToken)) {
+        log('token expired')
+        dispatch(userLogutUserAction())
+      } else {
+        dispatch(userLoginUserAction(localStorageToken));
+        getWishlist(localStorageToken);
+        getCart(localStorageToken);
+        log('token valid');
+      }
     }
   };
 

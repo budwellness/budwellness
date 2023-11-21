@@ -26,10 +26,7 @@ const { log } = console;
 function ProductCard(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
-    actions: {
-      toggleWishlistHandler,
-      toggleCartHandler,
-    },
+    actions: { toggleWishlistHandler, toggleCartHandler },
     product,
   } = props;
 
@@ -53,8 +50,12 @@ function ProductCard(props) {
   const [isModalAddToCartOpen, setIsModalAddToCartOpen] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
-  const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
+  const { isUserLogin, token: tokenReduxStore } = useSelector(
+    (state) => state.user,
+  );
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist,
+  );
   const { cart: cartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
