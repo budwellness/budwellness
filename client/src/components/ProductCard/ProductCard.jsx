@@ -208,7 +208,7 @@ ProductCard.propTypes = {
     imageUrls: PropTypes.arrayOf(PropTypes.string),
     thc: PropTypes.number.isRequired,
     cbd: PropTypes.number.isRequired,
-    itemNo: PropTypes.number.isRequired,
+    itemNo: PropTypes.string.isRequired,
     previousPrice: PropTypes.number.isRequired,
     currentPrice: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
