@@ -11,7 +11,7 @@ function ProductsPage() {
     <>
       <PagePreviewHeader
         title="Shop"
-        text="Immerse yourself in a unique shopping experience, where your choice is our priority."
+        text="Immerse yourself in a unique shopping experience, where your choice is our priority"
       />
       <Container>
         <div className={styles.wrapperContainer}>

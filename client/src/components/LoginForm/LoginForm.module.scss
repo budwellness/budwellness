@@ -2,10 +2,89 @@
   text-align: center;
 }
 
+.logoIcon {
+  width: 50px;
+  margin: 0 auto;
+}
+
+.title {
+  color: $main-green;
+  font-family: $font-nunito;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 900;
+  margin-left: 10px;
+  line-height: 30px;
+}
+
+.accentColor {
+  color: $secondary-green;
+}
+
+.wrapperLogin {
+  border: 1px solid #21262d;
+  padding: 16px;
+  border-radius: 6px;
+  background: #f8f2f2;
+
+  p {
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 100%;
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 6px;
+    border: 1px solid;
+    outline: none;
+  }
+}
+
+.passwordInput {
+  margin-top: 15px;
+  position: relative;
+}
+
+.forgotPassword {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  font-size: 14px;
+}
+
+.btnLogin {
+  width: 100%;
+  background: $secondary-green;
+  border-radius: 6px;
+  margin-top: 16px;
+  padding: 5px 16px;
+  color: white;
+
+  &:hover {
+    background: #24a23c;
+  }
+}
+
 .footerInput {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
+  border: 1px solid #21262d;
+  padding: 16px;
+  border-radius: 6px;
+  background: #f8f2f2;
+  margin-top: 16px;
+}
+
+.github {
+
+}
+
+.createAcc {
+  margin-left: 5px;
+  font-size: 14px;
 }
 
 //.title {
