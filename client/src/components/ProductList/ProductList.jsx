@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
 // PRODUCT IMPORTS:
 import {
-  useGetAllProductsQuery,
-  useGetFilteredProductsQuery,
-  useLazyGetFilteredProductsQuery,
+  useLazyGetFilteredProductsQuery
 } from '../../store/serverResponse/danitApi.products';
-
-import styles from './ProductList.module.scss';
 import useToggleCart from '../../hooks/useToggleCart';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
+import styles from './ProductList.module.scss';
 
 const { log } = console;
 
@@ -30,13 +25,11 @@ function ProductList() {
 
 
   const filteredQueryString = (string) => {
-    // http://localhost:4000/api/products/filter/?categories=all&thc=10&cbd=minCbd=0&maxCbd=2&perPage=3&startPage=1
     const stringToArr = string.split('&');
     if (stringToArr[0] === 'categories=all' && string === 'categories=all') {
       return 'perPage=8&startPage=1';
     }
     if (stringToArr[0] === 'categories=all' && string !== 'categories=all') {
-      // нужно откусить 0 элемент, и склеить с перпейдж, стартпейдж
       return `${stringToArr.slice(1).join('&')}&perPage=8&startPage=1`
     }
     return `${string}&perPage=8&startPage=1`;
@@ -44,10 +37,8 @@ function ProductList() {
 
   const [getFilteredProducts,
     {
-      data: getLazyFilteredProductsData,
       isLoading: isLoadingLazyFilteredProducts,
       isError: isErrorLazyFilteredProducts,
-      isSuccess: isSuccessLazyFilteredProducts,
     }
   ] = useLazyGetFilteredProductsQuery();
 

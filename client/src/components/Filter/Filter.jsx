@@ -1,20 +1,16 @@
 /*eslint-disable */
 /* eslint-disable react/react-in-jsx-scope */
-import { useEffect, useState, useRef } from 'react';
-
+import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Filter.module.scss';
-import { useLazyGetFilteredProductsQuery } from '../../store/serverResponse/danitApi.products';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateFilterQuertyStringAction } from '../../store/filter/filter.slice';
-import { useNavigate, useParams } from 'react-router-dom';
+
 
 const { log } = console;
 
 function Filter() {
   /* --------------------------- INIT HOOKS: --------------------------- */
-  const dispatch = useDispatch();
-  const { productSlug } = useParams();
   const navigate = useNavigate();
+  const formRef = useRef();
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [selectedCategories, setSelectedCategories] = useState('All');
@@ -22,28 +18,8 @@ function Filter() {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
-  const [filterString, setfilterString] = useState({});
 
-  /* --------------------------- REDUX STATE: --------------------------- */
-
-  const { filterQueryString } = useSelector(state => state.filter)
-
-  const [
-    getFilteredProducts,
-    {
-      data: getFilteredProductsData,
-      isLoading: isLoadingFilteredProducts,
-      isError: isErrorFilteredProducts,
-      isSuccess: isSuccessFilteredProducts,
-    }
-  ] = useLazyGetFilteredProductsQuery()
-
-
-
-
-
-  const formRef = useRef();
-
+  /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
     setSelectedCategories(category);
   };
@@ -61,34 +37,23 @@ function Filter() {
     setSelectedCBDRange([cbd]);
   };
 
-  const formHandler = (e) => {
-    let filterQueryString = '?';
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
+  const formHandler = () => {
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
     for (let [key, value] of filterData.entries()) {
-      if (key === 'min' || key === 'max') {
+      if (key === 'thc' || key === 'cbd') {
+        filterDataArr.push(`${value}`);
         continue
       }
       filterDataArr.push(`${key}=${value}`);
       log(value)
-
-      // log(filterDataArr)
     }
-    // log(filterDataArr.join('&'))
-    filterQueryString = filterDataArr.join('&');
+
+    const filterQueryString = filterDataArr.join('&');
     navigate(`/shop/${filterQueryString}`);
-    // dispatch(updateFilterQuertyStringAction(filterQueryString));
-    // getFilteredProducts(filterQueryString);
-
-    // пройти циклом по всем инпутам и у которых checked в тру забрать значания
-    // разобраться с управляемыми и не управляемыми элементами формы (useRef)
   };
-
-  // useEffect(() => {
-  //   if (isSuccessFilteredProducts) {
-  //     log(getFilteredProductsData)
-  //   }
-  // }, [isSuccessFilteredProducts])
 
   return (
     <form
@@ -238,10 +203,10 @@ function Filter() {
 
       <div className={styles.filter__categories}>
         <h4 className={styles.filter__name}>Filter by Price</h4>
-        {/* <label>
+        <label>
           <input
             type="number"
-            name="min"
+            name="minPrice"
             value={priceRange.min}
             className={styles.filter__label}
             onChange={handlePriceChange}
@@ -250,12 +215,12 @@ function Filter() {
         <label>
           <input
             type="number"
-            name="max"
+            name="maxPrice"
             value={priceRange.max}
             className={styles.filter__label}
             onChange={handlePriceChange}
           />
-        </label> */}
+        </label>
       </div>
 
       <div className={styles.filter__categories}>
@@ -265,7 +230,7 @@ function Filter() {
             name="thc"
             type="radio"
             id="zeroToTen"
-            value="minCbd=0&maxCbd=10"
+            value="minThc=0&maxThc=10"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('0-10%')}
             onChange={() => handleTHCChange('0-10%')}
@@ -277,7 +242,7 @@ function Filter() {
             name="thc"
             type="radio"
             id="elevenToTwenty"
-            value="minCbd=10&maxCbd=20"
+            value="minThc=10&maxThc=20"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('10-20%')}
             onChange={() => handleTHCChange('10-20%')}
@@ -289,7 +254,7 @@ function Filter() {
             name="thc"
             type="radio"
             id="twentyOneToThirty"
-            value="minCbd=20&maxCbd=30"
+            value="minThc=20&maxThc=30"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('20-30%')}
             onChange={() => handleTHCChange('20-30%')}
@@ -301,7 +266,7 @@ function Filter() {
             name="thc"
             type="radio"
             id="thirtyOneToForty"
-            value="minCbd=30&maxCbd=50"
+            value="minThc=30&maxThc=50"
             className={styles.filter__input}
             checked={selectedTHCRange.includes('30-50%')}
             onChange={() => handleTHCChange('30-50%')}
