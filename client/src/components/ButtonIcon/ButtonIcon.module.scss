@@ -1,0 +1,27 @@
+.btn_icon {
+    height: 40px;
+    width: 40px;
+    @include dflex-jcc-aic;
+    background-color: $color-white;
+    border-radius: 50%;
+    border: 1px solid $main-orange;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $main-orange;
+        color: $white-text-color;
+        transition: 0.3s ease-in-out;
+
+        svg {
+            fill: $white-text-color;
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    svg {
+        fill: $main-orange;
+        width: 19px;
+        height: 16px;
+        transition: 0.3s ease-in-out;
+    }
+}
