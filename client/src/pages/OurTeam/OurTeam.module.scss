@@ -42,15 +42,20 @@
     font-size: 16px;
     border-radius: 50%;
     color: $main-green;
+    border: 1px solid $main-green;
+    // border: 1px solid $main-orange;
+    // background: $main-green;
   }
 
   .styleIconLink {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    fill: $main-green;
-    display: flex;
-    align-items: center;
+    fill: $main-orange;
+    background: $main-green;
+    border: 1px solid $main-green;
+    // display: flex;
+    // align-items: center;
   }
 
   .name {

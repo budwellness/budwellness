@@ -32,7 +32,7 @@ function OurTeam() {
                 <InstaIcon className={styles.styleIcon} />
               </Link>
               <Link to="https://www.linkedin.com/" className={styles.logoLink}>
-                <LinkedinIcon className={styles.styleIcon} />
+                <LinkedinIcon className={styles.styleIconLink} />
               </Link>
 
               {/* <LinkedinIcon className={styles.styleIconLink} /> */}
