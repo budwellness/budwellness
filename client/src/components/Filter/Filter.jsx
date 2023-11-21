@@ -48,7 +48,6 @@ function Filter() {
         continue
       }
       filterDataArr.push(`${key}=${value}`);
-      log(value)
     }
 
     const filterQueryString = filterDataArr.join('&');

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
 // PRODUCT IMPORTS:
 import {
-  useLazyGetFilteredProductsQuery
+  useLazyGetFilteredProductsQuery,
 } from '../../store/serverResponse/danitApi.products';
 import useToggleCart from '../../hooks/useToggleCart';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
@@ -22,15 +22,13 @@ function ProductList() {
   const { productSlug } = useParams();
   /* --------------------------- REDUX STATE: --------------------------- */
 
-
-
   const filteredQueryString = (string) => {
     const stringToArr = string.split('&');
     if (stringToArr[0] === 'categories=all' && string === 'categories=all') {
       return 'perPage=8&startPage=1';
     }
     if (stringToArr[0] === 'categories=all' && string !== 'categories=all') {
-      return `${stringToArr.slice(1).join('&')}&perPage=8&startPage=1`
+      return `${stringToArr.slice(1).join('&')}&perPage=8&startPage=1`;
     }
     return `${string}&perPage=8&startPage=1`;
   };
@@ -39,17 +37,14 @@ function ProductList() {
     {
       isLoading: isLoadingLazyFilteredProducts,
       isError: isErrorLazyFilteredProducts,
-    }
+    },
   ] = useLazyGetFilteredProductsQuery();
 
   useEffect(() => {
-    log(filteredQueryString(productSlug));
     getFilteredProducts(filteredQueryString(productSlug))
       .unwrap()
       .then((response) => {
         try {
-          log('OTRABOTAL')
-          log('response: ', response)
           setProductCards(
             <div className={styles.list__products_wrapper}>
               {
@@ -67,9 +62,9 @@ function ProductList() {
                 ))
               }
             </div>,
-          )
+          );
         } catch (error) {
-          log(error, isErrorLazyFilteredProducts)
+          log(error, isErrorLazyFilteredProducts);
         }
       });
   }, [productSlug]);
