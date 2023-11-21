@@ -74,7 +74,6 @@
 
 .textBlock {
     position: relative;
-    // text-align-last: left;
 
     @include for-size(320px) {
         text-align: center;

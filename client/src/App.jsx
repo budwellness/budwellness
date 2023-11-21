@@ -14,10 +14,8 @@ import CartPage from './pages/CartPage/CartPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
-// import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-// import Modal from './components/Modal/Modal';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
@@ -123,7 +121,7 @@ function App() {
       <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ProductsPage />} />
+        <Route path="/shop/:productSlug" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
@@ -133,15 +131,6 @@ function App() {
       </Routes>
       <Footer />
       <CartModal />
-      {/* {showModalAddToCart && (
-        <Modal handleModal={handleModal} >
-          <ModalAddToCart
-            product={products?.product}
-            showModalAddToCart={showModalAddToCart}
-            setShowModalAddToCart={setShowModalAddToCart}
-          />
-        </Modal>
-      )} */}
     </>
   );
 }

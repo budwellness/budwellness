@@ -176,8 +176,8 @@ Header.propTypes = {
 
 Header.defaultProps = {
   actions: {
-    getCart: () => {},
-    getWishlist: () => {},
+    getCart: () => { },
+    getWishlist: () => { },
   },
 };
 
