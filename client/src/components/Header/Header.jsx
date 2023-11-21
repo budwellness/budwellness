@@ -55,16 +55,12 @@ function Header(props) {
     (state) => state.wishlist,
   );
 
-
-
-
   const { isUserLogin } = useSelector(
     (state) => state.user,
   );
 
   const { cart: cartStoreData } = useSelector((state) => state.cart);
   const { isOpenModal } = useSelector((state) => state.modal);
-
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 

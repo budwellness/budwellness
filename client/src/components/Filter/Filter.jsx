@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /*eslint-disable */
 /* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState, useRef } from 'react';
