@@ -26,7 +26,11 @@ function FaceBookIcon(props) {
 }
 
 FaceBookIcon.propTypes = {
-  fill: PropTypes.string.isRequired,
+  fill: PropTypes.string,
+};
+
+FaceBookIcon.defaultProps = {
+  fill: '#efc368',
 };
 
 export default FaceBookIcon;

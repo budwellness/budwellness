@@ -11,6 +11,7 @@ import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
+import OurTeam from './pages/OurTeam/OurTeam';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
@@ -48,7 +49,6 @@ import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
 
 const { log } = console;
 
-
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
 
@@ -77,8 +77,8 @@ function App() {
     if (!localStorageToken) {
     } else {
       if (isTokenExpired(localStorageToken)) {
-        log('token expired')
-        dispatch(userLogutUserAction())
+        log('token expired');
+        dispatch(userLogutUserAction());
       } else {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
@@ -127,6 +127,7 @@ function App() {
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
