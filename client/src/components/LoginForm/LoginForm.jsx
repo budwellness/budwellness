@@ -36,6 +36,11 @@ function LoginForm(props) {
 
 
     const initialValues = {
+        loginOrEmail: '',
+        password: '',
+    };
+
+    const mockValue = {
         loginOrEmail: 'customer@gmail.com',
         password: '1111111',
     };
@@ -52,6 +57,7 @@ function LoginForm(props) {
 
     /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
+
     const isLoginSuccessHandler = () => {
         if (loginIsSuccess && loginUserToken) {
             toast.success('You was successfuly logged in!')
@@ -66,46 +72,53 @@ function LoginForm(props) {
 
 
     return (
-        <Formik initialValues={initialValues} onSubmit={(values) => {
-            console.log('something happen');
-            console.log(values);
-            loginUser(values)
-        }}>
-            <Form className={styles.form}>
-                <div className={styles.logoIcon}><LogoIcon/></div>
-                <h2 className={styles.title}>Sing in Bud<span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
-                </h2>
-                <div className={styles.wrapperLogin}>
-                    <LoginInput
-                        className={styles.loginInput}
-                        name="loginOrEmail"
-                        type="text"
-                        placeholder="Login"
-                        label="Username or email address"/>
-                    <div className={styles.passwordInput}>
+        <>
+            <Formik initialValues={initialValues} onSubmit={(values) => {
+                console.log('something happen');
+                console.log(values);
+                loginUser(values)
+            }}>
+                <Form className={styles.form}>
+                    <div className={styles.logoIcon}><LogoIcon/></div>
+                    <h2 className={styles.title}>Sing in Bud<span
+                        className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
+                    </h2>
+                    <div className={styles.wrapperLogin}>
                         <LoginInput
                             className={styles.loginInput}
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            label="Password"/>
-                        <Link
-                            to="/"
-                            className={styles.forgotPassword}
-                        >
-                            Forgot password?
-                        </Link>
-                        <ButtonHeader className={styles.btnLogin} type="submit">
-                            Sign in
-                        </ButtonHeader>
+                            name="loginOrEmail"
+                            type="email"
+                            placeholder="Login"
+                            label="Username or email address"/>
+                        <div className={styles.passwordInput}>
+                            <LoginInput
+                                className={styles.loginInput}
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                label="Password"/>
+                            <Link
+                                to="/"
+                                className={styles.forgotPassword}
+                            >
+                                Forgot password?
+                            </Link>
+                            <ButtonHeader className={styles.btnLogin} type="submit">
+                                Sign in
+                            </ButtonHeader>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.footerInput}>
-                    <ButtonHeader className={styles.btnLogin} type="submit">DEMO</ButtonHeader>
-                    <Link to="/" className={styles.createAcc}>Create an account</Link>
-                </div>
-            </Form>
-        </Formik>
+                </Form>
+            </Formik>
+            <div className={styles.footerInput}>
+                <ButtonHeader
+                    className={styles.btnLogin}
+                    type="submit"
+                    onClick={() => loginUser(mockValue)}
+                >DEMO</ButtonHeader>
+                <Link to="/" className={styles.createAcc}>Create an account</Link>
+            </div>
+        </>
     );
 }
 
