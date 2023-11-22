@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 // COMPONENT IMPORTS:
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
 // PRODUCT IMPORTS:
 import {
@@ -19,18 +20,28 @@ function ProductList() {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
-  const { productSlug } = useParams();
+  // const { productSlug } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  log(searchParams)
+
+
   /* --------------------------- REDUX STATE: --------------------------- */
 
-  const filteredQueryString = (string) => {
-    const stringToArr = string.split('&');
-    if (stringToArr[0] === 'categories=all' && string === 'categories=all') {
-      return 'perPage=8&startPage=1';
+
+  const filteredQueryString = (params) => {
+    const filterStringArr = [];
+    for (const [key, value] of params.entries()) {
+      filterStringArr.push(`${key}=${value}`);
     }
-    if (stringToArr[0] === 'categories=all' && string !== 'categories=all') {
-      return `${stringToArr.slice(1).join('&')}&perPage=8&startPage=1`;
+    const filterString = filterStringArr.join('&')
+    // if (filterStringArr[0] === 'categories=all' && filterString === 'categories-all') {
+    //   return 'perPage=&startPage=1';
+    // }
+    if (filterStringArr[0] === 'categories=all' && filterString !== 'categories=all') {
+      return `${filterStringArr.slice(1).join('&')}&perPage=8&startPage=1`;
     }
-    return `${string}&perPage=8&startPage=1`;
+    return `${filterString}&perPage=8&startPage=1`
+
   };
 
   const [getFilteredProducts,
@@ -41,7 +52,7 @@ function ProductList() {
   ] = useLazyGetFilteredProductsQuery();
 
   useEffect(() => {
-    getFilteredProducts(filteredQueryString(productSlug))
+    getFilteredProducts(filteredQueryString(searchParams))
       .unwrap()
       .then((response) => {
         try {
@@ -67,7 +78,7 @@ function ProductList() {
           log(error, isErrorLazyFilteredProducts);
         }
       });
-  }, [productSlug]);
+  }, [searchParams]);
 
   return (
     <div className={styles.list__products}>
