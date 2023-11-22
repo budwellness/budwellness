@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './DescriptionWeed.module.scss';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 
 function DescriptionWeed() {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <div className={styles.containerWeed}>
@@ -21,7 +24,9 @@ function DescriptionWeed() {
               type="button"
               text="Our Products"
               className="orangeBtn"
-              onClick={() => {}}
+              onClick={() => {
+                navigate('/shop');
+              }}
             />
           </div>
           <div className={styles.imageBlock}>

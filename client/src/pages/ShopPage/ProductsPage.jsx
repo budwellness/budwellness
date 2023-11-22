@@ -15,8 +15,8 @@ function ProductsPage() {
       />
       <Container>
         <div className={styles.wrapperContainer}>
-          <ProductList />
           <Filter />
+          <ProductList />
         </div>
         <PopularProducts />
       </Container>
