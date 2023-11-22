@@ -15,7 +15,7 @@ function Info() {
         <div className={styles.wrapper}>
           <LogoIcon className={styles.logo} />
         </div>
-        <p>
+        <p className={styles.title}>
           Our doctors recommend the best THC to CBD ratio to look for in a
           marijuana strain and suggest the recommended dosage and route of
           administration
