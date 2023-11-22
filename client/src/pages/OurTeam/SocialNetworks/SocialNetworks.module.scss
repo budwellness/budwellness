@@ -1,0 +1,48 @@
+.wpapperLink {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  //   display: none;
+  // position: relative;
+  // padding-right: 10px;
+}
+// .wpapperLink:hover {
+//   cursor: pointer;
+//   display: block;
+// }
+
+// .logoLink {
+
+//   // justify-content: center;
+// }
+
+.styleIcon {
+  fill: $main-orange;
+  background-color: $main-orange;
+  color: $main-green;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 50%;
+  color: $main-green;
+  border: 1px solid $main-green;
+  position: relative;
+  bottom: 70px;
+  // border: 1px solid $main-orange;
+  // background: $main-green;
+}
+
+.styleIconLink {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  fill: $main-orange;
+  background: $main-green;
+  border: 1px solid $main-green;
+  // position: absolute;
+  position: relative;
+  bottom: 70px;
+  // display: flex;
+  // align-items: center;
+}
