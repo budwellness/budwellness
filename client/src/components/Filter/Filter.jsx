@@ -225,7 +225,7 @@ function Filter() {
             type="number"
             name="minPrice"
             value={priceRange.min}
-            className={styles.filter__label}
+            className={`${styles.filter__label} ${styles.filter__price}`}
             onChange={handlePriceChange}
           />
         </label>
@@ -234,7 +234,7 @@ function Filter() {
             type="number"
             name="maxPrice"
             value={priceRange.max}
-            className={styles.filter__label}
+            className={`${styles.filter__label} ${styles.filter__price}`}
             onChange={handlePriceChange}
           />
         </label>

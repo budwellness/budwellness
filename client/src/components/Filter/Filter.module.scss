@@ -17,7 +17,7 @@
     color: $main-green;
     font-weight: 600;
     width: 115px;
-    border: 1px solid #9ebca6;
+    border: 1px solid $tertiary-green;
     border-radius: 100px;
     height: 48px;
     background-color: $color-white;
@@ -99,11 +99,15 @@
         cursor: pointer;
         font-family: Montserrat;
         color: $main-text-color;
-        line-height: 1.5;
+        line-height: 1.5;        
     }
 
     &__input {
         margin-right: 8px;
         accent-color: $input-color;
+    }
+    &__price {
+        border: 1px solid $tertiary-green;
+        border-radius: 100px;
     }
 }
