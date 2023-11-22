@@ -20,14 +20,13 @@ function OurTeam() {
       <Container>
         <div className={styles.wrapper}>
           <div className={styles.wrapper__person}>
+            <SocialNetworks />
             <img
               src="/images/Ihor.jpg"
               alt="photo"
               className={styles.photoItem}
             />
-            <div className={styles.wpapperLink}>
-              <SocialNetworks />
-            </div>
+            <div className={styles.wpapperLink}>{/* <SocialNetworks /> */}</div>
             <h3 className={styles.name}>Ihor Toroshanko</h3>
           </div>
           <div className={styles.wrapper__person}>

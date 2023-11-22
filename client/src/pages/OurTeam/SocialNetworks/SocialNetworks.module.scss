@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  position: absolute;
+  //   position: relative;
+  //   bottom: 0;
   //   display: none;
   // position: relative;
   // padding-right: 10px;
@@ -27,8 +30,8 @@
   border-radius: 50%;
   color: $main-green;
   border: 1px solid $main-green;
-  position: relative;
-  bottom: 70px;
+  //   position: relative;
+  //   bottom: 70px;
   // border: 1px solid $main-orange;
   // background: $main-green;
 }
@@ -41,8 +44,8 @@
   background: $main-green;
   border: 1px solid $main-green;
   // position: absolute;
-  position: relative;
-  bottom: 70px;
+  //   position: relative;
+  //   bottom: 70px;
   // display: flex;
   // align-items: center;
 }
