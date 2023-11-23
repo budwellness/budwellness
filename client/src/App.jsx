@@ -73,6 +73,10 @@ function App() {
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
     if (!localStorageToken) {
+      const localStorageCart = localStorage.getItem('localCart');
+
+      // тут часть логики в которой мы не залогинены
+
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired')
