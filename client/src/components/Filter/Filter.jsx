@@ -2,7 +2,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sorting from '../../components/Sorting/Sorting';
 import styles from './Filter.module.scss';
 
 const { log } = console;

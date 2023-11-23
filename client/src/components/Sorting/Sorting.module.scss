@@ -53,8 +53,8 @@
         border-radius: 100px;
         height: 40px;
         width: 140px;
-        top: 31%;
-        left: 30%;
+        position: relative;
+
         &:hover {
             color: $secondary-green;
         }
@@ -74,15 +74,20 @@
         background: $color-white;
         box-shadow: 0 0 30px rgba(37, 143, 103, .07);
         border-radius: 15px;
-        top: 100%;
-        left: 28%;
+        transform: translate(-50%, -50%);
         z-index: 1;
         width: 160px;
         @include for-size(320px) {
-            left: -6%;
+            top: 400%;
+            left: 50%;
         }
         @include for-size(576px) {
-            left: 30%;
+            left: 65%;
+            top: 300%;
+        }
+        @include for-size(768px) {
+            left: 85%;
+            top: 300%;
         }
     }
     &__desc {
