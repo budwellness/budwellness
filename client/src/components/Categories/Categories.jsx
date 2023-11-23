@@ -42,7 +42,7 @@ function Categories() {
 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
-    navigate(`/products/${categoryName}`);
+    navigate(`/shop/categories=${categoryName}&minPrice=0&maxPrice=10000`);
   };
 
   return (

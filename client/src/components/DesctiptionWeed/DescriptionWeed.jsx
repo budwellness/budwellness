@@ -25,7 +25,7 @@ function DescriptionWeed() {
               text="Our Products"
               className="orangeBtn"
               onClick={() => {
-                navigate('/shop');
+                navigate('/shop/categories=all');
               }}
             />
           </div>

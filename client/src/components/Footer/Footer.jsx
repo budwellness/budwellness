@@ -102,12 +102,48 @@ function Footer() {
             <div className={styles.shop}>
               <h4 className={styles.subtitle}>Shop Products</h4>
               <ul className={styles.shop__list}>
-                <Link to="/products/Flowers" className={styles.shop__link}>Flowers</Link>
-                <Link to="/products/Oils" className={styles.shop__link}>Oils</Link>
-                <Link to="/products/Edible" className={styles.shop__link}>Edible</Link>
-                <Link to="/products/Pre-Rolls" className={styles.shop__link}>Pre-Rolls</Link>
-                <Link to="/products/Beverage" className={styles.shop__link}>Beverage</Link>
-                <Link to="/products/Seeds" className={styles.shop__link}>Seeds</Link>
+                <Link
+                  to="/shop/categories=all"
+                  className={styles.shop__link}
+                >
+                  All
+                </Link>
+                <Link
+                  to="/shop/categories=Flowers&minPrice=0&maxPrice=10000"
+                  className={styles.shop__link}
+                >
+                  Flowers
+                </Link>
+                <Link
+                  to="/shop/categories=Oils&minPrice=0&maxPrice=10000"
+                  className={styles.shop__link}
+                >
+                  Oils
+                </Link>
+                <Link
+                  to="/shop/categories=Edible&minPrice=0&maxPrice=10000"
+                  className={styles.shop__link}
+                >
+                  Edible
+                </Link>
+                <Link
+                  to="/shop/categories=Pre-Rolls&minPrice=0&maxPrice=10000"
+                  className={styles.shop__link}
+                >
+                  Pre-Rolls
+                </Link>
+                <Link
+                  to="/shop/categories=Beverage&minPrice=0&maxPrice=10000"
+                  className={styles.shop__link}
+                >
+                  Beverage
+                </Link>
+                <Link
+                  to="/shop/categories=Seeds&minPrice=0&maxPrice=10000"
+                  className={styles.shop__link}
+                >
+                  Seeds
+                </Link>
               </ul>
             </div>
             <div className={styles.instagram}>
