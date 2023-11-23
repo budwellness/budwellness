@@ -22,7 +22,7 @@ function Nav({ showBurger, setShowBurger }) {
         {}
         <li className={styles.item}>
           <Link
-            to="/shop/categories=all"
+            to="/shop"
             className={styles.itemLink}
             onClick={closeBurgerMenu}
           >

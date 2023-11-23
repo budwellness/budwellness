@@ -64,7 +64,7 @@ function Carousel() {
               text="Our Products"
               className="orangeBtn"
               onClick={() => {
-                navigate('shop/categories=all');
+                navigate('shop');
               }}
             />
             <p className={styles.contactsMessage}>
