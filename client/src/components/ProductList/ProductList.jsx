@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 // COMPONENT IMPORTS:
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
 import Pagination from './Pagination/Pagination';
 // PRODUCT IMPORTS:
@@ -20,14 +21,14 @@ function ProductList(props) {
   } = props;
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [productCards, setProductCards] = useState([]);
-  const [productsPerPage, setProductsPerPage] = useState(3);
+  const [productsPerPage] = useState(3);
   const [totalProducts, setTotalProducts] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
   // const { productSlug } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   /* --------------------------- REDUX STATE: --------------------------- */
 
@@ -51,7 +52,7 @@ function ProductList(props) {
   ] = useLazyGetFilteredProductsQuery();
 
   useEffect(() => {
-    getFilteredProducts(filteredQueryString(searchParams, startPage, productsPerPagenpm run))
+    getFilteredProducts(filteredQueryString(searchParams, startPage, productsPerPage))
       .unwrap()
       .then((response) => {
         try {
@@ -98,5 +99,10 @@ function ProductList(props) {
     </div>
   );
 }
+
+ProductList.propTypes = {
+  startPage: PropTypes.number.isRequired,
+  setStartPage: PropTypes.func.isRequired,
+};
 
 export default ProductList;

@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 
 import styles from './Pagination.module.scss';
 
@@ -33,6 +34,7 @@ function Pagination(props) {
             onClick={() => {
               setStartPageHandler(number);
             }}
+            onKeyDown={() => { }}
           >
             <span className="page-btn">
               {number}
@@ -44,4 +46,10 @@ function Pagination(props) {
   );
 }
 
+Pagination.propTypes = {
+  productsPerPage: PropTypes.number.isRequired,
+  totalProducts: PropTypes.number.isRequired,
+  setStartPage: PropTypes.func.isRequired,
+  startPage: PropTypes.number.isRequired,
+};
 export default Pagination;
