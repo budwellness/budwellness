@@ -18,8 +18,8 @@ function Registration() {
     address: '',
     phone: '',
   };
-  const onSubmit = (values) => {
-    console.log(values, 'Reg!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  const onSubmit = () => {
+    // console.log(values, 'Reg!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   };
   return (
   // <Container>
