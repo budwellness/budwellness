@@ -15,6 +15,7 @@
   font-weight: 900;
   margin-left: 10px;
   line-height: 30px;
+  text-align: center;
 }
 
 .accentColor {
@@ -52,10 +53,9 @@
 
 .forgotPassword {
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 0;
-
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .btnLogin {

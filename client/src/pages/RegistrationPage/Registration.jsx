@@ -23,6 +23,7 @@ function Registration() {
   };
   const onSubmit = () => {
     // console.log(values, 'Reg!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    navigate('/');
   };
   return (
   // <Container>
@@ -31,7 +32,6 @@ function Registration() {
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-
       {({ isValid }) => (
         <Form className={styles.wrapperForm}>
           <Container>
@@ -84,7 +84,6 @@ function Registration() {
                 className={styles.btnForm}
                 type="submit"
                 disabled={!isValid}
-                onClick={() => navigate('/')}
               >
                 Sign in
               </ButtonHeader>
