@@ -1,6 +1,10 @@
 import * as yup from 'yup';
 
 const validationSchema = yup.object({
+  email: yup
+    .string()
+    .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 'Invalid email format. Must contain @ and a valid domain.')
+    .required('The field is required'),
   name: yup
     .string()
     .min(2, 'Name too short')

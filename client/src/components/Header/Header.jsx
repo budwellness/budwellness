@@ -65,7 +65,7 @@ function Header() {
   const logoutHandler = () => {
     localStorage.removeItem('token');
     dispatch(userLogutUserAction());
-    dispatch(setModal(false))
+    dispatch(setModal(false));
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */

@@ -21,6 +21,7 @@ import ButtonHeader from "../ButtonHeader/ButtonHeader";
 import LogoIcon from "../Header/icons/LogoIcon";
 import {Link} from "react-router-dom";
 import validationSchema from "./validationLogin.js";
+import {setModal} from "../../store/modal/modal.slice.js";
 
 
 function LoginForm(props) {
@@ -117,7 +118,11 @@ function LoginForm(props) {
                     type="submit"
                     onClick={() => loginUser(mockValue)}
                 >DEMO</ButtonHeader>
-                <Link to="/" className={styles.createAcc}>Create an account</Link>
+                <Link
+                    to="/registration"
+                    className={styles.createAcc}
+                    onClick={()=> dispatch(setModal(false))}
+                >Create an account</Link>
             </div>
         </>
     );

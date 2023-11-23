@@ -1,8 +1,9 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 
+import { useNavigate } from 'react-router-dom';
 import Input from './Input/Input';
-import Textarea from './Textarea/Textarea';
+// import Textarea from './Textarea/Textarea';
 
 import styles from './Registration.module.scss';
 import validationSchema from './validation';
@@ -11,7 +12,9 @@ import Container from '../../components/Container/Container';
 import ButtonHeader from '../../components/ButtonHeader/ButtonHeader';
 
 function Registration() {
+  const navigate = useNavigate();
   const initialValues = {
+    email: '',
     name: '',
     lastName: '',
     age: '',
@@ -35,6 +38,13 @@ function Registration() {
             <div className={styles.form}>
               <h3>Registration</h3>
               <Input
+                name="email"
+                type="text"
+                placeholder="Enter your email"
+                label="Your email"
+                className={styles.formLabel}
+              />
+              <Input
                 name="name"
                 type="text"
                 placeholder="Enter your name"
@@ -55,14 +65,14 @@ function Registration() {
                 label="Your age"
                 className={styles.formLabel}
               />
-              <Textarea
-                name="address"
-                type="text"
-                placeholder="Enter your address"
-                label="Your address"
-                className={styles.formLabel}
-                rows={3}
-              />
+              {/* <Textarea */}
+              {/*  name="address" */}
+              {/*  type="text" */}
+              {/*  placeholder="Enter your address" */}
+              {/*  label="Your address" */}
+              {/*  className={styles.formLabel} */}
+              {/*  rows={3} */}
+              {/* /> */}
               <Input
                 name="phone"
                 type="number"
@@ -74,6 +84,7 @@ function Registration() {
                 className={styles.btnForm}
                 type="submit"
                 disabled={!isValid}
+                onClick={() => navigate('/')}
               >
                 Sign in
               </ButtonHeader>
