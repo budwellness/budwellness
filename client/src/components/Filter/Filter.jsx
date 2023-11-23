@@ -15,19 +15,30 @@ function Filter(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
-  const [selectedCategories, setSelectedCategories] = useState({categories: "", plantType: "", thc: "", cbd: ""});
+  const [selectedCategories, setSelectedCategories] = useState({
+    categories: '',
+    plantType: '',
+    thc: '',
+    cbd: '',
+  });
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
 
   const clearCategory = (category) => {
-    const updatedCategories = selectedCategories
-      .split(' ')
-      .filter((cat) => cat !== category)
-      .join(' ');
+    const updatedCategories = Object.keys(selectedCategories).reduce((acc, key) => {
+      if (key !== category) {
+        acc[key] = selectedCategories[key];
+      }
+      return acc;
+    }, {});
+  
     setSelectedCategories(updatedCategories);
+  
+    formRef.current.reset();
   };
+  
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
@@ -56,15 +67,14 @@ function Filter(props) {
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
     for (let [key, value] of filterData.entries()) {
-      if (key !== "minPrice" && key !== "maxPrice"){
-        setSelectedCategories((prevValue)=> ({...prevValue, [key]: value}))
-        }
+      if (key !== 'minPrice' && key !== 'maxPrice') {
+        setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
+      }
       if (key === 'thc' || key === 'cbd') {
         filterDataArr.push(`${value}`);
         continue;
       }
       filterDataArr.push(`${key}=${value}`);
-
     }
 
     const filterQueryString = filterDataArr.join('&');
@@ -340,17 +350,22 @@ function Filter(props) {
           </div>
 
           <div className={styles.selectedCategories}>
-            {selectedCategories.length > 0 &&
-              selectedCategories.entries().map(([fieldType, fieldValue]) => (
-                <button
-                type='button'
-                  key={fieldType}
-                  onClick={() => clearCategory(fieldType)}
-                  className={styles.clearButton}
-                >
-                  {fieldValue} <span>&times;</span>
-                </button>
-              ))}
+            .{' '}
+            {Object.values(selectedCategories).filter((el) => el !== '')
+              .length > 0 &&
+              Object.entries(selectedCategories).map(
+                ([fieldType, fieldValue]) =>
+                  fieldValue !== '' ? (
+                    <button
+                      type="button"
+                      key={fieldType}
+                      onClick={() => clearCategory(fieldType)}
+                      className={styles.clearButton}
+                    >
+                      {fieldValue} <span>&times;</span>
+                    </button>
+                  ) : null
+              )}
           </div>
         </form>
       )}
