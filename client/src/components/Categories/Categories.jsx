@@ -42,7 +42,7 @@ function Categories() {
 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
-    navigate(`/shop/categories=${categoryName}&minPrice=0&maxPrice=10000`);
+    navigate(`/shop?categories=${categoryName}`);
   };
 
   return (
@@ -52,7 +52,7 @@ function Categories() {
           {categoryData.map((category) => (
             <li
               className={`${styles['content-categories']} ${selectedCategory === category.name ? styles.selected : ''
-              }`}
+                }`}
               key={category.id}
               onClick={() => handleCategoryClick(category.name)}
               onKeyUp={(e) => {
