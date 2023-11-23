@@ -2,7 +2,7 @@
     max-width: 994px;
     @include dflex-column-jcfs-aic;
     @include _992 {
-        padding: 50px 0;
+        margin: 60px 0;
     }
 
     .list__products_error {
