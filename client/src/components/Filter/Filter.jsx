@@ -21,12 +21,24 @@ function Filter(props) {
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
 
+  // const clearCategory = (category) => {
+  //   const updatedCategories = selectedCategories
+  //     .split(' ')
+  //     .filter((cat) => cat !== category)
+  //     .join(' ');
+  //   setSelectedCategories(updatedCategories);
+  // };
+
+  const selectedCategoriesArray = selectedCategories.split(' ');
+
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
     setSelectedCategories(category);
+    setSelectedCategories((prevCategories) => `${prevCategories} ${category}`);
   };
   const handlePlantTypeChange = (plantType) => {
     setSelectedPlantTypes(plantType);
+    setSelectedCategories((prevCategories) => `${prevCategories} ${plantType}`);
   };
   const handlePriceChange = (e) => {
     const { name, value } = e.target;
@@ -34,9 +46,11 @@ function Filter(props) {
   };
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
+    setSelectedCategories((prevCategories) => `${prevCategories} ${thc}`);
   };
   const handleCBDChange = (cbd) => {
     setSelectedCBDRange([cbd]);
+    setSelectedCategories((prevCategories) => `${prevCategories} ${cbd}`);
   };
   const handleResize = () => {
     setIsFilterOpen(window.innerWidth >= 992);
@@ -67,6 +81,7 @@ function Filter(props) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  
 
   return (
     <div className={styles.filterContainer}>
@@ -344,6 +359,19 @@ function Filter(props) {
               30% - 50%
             </label>
           </div>
+
+          <div className={styles.selectedCategories}>
+  {selectedCategoriesArray.length > 0 &&
+    selectedCategoriesArray.map((category) => (
+      <button
+        key={category}
+        onClick={() => clearCategory(category)}
+        className={styles.clearButton}
+      >
+        {category} <span>&times;</span>
+      </button>
+    ))}
+</div>
         </form>
       )}
     </div>
@@ -351,3 +379,4 @@ function Filter(props) {
 }
 
 export default Filter;
+
