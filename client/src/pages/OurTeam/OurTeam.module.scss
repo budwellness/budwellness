@@ -1,46 +1,17 @@
-@mixin for-size($size) {
-  @media (min-width: $size) {
-    @content;
-  }
-}
-
 .wrapper {
   display: grid;
-  // display: flex;
-  // flex-wrap: wrap;
   padding: 60px 0;
-  // align-items: center;
   justify-content: center;
   @include for-size(768px) {
     grid-template-columns: 1fr 1fr;
-    // grid-template-columns: repeat(4, 1fr);
     gap: 50px;
-    // &:last-of-type {
-    //   background-color: aqua;
-    //   display: grid;
-    //   justify-content: center;
-    // }
   }
-  // @include for-size(992px) {
-  //   grid-template-columns: 1fr 1fr 1Fr;
-  // }
   @include for-size(1200px) {
     grid-template-columns: 1fr 1fr 1Fr 1fr;
   }
 
   &__person {
     position: relative;
-    // @include for-size(768px) {
-    //   width: calc(50% - 30px);
-    // }
-    // @include for-size(992px) {
-    //   width: calc(33% - 30px);
-    // }
-    // @include for-size(1200px) {
-    //   width: calc(25% - 30px);
-    //   // align-self: center;
-    // }
-
     .personHover {
       display: none;
       transition: display 0.5s ease;
@@ -55,39 +26,19 @@
         display: block;
       }
     }
-    &:nth-child(9) {
-      // grid-column: span 4;
-      // background-color: aqua;
-      display: grid;
-      justify-content: center;
-    }
   }
-
-  // .personLast {
-  //   @include for-size(1200px) {
-  //     display: grid;
-  //     // grid-template-columns: repeat(4, 1fr);
-  //     // justify-self: end;
-  //     background-color: aqua;
-  //   }
-  // }
 
   .photoItem {
     width: 100%;
-    // height: 100%;
     height: auto;
     border-radius: 25px;
     object-fit: cover;
-    // aspect-ratio: 1/1;
     aspect-ratio: 1/1.7;
-    // object-fit: contain;
-    // object-fit: scale-down;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
 
     &:hover {
       cursor: pointer;
-      // background: rgba(33, 72, 66, 0.4);
       .personHover {
         display: block;
       }
@@ -104,9 +55,3 @@
     box-shadow: 3px 3px 5px 2px rgba(33, 72, 66, 0.9);
   }
 }
-
-// .wrapper:last-child {
-//   background-color: aqua;
-//   display: grid;
-//   justify-content: center;
-// }

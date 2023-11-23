@@ -7,6 +7,7 @@ import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import SingleProductSwiper from '../../components/SingleProductSwiper/SingleProductSwiper';
 import InfoProduct from './InfoProduct/InfoProduct';
 import Tabs from './Tabs/Tabs';
+import Preloader from '../../components/Preloader/Preloader';
 // PRODUCT IMPORTS:
 import { useGetProductQuery } from '../../store/serverResponse/danitApi.products';
 
@@ -29,7 +30,10 @@ function SingleProductPage() {
     <div>
       {isLoading ? (
         <h2 className={styles.pre_loader}>
-          <Container>Loading...</Container>
+          {/* <Container>Loading...</Container> */}
+          <Container>
+            <Preloader />
+          </Container>
         </h2>
       ) : (
         <>

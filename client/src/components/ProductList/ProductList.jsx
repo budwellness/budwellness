@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 // COMPONENT IMPORTS:
 import { useParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
+import Preloader from '../Preloader/Preloader';
 // PRODUCT IMPORTS:
-import {
-  useLazyGetFilteredProductsQuery,
-} from '../../store/serverResponse/danitApi.products';
+import { useLazyGetFilteredProductsQuery } from '../../store/serverResponse/danitApi.products';
 import useToggleCart from '../../hooks/useToggleCart';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
 import styles from './ProductList.module.scss';
@@ -33,7 +32,8 @@ function ProductList() {
     return `${string}&perPage=8&startPage=1`;
   };
 
-  const [getFilteredProducts,
+  const [
+    getFilteredProducts,
     {
       isLoading: isLoadingLazyFilteredProducts,
       isError: isErrorLazyFilteredProducts,
@@ -47,20 +47,16 @@ function ProductList() {
         try {
           setProductCards(
             <div className={styles.list__products_wrapper}>
-              {
-                response.products?.map((product) => (
-                  <ProductCard
-                    actions={
-                      {
-                        toggleWishlistHandler,
-                        toggleCartHandler,
-                      }
-                    }
-                    product={product}
-                    key={product._id}
-                  />
-                ))
-              }
+              {response.products?.map((product) => (
+                <ProductCard
+                  actions={{
+                    toggleWishlistHandler,
+                    toggleCartHandler,
+                  }}
+                  product={product}
+                  key={product._id}
+                />
+              ))}
             </div>,
           );
         } catch (error) {
@@ -74,9 +70,12 @@ function ProductList() {
       {isLoadingLazyFilteredProducts ? (
         <div className={styles.list__products_error}>
           {/* Oh no, there was an error */}
-          Loading...
+          {/* Loading... */}
+          <Preloader />
         </div>
-      ) : productCards}
+      ) : (
+        productCards
+      )}
     </div>
   );
 }
