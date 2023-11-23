@@ -1,8 +1,8 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 // COMPONENT IMPORTS:
 import { useParams, useSearchParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
+import Pagination from './Pagination/Pagination';
 // PRODUCT IMPORTS:
 import {
   useLazyGetFilteredProductsQuery,
@@ -13,35 +13,34 @@ import styles from './ProductList.module.scss';
 
 const { log } = console;
 
-function ProductList() {
+function ProductList(props) {
+  const {
+    startPage,
+    setStartPage,
+  } = props;
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [productCards, setProductCards] = useState([]);
+  const [productsPerPage, setProductsPerPage] = useState(3);
+  const [totalProducts, setTotalProducts] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
   // const { productSlug } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  log(searchParams)
-
 
   /* --------------------------- REDUX STATE: --------------------------- */
 
-
-  const filteredQueryString = (params) => {
+  const filteredQueryString = (params, pageStart, perPage = 1) => {
     const filterStringArr = [];
     for (const [key, value] of params.entries()) {
       filterStringArr.push(`${key}=${value}`);
     }
-    const filterString = filterStringArr.join('&')
-    // if (filterStringArr[0] === 'categories=all' && filterString === 'categories-all') {
-    //   return 'perPage=&startPage=1';
-    // }
+    const filterString = filterStringArr.join('&');
     if (filterStringArr[0] === 'categories=all' && filterString !== 'categories=all') {
-      return `${filterStringArr.slice(1).join('&')}&perPage=8&startPage=1`;
+      return `${filterStringArr.slice(1).join('&')}&perPage=${perPage}&startPage=${pageStart}`;
     }
-    return `${filterString}&perPage=8&startPage=1`
-
+    return `${filterString}&perPage=${perPage}&startPage=${pageStart}`;
   };
 
   const [getFilteredProducts,
@@ -52,10 +51,12 @@ function ProductList() {
   ] = useLazyGetFilteredProductsQuery();
 
   useEffect(() => {
-    getFilteredProducts(filteredQueryString(searchParams))
+    getFilteredProducts(filteredQueryString(searchParams, startPage, productsPerPagenpm run))
       .unwrap()
       .then((response) => {
         try {
+          log(response);
+          setTotalProducts(response.productsQuantity);
           setProductCards(
             <div className={styles.list__products_wrapper}>
               {
@@ -78,7 +79,7 @@ function ProductList() {
           log(error, isErrorLazyFilteredProducts);
         }
       });
-  }, [searchParams]);
+  }, [searchParams, startPage]);
 
   return (
     <div className={styles.list__products}>
@@ -88,6 +89,12 @@ function ProductList() {
           Loading...
         </div>
       ) : productCards}
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={totalProducts}
+        setStartPage={setStartPage}
+        startPage={startPage}
+      />
     </div>
   );
 }

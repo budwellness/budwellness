@@ -7,7 +7,11 @@ import styles from './Filter.module.scss';
 
 const { log } = console;
 
-function Filter() {
+function Filter(props) {
+  const {
+    startPage,
+    setStartPage
+  } = props
   /* --------------------------- INIT HOOKS: --------------------------- */
   const navigate = useNavigate();
   const formRef = useRef();
@@ -55,7 +59,9 @@ function Filter() {
       filterDataArr.push(`${key}=${value}`);
     }
     const filterQueryString = filterDataArr.join('&');
+    setStartPage(1)
     setSearchParams(`${filterQueryString}`)
+
   };
 
   const toggleFilter = () => {
@@ -107,7 +113,7 @@ function Filter() {
             <label htmlFor="Flowers" className={styles.filter__label}>
               <input
                 name="categories"
-                type="radio"
+                type="checkbox"
                 id="Flowers"
                 value="Flowers"
                 className={styles.filter__input}

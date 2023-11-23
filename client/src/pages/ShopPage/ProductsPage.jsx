@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '../../components/Container/Container';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
@@ -6,11 +6,8 @@ import Filter from '../../components/Filter/Filter';
 import ProductList from '../../components/ProductList/ProductList';
 import styles from './ProductsPage.module.scss';
 
-
 function ProductsPage() {
-
-
-
+  const [startPage, setStartPage] = useState(1);
   return (
     <>
       <PagePreviewHeader
@@ -19,8 +16,8 @@ function ProductsPage() {
       />
       <Container>
         <div className={styles.wrapperContainer}>
-          <Filter />
-          <ProductList />
+          <Filter startPage={startPage} setStartPage={setStartPage} />
+          <ProductList startPage={startPage} setStartPage={setStartPage} />
         </div>
         <PopularProducts />
       </Container>
