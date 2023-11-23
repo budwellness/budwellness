@@ -1,3 +1,4 @@
+import React from 'react';
 import { useField, Field, ErrorMessage } from 'formik';
 import './Textarea.scss';
 import PropTypes from 'prop-types';
@@ -8,8 +9,9 @@ function Textarea(props) {
     type, placeholder, className, label, name, rows,
   } = props;
   return (
-    <label className={className}>
+    <label className={className} htmlFor={name}>
       <p className="">{label}</p>
+
       <Field
         as="textarea"
         type={type}
@@ -17,6 +19,7 @@ function Textarea(props) {
         name={name}
         rows={rows}
         placeholder={placeholder}
+                /* eslint-disable-next-line react/jsx-props-no-spreading */
         {...field}
       />
       {!!meta.error && meta.touched && <ErrorMessage name={name} className="error-textarea" component="p" />}

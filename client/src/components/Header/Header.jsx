@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 
 // COMPONENTS IMPORT:
 import Container from '../Container/Container';
-import Modal from '../Modal/Modal';
-import LoginForm from '../LoginForm/LoginForm';
 import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
 import ButtonHeader from '../ButtonHeader/ButtonHeader';
@@ -21,22 +19,22 @@ import CartIcon from './icons/CartIcon';
 import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
-import {
-  userLogutUserAction,
-} from '../../store/user/user.slice';
+// import {
+//   userLogutUserAction,
+// } from '../../store/user/user.slice';
 
 import { setModal } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
 
-function Header(props) {
-  const {
-    actions: {
-      getCart,
-      getWishlist,
-    },
-  } = props;
+function Header() {
+  // const {
+  //   actions: {
+  //     getCart,
+  //     getWishlist,
+  //   },
+  // } = props;
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -64,10 +62,10 @@ function Header(props) {
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
-  const logoutHandler = () => {
-    localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
-  };
+  // const logoutHandler = () => {
+  //   localStorage.removeItem('token');
+  //   dispatch(userLogutUserAction());
+  // };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -153,15 +151,6 @@ function Header(props) {
             </ButtonHeader>
           </div>
         </div>
-        {isOpenModal && (
-          isUserLogin
-            ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
-            : (
-              <Modal handleModal={handleModal}>
-                <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-              </Modal>
-            )
-        )}
       </Container>
     </header>
   );

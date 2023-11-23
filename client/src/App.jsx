@@ -44,6 +44,10 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
 import {loginHandler} from './pages/TestForBackPage/vanilaJsHelpers';
 import Registration from "./pages/RegistrationPage/Registration.jsx";
+import styles from "./components/Header/Header.module.scss";
+import Modal from "./components/Modal/Modal.jsx";
+import LoginForm from "./components/LoginForm/LoginForm.jsx";
+import {setModal} from "./store/modal/modal.slice.js";
 
 const {log} = console;
 
@@ -53,6 +57,7 @@ function App() {
 
     /* --------------------------- REDUX STATE: --------------------------- */
     const {isUserLogin} = useSelector((state) => state.user);
+    const {isOpenModal} = useSelector((state) => state.modal);
 
     /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -70,6 +75,10 @@ function App() {
         useLazyGetCartQuery();
 
     /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
+    const handleModal = () => {
+        dispatch(setModal(!isOpenModal));
+    };
 
     const initUserOnLoad = () => {
         const localStorageToken = localStorage.getItem('token');
@@ -133,6 +142,15 @@ function App() {
             </Routes>
             <Footer/>
             <CartModal/>
+            {isOpenModal && (
+                isUserLogin
+                    ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
+                    : (
+                        <Modal handleModal={handleModal}>
+                            <LoginForm actions={{handleModal, getCart, getWishlist}}/>
+                        </Modal>
+                    )
+            )}
         </>
     );
 }

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 // COMPONENTS: 
 import LoginInput from './LoginInput/LoginInput';
-import {validationSchema} from "./validation.js";
+import validationSchema from "./validation.js";
 
 // USER IMPORTS: 
 import {useLoginUserMutation} from '../../store/serverResponse/danitApi.auth';
@@ -17,7 +17,7 @@ import {userLoginUserAction} from '../../store/user/user.slice';
 import styles from './LoginForm.module.scss';
 import {toast} from 'react-toastify';
 
-import ButtonHeader from "../ButtonHeader/ButtonHeader.jsx";
+import ButtonHeader from "../ButtonHeader/ButtonHeader";
 
 import GoogleIcon from "./icons/GoogleIcon.jsx";
 import FacebookIcon from "./icons/FacebookIcon.jsx";

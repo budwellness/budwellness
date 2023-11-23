@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const validationSchema = yup.object({
+const validationSchema = yup.object({
   name: yup
     .string()
     .min(2, 'Name too short')
@@ -27,3 +27,5 @@ export const validationSchema = yup.object({
     .max(10, 'The number is too long')
     .required('The field is required'),
 });
+
+export default validationSchema;
