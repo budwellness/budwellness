@@ -64,7 +64,7 @@ function Carousel() {
               text="Our Products"
               className="orangeBtn"
               onClick={() => {
-                navigate('/products');
+                navigate('shop');
               }}
             />
             <p className={styles.contactsMessage}>
@@ -73,7 +73,10 @@ function Carousel() {
 
             <div className={styles.contactInfo}>
               <span className={styles.phoneImg}>
-                <PhoneIcon className={styles.phoneImgFill} />
+                <PhoneIcon
+                  className={styles.phoneImgFill}
+                  fill="$secondary-green"
+                />
               </span>
               <div className={styles.phoneNumText}>
                 <span className={styles.tel}>Phone number</span>

@@ -11,12 +11,12 @@ import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
+import OurTeam from './pages/OurTeam/OurTeam';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
-// import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import Footer from './components/Footer/Footer';
-// import Modal from './components/Modal/Modal';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
@@ -42,6 +42,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
+import isTokenExpired from './helpers/isTokenExpired';
+import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
 
 const { log } = console;
 
@@ -71,12 +73,16 @@ function App() {
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
     if (!localStorageToken) {
-      log('User not logged in');
     } else {
-      log('token is present, put it into store...');
-      dispatch(userLoginUserAction(localStorageToken));
-      getWishlist(localStorageToken);
-      getCart(localStorageToken);
+      if (isTokenExpired(localStorageToken)) {
+        log('token expired');
+        dispatch(userLogutUserAction());
+      } else {
+        dispatch(userLoginUserAction(localStorageToken));
+        getWishlist(localStorageToken);
+        getCart(localStorageToken);
+        log('token valid');
+      }
     }
   };
 
@@ -111,6 +117,7 @@ function App() {
         autoClose={3000}
         theme="colored"
       />
+      <ScrollToTop />
       <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -118,21 +125,13 @@ function App() {
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
       <CartModal />
-      {/* {showModalAddToCart && (
-        <Modal handleModal={handleModal} >
-          <ModalAddToCart
-            product={products?.product}
-            showModalAddToCart={showModalAddToCart}
-            setShowModalAddToCart={setShowModalAddToCart}
-          />
-        </Modal>
-      )} */}
     </>
   );
 }

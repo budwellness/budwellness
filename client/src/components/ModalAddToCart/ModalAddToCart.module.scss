@@ -1,9 +1,155 @@
-.modalAddToCart__container {
-    // width: 50vW;
-    max-height: 60vh;
+.modal_add_to_cart__container {
+    max-width: 80vw;
 
-    .about_main {
-        
-        z-index: 1900;
+    @include _992 {
+        max-width: 85vw;
+        @include dflex-jcc-aifs;
+    }
+
+    .slider__wrapper {
+        width: 100%;
+        margin: 0 0 20px;
+
+        @include _992 {
+            max-width: 380px;
+            margin: 0 40px 0 10px;
+        }
+    }
+
+    .about__info_wrapper {
+        color: $main-green;
+    
+        @include _992 {
+            @include dflex-column-jcfs-aifs;
+        }
+    
+        .about__title {
+            margin: 0 0 15px;
+            display: inline-block;
+            font-family: $font-nunito;
+            font-weight: 800;
+            font-size: 36px;
+            line-height: 1.2;
+            text-transform: capitalize;
+        }
+    
+        .about__rate_wrapper {
+            margin-bottom: 20px;
+            @include dflex-column-jcfs-aifs;
+            
+            @include _576 {
+                flex-direction: row;
+                @include dflex-jcsb-aic;
+                justify-content: flex-start;
+            }  
+    
+            .about__rate_text {
+                color: $main-text-color;
+                font-family: $font-montserrat;
+                display: inline-block;
+                margin: 10px 0 0;
+    
+                @include _576 {
+                    margin: 0 0 0 20px;
+                }               
+            }
+        }
+    
+        .about__descr_short {
+            margin: 0 0 30px;
+            padding-right: 10px;
+            display: inline-block;
+            font-family: $font-montserrat;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+    
+        .about__action_wrapper {
+            margin: 30px 0;
+
+            @include _576 {
+                @include dflex-jcsb-aic;
+                justify-content: flex-start;
+            }
+            
+            .about__current_price {
+                margin: 0 0 20px 0;
+                display: block;
+                font-family: $font-nunito;
+                font-weight: 800;
+                font-size: 30px;
+
+                @include _576 {
+                    margin: 0 30px 0 0;
+                }
+                
+            }
+        }
+    }
+    
+    .btn__add_to_favorites {
+        height: 40px;
+        width: 40px;
+        margin: 15px 15px 0 0;
+        @include dflex-jcc-aic;
+        background-color: $color-white;
+        border-radius: 50%;
+        border: 1px solid $color-white;
+        box-shadow: 1px 2px 15px rgba(33,72,66,.17);
+        cursor: pointer;
+
+        @include _576 {
+            margin: 0 30px 0;
+        }
+    
+        &:hover {
+            background-color: $main-orange;
+            color: $white-text-color;
+            transition: 0.5s ease-in-out;
+    
+            .favorite_icon {
+            fill: $color-white;
+            transition: 0.5s ease-in-out;
+            }
+        }
+    }
+    
+        .favorite_icon {
+            fill: $main-orange;
+            width: 19px;
+            height: 16px;
+        }
+    
+    .btn__add_to_favorites_active {
+      height: 40px;
+      width: 40px;
+      margin: 15px 15px 0 0;
+      @include dflex-jcc-aic;
+      background-color: $main-orange;
+      border-radius: 50%;
+      border: 1px solid $main-orange;
+      cursor: pointer;
+
+      @include _576 {
+          margin: 0 30px 0;
+      }
+    
+      &:hover {
+        background-color: $color-white;
+        color: $main-orange;
+        transition: 0.5s ease-in-out;
+    
+        .favorite_icon {
+          fill: $main-orange;
+          transition: 0.5s ease-in-out;
+        }
+      }
+    
+      .favorite_icon{
+        fill: $color-white;
+        width: 19px;
+        height: 16px;
+      }
     }
 }
+

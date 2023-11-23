@@ -1,11 +1,5 @@
-@mixin for-size($size) {
-  @media (min-width: $size) {
-    @content;
-  }
-}
-
 .wrapper {
-  background-image: url(./images/pagePreviewHeader-bg.png);
+  background-image: url(/images/pagePreviewHeader-bg.png);
   background-repeat: no-repeat;
   background-size: initial;
   background-position: center;

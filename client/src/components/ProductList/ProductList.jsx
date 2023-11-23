@@ -1,129 +1,109 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 // COMPONENT IMPORTS:
+import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
+import Pagination from './Pagination/Pagination';
 // PRODUCT IMPORTS:
-import { useGetAllProductsQuery } from '../../store/serverResponse/danitApi.products';
-// WISHLIST IMPORTS:
-import {
-  useAddProductToWishlistMutation,
-  useRemoveFromWishlistMutation,
-} from '../../store/serverResponse/danitApi.wishlist';
-import {
-  addItemToWishListAction,
-  removeItemFromWishListAction,
-} from '../../store/wishlist/wishList.slice';
-
-// CART IMPORTS:
-import {
-  addItemToCartAction,
-  removeItemFromCartAction,
-} from '../../store/cart/cart.slice';
-
+import { useLazyGetFilteredProductsQuery } from '../../store/serverResponse/danitApi.products';
+import useToggleCart from '../../hooks/useToggleCart';
+import useToggleWishlist from '../../hooks/useToggleWishlist';
 import styles from './ProductList.module.scss';
-import { useAddToCartMutation, useRemoveFromCartMutation } from '../../store/serverResponse/danitApi.cart';
 
 const { log } = console;
 
-function ProductList() {
+function ProductList(props) {
+  const { startPage, setStartPage } = props;
+  /* --------------------------- COMPONENT STATE: --------------------------- */
+  const [productCards, setProductCards] = useState([]);
+  const [productsPerPage] = useState(3);
+  const [totalProducts, setTotalProducts] = useState(null);
+
   /* --------------------------- INIT HOOKS: --------------------------- */
-  const dispatch = useDispatch();
+  const toggleCartHandler = useToggleCart();
+  const toggleWishlistHandler = useToggleWishlist();
+  // const { productSlug } = useParams();
+  const [searchParams] = useSearchParams();
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { wishList: wishlistStoreData } = useSelector((state) => state.wishlist);
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
 
-  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
-  // WISHLIST API:
-  const [removeProductFromWishlist] = useRemoveFromWishlistMutation();
-  const [addProductToWishlist] = useAddProductToWishlistMutation();
-
-  // CART API:
-  const [addProductToCart] = useAddToCartMutation();
-  const [removeProductFromCart] = useRemoveFromCartMutation();
-
-  /* --------------------------- COMPONENT HANDLERS: --------------------------- */
-  const toggleWishlistHandler = (product, token) => {
-    const isExist = wishlistStoreData.some((p) => p._id === product._id);
-
-    if (isExist) {
-      try {
-        removeProductFromWishlist({ productId: product._id, token });
-        dispatch(removeItemFromWishListAction(product));
-      } catch (error) {
-        log(error);
-      }
-    } else {
-      try {
-        addProductToWishlist({ productId: product._id, token });
-        dispatch(addItemToWishListAction(product));
-      } catch (error) {
-        log(error);
-      }
+  const filteredQueryString = (params, pageStart, perPage = 1) => {
+    const filterStringArr = [];
+    for (const [key, value] of params.entries()) {
+      filterStringArr.push(`${key}=${value}`);
     }
+    const filterString = filterStringArr.join('&');
+    if (
+      filterStringArr[0] === 'categories=all'
+      && filterString !== 'categories=all'
+    ) {
+      return `${filterStringArr
+        .slice(1)
+        .join('&')}&perPage=${perPage}&startPage=${pageStart}`;
+    }
+    return `${filterString}&perPage=${perPage}&startPage=${pageStart}`;
   };
 
-  /* ------------------------------------------------ */
+  const [
+    getFilteredProducts,
+    {
+      isLoading: isLoadingLazyFilteredProducts,
+      isError: isErrorLazyFilteredProducts,
+    },
+  ] = useLazyGetFilteredProductsQuery();
 
-  const toggleCartHandler = (product, token) => {
-    const isExist = cartStoreData.some((p) => p.product._id === product._id);
-
-    if (isExist) {
-      try {
-        removeProductFromCart({ productId: product._id, token });
-        dispatch(removeItemFromCartAction(product._id));
-        toast.warn('Product was removed from cart!');
-      } catch (error) {
-        log(error);
-        toast.error('Something went wrong...');
-      }
-    } else {
-      try {
-        addProductToCart({ productId: product._id, token })
-          .unwrap()
-          .then((response) => {
-            dispatch(addItemToCartAction(response.products));
-            toast.success('Product was added to cart!');
-          });
-      } catch (error) {
-        log(error);
-        toast.error('Something went wrong...');
-      }
-    }
-  };
-
-  const {
-    data: AllProductsData,
-    isError: isErrorAllProductsData,
-    // isLoading: isLoadingAllProductsData
-  } = useGetAllProductsQuery();
+  useEffect(() => {
+    getFilteredProducts(
+      filteredQueryString(searchParams, startPage, productsPerPage),
+    )
+      .unwrap()
+      .then((response) => {
+        try {
+          log(response);
+          setTotalProducts(response.productsQuantity);
+          setProductCards(
+            <div className={styles.list__products_wrapper}>
+              {response.products?.map((product) => (
+                <ProductCard
+                  actions={{
+                    toggleWishlistHandler,
+                    toggleCartHandler,
+                  }}
+                  product={product}
+                  key={product._id}
+                />
+              ))}
+            </div>,
+          );
+        } catch (error) {
+          log(error, isErrorLazyFilteredProducts);
+        }
+      });
+  }, [searchParams, startPage]);
 
   return (
     <div className={styles.list__products}>
-      {isErrorAllProductsData ? (
+      {isLoadingLazyFilteredProducts ? (
         <div className={styles.list__products_error}>
-          Oh no, there was an error
+          {/* Oh no, there was an error */}
+          Loading...
         </div>
       ) : (
-        <div className={styles.list__products_wrapper}>
-          {AllProductsData?.map((product) => (
-            <ProductCard
-              actions={
-                {
-                  toggleWishlistHandler,
-                  toggleCartHandler,
-                }
-              }
-              product={product}
-              key={product._id}
-            />
-          ))}
-        </div>
+        productCards
       )}
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={totalProducts}
+        setStartPage={setStartPage}
+        startPage={startPage}
+      />
     </div>
   );
 }
+
+ProductList.propTypes = {
+  startPage: PropTypes.number.isRequired,
+  setStartPage: PropTypes.func.isRequired,
+};
 
 export default ProductList;

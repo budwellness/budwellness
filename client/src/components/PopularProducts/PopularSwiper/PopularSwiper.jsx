@@ -28,7 +28,7 @@ export default function PopularSwiper() {
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   // PRODUCT API:
-  const mockFilterQueryString = '?sort=-rate&perPage=6&startPage=1';
+  const mockFilterQueryString = 'sort=-rate&perPage=6&startPage=1';
   const {
     data: filteredProductsData,
     isLoading: isLoadingFilteredProductsData,
@@ -39,20 +39,17 @@ export default function PopularSwiper() {
   useEffect(() => {
     if (isSuccessFilteredProductsData) {
       setPopularCards(
-        filteredProductsData.products
-          ?.map((productItem) => (
-            <SwiperSlide key={productItem.itemNo} className={styles.slide}>
-              <PopularSwiperSlide
-                products={productItem}
-                actions={
-                  {
-                    toggleCartHandler,
-                    toggleWishlistHandler,
-                  }
-                }
-              />
-            </SwiperSlide>
-          )),
+        filteredProductsData.products?.map((productItem) => (
+          <SwiperSlide key={productItem.itemNo} className={styles.slide}>
+            <PopularSwiperSlide
+              products={productItem}
+              actions={{
+                toggleCartHandler,
+                toggleWishlistHandler,
+              }}
+            />
+          </SwiperSlide>
+        )),
       );
     }
   }, [isSuccessFilteredProductsData, filteredProductsData]);

@@ -83,9 +83,9 @@ export const productsJSON = [
   {
     enabled: true,
     imageUrls: [
-      'images/milk_chocolate_1.png',
-      'images/milk_chocolate_2.png',
-      'images/milk_chocolate_2.png',
+      '/images/milk_chocolate_1.png',
+      '/images/milk_chocolate_2.png',
+      '/images/milk_chocolate_3.png',
     ],
     quantity: 6,
     rate: 4.4,
@@ -116,7 +116,7 @@ export const productsJSON = [
           'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
         benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
         disadvantages:
-          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim',
       },
       {
         fullName: 'Charles Sanchez',
@@ -135,15 +135,15 @@ export const productsJSON = [
         'MILK CHOCOLATE (SUGAR, HYDROGENATED PALM KERNEL OIL, NONFAT DRY MILK, COCOA PROCESSED WITH ALKALI, SORBITAN MONOSTEARATE, LACTIC ACID ESTERS OF MONO AND DIGLYCERIDES WITH CITRIC ACID TO PROTECT FLAVOR, SOY LECITHIN (AN EMULSIFIER), ARTIFICIAL FLAVOR), MCT OIL, HEMP EXTRACT',
       flavors: 'MAY CONTAIN PEANUTS, TREE NUTS, MILK CHOCOLATE',
       recommendedUsage:
-        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more.',
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/chocolate_brownies_1.png',
-      'images/chocolate_brownies_2.png',
-      'images/chocolate_brownies_3.png',
+      '/images/chocolate_brownies_1.png',
+      '/images/chocolate_brownies_2.png',
+      '/images/chocolate_brownies_3.png',
     ],
     quantity: 10,
     rate: 3.6,
@@ -197,15 +197,15 @@ export const productsJSON = [
         'Sugars (sucrose, glucose syrup, fructose, dextrose, cultured (cane) sugar), Enriched wheat flour (Wheat), Canola oil, Liquid whole eggs (Egg), Cocoa powder, Water, Glycerin, Soy lecithin (Soy), Natural and artificial flavour, Salt, Xanthan gum, Rosemary extract, Ascorbic acid, Sunflower oil, Cannabis distillate',
       flavors: 'soft and decadent chocolate',
       recommendedUsage:
-        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half.',
+        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/spectrum_oil_1.png',
-      'images/spectrum_oil_2.png',
-      'images/spectrum_oil_3.png',
+      '/images/spectrum_oil_1.png',
+      '/images/spectrum_oil_2.png',
+      '/images/spectrum_oil_3.png',
     ],
     quantity: 7,
     rate: 2.3,
@@ -254,15 +254,15 @@ export const productsJSON = [
       ingredients: 'Full Spectrum Hemp Extract, Organic Virgin Hemp Seed Oil',
       flavors: 'Earthy and musky, piney and herbal',
       recommendedUsage:
-        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half.',
+        'We recommend starting with half the cake and after an hour if the effect is not enough, add the second half',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/spectrum_oil_4.png',
-      'images/spectrum_oil_5.png',
-      'images/spectrum_oil_6.png',
+      '/images/spectrum_oil_4.png',
+      '/images/spectrum_oil_5.png',
+      '/images/spectrum_oil_6.png',
     ],
     quantity: 13,
     rate: 1.7,
@@ -311,15 +311,15 @@ export const productsJSON = [
       ingredients: 'MCT Oil, Cannabis',
       flavors: 'Tree Nut (Coconut)',
       recommendedUsage:
-        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more.',
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/doja_unicorn_1.png',
-      'images/doja_unicorn_2.png',
-      'images/doja_unicorn_3.png',
+      '/images/doja_unicorn_1.png',
+      '/images/doja_unicorn_2.png',
+      '/images/doja_unicorn_3.png',
     ],
     quantity: 12,
     rate: 4.8,
@@ -368,15 +368,15 @@ export const productsJSON = [
       ingredients: 'Wedding Cake and Unicorn Poop',
       flavors: 'Citrus',
       recommendedUsage:
-        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more.',
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/pink_diablo_1.png',
-      'images/pink_diablo_2.png',
-      'images/pink_diablo_3.png',
+      '/images/pink_diablo_1.png',
+      '/images/pink_diablo_2.png',
+      '/images/pink_diablo_3.png',
     ],
     quantity: 4,
     rate: 3.4,
@@ -425,15 +425,15 @@ export const productsJSON = [
       ingredients: '70% Indica, 30 % Sativa',
       flavors: 'Candy / Earthy / Floral / Fruity / Gassy / Pungent / Sweet',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/bubba_kush_1.png',
-      'images/bubba_kush_2.png',
-      'images/bubba_kush_3.png',
+      '/images/bubba_kush_1.png',
+      '/images/bubba_kush_2.png',
+      '/images/bubba_kush_3.png',
     ],
     quantity: 9,
     rate: 2.9,
@@ -482,15 +482,15 @@ export const productsJSON = [
       ingredients: '100% Indica',
       flavors: 'round and deep notes of chocolate and coffee',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/purple_punch_1.png',
-      'images/purple_punch_2.png',
-      'images/purple_punch_3.png',
+      '/images/purple_punch_1.png',
+      '/images/purple_punch_2.png',
+      '/images/purple_punch_3.png',
     ],
     quantity: 5,
     rate: 1.3,
@@ -537,17 +537,17 @@ export const productsJSON = [
     ],
     additionalInformation: {
       ingredients: '100% Indica',
-      flavors: 'red wine, chocolate, and citrus.',
+      flavors: 'red wine, chocolate, and citrus',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/tropical_fruit_1.png',
-      'images/tropical_fruit_2.png',
-      'images/tropical_fruit_3.png',
+      '/images/tropical_fruit_1.png',
+      '/images/tropical_fruit_2.png',
+      '/images/tropical_fruit_3.png',
     ],
     quantity: 11,
     rate: 4.9,
@@ -594,18 +594,18 @@ export const productsJSON = [
     ],
     additionalInformation: {
       ingredients:
-        'Water, cane sugar, citric acid, cannabis emulsion (glycerin, ethyl alcohol, water, polysorbate 80, modified palm oil, sunflower lecithin, THC distillate), concentrates of carrot and blackcurrant (for colour), natural flavor.',
-      flavors: 'tropical fruit.',
+        'Water, cane sugar, citric acid, cannabis emulsion (glycerin, ethyl alcohol, water, polysorbate 80, modified palm oil, sunflower lecithin, THC distillate), concentrates of carrot and blackcurrant (for colour), natural flavor',
+      flavors: 'tropical fruit',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/deep_space_1.png',
-      'images/deep_space_2.png',
-      'images/deep_space_3.png',
+      '/images/deep_space_1.png',
+      '/images/deep_space_2.png',
+      '/images/deep_space_3.png',
     ],
     quantity: 2,
     rate: 3.5,
@@ -652,18 +652,18 @@ export const productsJSON = [
     ],
     additionalInformation: {
       ingredients:
-        'Carbonated water, Sugar, Distilled Cannabis™ Blend (Vegetable glycerin, Cannabis distillate, Monoglycerides, Soy lecithin, Sucrose monopalmitate), Citric acid, Potassium citrate, Caramel colour, Calcium disodium EDTA, Natural flavours.',
+        'Carbonated water, Sugar, Distilled Cannabis™ Blend (Vegetable glycerin, Cannabis distillate, Monoglycerides, Soy lecithin, Sucrose monopalmitate), Citric acid, Potassium citrate, Caramel colour, Calcium disodium EDTA, Natural flavours',
       flavors: 'bold and mysterious',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/purple_cookie_seeds_1.png',
-      'images/purple_cookie_seeds_2.png',
-      'images/purple_cookie_seeds_3.png',
+      '/images/purple_cookie_seeds_1.png',
+      '/images/purple_cookie_seeds_2.png',
+      '/images/purple_cookie_seeds_3.png',
     ],
     quantity: 8,
     rate: 2.8,
@@ -712,15 +712,15 @@ export const productsJSON = [
       ingredients: '60% indica, 40% sativa plant',
       flavors: 'Creamy, flowery, pungent, sweet',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
   {
     enabled: true,
     imageUrls: [
-      'images/seeds_white_label_1.png',
-      'images/seeds_white_label_2.png',
-      'images/seeds_white_label_3.png',
+      '/images/seeds_white_label_1.png',
+      '/images/seeds_white_label_2.png',
+      '/images/seeds_white_label_3.png',
     ],
     quantity: 3,
     rate: 5.0,
@@ -770,7 +770,7 @@ export const productsJSON = [
       flavors:
         'Pleasantly musky, citrussy aroma while growing, with a note of skunk',
       recommendedUsage:
-        "Many use this strain to help treat insomnia and aid them in getting a good night's rest.",
+        "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
 ];

@@ -10,8 +10,8 @@ function Instagram() {
       <div className={styles.container}>
         <h2 className={styles.instaTitle}>Follow Us on Instagram</h2>
         <p className={styles.instaDesc}>
-          Accumsan sit amet nulla facilisi morbi tempus. Suscipit tellus mauris
-          a diam maecenas sed enim ut sem
+          Follow us on Instagram for the latest updates, behind-the-scenes
+          glimpses, and exclusive content.
         </p>
       </div>
       <div>
@@ -43,8 +43,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaOne.webp"
-                alt="oil"
+                src="./images/instaOne.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -53,8 +53,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaTwo.webp"
-                alt="oil"
+                src="./images/instaTwo.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -63,8 +63,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaThree.webp"
-                alt="oil"
+                src="./images/instaThree.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -73,8 +73,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaFour.webp"
-                alt="oil"
+                src="./images/instaFour.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -83,8 +83,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaFive.webp"
-                alt="oil"
+                src="./images/instaFive.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -93,8 +93,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaOne.webp"
-                alt="oil"
+                src="./images/instaOne.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -103,8 +103,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaTwo.webp"
-                alt="oil"
+                src="./images/instaTwo.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -113,8 +113,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaThree.webp"
-                alt="oil"
+                src="./images/instaThree.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -123,8 +123,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaFour.webp"
-                alt="oil"
+                src="./images/instaFour.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>
@@ -133,8 +133,8 @@ function Instagram() {
               {' '}
               <img
                 className={styles.instaImage}
-                src="./public/images/instaFive.webp"
-                alt="oil"
+                src="./images/instaFive.webp"
+                alt="instagram"
               />
             </a>
           </SwiperSlide>

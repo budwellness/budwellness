@@ -2,10 +2,126 @@
   text-align: center;
 }
 
-.footerInput{
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
+.logoIcon {
+  width: 50px;
+  margin: 0 auto;
 }
 
-.btn {}
+.title {
+  color: $main-green;
+  font-family: $font-nunito;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 900;
+  margin-left: 10px;
+  line-height: 30px;
+}
+
+.accentColor {
+  color: $secondary-green;
+}
+
+.wrapperLogin{
+  margin-top: 10px;
+  border: 1px solid #21262d;
+  padding: 16px;
+  border-radius: 6px;
+  background: #f8f2f2;
+
+  p {
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 100%;
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 6px;
+    border: 1px solid;
+    outline: none;
+  }
+}
+
+.passwordInput {
+  margin-top: 15px;
+  position: relative;
+}
+
+.forgotPassword {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  font-size: 14px;
+}
+
+.btnLogin {
+  width: 100%;
+  background: $secondary-green;
+  border-radius: 6px;
+  margin-top: 16px;
+  padding: 5px 16px;
+  color: white;
+
+  &:hover {
+    background: #24a23c;
+  }
+}
+
+.footerInput {
+  border: 1px solid #21262d;
+  padding: 16px;
+  border-radius: 6px;
+  background: #f8f2f2;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.github {
+
+}
+
+.createAcc {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+//.title {
+//}
+
+//.socialLinksWrapper {
+//
+//}
+//
+//.facebook {
+//  background-color: #228BE6;
+//  border-radius: 5px;
+//  color: white;
+//  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//  padding: 15px 25px;
+//  width: 100%;
+//
+//
+//  svg {
+//    fill: white;
+//    margin-right: 5px;
+//  }
+//}
+
+//.google {
+//  border-radius: 5px;
+//  color: gray;
+//  background-color: white;
+//
+//  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//  padding: 15px 25px;
+//  width: 100%;
+//  margin-top: 15px;
+//
+//  svg {
+//    margin-right: 5px;
+//  }
+//}

@@ -1,5 +1,4 @@
 import React from 'react';
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import Carousel from '../../components/Carousel/Carousel';
 import Categories from '../../components/Categories/Categories';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
@@ -12,7 +11,6 @@ import Info from '../../components/Info/Info';
 function HomePage() {
   return (
     <>
-      <ScrollToTop />
       <Carousel />
       <Categories />
       <PopularProducts />

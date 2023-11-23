@@ -18,3 +18,25 @@
     line-height: 1.1;
   }
 }
+
+.orangeBtn {
+  font-size: 17px;
+  padding: 10px 25px;
+  min-height: 48px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-family: $font-nunito;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+  text-decoration: none;
+  text-align: center;
+
+  background-color: $main-orange;
+  color: $main-green;
+  border: none;
+  display: inline-block;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

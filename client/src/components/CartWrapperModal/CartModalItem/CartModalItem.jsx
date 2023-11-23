@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { toast } from 'react-toastify';
 
 // COMPONENT IMPORTS:
+import { Link } from 'react-router-dom';
 import ButtonCount from '../../ButtonCount/ButtonCount';
 import LinkUnderline from '../../LinkUnderline/LinkUnderline';
 
@@ -20,6 +20,7 @@ import {
 } from '../../../store/serverResponse/danitApi.cart';
 
 import styles from './CartModalItem.module.scss';
+import { setCartModal } from '../../../store/cartModal/cartModal.slice';
 
 const { log } = console;
 
@@ -61,6 +62,10 @@ function CartModalItem(props) {
     }
   };
 
+  const handleCloseCart = () => {
+    dispatch(setCartModal(false));
+  };
+
   /* ------------------------------------------------ */
 
   const decreaseCartQuantityHandler = () => {
@@ -80,14 +85,23 @@ function CartModalItem(props) {
   return (
     <li className={styles.cartItem}>
       <div className={styles.wrapperImg}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#">
+        <Link
+            /* eslint-disable-next-line react/prop-types */
+          to={`/products/${product.itemNo}`}
+          onClick={handleCloseCart}
+        >
           <img src={product.imageUrls[0]} alt={product.name} />
-        </a>
+        </Link>
       </div>
       <div className={styles.main}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#" className={styles.mainTitleLink}>{product.name}</a>
+        <Link
+            /* eslint-disable-next-line react/prop-types */
+          to={`/products/${product.itemNo}`}
+          className={styles.mainTitleLink}
+          onClick={handleCloseCart}
+        >
+          {product.name}
+        </Link>
         <span className={styles.mainPrice}>
           $
           {product.currentPrice}
@@ -95,13 +109,20 @@ function CartModalItem(props) {
         <div className={styles.count}>
           <ButtonCount
             productQuantity={product.quantity}
-            actions={{ increaseCartQuantityHandler, decreaseCartQuantityHandler }}
+            actions={{
+              increaseCartQuantityHandler,
+              decreaseCartQuantityHandler,
+            }}
             cartQuantity={cartQuantity}
           />
         </div>
-        { }
-        {/* <a className={styles.removeLink} href="#">remove</a> */}
-        <LinkUnderline type="button" productId={product._id} style={{ order: 4, marginTop: '10px' }}>Remove</LinkUnderline>
+        <LinkUnderline
+          type="button"
+          productId={product._id}
+          style={{ order: 4, marginTop: '10px' }}
+        >
+          Remove
+        </LinkUnderline>
       </div>
     </li>
   );
@@ -132,5 +153,31 @@ CartModalItem.defaultProps = {
     },
   },
 };
+
+// CartModalItem.propTypes = {
+//   products: PropTypes.shape({
+//     cartQuantity: PropTypes.number,
+//     product: PropTypes.shape({
+//       _id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+//       currentPrice: PropTypes.number.isRequired,
+//       quantity: PropTypes.number.isRequired,
+//     }).isRequired,
+//   }).isRequired,
+// };
+//
+// CartModalItem.defaultProps = {
+//   products: {
+//     cartQuantity: 0,
+//     product: {
+//       _id: '',
+//       name: '',
+//       imageUrls: [],
+//       currentPrice: 0,
+//       quantity: 0,
+//     },
+//   },
+// };
 
 export default CartModalItem;
