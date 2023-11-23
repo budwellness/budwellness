@@ -141,6 +141,7 @@
         border: 1px solid $secondary-text-color;
         padding: 13px 20px;
         min-height: 220px;
+        resize: none;
         @include for-size(992px) {
             margin-bottom: 40px;
         }

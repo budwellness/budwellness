@@ -1,18 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 function InstaIcon(props) {
-  const { fill, ...rest } = props;
+  const { fill } = props;
 
   return (
     <svg
       width="21"
       height="26"
       viewBox="0 0 21 26"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...rest}
     >
       <g
         id="List &#226;&#134;&#146; Item &#226;&#134;&#146; Link"

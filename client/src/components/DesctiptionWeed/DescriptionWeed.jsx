@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './DescriptionWeed.module.scss';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 
 function DescriptionWeed() {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <div className={styles.containerWeed}>
@@ -21,7 +24,9 @@ function DescriptionWeed() {
               type="button"
               text="Our Products"
               className="orangeBtn"
-              onClick={() => {}}
+              onClick={() => {
+                navigate('/shop/categories=all');
+              }}
             />
           </div>
           <div className={styles.imageBlock}>
@@ -34,22 +39,23 @@ function DescriptionWeed() {
             <li className={styles.effectItem}>
               <h4 className={styles.effectName}>Relief of chronic pain</h4>
               <p className={styles.effectDescription}>
-                Feugiat in fermentum posuere urna nec tincidunt praesent semper
-                feugiat pulvinar proin
+                Discover relief for chronic pain in this section, offering
+                practical solutions for improved well-being.
               </p>
             </li>
             <li className={styles.effectItem2}>
               <h4 className={styles.effectName}>Fight cancer</h4>
               <p className={styles.effectDescription}>
-                Feugiat in fermentum posuere urna nec tincidunt praesent semper
-                feugiat pulvinar proin
+                Discover effective ways to combat cancer and find hope in
+                cutting-edge treatments and support.
               </p>
             </li>
             <li className={styles.effectItem3}>
               <h4 className={styles.effectName}>Depression</h4>
               <p className={styles.effectDescription}>
-                Feugiat in fermentum posuere urna nec tincidunt praesent semper
-                feugiat pulvinar proin
+                The Depression section provides support, info on symptoms and
+                treatments, and a caring community for those facing this
+                challenge.
               </p>
             </li>
           </ul>

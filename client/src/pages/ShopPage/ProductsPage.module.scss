@@ -1,3 +1,15 @@
-.shop__main_container {
-    width: 100%;
+@mixin for-size($size) {
+  @media (min-width: $size) {
+      @content;
+  }
+}
+.wrapperContainer {
+  max-width: 1380px;
+  display: grid;
+  justify-content: space-between;
+  gap: 60px;
+  @include for-size(992px) {
+    display: flex;
+    flex-direction: row-reverse;
+}
 }

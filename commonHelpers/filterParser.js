@@ -1,4 +1,4 @@
-const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "sort"];
+const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "sort", "minThc", "maxThc", "minCbd", "maxCbd"];
 
 module.exports = function filterParser(filtersQueryString) {
   const mongooseQuery = {};
@@ -6,24 +6,33 @@ module.exports = function filterParser(filtersQueryString) {
   if (filtersQueryString.minPrice || filtersQueryString.maxPrice) {
     mongooseQuery.currentPrice = {
       $gte: Number(filtersQueryString.minPrice),
-      $lte: Number(filtersQueryString.maxPrice)
+      $lte: Number(filtersQueryString.maxPrice),
     };
   }
 
-  return Object.keys(filtersQueryString).reduce(
-    (mongooseQuery, filterParam) => {
-      if (filtersQueryString[filterParam].includes(",")) {
-        mongooseQuery[filterParam] = {
-          $in: filtersQueryString[filterParam]
-            .split(",")
-            .map(item => decodeURI(item))
-        };
-      } else if (!excludedParams.includes(filterParam)) {
-        mongooseQuery[filterParam] = decodeURI(filtersQueryString[filterParam]);
-      }
+  if (filtersQueryString.minThc || filtersQueryString.maxThc) {
+    mongooseQuery.thc = {
+      $gte: Number(filtersQueryString.minThc),
+      $lte: Number(filtersQueryString.maxThc),
+    };
+  }
 
-      return mongooseQuery;
-    },
-    mongooseQuery
-  );
+  if (filtersQueryString.minCbd || filtersQueryString.maxCbd) {
+    mongooseQuery.cbd = {
+      $gte: Number(filtersQueryString.minCbd),
+      $lte: Number(filtersQueryString.maxCbd),
+    };
+  }
+
+  return Object.keys(filtersQueryString).reduce((mongooseQuery, filterParam) => {
+    if (filtersQueryString[filterParam].includes(",")) {
+      mongooseQuery[filterParam] = {
+        $in: filtersQueryString[filterParam].split(",").map((item) => decodeURI(item)),
+      };
+    } else if (!excludedParams.includes(filterParam)) {
+      mongooseQuery[filterParam] = decodeURI(filtersQueryString[filterParam]);
+    }
+
+    return mongooseQuery;
+  }, mongooseQuery);
 };
