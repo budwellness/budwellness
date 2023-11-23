@@ -1,0 +1,82 @@
+.container {
+  position: relative;
+  display: flex;
+  height: 200px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-reflect: below 0 linear-gradient(transparent, transparent, #0005);
+}
+
+.loader {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  animation: animate 2s linear infinite;
+}
+
+.loader:nth-child(2),
+.loader:nth-child(4) {
+  filter: hue-rotate(290deg);
+  animation-delay: -1s;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader:nth-child(1)::before,
+.loader:nth-child(2)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to top, transparent, $main-green);
+  background-size: 50px 90px;
+  background-repeat: no-repeat;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+i {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 12px;
+  height: 12px;
+  background: $secondary-green;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow:
+    0 0 5px $secondary-green,
+    0 0 10px $secondary-green,
+    0 0 15px $secondary-green,
+    0 0 20px $secondary-green,
+    0 0 25px $secondary-green,
+    0 0 30px $secondary-green,
+    0 0 35px $secondary-green,
+    0 0 40px $secondary-green,
+    0 0 45px $secondary-green,
+    0 0 50px $secondary-green;
+}
+
+.loader span {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
