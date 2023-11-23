@@ -34,8 +34,8 @@ function ProductList(props) {
     }
     const filterString = filterStringArr.join('&');
     if (
-      filterStringArr[0] === 'categories=all' &&
-      filterString !== 'categories=all'
+      filterStringArr[0] === 'categories=all'
+      && filterString !== 'categories=all'
     ) {
       return `${filterStringArr
         .slice(1)
@@ -54,7 +54,7 @@ function ProductList(props) {
 
   useEffect(() => {
     getFilteredProducts(
-      filteredQueryString(searchParams, startPage, productsPerPage)
+      filteredQueryString(searchParams, startPage, productsPerPage),
     )
       .unwrap()
       .then((response) => {
@@ -73,7 +73,7 @@ function ProductList(props) {
                   key={product._id}
                 />
               ))}
-            </div>
+            </div>,
           );
         } catch (error) {
           log(error, isErrorLazyFilteredProducts);
@@ -86,8 +86,7 @@ function ProductList(props) {
       {isLoadingLazyFilteredProducts ? (
         <div className={styles.list__products_error}>
           {/* Oh no, there was an error */}
-          {/* Loading... */}
-          <Preloader />
+          Loading...
         </div>
       ) : (
         productCards
