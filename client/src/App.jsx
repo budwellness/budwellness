@@ -80,6 +80,11 @@ function App() {
         dispatch(setModal(!isOpenModal));
     };
 
+    const logoutHandler = () => {
+        localStorage.removeItem('token');
+        dispatch(userLogutUserAction());
+    };
+
     const initUserOnLoad = () => {
         const localStorageToken = localStorage.getItem('token');
         if (!localStorageToken) {

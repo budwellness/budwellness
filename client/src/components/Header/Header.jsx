@@ -19,9 +19,9 @@ import CartIcon from './icons/CartIcon';
 import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
-// import {
-//   userLogutUserAction,
-// } from '../../store/user/user.slice';
+import {
+  userLogutUserAction,
+} from '../../store/user/user.slice';
 
 import { setModal } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
@@ -62,10 +62,11 @@ function Header() {
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
-  // const logoutHandler = () => {
-  //   localStorage.removeItem('token');
-  //   dispatch(userLogutUserAction());
-  // };
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    dispatch(userLogutUserAction());
+    dispatch(setModal(false))
+  };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -151,6 +152,7 @@ function Header() {
             </ButtonHeader>
           </div>
         </div>
+        {isUserLogin && <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>}
       </Container>
     </header>
   );
