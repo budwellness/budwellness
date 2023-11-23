@@ -3,16 +3,9 @@
   justify-content: center;
   gap: 20px;
   position: absolute;
-  //   position: relative;
-  //   bottom: 0;
-  //   display: none;
-  // position: relative;
-  // padding-right: 10px;
+  bottom: 20%;
+  right: 25%;
 }
-// .wpapperLink:hover {
-//   cursor: pointer;
-//   display: block;
-// }
 
 // .logoLink {
 
@@ -20,20 +13,23 @@
 // }
 
 .styleIcon {
-  fill: $main-orange;
+  // fill: $main-orange;
   background-color: $main-orange;
-  color: $main-green;
+  // color: $main-green;
+  // color: red;
+  fill: $main-green;
   width: 35px;
   height: 35px;
   padding: 5px;
   font-size: 16px;
   border-radius: 50%;
-  color: $main-green;
   border: 1px solid $main-green;
-  //   position: relative;
-  //   bottom: 70px;
-  // border: 1px solid $main-orange;
-  // background: $main-green;
+  transition: fill 0.5s ease;
+  &:hover {
+    fill: $white-text-color;
+    background-color: $secondary-green;
+    border: 1px solid $white-text-color;
+  }
 }
 
 .styleIconLink {
@@ -43,9 +39,10 @@
   fill: $main-orange;
   background: $main-green;
   border: 1px solid $main-green;
-  // position: absolute;
-  //   position: relative;
-  //   bottom: 70px;
-  // display: flex;
-  // align-items: center;
+  transition: background 0.5s ease;
+  &:hover {
+    fill: $secondary-green;
+    background: $white-text-color;
+    border: 1px solid $white-text-color;
+  }
 }
