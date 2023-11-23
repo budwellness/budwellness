@@ -15,30 +15,26 @@ function Filter(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
-  const [selectedCategories, setSelectedCategories] = useState('All');
+  const [selectedCategories, setSelectedCategories] = useState({categories: "", plantType: "", thc: "", cbd: ""});
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
 
-  // const clearCategory = (category) => {
-  //   const updatedCategories = selectedCategories
-  //     .split(' ')
-  //     .filter((cat) => cat !== category)
-  //     .join(' ');
-  //   setSelectedCategories(updatedCategories);
-  // };
-
-  const selectedCategoriesArray = selectedCategories.split(' ');
+  const clearCategory = (category) => {
+    const updatedCategories = selectedCategories
+      .split(' ')
+      .filter((cat) => cat !== category)
+      .join(' ');
+    setSelectedCategories(updatedCategories);
+  };
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
-    setSelectedCategories(category);
-    setSelectedCategories((prevCategories) => `${prevCategories} ${category}`);
+    // setSelectedCategories(category);
   };
   const handlePlantTypeChange = (plantType) => {
     setSelectedPlantTypes(plantType);
-    setSelectedCategories((prevCategories) => `${prevCategories} ${plantType}`);
   };
   const handlePriceChange = (e) => {
     const { name, value } = e.target;
@@ -46,11 +42,9 @@ function Filter(props) {
   };
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
-    setSelectedCategories((prevCategories) => `${prevCategories} ${thc}`);
   };
   const handleCBDChange = (cbd) => {
     setSelectedCBDRange([cbd]);
-    setSelectedCategories((prevCategories) => `${prevCategories} ${cbd}`);
   };
   const handleResize = () => {
     setIsFilterOpen(window.innerWidth >= 992);
@@ -62,12 +56,17 @@ function Filter(props) {
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
     for (let [key, value] of filterData.entries()) {
+      if (key !== "minPrice" && key !== "maxPrice"){
+        setSelectedCategories((prevValue)=> ({...prevValue, [key]: value}))
+        }
       if (key === 'thc' || key === 'cbd') {
         filterDataArr.push(`${value}`);
         continue;
       }
       filterDataArr.push(`${key}=${value}`);
+
     }
+
     const filterQueryString = filterDataArr.join('&');
     setStartPage(1);
     setSearchParams(`${filterQueryString}`);
@@ -81,7 +80,6 @@ function Filter(props) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
 
   return (
     <div className={styles.filterContainer}>
@@ -101,7 +99,6 @@ function Filter(props) {
                 id="All"
                 value="all"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('All')}
                 onChange={() => handleCategoryChange('All')}
               />
               All
@@ -113,7 +110,6 @@ function Filter(props) {
                 id="OnSale"
                 value="sale"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('On Sale')}
                 onChange={() => handleCategoryChange('On Sale')}
               />
               On Sale
@@ -125,7 +121,6 @@ function Filter(props) {
                 id="Flowers"
                 value="Flowers"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('Flowers')}
                 onChange={() => handleCategoryChange('categories=Flowers')}
               />
               Flowers
@@ -137,7 +132,6 @@ function Filter(props) {
                 id="Pre-Rolls"
                 value="Pre-Rolls"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('Pre-Rolls')}
                 onChange={() => handleCategoryChange('Pre-Rolls')}
               />
               Pre-Rolls
@@ -149,7 +143,6 @@ function Filter(props) {
                 id="Edible"
                 value="Edible"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('Edible')}
                 onChange={() => handleCategoryChange('Edible')}
               />
               Edible
@@ -161,7 +154,6 @@ function Filter(props) {
                 id="Oils"
                 value="Oils"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('Oils')}
                 onChange={() => handleCategoryChange('Oils')}
               />
               Oils
@@ -173,7 +165,6 @@ function Filter(props) {
                 id="Beverage"
                 value="Beverage"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('Beverage')}
                 onChange={() => handleCategoryChange('Beverage')}
               />
               Beverage
@@ -185,7 +176,6 @@ function Filter(props) {
                 id="Seeds"
                 value="Seeds"
                 className={styles.filter__input}
-                checked={selectedCategories.includes('Seeds')}
                 onChange={() => handleCategoryChange('Seeds')}
               />
               Seeds
@@ -201,7 +191,6 @@ function Filter(props) {
                 id="indicaDominant"
                 value="Indica"
                 className={styles.filter__input}
-                checked={selectedPlantTypes.includes('Indica-Dominant')}
                 onChange={() =>
                   handlePlantTypeChange('plantType=Indica-Dominant')
                 }
@@ -215,7 +204,6 @@ function Filter(props) {
                 id="sativaDominant"
                 value="Sativa"
                 className={styles.filter__input}
-                checked={selectedPlantTypes.includes('Sativa-Dominant')}
                 onChange={() => handlePlantTypeChange('Sativa-Dominant')}
               />
               Sativa-Dominant
@@ -227,7 +215,6 @@ function Filter(props) {
                 id="hybrid"
                 value="Hybrid"
                 className={styles.filter__input}
-                checked={selectedPlantTypes.includes('Hybrid')}
                 onChange={() => handlePlantTypeChange('Hybrid')}
               />
               Hybrid
@@ -265,7 +252,6 @@ function Filter(props) {
                 id="zeroToTen"
                 value="minThc=0&maxThc=10"
                 className={styles.filter__input}
-                checked={selectedTHCRange.includes('0-10%')}
                 onChange={() => handleTHCChange('0-10%')}
               />
               0% - 10%
@@ -277,7 +263,6 @@ function Filter(props) {
                 id="elevenToTwenty"
                 value="minThc=10&maxThc=20"
                 className={styles.filter__input}
-                checked={selectedTHCRange.includes('10-20%')}
                 onChange={() => handleTHCChange('10-20%')}
               />
               10% - 20%
@@ -289,7 +274,6 @@ function Filter(props) {
                 id="twentyOneToThirty"
                 value="minThc=20&maxThc=30"
                 className={styles.filter__input}
-                checked={selectedTHCRange.includes('20-30%')}
                 onChange={() => handleTHCChange('20-30%')}
               />
               20% - 30%
@@ -301,7 +285,6 @@ function Filter(props) {
                 id="thirtyOneToForty"
                 value="minThc=30&maxThc=50"
                 className={styles.filter__input}
-                checked={selectedTHCRange.includes('30-50%')}
                 onChange={() => handleTHCChange('30-50%')}
               />
               30% - 50%
@@ -315,7 +298,6 @@ function Filter(props) {
                 name="cbd"
                 type="radio"
                 id="zeroToOne"
-                checked={selectedCBDRange.includes('0-10%')}
                 value="minCbd=0&maxCbd=10"
                 className={styles.filter__input}
                 onChange={() => handleCBDChange('0-10%')}
@@ -329,7 +311,6 @@ function Filter(props) {
                 id="twoToFive"
                 value="minCbd=10&maxCbd=20"
                 className={styles.filter__input}
-                checked={selectedCBDRange.includes('10-20%')}
                 onChange={() => handleCBDChange('10-20%')}
               />
               10% - 20%
@@ -341,7 +322,6 @@ function Filter(props) {
                 id="sixToTwenty"
                 value="minCbd=20&maxCbd=30"
                 className={styles.filter__input}
-                checked={selectedCBDRange.includes('20-30%')}
                 onChange={() => handleCBDChange('20-30%')}
               />
               20% - 30%
@@ -353,7 +333,6 @@ function Filter(props) {
                 id="twentyOneToFifty"
                 value="minCbd=30&maxCbd=50"
                 className={styles.filter__input}
-                checked={selectedCBDRange.includes('30-50%')}
                 onChange={() => handleCBDChange('30-50%')}
               />
               30% - 50%
@@ -361,17 +340,18 @@ function Filter(props) {
           </div>
 
           <div className={styles.selectedCategories}>
-  {selectedCategoriesArray.length > 0 &&
-    selectedCategoriesArray.map((category) => (
-      <button
-        key={category}
-        onClick={() => clearCategory(category)}
-        className={styles.clearButton}
-      >
-        {category} <span>&times;</span>
-      </button>
-    ))}
-</div>
+            {selectedCategories.length > 0 &&
+              selectedCategories.entries().map(([fieldType, fieldValue]) => (
+                <button
+                type='button'
+                  key={fieldType}
+                  onClick={() => clearCategory(fieldType)}
+                  className={styles.clearButton}
+                >
+                  {fieldValue} <span>&times;</span>
+                </button>
+              ))}
+          </div>
         </form>
       )}
     </div>
@@ -379,4 +359,3 @@ function Filter(props) {
 }
 
 export default Filter;
-
