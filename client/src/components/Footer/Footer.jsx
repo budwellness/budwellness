@@ -103,43 +103,43 @@ function Footer() {
               <h4 className={styles.subtitle}>Shop Products</h4>
               <ul className={styles.shop__list}>
                 <Link
-                  to="/shop/categories=all"
+                  to="/shop"
                   className={styles.shop__link}
                 >
                   All
                 </Link>
                 <Link
-                  to="/shop/categories=Flowers&minPrice=0&maxPrice=10000"
+                  to="/shop?categories=Flowers"
                   className={styles.shop__link}
                 >
                   Flowers
                 </Link>
                 <Link
-                  to="/shop/categories=Oils&minPrice=0&maxPrice=10000"
+                  to="/shop?categories=Oils"
                   className={styles.shop__link}
                 >
                   Oils
                 </Link>
                 <Link
-                  to="/shop/categories=Edible&minPrice=0&maxPrice=10000"
+                  to="/shop?categories=Edible"
                   className={styles.shop__link}
                 >
                   Edible
                 </Link>
                 <Link
-                  to="/shop/categories=Pre-Rolls&minPrice=0&maxPrice=10000"
+                  to="/shop?categories=Pre-Rolls"
                   className={styles.shop__link}
                 >
                   Pre-Rolls
                 </Link>
                 <Link
-                  to="/shop/categories=Beverage&minPrice=0&maxPrice=10000"
+                  to="/shop?categories=Beverage"
                   className={styles.shop__link}
                 >
                   Beverage
                 </Link>
                 <Link
-                  to="/shop/categories=Seeds&minPrice=0&maxPrice=10000"
+                  to="/shop?categories=Seeds"
                   className={styles.shop__link}
                 >
                   Seeds

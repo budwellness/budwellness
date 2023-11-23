@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 // COMPONENT IMPORTS:
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard';
+import Pagination from './Pagination/Pagination';
 // PRODUCT IMPORTS:
 import {
   useLazyGetFilteredProductsQuery,
@@ -12,25 +14,34 @@ import styles from './ProductList.module.scss';
 
 const { log } = console;
 
-function ProductList() {
+function ProductList(props) {
+  const {
+    startPage,
+    setStartPage,
+  } = props;
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [productCards, setProductCards] = useState([]);
+  const [productsPerPage] = useState(3);
+  const [totalProducts, setTotalProducts] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
-  const { productSlug } = useParams();
+  // const { productSlug } = useParams();
+  const [searchParams] = useSearchParams();
+
   /* --------------------------- REDUX STATE: --------------------------- */
 
-  const filteredQueryString = (string) => {
-    const stringToArr = string.split('&');
-    if (stringToArr[0] === 'categories=all' && string === 'categories=all') {
-      return 'perPage=8&startPage=1';
+  const filteredQueryString = (params, pageStart, perPage = 1) => {
+    const filterStringArr = [];
+    for (const [key, value] of params.entries()) {
+      filterStringArr.push(`${key}=${value}`);
     }
-    if (stringToArr[0] === 'categories=all' && string !== 'categories=all') {
-      return `${stringToArr.slice(1).join('&')}&perPage=8&startPage=1`;
+    const filterString = filterStringArr.join('&');
+    if (filterStringArr[0] === 'categories=all' && filterString !== 'categories=all') {
+      return `${filterStringArr.slice(1).join('&')}&perPage=${perPage}&startPage=${pageStart}`;
     }
-    return `${string}&perPage=8&startPage=1`;
+    return `${filterString}&perPage=${perPage}&startPage=${pageStart}`;
   };
 
   const [getFilteredProducts,
@@ -41,10 +52,12 @@ function ProductList() {
   ] = useLazyGetFilteredProductsQuery();
 
   useEffect(() => {
-    getFilteredProducts(filteredQueryString(productSlug))
+    getFilteredProducts(filteredQueryString(searchParams, startPage, productsPerPage))
       .unwrap()
       .then((response) => {
         try {
+          log(response);
+          setTotalProducts(response.productsQuantity);
           setProductCards(
             <div className={styles.list__products_wrapper}>
               {
@@ -67,7 +80,7 @@ function ProductList() {
           log(error, isErrorLazyFilteredProducts);
         }
       });
-  }, [productSlug]);
+  }, [searchParams, startPage]);
 
   return (
     <div className={styles.list__products}>
@@ -77,8 +90,19 @@ function ProductList() {
           Loading...
         </div>
       ) : productCards}
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={totalProducts}
+        setStartPage={setStartPage}
+        startPage={startPage}
+      />
     </div>
   );
 }
+
+ProductList.propTypes = {
+  startPage: PropTypes.number.isRequired,
+  setStartPage: PropTypes.func.isRequired,
+};
 
 export default ProductList;
