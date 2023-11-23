@@ -1,9 +1,3 @@
-@mixin for-size($size) {
-  @media (min-width: $size) {
-    @content;
-  }
-}
-
 .wrapper {
   padding-top: 150px;
 }

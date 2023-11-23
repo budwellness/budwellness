@@ -42,7 +42,7 @@ function Categories() {
 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
-    navigate(`/products/${categoryName}`);
+    navigate(`/shop?categories=${categoryName}`);
   };
 
   return (
@@ -51,8 +51,7 @@ function Categories() {
         <ul className={styles.content}>
           {categoryData.map((category) => (
             <li
-              className={`${styles['content-categories']} ${
-                selectedCategory === category.name ? styles.selected : ''
+              className={`${styles['content-categories']} ${selectedCategory === category.name ? styles.selected : ''
               }`}
               key={category.id}
               onClick={() => handleCategoryClick(category.name)}
