@@ -11,7 +11,6 @@ import ProductsPage from './pages/ShopPage/ProductsPage';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import CartPage from './pages/CartPage/CartPage';
-import OurTeam from './pages/OurTeam/OurTeam';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
@@ -44,6 +43,12 @@ import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
 import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
+import Modal from "./components/Modal/Modal.jsx";
+import LoginForm from "./components/LoginForm/LoginForm.jsx";
+import { setModal } from "./store/modal/modal.slice.js";
+import Registration from "./pages/RegistrationPage/Registration.jsx";
+import OurTeam from './pages/OurTeam/OurTeam';
+
 
 const { log } = console;
 
@@ -52,6 +57,7 @@ function App() {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector((state) => state.user);
+  const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -69,14 +75,25 @@ function App() {
     useLazyGetCartQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
-
+  const handleModal = () => {
+    dispatch(setModal(!isOpenModal));
+  };
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    dispatch(userLogutUserAction());
+  };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
+    const userLocalCardData = localStorage.getItem('localCard');
+    const userLocalWishlistData = localStorage.getItem('localWishlist');
     if (!localStorageToken) {
+      // 1. смотрим локал стор, есть ли там уже добавленные продукты
+      if (userLocalCardData || userLocalWishlistData)
+        2.
     } else {
       if (isTokenExpired(localStorageToken)) {
-        log('token expired');
-        dispatch(userLogutUserAction());
+        log('token expired')
+        dispatch(userLogutUserAction())
       } else {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
@@ -127,11 +144,21 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/registration" element={<Registration />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
       <CartModal />
+      {isOpenModal && (
+        isUserLogin
+          ? <button type="button" onClick={logoutHandler}>Logout</button>
+          : (
+            <Modal handleModal={handleModal}>
+              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+            </Modal>
+          )
+      )}
     </>
   );
 }

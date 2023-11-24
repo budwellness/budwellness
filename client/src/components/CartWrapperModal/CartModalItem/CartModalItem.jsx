@@ -87,7 +87,7 @@ function CartModalItem(props) {
       <div className={styles.wrapperImg}>
         <Link
             /* eslint-disable-next-line react/prop-types */
-          to={`/products/${product.itemNo}`}
+          to={`/product/${product.itemNo}`}
           onClick={handleCloseCart}
         >
           <img src={product.imageUrls[0]} alt={product.name} />
@@ -96,7 +96,7 @@ function CartModalItem(props) {
       <div className={styles.main}>
         <Link
             /* eslint-disable-next-line react/prop-types */
-          to={`/products/${product.itemNo}`}
+          to={`/product/${product.itemNo}`}
           className={styles.mainTitleLink}
           onClick={handleCloseCart}
         >

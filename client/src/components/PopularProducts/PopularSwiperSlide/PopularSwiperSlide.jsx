@@ -34,12 +34,15 @@ function PopularSwiperSlide(props) {
   );
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
+  // const toggleWishlistWithLoginHandler = () => {
+  //   if (isUserLogin) {
+  //     toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
+  //   } else {
+  //     toast.error('Please login first!');
+  //   }
+  // };
   const toggleWishlistWithLoginHandler = () => {
-    if (isUserLogin) {
-      toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
-    } else {
-      toast.error('Please login first!');
-    }
+    toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
   };
 
   const toggleCartWithLoginHandler = () => {
@@ -108,7 +111,7 @@ function PopularSwiperSlide(props) {
               <button
                 type="button"
                 className={styles.actionLink}
-                onClick={() => {}}
+                onClick={() => { }}
               >
                 <EyeIcon className={styles.styleIcon} />
               </button>
@@ -167,8 +170,8 @@ PopularSwiperSlide.propTypes = {
 
 PopularSwiperSlide.defaultProps = {
   actions: {
-    toggleCartHandler: () => {},
-    toggleWishlistHandler: () => {},
+    toggleCartHandler: () => { },
+    toggleWishlistHandler: () => { },
   },
 };
 

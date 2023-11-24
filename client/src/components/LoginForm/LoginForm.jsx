@@ -1,34 +1,33 @@
 /* eslint-disable */
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Form, Formik} from 'formik';
 import cn from "classnames";
-import PropTypes from 'prop-types';
 
-// COMPONENTS: 
+
+// COMPONENTS:
 import LoginInput from './LoginInput/LoginInput';
 
-// USER IMPORTS: 
+// USER IMPORTS:
 import {useLoginUserMutation} from '../../store/serverResponse/danitApi.auth';
 import {userLoginUserAction} from '../../store/user/user.slice';
 
 import styles from './LoginForm.module.scss';
 import {toast} from 'react-toastify';
 
-import ButtonHeader from "../ButtonHeader/ButtonHeader.jsx";
+import ButtonHeader from "../ButtonHeader/ButtonHeader";
 
-import GoogleIcon from "./icons/GoogleIcon.jsx";
-import FacebookIcon from "./icons/FacebookIcon.jsx";
-import FaceBookIcon from "../UI/FaceBookIcon.jsx";
-import LogoIcon from "../Header/icons/LogoIcon.jsx";
+
+import LogoIcon from "../Header/icons/LogoIcon";
 import {Link} from "react-router-dom";
+import validationSchema from "./validationLogin.js";
+import {setModal} from "../../store/modal/modal.slice.js";
 
 
 function LoginForm(props) {
 
     const {
         actions: {
-            handleModal,
             getCart,
             getWishlist,
         }
@@ -60,7 +59,7 @@ function LoginForm(props) {
 
     const isLoginSuccessHandler = () => {
         if (loginIsSuccess && loginUserToken) {
-            toast.success('You was successfuly logged in!')
+            toast.success('You was successfully logged in!')
             dispatch(userLoginUserAction(loginUserToken));
             localStorage.setItem('token', loginUserToken);
             getWishlist(loginUserToken);
@@ -73,7 +72,10 @@ function LoginForm(props) {
 
     return (
         <>
-            <Formik initialValues={initialValues} onSubmit={(values) => {
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={(values) => {
                 console.log('something happen');
                 console.log(values);
                 loginUser(values)
@@ -116,7 +118,11 @@ function LoginForm(props) {
                     type="submit"
                     onClick={() => loginUser(mockValue)}
                 >DEMO</ButtonHeader>
-                <Link to="/" className={styles.createAcc}>Create an account</Link>
+                <Link
+                    to="/registration"
+                    className={styles.createAcc}
+                    onClick={()=> dispatch(setModal(false))}
+                >Create an account</Link>
             </div>
         </>
     );
