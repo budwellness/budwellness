@@ -3,19 +3,16 @@
     @content;
   }
 }
-// ТАК НИКОГДА НЕ ДЕЛАЙ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//* {
-//  font-family: $font-nunito;
-//  margin: 0;
-//  padding: 0;
-//  box-sizing: border-box;
-//}
-//=========================================================
 .comp1 {
+  //
   height: 532.06px;
   background-color: $main-green;
   position: relative;
   margin-top: 160px;
+  font-family: $font-nunito;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .img-left {
@@ -46,7 +43,7 @@
   height: 100%;
 }
 
-.comp1 .container p,
+.comp1 .container .title,
 .logo {
   z-index: 99;
   position: relative;
@@ -66,7 +63,7 @@
 }
 
 @include for-size(980px) {
-  .comp1 .container p {
+  .comp1 .container .title {
     font-size: 24px;
     margin-top: 20px;
   }
@@ -76,7 +73,6 @@
   }
 
   .img-left {
-    left: 50%;
     transform: translate(-50%, 0%);
   }
 }
@@ -89,7 +85,7 @@
     width: 80%;
   }
 
-  .comp1 .container p {
+  .comp1 .container .title {
     line-height: normal;
   }
 }
