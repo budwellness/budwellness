@@ -48,6 +48,7 @@ const useToggleWishlist = () => {
         dispatch(removeItemFromWishListAction(product));
       } else {
         dispatch(addItemToWishListAction(product));
+        localStorage.setItem('localWishlist', JSON.stringify(product));
       }
       log('я работаю даже без токена');
     }

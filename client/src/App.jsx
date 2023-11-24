@@ -72,7 +72,12 @@ function App() {
 
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
+    const userLocalCardData = localStorage.getItem('localCard');
+    const userLocalWishlistData = localStorage.getItem('localWishlist');
     if (!localStorageToken) {
+      // 1. смотрим локал стор, есть ли там уже добавленные продукты
+      if (userLocalCardData || userLocalWishlistData)
+        2.
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired');
