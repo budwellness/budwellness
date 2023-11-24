@@ -40,15 +40,12 @@ function PopularSwiperSlide(props) {
   const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
-  // const toggleWishlistWithLoginHandler = () => {
-  //   if (isUserLogin) {
-  //     toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
-  //   } else {
-  //     toast.error('Please login first!');
-  //   }
-  // };
   const toggleWishlistWithLoginHandler = () => {
-    toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
+    if (isUserLogin) {
+      toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
+    } else {
+      toast.error('Please login first!');
+    }
   };
 
   const toggleCartWithLoginHandler = () => {

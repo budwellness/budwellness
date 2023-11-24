@@ -140,13 +140,13 @@ function Header() {
             </ButtonHeader>
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
-              {wishlistStoreData.length > 0 && (
+              {isUserLogin && wishlistStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>
             <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
               <CartIcon />
-              {cartStoreData.length > 0 && (
+              {isUserLogin && cartStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
               )}
             </ButtonHeader>

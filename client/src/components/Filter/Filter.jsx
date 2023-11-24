@@ -93,10 +93,10 @@ function Filter(props) {
             </label>
             <label htmlFor="OnSale" className={styles.filter__label}>
               <input
-                name="categories"
+                name="sale"
                 type="radio"
                 id="OnSale"
-                value="sale"
+                value="true"
                 className={styles.filter__input}
                 checked={selectedCategories.includes('On Sale')}
                 onChange={() => handleCategoryChange('On Sale')}
