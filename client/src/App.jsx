@@ -47,6 +47,7 @@ import Modal from "./components/Modal/Modal.jsx";
 import LoginForm from "./components/LoginForm/LoginForm.jsx";
 import { setModal } from "./store/modal/modal.slice.js";
 import Registration from "./pages/RegistrationPage/Registration.jsx";
+import OurTeam from './pages/OurTeam/OurTeam';
 
 
 const { log } = console;
@@ -137,10 +138,11 @@ function App() {
       <Header actions={{ getCart, getWishlist }} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop/:productSlug" element={<ProductsPage />} />
+        <Route path="/shop" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/test" element={<TestForBackPage />} />
