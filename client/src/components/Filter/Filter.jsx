@@ -26,19 +26,37 @@ function Filter(props) {
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
 
+  // const clearCategory = (category) => {
+  //   const updatedCategories = Object.keys(selectedCategories).reduce(
+  //     (acc, key) => {
+  //       if (key !== category) {
+  //         acc[key] = selectedCategories[key];
+  //       }
+  //       return acc;
+  //     },
+  //     {}
+  //   );
+
+  //   setSelectedCategories(updatedCategories);
+
+  //   formRef.current.reset();
+  // };
+
   const clearCategory = (category) => {
-    const updatedCategories = Object.keys(selectedCategories).reduce((acc, key) => {
-      if (key !== category) {
-        acc[key] = selectedCategories[key];
-      }
-      return acc;
-    }, {});
+    const updatedCategories = { ...selectedCategories };
+    updatedCategories[category] = '';
   
     setSelectedCategories(updatedCategories);
-  
+
     formRef.current.reset();
-  };
+    const filterQueryString = Object.entries(updatedCategories)
+      .filter(([key, value]) => value !== '')
+      .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
+      .join('&');
   
+    setStartPage(1);
+    setSearchParams(`${filterQueryString}`);
+  };
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
@@ -348,27 +366,25 @@ function Filter(props) {
               30% - 50%
             </label>
           </div>
-
-          <div className={styles.selectedCategories}>
-            .{' '}
-            {Object.values(selectedCategories).filter((el) => el !== '')
-              .length > 0 &&
-              Object.entries(selectedCategories).map(
-                ([fieldType, fieldValue]) =>
-                  fieldValue !== '' ? (
-                    <button
-                      type="button"
-                      key={fieldType}
-                      onClick={() => clearCategory(fieldType)}
-                      className={styles.clearButton}
-                    >
-                      {fieldValue} <span>&times;</span>
-                    </button>
-                  ) : null
-              )}
-          </div>
         </form>
       )}
+      <div className={styles.cancel}>
+        {/* {' '} */}
+        {Object.values(selectedCategories).filter((el) => el !== '').length >
+          0 &&
+          Object.entries(selectedCategories).map(([fieldType, fieldValue]) =>
+            fieldValue !== '' ? (
+              <button
+                type="button"
+                key={fieldType}
+                onClick={() => clearCategory(fieldType)}
+                className={styles.clearButton}
+              >
+                {fieldValue} <span className={styles.cross}>&times;</span>
+              </button>
+            ) : null
+          )}
+      </div>
     </div>
   );
 }
