@@ -57,6 +57,7 @@
 .wrapper {
   display: flex;
   align-items: center;
+  max-width: 1380px;
 
   svg {
     width: 50px;
@@ -213,6 +214,40 @@
     }
   }
 }
+.header_userMenu {
+  position: absolute;
+  color: $main-orange;
+  font-family: $font-nunito;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 20px;
+  cursor: pointer;
+  @include for-size(320px) {
+    top: 115%;
+    right: 30%;
+  }
+  @include for-size(576px) {
+    top: 115%;
+    right: 17%;
+  }
+  @include for-size(768px) {
+    top: 115%;
+    right: 13%;
+  }
+  @include for-size(992px) {
+    top: 115%;
+    right: 10%;
+  }
+  @include for-size(1200px) {
+    top: 75%;
+    right: 12%;
+  }
+  @include for-size(1440px) {
+    top: 75%;
+    right: 12%;
+  }
+}
 
 //==========================================
 
@@ -232,7 +267,3 @@
   color: white;
 }
 
-.header_userMenu {
-  position: absolute;
-  right: 15%;
-}
