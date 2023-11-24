@@ -115,8 +115,6 @@ function App() {
 
   /* ------------------------------------------------ */
 
-  /* ------------------------------------------------ */
-
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
       dispatch(setCartAction(userCartData.products));
