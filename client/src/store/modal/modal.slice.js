@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isOpen: false,
+  isModalAddToCart: false,
 };
 
 const modalSlice = createSlice({
@@ -13,9 +14,16 @@ const modalSlice = createSlice({
     setModal: (state, { payload }) => {
       state.isOpenModal = payload;
     },
+
+    isModalAddToCartAction: (state) => {
+        state.isModalAddToCart = !state.isModalAddToCart
+    },
+
   },
 });
 
-export const { setModal } = modalSlice.actions;
+export const {  
+  isModalAddToCart: isModalAddToCartAction,
+  setModal } = modalSlice.actions;
 
 export default modalSlice.reducer;
