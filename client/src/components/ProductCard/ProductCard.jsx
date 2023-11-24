@@ -50,9 +50,6 @@ function ProductCard(props) {
 
   const dispatch = useDispatch();
 
-  // /* --------------------------- MODAL STATE: --------------------------- */
-  // const [isModalAddToCart, setisModalAddToCart] = useState(false);
-
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin, token: tokenReduxStore } = useSelector(
     (state) => state.user,
@@ -87,7 +84,7 @@ function ProductCard(props) {
   // MODAL:
 
   const handleModal = () => {
-    dispatch(isModalAddToCartAction());
+    dispatch(isModalAddToCartAction(!isModalAddToCart));
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -139,7 +136,7 @@ function ProductCard(props) {
                 [styles.btn__single_product_preview]: !isModalAddToCart,
                 [styles.btn__single_product_preview_active]: isModalAddToCart,
               })}
-              onClick={() => dispatch(isModalAddToCartAction())}
+              onClick={handleModal}
             >
               <EyeIcon className={styles.eye_icon} />
             </ButtonIcon>

@@ -23,7 +23,7 @@ const modalSlice = createSlice({
 });
 
 export const {  
-  isModalAddToCart: isModalAddToCartAction,
+  isModalAddToCartAction,
   setModal } = modalSlice.actions;
 
 export default modalSlice.reducer;
