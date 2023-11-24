@@ -13,21 +13,41 @@ function Nav({ showBurger, setShowBurger }) {
   return (
     <nav className={cn(styles.nav, { [styles.active]: showBurger })}>
       <ul className={styles.list}>
-        { }
+        {}
         <li className={styles.item}>
-          <Link to="/" className={styles.itemLink} onClick={closeBurgerMenu}>Home</Link>
+          <Link to="/" className={styles.itemLink} onClick={closeBurgerMenu}>
+            Home
+          </Link>
         </li>
-        { }
+        {}
         <li className={styles.item}>
-          <Link to="/shop" className={styles.itemLink} onClick={closeBurgerMenu}>Shop</Link>
+          <Link
+            to="/shop"
+            className={styles.itemLink}
+            onClick={closeBurgerMenu}
+          >
+            Shop
+          </Link>
         </li>
 
         <li className={styles.item}>
-          <Link to="/news" className={styles.itemLink} onClick={closeBurgerMenu}>News</Link>
+          <Link
+            to="/team"
+            className={styles.itemLink}
+            onClick={closeBurgerMenu}
+          >
+            Team
+          </Link>
         </li>
 
         <li className={styles.item}>
-          <Link to="/contact" className={styles.itemLink} onClick={closeBurgerMenu}>Contacts</Link>
+          <Link
+            to="/contact"
+            className={styles.itemLink}
+            onClick={closeBurgerMenu}
+          >
+            Contacts
+          </Link>
         </li>
       </ul>
     </nav>

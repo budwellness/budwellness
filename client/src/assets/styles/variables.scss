@@ -11,8 +11,8 @@ $background-image-hover: rgba(33, 72, 66, 0.6);
 $main-text-color: #556260;
 $secondary-text-color: #c6c6c6;
 $white-text-color: #fff;
-$background-secondary: #FAFAF5;
-$input-color:#258f67;
+$background-secondary: #fafaf5;
+$input-color: #258f67;
 
 /* FONT FAMILIES */
 
@@ -45,6 +45,12 @@ $font-nunito: 'Nunito Sans', sans-serif;
 }
 @mixin _1380 {
   @media (min-width: 1380px) {
+    @content;
+  }
+}
+
+@mixin for-size($size) {
+  @media (min-width: $size) {
     @content;
   }
 }

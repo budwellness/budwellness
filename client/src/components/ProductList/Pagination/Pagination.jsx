@@ -25,7 +25,7 @@ function Pagination(props) {
   }
 
   return (
-    <nav>
+    <nav className={styles.pagination__container}>
       <ul className={styles.pagination}>
         {pageNumbers.map((number) => (
           <li
@@ -36,7 +36,7 @@ function Pagination(props) {
             }}
             onKeyDown={() => { }}
           >
-            <span className="page-btn">
+            <span className={styles.num}>
               {number}
             </span>
           </li>

@@ -43,15 +43,21 @@ import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
 import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
+import Modal from "./components/Modal/Modal.jsx";
+import LoginForm from "./components/LoginForm/LoginForm.jsx";
+import { setModal } from "./store/modal/modal.slice.js";
+import Registration from "./pages/RegistrationPage/Registration.jsx";
+import OurTeam from './pages/OurTeam/OurTeam';
+
 
 const { log } = console;
-
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector((state) => state.user);
+  const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -69,14 +75,21 @@ function App() {
     useLazyGetCartQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
-
+  const handleModal = () => {
+    dispatch(setModal(!isOpenModal));
+  };
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    dispatch(userLogutUserAction());
+  };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
+    const userLocalCardData = localStorage.getItem('localCard');
+    const userLocalWishlistData = localStorage.getItem('localWishlist');
     if (!localStorageToken) {
-      const localStorageCart = localStorage.getItem('localCart');
-
-      // тут часть логики в которой мы не залогинены
-
+      // 1. смотрим локал стор, есть ли там уже добавленные продукты
+      if (userLocalCardData || userLocalWishlistData)
+        2.
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired')
@@ -99,8 +112,6 @@ function App() {
       dispatch(setWishlistAction(userWishListData.products));
     }
   };
-
-  /* ------------------------------------------------ */
 
   /* ------------------------------------------------ */
 
@@ -129,12 +140,23 @@ function App() {
         <Route path="/product/:productID" element={<SingleProductPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/registration" element={<Registration />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
       <CartModal />
+      {isOpenModal && (
+        isUserLogin
+          ? <button type="button" onClick={logoutHandler}>Logout</button>
+          : (
+            <Modal handleModal={handleModal}>
+              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+            </Modal>
+          )
+      )}
     </>
   );
 }
