@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
 import Container from '../../components/Container/Container';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import useToggleCart from '../../hooks/useToggleCart';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
 import styles from './WishlistPage.module.scss';
@@ -22,8 +23,8 @@ function WishlistPage() {
       />
       <Container>
         <main className={styles.container}>
-          {Array.isArray(wishlistStoreData)
-            && wishlistStoreData.map((product) => (
+          {Array.isArray(wishlistStoreData) && wishlistStoreData.length > 0 ? (
+            wishlistStoreData.map((product) => (
               <ProductCard
                 key={product._id}
                 product={product}
@@ -32,8 +33,12 @@ function WishlistPage() {
                   toggleCartHandler,
                 }}
               />
-            ))}
+            ))
+          ) : (
+            <p className={styles.emptyWishlist}>Your wishlist is currently empty</p>
+          )}
         </main>
+        <PopularProducts />
       </Container>
     </>
   );

@@ -4,14 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './Filter.module.scss';
 
-
 const { log } = console;
 
 function Filter(props) {
-  const {
-    startPage,
-    setStartPage
-  } = props
+  const { startPage, setStartPage } = props;
   /* --------------------------- INIT HOOKS: --------------------------- */
   const navigate = useNavigate();
   const formRef = useRef();
@@ -54,14 +50,13 @@ function Filter(props) {
     for (let [key, value] of filterData.entries()) {
       if (key === 'thc' || key === 'cbd') {
         filterDataArr.push(`${value}`);
-        continue
+        continue;
       }
       filterDataArr.push(`${key}=${value}`);
     }
     const filterQueryString = filterDataArr.join('&');
-    setStartPage(1)
-    setSearchParams(`${filterQueryString}`)
-
+    setStartPage(1);
+    setSearchParams(`${filterQueryString}`);
   };
 
   const toggleFilter = () => {
@@ -79,12 +74,10 @@ function Filter(props) {
         Filters
       </button>
       {(window.innerWidth >= 992 || isFilterOpen) && (
-        <form
-          ref={formRef}
-          onChange={formHandler}
-          className={styles.container}
-        >
-          <div className={`${styles.filter__categories} ${styles.filter__item1}`}>
+        <form ref={formRef} onChange={formHandler} className={styles.container}>
+          <div
+            className={`${styles.filter__categories} ${styles.filter__item1}`}
+          >
             <h4 className={styles.filter__name}>Product Categories</h4>
             <label htmlFor="All" className={styles.filter__label}>
               <input
@@ -113,7 +106,7 @@ function Filter(props) {
             <label htmlFor="Flowers" className={styles.filter__label}>
               <input
                 name="categories"
-                type="checkbox"
+                type="radio"
                 id="Flowers"
                 value="Flowers"
                 className={styles.filter__input}
@@ -194,7 +187,9 @@ function Filter(props) {
                 value="Indica"
                 className={styles.filter__input}
                 checked={selectedPlantTypes.includes('Indica-Dominant')}
-                onChange={() => handlePlantTypeChange('plantType=Indica-Dominant')}
+                onChange={() =>
+                  handlePlantTypeChange('plantType=Indica-Dominant')
+                }
               />
               Indica-Dominant
             </label>
@@ -352,7 +347,6 @@ function Filter(props) {
         </form>
       )}
     </div>
-
   );
 }
 

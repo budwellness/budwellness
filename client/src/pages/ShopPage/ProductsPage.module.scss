@@ -1,15 +1,77 @@
 @mixin for-size($size) {
   @media (min-width: $size) {
-      @content;
+    @content;
   }
 }
+
 .wrapperContainer {
-  max-width: 1380px;
   display: grid;
-  justify-content: space-between;
-  gap: 60px;
-  @include for-size(992px) {
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+
+  @include for-size(576px) {
     display: flex;
-    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  @include for-size(992px) {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
 }
+
+.Sorting {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 1;
+  @include for-size(576px) {
+    width: 290px;
+    order: 1;
+  }
+}
+
+.ProductList {
+  grid-column: 1;
+  grid-row: 3;
+
+  @include for-size(576px) {
+    order: 3;
+
+  }
+
+  @include for-size(992px) {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+  }
+
+  @include for-size(1200px) {
+    margin-top: -40%;
+  }
+}
+
+.Filter {
+
+  @include for-size(320px) {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  @include for-size(576px) {
+    order: 2;
+    width: 190px;
+  }
+
+  @include for-size(768px) {
+    order: 2;
+    width: 410px;
+  }
+
+  @include for-size(992px) {
+    width: 200px;
+    margin-top: -60px;
+    grid-row: 1 / span 2;
+  }
 }
