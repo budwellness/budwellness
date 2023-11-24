@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 
 // COMPONENTS IMPORT:
 import Container from '../Container/Container';
-import Modal from '../Modal/Modal';
-import LoginForm from '../LoginForm/LoginForm';
 import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
 import ButtonHeader from '../ButtonHeader/ButtonHeader';
@@ -30,13 +28,13 @@ import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
 
-function Header(props) {
-  const {
-    actions: {
-      getCart,
-      getWishlist,
-    },
-  } = props;
+function Header() {
+  // const {
+  //   actions: {
+  //     getCart,
+  //     getWishlist,
+  //   },
+  // } = props;
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -67,6 +65,7 @@ function Header(props) {
   const logoutHandler = () => {
     localStorage.removeItem('token');
     dispatch(userLogutUserAction());
+    dispatch(setModal(false));
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -153,15 +152,7 @@ function Header(props) {
             </ButtonHeader>
           </div>
         </div>
-        {isOpenModal && (
-          isUserLogin
-            ? <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>
-            : (
-              <Modal handleModal={handleModal}>
-                <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-              </Modal>
-            )
-        )}
+        {isUserLogin && <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>}
       </Container>
     </header>
   );

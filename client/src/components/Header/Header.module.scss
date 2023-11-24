@@ -64,6 +64,7 @@
 }
 
 .header_logoTitle {
+  display: none;
   color: $main-green;
   font-family: $font-nunito;
   font-size: 28px;
@@ -71,10 +72,13 @@
   font-weight: 900;
   line-height: 20px;
 
-  @media (max-width: 1199.99px) {
-    display: none;
-  }
-  @media (min-width: 767.99px) {
+  //@media (max-width: 1199.99px) {
+  //  display: none;
+  //}
+  //@media (min-width: 767px) {
+  //  display: block;
+  //}
+  @media (min-width: 450px) {
     display: block;
   }
 }
