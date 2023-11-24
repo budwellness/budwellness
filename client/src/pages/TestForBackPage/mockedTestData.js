@@ -116,7 +116,7 @@ export const productsJSON = [
           'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
         benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
         disadvantages:
-          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim',
       },
       {
         fullName: 'Charles Sanchez',

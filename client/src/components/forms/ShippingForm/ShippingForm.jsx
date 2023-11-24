@@ -9,9 +9,10 @@ import styles from './ShippingForm.module.scss';
 
 export default function ShippingForm() {
   const initialValues = {
-    country: '',
-    city: '',
-    zip: '',
+    fullName: '',
+    mobilePhone: '',
+    email: '',
+    deliveryAddress: '',
   };
 
   const onSubmit = (values, actions) => {
@@ -29,9 +30,13 @@ export default function ShippingForm() {
       >
         {(form) => (
           <Form>
-            <CustomInput name="country" placeholder="Country" />
-            <CustomInput name="city" placeholder="City" />
-            <CustomInput name="zip" placeholder="ZIP" />
+            <CustomInput name="fullName" placeholder="Full name" />
+            <CustomInput name="mobilePhone" placeholder="Mobile phone" />
+            <CustomInput name="email" placeholder="E-mail" />
+            <CustomInput
+              name="deliveryAddress"
+              placeholder="Delivery address"
+            />
             <LinkUderline
               type="submit"
               style={{ width: 'fit-content', margin: 0 }}
