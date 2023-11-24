@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ErrorMessage, Field, useField } from 'formik';
+import cn from "classnames";
 import PropTypes from 'prop-types';
 
 import styles from './LoginInput.module.scss';
@@ -8,11 +9,11 @@ import styles from './LoginInput.module.scss';
 function LoginInput(props) {
   const [field, meta] = useField(props);
   const {
-    type, placeholder, className, label, name,
+    type, placeholder, classNames, label, name,
   } = props;
   return (
   // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    <label className={className}>
+      <label className={cn(styles.label, classNames)}>
       <p className={styles.label}>{label}</p>
       <Field
         type={type}
