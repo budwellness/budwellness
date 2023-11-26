@@ -116,8 +116,7 @@ function Filter(props) {
       </button>
       {(window.innerWidth >= 992 || isFilterOpen) && (
         <form ref={formRef} onChange={formHandler} className={styles.container}>
-          <div
-            className={`${styles.filter__categories} ${styles.filter__item1}`}
+          <div className={`${styles.filter__categories} ${styles.filter__item1}`}
           >
             <h4 className={styles.filter__name}>Product Categories</h4>
             <label htmlFor="All" className={styles.filter__label}>
@@ -130,17 +129,6 @@ function Filter(props) {
                 onChange={() => handleCategoryChange('All')}
               />
               All
-            </label>
-            <label htmlFor="OnSale" className={styles.filter__label}>
-              <input
-                name="sale"
-                type="radio"
-                id="OnSale"
-                value="true"
-                className={styles.filter__input}
-                onChange={() => handleCategoryChange('On Sale')}
-              />
-              On Sale
             </label>
             <label htmlFor="Flowers" className={styles.filter__label}>
               <input
