@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // COMPONENT IMPORTS:
 import Modal from '../Modal/Modal';
 import ModalAddToCart from '../ModalAddToCart/ModalAddToCart';
@@ -18,7 +18,7 @@ import getThcCategory from '../../helpers/getThcCategory';
 import getCbdCategory from '../../helpers/getCbdCategory';
 import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../helpers/cartButtonStateHandler';
-
+import { isModalAddToCartAction } from '../../store/modal/modal.slice';
 import styles from './ProductCard.module.scss';
 
 const { log } = console;
@@ -46,8 +46,9 @@ function ProductCard(props) {
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
   const [isExistInCart, setIsExistInCart] = useState(false);
 
-  /* --------------------------- MODAL STATE: --------------------------- */
-  const [isModalAddToCartOpen, setIsModalAddToCartOpen] = useState(false);
+  /* --------------------------- INIT HOOKS: --------------------------- */
+
+  const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin, token: tokenReduxStore } = useSelector(
@@ -57,6 +58,7 @@ function ProductCard(props) {
     (state) => state.wishlist,
   );
   const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
@@ -82,7 +84,7 @@ function ProductCard(props) {
   // MODAL:
 
   const handleModal = () => {
-    setIsModalAddToCartOpen(!isModalAddToCartOpen);
+    dispatch(isModalAddToCartAction(!isModalAddToCart));
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -131,8 +133,8 @@ function ProductCard(props) {
           <div className={styles.product_card__action}>
             <ButtonIcon
               classNames={cn({
-                [styles.btn__single_product_preview]: !isModalAddToCartOpen,
-                [styles.btn__single_product_preview_active]: isModalAddToCartOpen,
+                [styles.btn__single_product_preview]: !isModalAddToCart,
+                [styles.btn__single_product_preview_active]: isModalAddToCart,
               })}
               onClick={handleModal}
             >
@@ -187,7 +189,7 @@ function ProductCard(props) {
           onClick={toggleCartWithLoginHandler}
         />
       </div>
-      {isModalAddToCartOpen && (
+      {isModalAddToCart && (
         <Modal
           classNames={cn('add_to_cart__modal')}
           handleModal={handleModal}

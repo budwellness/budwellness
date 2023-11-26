@@ -15,6 +15,7 @@ function Registration() {
   const navigate = useNavigate();
   const initialValues = {
     email: '',
+    password: '',
     name: '',
     lastName: '',
     age: '',
@@ -42,6 +43,20 @@ function Registration() {
                 type="text"
                 placeholder="Enter your email"
                 label="Your email"
+                className={styles.label}
+              />
+              <Input
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                label="Your password"
+                className={styles.formLabel}
+              />
+              <Input
+                name="repeatPassword"
+                type="password"
+                placeholder="Repeat password"
+                label="Repeat your password"
                 className={styles.formLabel}
               />
               <Input
@@ -65,14 +80,6 @@ function Registration() {
                 label="Your age"
                 className={styles.formLabel}
               />
-              {/* <Textarea */}
-              {/*  name="address" */}
-              {/*  type="text" */}
-              {/*  placeholder="Enter your address" */}
-              {/*  label="Your address" */}
-              {/*  className={styles.formLabel} */}
-              {/*  rows={3} */}
-              {/* /> */}
               <Input
                 name="phone"
                 type="number"

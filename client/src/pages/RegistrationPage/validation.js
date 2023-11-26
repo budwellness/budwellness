@@ -5,6 +5,13 @@ const validationSchema = yup.object({
     .string()
     .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 'Invalid email format. Must contain @ and a valid domain.')
     .required('The field is required'),
+  password: yup
+    .string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
+  repeatPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
   name: yup
     .string()
     .min(2, 'Name too short')

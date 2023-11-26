@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import cN from 'classnames';
 import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartIcon from '../../UI/CartIcon';
 import FavouriteIcon from '../../UI/FavouriteIcon';
 import EyeIcon from '../../UI/EyeIcon';
 import RatingStars from '../../RatingStars/RatingStars';
 import wishlistButtonStateHandler from '../../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../../helpers/cartButtonStateHandler';
+import { isModalAddToCartAction } from '../../../store/modal/modal.slice';
 import styles from './PopularSwiperSlide.module.scss';
 
 function PopularSwiperSlide(props) {
@@ -19,6 +20,10 @@ function PopularSwiperSlide(props) {
     products: productItem,
     actions: { toggleCartHandler, toggleWishlistHandler },
   } = props;
+
+  /* --------------------------- INIT HOOKS: --------------------------- */
+
+  const dispatch = useDispatch();
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
@@ -32,17 +37,15 @@ function PopularSwiperSlide(props) {
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist,
   );
+  const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
-  // const toggleWishlistWithLoginHandler = () => {
-  //   if (isUserLogin) {
-  //     toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
-  //   } else {
-  //     toast.error('Please login first!');
-  //   }
-  // };
   const toggleWishlistWithLoginHandler = () => {
-    toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
+    if (isUserLogin) {
+      toggleWishlistHandler(productItem, tokenReduxStore, wishlistStoreData);
+    } else {
+      toast.error('Please login first!');
+    }
   };
 
   const toggleCartWithLoginHandler = () => {
@@ -51,6 +54,11 @@ function PopularSwiperSlide(props) {
     } else {
       toast.error('Please login first!');
     }
+  };
+
+  // MODAL:
+  const handleModal = () => {
+    dispatch(isModalAddToCartAction(!isModalAddToCart));
   };
 
   useEffect(
@@ -110,8 +118,12 @@ function PopularSwiperSlide(props) {
             <li className={styles.listItem}>
               <button
                 type="button"
-                className={styles.actionLink}
-                onClick={() => { }}
+                className={cN({
+                  [styles.actionLink]: !isModalAddToCart,
+                  [styles.actionLink_active]: isModalAddToCart,
+                })}
+                // className={styles.actionLink}
+                onClick={handleModal}
               >
                 <EyeIcon className={styles.styleIcon} />
               </button>

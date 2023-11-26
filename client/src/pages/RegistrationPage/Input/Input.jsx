@@ -1,34 +1,38 @@
 import React from 'react';
+
 import { ErrorMessage, Field, useField } from 'formik';
-import './Input.scss';
+import cn from 'classnames';
 import PropTypes from 'prop-types';
+
+import styles from './Input.module.scss';
 
 function Input(props) {
   const [field, meta] = useField(props);
   const {
-    type, placeholder, className, label, name,
+    type, placeholder, classNames, label, name,
   } = props;
   return (
-    <label className={className} htmlFor={name}>
-      <p className="">{label}</p>
+  // eslint-disable-next-line jsx-a11y/label-has-associated-control
+    <label className={cn(styles.label, classNames)}>
+      <p className={styles.label}>{label}</p>
       <Field
         type={type}
-        className="form-item"
+        className={styles.formItem}
         name={name}
         placeholder={placeholder}
-          /* eslint-disable-next-line react/jsx-props-no-spreading */
+            // eslint-disable-next-line react/jsx-props-no-spreading
         {...field}
-        id={name}
       />
-      {!!meta.error && meta.touched && <ErrorMessage name={name} className="error-input" component="p" />}
+      {!!meta.error && meta.touched && (
+        <ErrorMessage name={name} className={styles.errorInput} component="p" />
+      )}
     </label>
-
   );
 }
 
 Input.propTypes = {
   label: PropTypes.string,
-  className: PropTypes.string,
+  classNames: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.string,
@@ -37,9 +41,9 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'text',
   label: '',
-  className: '',
+  classNames: '',
   placeholder: '',
-  // rows: 0,
+  // eslint-disable-next-line react/default-props-match-prop-types
+  rows: 0,
 };
-
 export default Input;
