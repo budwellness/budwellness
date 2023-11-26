@@ -1,7 +1,7 @@
 /* eslint-disable */
-import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
-import {Form, Formik} from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Form, Formik } from 'formik';
 import cn from "classnames";
 
 
@@ -9,19 +9,19 @@ import cn from "classnames";
 import LoginInput from './LoginInput/LoginInput';
 
 // USER IMPORTS:
-import {useLoginUserMutation} from '../../store/serverResponse/danitApi.auth';
-import {userLoginUserAction} from '../../store/user/user.slice';
+import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
+import { userLoginUserAction } from '../../store/user/user.slice';
 
 import styles from './LoginForm.module.scss';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import ButtonHeader from "../ButtonHeader/ButtonHeader";
 
 
 import LogoIcon from "../Header/icons/LogoIcon";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import validationSchema from "./validationLogin.js";
-import {setModal} from "../../store/modal/modal.slice.js";
+import { setModal } from "../../store/modal/modal.slice.js";
 
 
 function LoginForm(props) {
@@ -51,7 +51,7 @@ function LoginForm(props) {
     /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
     // USER API:
-    const [loginUser, {data: loginUserToken, isSuccess: loginIsSuccess}] =
+    const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
         useLoginUserMutation();
 
     /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -61,7 +61,7 @@ function LoginForm(props) {
         if (loginIsSuccess && loginUserToken) {
             toast.success('You was successfully logged in!')
             dispatch(userLoginUserAction(loginUserToken));
-            localStorage.setItem('token', loginUserToken);
+            localStorage.setItem('token', loginUserToken.token);
             getWishlist(loginUserToken);
             getCart(loginUserToken);
         }
@@ -76,12 +76,12 @@ function LoginForm(props) {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
-                console.log('something happen');
-                console.log(values);
-                loginUser(values)
-            }}>
+                    console.log('something happen');
+                    console.log(values);
+                    loginUser(values)
+                }}>
                 <Form className={styles.form}>
-                    <div className={styles.logoIcon}><LogoIcon/></div>
+                    <div className={styles.logoIcon}><LogoIcon /></div>
                     <h2 className={styles.title}>Sing in Bud<span
                         className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
                     </h2>
@@ -91,14 +91,14 @@ function LoginForm(props) {
                             name="loginOrEmail"
                             type="email"
                             placeholder="Login"
-                            label="Username or email address"/>
+                            label="Username or email address" />
                         <div className={styles.passwordInput}>
                             <LoginInput
                                 className={styles.loginInput}
                                 name="password"
                                 type="password"
                                 placeholder="Password"
-                                label="Password"/>
+                                label="Password" />
                             <Link
                                 to="/"
                                 className={styles.forgotPassword}
@@ -121,7 +121,7 @@ function LoginForm(props) {
                 <Link
                     to="/registration"
                     className={styles.createAcc}
-                    onClick={()=> dispatch(setModal(false))}
+                    onClick={() => dispatch(setModal(false))}
                 >Create an account</Link>
             </div>
         </>

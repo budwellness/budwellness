@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isUserLogin: null,
   token: null,
+  detailInfo: null,
 };
 
 const userSlice = createSlice({
@@ -12,7 +13,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     loginUser: (state, { payload }) => {
-      state.token = payload;
+      state.detailInfo = payload;
+      state.token = payload.token;
       state.isUserLogin = true;
     },
     logoutUser: (state) => {
