@@ -72,7 +72,7 @@ function App() {
   ] = useLazyGetWishlistQuery();
 
   const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
-    useLazyGetCartQuery();
+      useLazyGetCartQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
@@ -115,8 +115,6 @@ function App() {
 
   /* ------------------------------------------------ */
 
-  /* ------------------------------------------------ */
-
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
       dispatch(setCartAction(userCartData.products));
@@ -128,38 +126,38 @@ function App() {
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
 
   return (
-    <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        theme="colored"
-      />
-      <ScrollToTop />
-      <Header actions={{ getCart, getWishlist }} />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ProductsPage />} />
-        <Route path="/product/:productID" element={<SingleProductPage />} />
-        <Route path="/wishlist" element={<WishlistPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/team" element={<OurTeam />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/test" element={<TestForBackPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <Footer />
-      <CartModal />
-      {isOpenModal && (
-        isUserLogin
-          ? <button type="button" onClick={logoutHandler}>Logout</button>
-          : (
-            <Modal handleModal={handleModal}>
-              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-            </Modal>
-          )
-      )}
-    </>
+      <>
+        <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            theme="colored"
+        />
+        <ScrollToTop />
+        <Header actions={{ getCart, getWishlist }} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ProductsPage />} />
+          <Route path="/product/:productID" element={<SingleProductPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/team" element={<OurTeam />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/test" element={<TestForBackPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <Footer />
+        <CartModal />
+        {isOpenModal && (
+            isUserLogin
+                ? <button type="button" onClick={logoutHandler}>Logout</button>
+                : (
+                    <Modal handleModal={handleModal}>
+                      <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+                    </Modal>
+                )
+        )}
+      </>
   );
 }
 
