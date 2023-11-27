@@ -1,13 +1,21 @@
 .label {
-  font-size: 14px;
-  text-align: left;
+  // font-size: 14px;
+  // text-align: left;
   position: relative;
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25.5px;
+  font-family: $font-nunito;
+  color: $main-green;
 }
 
 .errorInput {
-  color: red;
+  color: red !important;
   padding: 0;
-  font-size: 10px;
+  font-size: 10px !important;
   //margin-top: 5px;
   //text-align: left;
   position: absolute;

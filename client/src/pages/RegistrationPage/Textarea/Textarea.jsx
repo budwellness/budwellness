@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 
 function Textarea(props) {
   const [field, meta] = useField(props);
-  const {
-    type, placeholder, className, label, name, rows,
-  } = props;
+  const { type, placeholder, className, label, name, rows } = props;
   return (
     <label className={className} htmlFor={name}>
       <p className="">{label}</p>
@@ -19,10 +17,12 @@ function Textarea(props) {
         name={name}
         rows={rows}
         placeholder={placeholder}
-                /* eslint-disable-next-line react/jsx-props-no-spreading */
+        /* eslint-disable-next-line react/jsx-props-no-spreading */
         {...field}
       />
-      {!!meta.error && meta.touched && <ErrorMessage name={name} className="error-textarea" component="p" />}
+      {!!meta.error && meta.touched && (
+        <ErrorMessage name={name} className="error-textarea" component="p" />
+      )}
     </label>
   );
 }

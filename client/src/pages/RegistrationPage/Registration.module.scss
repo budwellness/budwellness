@@ -1,6 +1,6 @@
 @mixin for-size($size) {
   @media (min-width: $size) {
-      @content;
+    @content;
   }
 }
 
@@ -10,15 +10,19 @@
   background-repeat: no-repeat;
   background-position: right bottom;
   background-size: 60%;
+
   @include for-size(320px) {
     background-size: 80%;
   }
+
   @include for-size(576px) {
     background-size: 70%;
   }
+
   @include for-size(768px) {
     background-size: 60%;
   }
+
   @include for-size(992px) {
     background-size: 60%;
   }
@@ -39,21 +43,22 @@
     color: $main-green;
     font-size: 20px;
     text-align: left;
-  }
-
-  p {
-    text-align: left;
-    margin-bottom: 0;
-    font-weight: bold;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 43.2px;
+    font-family: $font-nunito;
   }
 
 
   .form-label {
     text-align: left;
   }
+
   @media (min-width: 576px) {
     width: 450px;
   }
+
   @media (min-width: 768px) {
     width: 550px;
   }
@@ -81,12 +86,15 @@
   color: $main-green;
   border: none;
   display: inline-block;
+
   @include for-size(320px) {
     width: 100%;
   }
+
   @include for-size(576px) {
     width: 200px;
   }
+
   &:hover {
     transform: scale(1.1);
   }
@@ -103,4 +111,3 @@
   //  background: rgba(208, 64, 24, 0.64);
   //}
 }
-

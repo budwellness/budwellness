@@ -15,6 +15,7 @@ function Registration() {
   const navigate = useNavigate();
   const initialValues = {
     email: '',
+    username: '',
     password: '',
     name: '',
     lastName: '',
@@ -36,7 +37,7 @@ function Registration() {
         {({ isValid }) => (
           <Form className={styles.wrapperForm}>
             <div className={styles.form}>
-              <h3>Registration</h3>
+              <h3 className={styles.registration}>Registration</h3>
               <Input
                 name="name"
                 type="text"
