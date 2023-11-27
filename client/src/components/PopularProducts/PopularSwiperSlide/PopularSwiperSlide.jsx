@@ -49,11 +49,7 @@ function PopularSwiperSlide(props) {
   };
 
   const toggleCartWithLoginHandler = () => {
-    if (isUserLogin) {
-      toggleCartHandler(productItem._id, tokenReduxStore, cartStoreData);
-    } else {
-      toast.error('Please login first!');
-    }
+    toggleCartHandler(productItem._id, tokenReduxStore, cartStoreData);
   };
 
   // MODAL:
