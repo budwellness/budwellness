@@ -49,7 +49,7 @@ export default function PopularSwiper() {
               }}
             />
           </SwiperSlide>
-        )),
+        ))
       );
     }
   }, [isSuccessFilteredProductsData, filteredProductsData]);
@@ -58,7 +58,7 @@ export default function PopularSwiper() {
     <Swiper
       className={styles.mySwiper}
       modules={[Pagination, Autoplay]}
-      slidesPerView={1}
+      slidesPerView={4}
       spaceBetween={30}
       pagination={{
         clickable: true,
@@ -73,7 +73,7 @@ export default function PopularSwiper() {
       }}
       loop
       watchOverflow={false}
-      speed={1000}
+      speed={1500}
       effect="slide"
       breakpoints={{
         320: {
