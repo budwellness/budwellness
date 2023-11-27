@@ -16,7 +16,7 @@ export const danitApiAuth = createApi({
         },
         body: credentials,
       }),
-      // transformResponse: (response) => response.token,
+      transformResponse: (response) => response.token,
     }),
   }),
 });

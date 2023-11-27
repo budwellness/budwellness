@@ -59,9 +59,10 @@ function LoginForm(props) {
 
     const isLoginSuccessHandler = () => {
         if (loginIsSuccess && loginUserToken) {
+            console.log(loginUserToken)
             toast.success('You was successfully logged in!')
             dispatch(userLoginUserAction(loginUserToken));
-            localStorage.setItem('token', loginUserToken.token);
+            localStorage.setItem('token', loginUserToken);
             getWishlist(loginUserToken);
             getCart(loginUserToken);
         }
