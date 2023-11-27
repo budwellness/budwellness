@@ -15,6 +15,7 @@ function Registration() {
   const navigate = useNavigate();
   const initialValues = {
     email: '',
+    username: '',
     password: '',
     name: '',
     lastName: '',
@@ -27,23 +28,43 @@ function Registration() {
     navigate('/');
   };
   return (
-  // <Container>
-    <Formik
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}
-    >
-      {({ isValid }) => (
-        <Form className={styles.wrapperForm}>
-          <Container>
+    <Container>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+      >
+        {({ isValid }) => (
+          <Form className={styles.wrapperForm}>
             <div className={styles.form}>
-              <h3>Registration</h3>
+              <h3 className={styles.registration}>Registration</h3>
+              <Input
+                name="name"
+                type="text"
+                placeholder="Enter your name"
+                label="Your name"
+                className={styles.formLabel}
+              />
+              <Input
+                name="lastName"
+                type="text"
+                placeholder="Enter your Last name"
+                label="Your Last name"
+                className={styles.formLabel}
+              />
+              <Input
+                name="username"
+                type="text"
+                placeholder="Enter your Username"
+                label="Your Username"
+                className={styles.formLabel}
+              />
               <Input
                 name="email"
                 type="text"
                 placeholder="Enter your email"
                 label="Your email"
-                className={styles.label}
+                className={styles.formLabel}
               />
               <Input
                 name="password"
@@ -60,17 +81,10 @@ function Registration() {
                 className={styles.formLabel}
               />
               <Input
-                name="name"
-                type="text"
-                placeholder="Enter your name"
-                label="Your name"
-                className={styles.formLabel}
-              />
-              <Input
-                name="lastName"
-                type="text"
-                placeholder="Enter your Last name"
-                label="Your Last name"
+                name="phone"
+                type="number"
+                placeholder="Enter your phone number"
+                label="Your phone number"
                 className={styles.formLabel}
               />
               <Input
@@ -78,13 +92,6 @@ function Registration() {
                 type="number"
                 placeholder="Enter your age"
                 label="Your age"
-                className={styles.formLabel}
-              />
-              <Input
-                name="phone"
-                type="number"
-                placeholder="Enter your phone number"
-                label="Your phone number"
                 className={styles.formLabel}
               />
               <ButtonHeader
@@ -104,11 +111,10 @@ function Registration() {
               {/*    Скасувати оформлення */}
               {/* </button> */}
             </div>
-          </Container>
-        </Form>
-      )}
-    </Formik>
-  // </Container>
+          </Form>
+        )}
+      </Formik>
+    </Container>
   );
 }
 
