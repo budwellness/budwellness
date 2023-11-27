@@ -1,7 +1,6 @@
 .label {
   font-size: 14px;
   text-align: left;
-  margin-bottom: 8px;
   position: relative;
 }
 
@@ -23,4 +22,8 @@
   font-size: 14px;
   line-height: 18px;
   margin-bottom: 20px;
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 1px solid $tertiary-green;
+  height: 48px;
 }

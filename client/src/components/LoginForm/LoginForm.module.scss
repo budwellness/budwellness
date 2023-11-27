@@ -2,6 +2,11 @@
   text-align: left;
 }
 
+.form_name {
+  display: flex;
+  align-items: center;
+}
+
 .logoIcon {
   width: 50px;
   margin: 0 auto;
@@ -13,37 +18,20 @@
   font-size: 28px;
   font-style: normal;
   font-weight: 900;
-  margin-left: 10px;
+  // margin-left: 10px;
   line-height: 30px;
-  text-align: center;
+  // text-align: center;
 }
 
 .accentColor {
   color: $secondary-green;
 }
 
-.wrapperLogin{
+.wrapperLogin {
   margin-top: 10px;
-  border: 1px solid #21262d;
-  padding: 16px;
-  border-radius: 6px;
-  background: #f8f2f2;
-
-  //p {
-  //  font-size: 14px;
-  //  text-align: left;
-  //  margin-bottom: 8px;
-  //}
-
-  input {
-    width: 100%;
-    padding: 5px 12px;
-    font-size: 14px;
-    line-height: 20px;
-    border-radius: 6px;
-    border: 1px solid;
-    outline: none;
-  }
+  border: none;
+  padding: 10px;
+  background-color: $color-white;
 }
 
 .passwordInput {
@@ -53,40 +41,73 @@
 
 .forgotPassword {
   position: absolute;
-  top: 2px;
+  top: 90px;
   right: 0;
   font-size: 12px;
+  color: $secondary-green;
+  font-family: $font-nunito;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .btnLogin {
   width: 100%;
-  background: $secondary-green;
-  border-radius: 6px;
-  margin-top: 16px;
+  height: 40px;
+  background: $main-orange;
+  border-radius: 20px;
+  margin-top: 40px;
   padding: 5px 16px;
   color: white;
 
   &:hover {
-    background: #24a23c;
+    background: $secondary-green;
   }
+}
+
+.btnCreate {
+  border-radius: 24px;
+  border: 1px solid $secondary-green;
+  border-radius: 20px;
+  margin-top: 40px;
+  padding: 5px 16px;
+  width: 100%;
+  height: 40px;
+  background-color: $color-white;
+  text-align: center;
+  font-family: $font-nunito;
+  color: $secondary-green 
+}
+.btnCreate:hover {
+    background-color: #D1E7DF;
 }
 
 .footerInput {
   border: 1px solid #21262d;
-  padding: 16px;
-  border-radius: 6px;
-  background: #f8f2f2;
-  margin-top: 16px;
+  // padding: 16px;
+  // margin-top: 16px;
+  border: none;
   text-align: center;
-}
-
-.github {
-
 }
 
 .createAcc {
   margin-left: 5px;
   font-size: 14px;
+}
+
+.wrapperLogin {
+  // margin-top: 10px;
+  // border: 1px solid #21262d;
+  // padding: 16px;
+  // border-radius: 6px;
+  // background: #f8f2f2;
+
+  //p {
+  //  font-size: 14px;
+  //  text-align: left;
+  //  margin-bottom: 8px;
+  //}
 }
 
 //.title {

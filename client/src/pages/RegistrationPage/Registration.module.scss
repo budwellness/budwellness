@@ -1,29 +1,44 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+      @content;
+  }
+}
+
 .wrapperForm {
-  display: flex;
-  justify-content: center;
   padding-top: 150px;
   background-image: url("./img/leaf.webp.png");
   background-repeat: no-repeat;
   background-position: right bottom;
-  background-size: 30%;
+  background-size: 60%;
+  @include for-size(320px) {
+    background-size: 80%;
+  }
+  @include for-size(576px) {
+    background-size: 70%;
+  }
+  @include for-size(768px) {
+    background-size: 60%;
+  }
+  @include for-size(992px) {
+    background-size: 60%;
+  }
+
+
 }
 
 
 .form {
-  text-align: center;
+  text-align: left;
   padding: 20px;
-  border: 1px solid black;
-  box-shadow: 0 0 5px 3px rgba(126, 35, 4, 0.55);
   margin-bottom: 30px;
   border-radius: 6px;
-  background: #f8f2f2;
   width: 100%;
 
 
   & h3 {
     color: $main-green;
     font-size: 20px;
-    text-align: center;
+    text-align: left;
   }
 
   p {
@@ -36,14 +51,21 @@
   .form-label {
     text-align: left;
   }
+  @media (min-width: 576px) {
+    width: 450px;
+  }
+  @media (min-width: 768px) {
+    width: 550px;
+  }
 
   @media (min-width: 992px) {
-    width: 30vw;
+    width: 650px;
   }
 
 }
 
 .btnForm {
+  width: 200px;
   font-size: 17px;
   padding: 10px 25px;
   min-height: 48px;
@@ -55,12 +77,16 @@
   text-decoration: none;
   text-align: center;
   margin-top: 20px;
-
   background-color: $main-orange;
   color: $main-green;
   border: none;
   display: inline-block;
-
+  @include for-size(320px) {
+    width: 100%;
+  }
+  @include for-size(576px) {
+    width: 200px;
+  }
   &:hover {
     transform: scale(1.1);
   }
