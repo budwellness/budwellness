@@ -775,6 +775,7 @@ export const productsJSON = [
   },
   {
     enabled: true,
+    carouselUrl: '/images/hero_1.png',
     imageUrls: [
       '/images/hero01.png',
       '/images/hawaiian_haze_2.png',
@@ -831,6 +832,7 @@ export const productsJSON = [
   },
   {
     enabled: true,
+    carouselUrl: '/images/hero_2.png',
     imageUrls: [
       '/images/hero02.png',
       '/images/sour-diesel_2.png',
@@ -877,6 +879,7 @@ export const productsJSON = [
   },
   {
     enabled: true,
+    carouselUrl: '/images/hero_3.png',
     imageUrls: [
       '/images/hero03.png',
       '/images/northern_lights_2.png',
