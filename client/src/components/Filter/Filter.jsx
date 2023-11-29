@@ -89,7 +89,7 @@ function Filter(props) {
         setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
       }
       if (key === 'thc' || key === 'cbd') {
-        filterDataArr.push(`${value}`);
+        filterDataArr.push(`${value}`); 
         continue;
       }
       filterDataArr.push(`${key}=${value}`);
