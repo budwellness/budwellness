@@ -49,7 +49,7 @@ function PopularSwiperSlide(props) {
   };
 
   const toggleCartWithLoginHandler = () => {
-    toggleCartHandler(productItem._id, tokenReduxStore, cartStoreData);
+    toggleCartHandler(productItem, tokenReduxStore, cartStoreData);
   };
 
   // MODAL:

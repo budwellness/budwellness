@@ -15,32 +15,48 @@ const useToggleCart = () => {
   const dispatch = useDispatch();
   const [removeProductFromCart] = useRemoveFromCartMutation();
   const [addProductToCart] = useAddToCartMutation();
-  const toggleCart = async (productId, token, cartStoreData) => {
-    log('Prohoju');
+  const toggleCart = async (product, token, cartStoreData) => {
     if (!token) {
       // 1. Посмотреть есть ли в локалсторедже localCart
       const localCart = localStorage.getItem('localCart');
       if (localCart) {
         const localCartData = JSON.parse(localCart);
-        const isExist = localCartData.some((p) => p === productId);
-        log('LocalCartData', localCartData);
-        log('isProductExist', isExist);
+        log(localCartData);
+        const isExist = localCartData.some((p) => p.productId === product._id);
+        // log('LocalCartData', localCartData);
+        // log('isProductExist', isExist);
+        log(isExist);
         if (isExist) {
           // Если существует, вырезаем из локальной корзины
-          const index = localCartData.findIndex((p) => p === productId);
+          const index = localCartData.findIndex(
+            (p) => p.productId === product._id
+          );
           if (index !== -1) {
             localCartData.splice(index, 1);
             localStorage.setItem('localCart', JSON.stringify(localCartData));
           }
         } else {
           // Если не существует, добавляем в локал стор
-          localCartData.push(productId);
+          localCartData.push({
+            productId: product._id,
+            itemNo: product.itemNo,
+            quantity: product.quantity,
+          });
           localStorage.setItem('localCart', JSON.stringify(localCartData));
         }
       } else {
         // Если нету localCart
         // - Добавить ИД продукта в локал сторКарт
-        localStorage.setItem('localCart', JSON.stringify([productId]));
+        localStorage.setItem(
+          'localCart',
+          JSON.stringify([
+            {
+              productId: product._id,
+              itemNo: product.itemNo,
+              quantity: product.quantity,
+            },
+          ])
+        );
       }
 
       // Если есть localCart
@@ -48,13 +64,13 @@ const useToggleCart = () => {
       //Если есть убрать его от туда
       // Если нету добавить его туда
     } else {
-      const isExist = cartStoreData.some((p) => p.product._id === productId);
+      const isExist = cartStoreData.some((p) => p.product._id === product._id);
       if (isExist) {
         try {
-          await removeProductFromCart({ productId, token })
+          await removeProductFromCart({ productId: product._id, token })
             .unwrap()
             .then(() => {
-              dispatch(removeItemFromCartAction(productId));
+              dispatch(removeItemFromCartAction(product._id));
               toast.warn('Product was removed from cart!');
             });
         } catch (error) {
@@ -63,7 +79,7 @@ const useToggleCart = () => {
         }
       } else {
         try {
-          await addProductToCart({ productId, token })
+          await addProductToCart({ productId: product._id, token })
             .unwrap()
             .then((response) => {
               dispatch(addItemToCartAction(response.products));

@@ -10,6 +10,7 @@ import styles from './CartWrapperModal.module.scss';
 
 function CartWrapperModal() {
   const [localCartData, setLocalCartData] = useState([])
+  const [localCartProducts, setLocalCartProducts] = useState(null)
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
 
@@ -25,12 +26,12 @@ function CartWrapperModal() {
   useEffect(() => {
     if (isUserLogin) {
     } else {
-      const localCart = localStorage.getItem('localCart');
-      setLocalCartData(JSON.parse(localCart));
+      setLocalCartData(JSON.parse(localStorage.getItem('localCart')));
     }
   }, [])
 
   useEffect(() => {
+    // Если в локалсторе появились продукты, при открытии корзины делаем запрос на них
 
   }, [localCartData])
   // Если юзер не залогинен и локал стор не пуст, брать id товаров и делать запрос на них
