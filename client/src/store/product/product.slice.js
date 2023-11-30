@@ -3,15 +3,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isUserLogin,
-  token,
+  selectedProduct: null,
+  // isUserLogin,
+  // token,
 };
 
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    selectProduct: (state, action) => {
+      state.selectedProduct = action.payload;
+    },
+  },
 });
 
-export const {} = productsSlice.actions;
+export const { selectProduct } = productsSlice.actions;
 export default productsSlice.reducer;

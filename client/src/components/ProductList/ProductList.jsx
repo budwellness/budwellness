@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 // COMPONENT IMPORTS:
 import { useSearchParams } from 'react-router-dom';
@@ -8,6 +9,8 @@ import Pagination from './Pagination/Pagination';
 import { useLazyGetFilteredProductsQuery } from '../../store/serverResponse/danitApi.products';
 import useToggleCart from '../../hooks/useToggleCart';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
+import { selectProduct } from '../../store/product/product.slice';
+import { isModalAddToCartAction } from '../../store/modal/modal.slice';
 import styles from './ProductList.module.scss';
 
 const { log } = console;
@@ -20,12 +23,15 @@ function ProductList(props) {
   const [totalProducts, setTotalProducts] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
+
+  const dispatch = useDispatch();
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
   // const { productSlug } = useParams();
   const [searchParams] = useSearchParams();
 
   /* --------------------------- REDUX STATE: --------------------------- */
+  const { isModalAddToCart } = useSelector((state) => state.modal);
 
   const filteredQueryString = (params, pageStart, perPage = 1) => {
     const filterStringArr = [];
@@ -42,6 +48,16 @@ function ProductList(props) {
         .join('&')}&perPage=${perPage}&startPage=${pageStart}`;
     }
     return `${filterString}&perPage=${perPage}&startPage=${pageStart}`;
+  };
+
+  // MODAL:
+  const handleSelectProduct = (selectedProduct) => {
+    dispatch(selectProduct(selectedProduct));
+  };
+
+  const handleModalAddToCart = (product) => {
+    dispatch(isModalAddToCartAction(!isModalAddToCart));
+    handleSelectProduct(product);
   };
 
   const [
@@ -71,6 +87,7 @@ function ProductList(props) {
                   }}
                   product={product}
                   key={product._id}
+                  handleModalAddToCart={() => handleModalAddToCart(product)}
                 />
               ))}
             </div>,
