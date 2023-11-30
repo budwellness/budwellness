@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import cn from 'classnames';
+import { useSelector } from 'react-redux';
 import SingleProductSwiper from '../SingleProductSwiper/SingleProductSwiper';
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
@@ -9,56 +10,52 @@ import FavouriteIcon from '../UI/FavouriteIcon';
 import LinkUnderline from '../LinkUnderline/LinkUnderline';
 import styles from './ModalAddToCart.module.scss';
 
-function ModalAddToCart({
-  // actions: {
-  //   toggleCartWithLoginHandler,
-  //   toggleWishlistWithLoginHandler,
-  // },
-  product,
-}) {
-  // console.log(product);
-  const {
-    itemNo,
-    name,
-    rate,
-    reviews,
-    description,
-    currentPrice,
-  } = product;
+const { log } = console;
+
+function ModalAddToCart() {
+//   {
+//   actions: {
+//     toggleCartWithLoginHandler,
+//     toggleWishlistWithLoginHandler,
+//   },
+// }
+  const selectedProduct = useSelector(
+    (state) => state.products.selectedProduct,
+  );
+  log(selectedProduct);
   return (
     <div className={styles.modal_add_to_cart__container}>
-      <div className={styles.slider__wrapper}>
-        <SingleProductSwiper images={product.imageUrls} />
-      </div>
-      <div className={styles.about__info_wrapper}>
-        <h2 className={styles.about__title}>{name}</h2>
-        <div className={styles.about__rate_wrapper}>
-          <RatingStars rate={rate} />
-          <p className={styles.about__rate_text}>
-            {`(${reviews.length} customer reviews)`}
-          </p>
-        </div>
-        <p className={styles.about__descr_short}>{description.short}</p>
-        <div className={styles.about__action_wrapper}>
-          <p className={styles.about__current_price}>{`$${currentPrice.toFixed(2)}`}</p>
-          <Button
-            className="orangeBtn"
-            text="Add to Cart"
-            // onClick={() => toggleCartWithLoginHandler()}
-          />
-          <ButtonIcon
-            classNames={styles.btn__add_to_favorites}
-            // classNames={cn({
-            //   [styles.btn__add_to_favorites]: !isExistInWishlist,
-            //   [styles.btn__add_to_favorites_active]: isExistInWishlist,
-            // })}
-            // onClick={() => toggleWishlistWithLoginHandler()}
-          >
-            <FavouriteIcon className={styles.favorite_icon} />
-          </ButtonIcon>
-        </div>
-        <LinkUnderline to={`/product/${itemNo}`}>View Details</LinkUnderline>
-      </div>
+      {selectedProduct && (
+        <>
+          <div className={styles.slider__wrapper}>
+            <SingleProductSwiper images={selectedProduct.imageUrls} />
+          </div>
+          <div className={styles.about__info_wrapper}>
+            <h2 className={styles.about__title}>{selectedProduct.name}</h2>
+            <div className={styles.about__rate_wrapper}>
+              <RatingStars rate={selectedProduct.rate} />
+              <p className={styles.about__rate_text}>
+                {`(${selectedProduct.reviews.length} customer reviews)`}
+              </p>
+            </div>
+            <p className={styles.about__descr_short}>
+              {selectedProduct.description.short}
+            </p>
+            <div className={styles.about__action_wrapper}>
+              <p className={styles.about__current_price}>
+                {`$${selectedProduct.currentPrice.toFixed(2)}`}
+              </p>
+              <Button className="orangeBtn" text="Add to Cart" />
+              <ButtonIcon classNames={styles.btn__add_to_favorites}>
+                <FavouriteIcon className={styles.favorite_icon} />
+              </ButtonIcon>
+            </div>
+            <LinkUnderline to={`/product/${selectedProduct.itemNo}`}>
+              View Details
+            </LinkUnderline>
+          </div>
+        </>
+      )}
     </div>
   );
 }

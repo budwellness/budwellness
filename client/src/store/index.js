@@ -9,6 +9,7 @@ import wishlistReducer from './wishlist/wishList.slice';
 import cartReducer from './cart/cart.slice';
 import modalReducer from './modal/modal.slice';
 import cartModalSlice from './cartModal/cartModal.slice';
+import productsReducer from './product/product.slice';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   modal: modalReducer,
   cartModal: cartModalSlice,
+  products: productsReducer,
   [danitApiCart.reducerPath]: danitApiCart.reducer,
   [danitApiAuth.reducerPath]: danitApiAuth.reducer,
   [danitApiWishlist.reducerPath]: danitApiWishlist.reducer,
