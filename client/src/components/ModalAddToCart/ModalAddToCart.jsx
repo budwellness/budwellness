@@ -13,12 +13,10 @@ import styles from './ModalAddToCart.module.scss';
 const { log } = console;
 
 function ModalAddToCart() {
-//   {
-//   actions: {
-//     toggleCartWithLoginHandler,
-//     toggleWishlistWithLoginHandler,
-//   },
-// }
+  // const {
+  //   actions: { toggleCartWithLoginHandler, toggleWishlistWithLoginHandler },
+  //   handleModalAddToCart,
+  // } = props;
   const selectedProduct = useSelector(
     (state) => state.products.selectedProduct,
   );
@@ -50,7 +48,10 @@ function ModalAddToCart() {
                 <FavouriteIcon className={styles.favorite_icon} />
               </ButtonIcon>
             </div>
-            <LinkUnderline to={`/product/${selectedProduct.itemNo}`}>
+            <LinkUnderline
+              to={`/product/${selectedProduct.itemNo}`}
+              // handleModalAddToCart={handleModalAddToCart}
+            >
               View Details
             </LinkUnderline>
           </div>
@@ -78,4 +79,13 @@ ModalAddToCart.propTypes = {
     toggleCartWithLoginHandler: PropTypes.func,
     toggleWishlistWithLoginHandler: PropTypes.func,
   }),
+  // handleModalAddToCart: PropTypes.func,
+};
+
+ModalAddToCart.defaultProps = {
+  actions: {
+    toggleCartHandler: () => { },
+    toggleWishlistHandler: () => { },
+  },
+  // handleModalAddToCart: () => { },
 };

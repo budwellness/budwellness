@@ -9,8 +9,10 @@ import Pagination from './Pagination/Pagination';
 import { useLazyGetFilteredProductsQuery } from '../../store/serverResponse/danitApi.products';
 import useToggleCart from '../../hooks/useToggleCart';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
+// MODAL IMPORTS:
 import { selectProduct } from '../../store/product/product.slice';
 import { isModalAddToCartAction } from '../../store/modal/modal.slice';
+
 import styles from './ProductList.module.scss';
 
 const { log } = console;
