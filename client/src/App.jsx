@@ -169,7 +169,9 @@ function App() {
           classNames={cn('add_to_cart__modal')}
           handleModal={handleModalAddToCart}
         >
-          <ModalAddToCart/>
+          <ModalAddToCart
+            handleModalAddToCart={handleModalAddToCart}
+          />
         </Modal>
       )}
       </>

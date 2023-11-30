@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core';
 
@@ -7,6 +8,9 @@ import PopularSwiperSlide from '../PopularSwiperSlide/PopularSwiperSlide';
 
 // PRODUCT IMPORTS:
 import { useGetFilteredProductsQuery } from '../../../store/serverResponse/danitApi.products';
+// MODAL IMPORTS:
+import { selectProduct } from '../../../store/product/product.slice';
+import { isModalAddToCartAction } from '../../../store/modal/modal.slice';
 
 // CART IMPORTS:
 import useToggleCart from '../../../hooks/useToggleCart';
@@ -23,8 +27,22 @@ export default function PopularSwiper() {
   const [popularCards, setPopularCards] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
+  const dispatch = useDispatch();
   const toggleCartHandler = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
+
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { isModalAddToCart } = useSelector((state) => state.modal);
+
+  // MODAL:
+  const handleSelectProduct = (selectedProduct) => {
+    dispatch(selectProduct(selectedProduct));
+  };
+
+  const handleModalAddToCart = (productItem) => {
+    dispatch(isModalAddToCartAction(!isModalAddToCart));
+    handleSelectProduct(productItem);
+  };
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   // PRODUCT API:
@@ -47,6 +65,7 @@ export default function PopularSwiper() {
                 toggleCartHandler,
                 toggleWishlistHandler,
               }}
+              handleModalAddToCart={() => handleModalAddToCart(productItem)}
             />
           </SwiperSlide>
         )),
