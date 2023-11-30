@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 function Textarea(props) {
   const [field, meta] = useField(props);
-  const { type, placeholder, className, label, name, rows } = props;
+  const {
+    type, placeholder, className, label, name, rows,
+  } = props;
   return (
     <label className={className} htmlFor={name}>
       <p className="">{label}</p>
