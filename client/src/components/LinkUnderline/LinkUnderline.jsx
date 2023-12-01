@@ -13,7 +13,7 @@ const { log } = console;
 export default function LinkUnderline(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
-    to, children, style, type, productId, isDisabled,
+    to, children, style, type, productId, isDisabled, onClick,
   } = props;
 
   /* --------------------------- INIT HOOKS: --------------------------- */
@@ -56,13 +56,7 @@ export default function LinkUnderline(props) {
       style={style}
       type={type}
       disabled={isDisabled}
-      onClick={
-        type === 'button'
-          ? removeFromServerCartHandler
-          : () => {
-            log('Error is here...=)');
-          }
-      }
+      onClick={type === 'button' ? removeFromServerCartHandler : onClick}
     >
       {children}
     </Component>
@@ -76,6 +70,7 @@ LinkUnderline.propTypes = {
   type: PropTypes.string,
   productId: PropTypes.string,
   isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 LinkUnderline.defaultProps = {
@@ -85,4 +80,5 @@ LinkUnderline.defaultProps = {
   type: '',
   productId: '',
   isDisabled: false,
+  onClick: () => { },
 };

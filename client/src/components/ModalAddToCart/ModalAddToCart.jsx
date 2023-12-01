@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import SingleProductSwiper from '../SingleProductSwiper/SingleProductSwiper';
 import Button from '../Button/Button';
@@ -12,14 +11,14 @@ import styles from './ModalAddToCart.module.scss';
 
 const { log } = console;
 
-function ModalAddToCart() {
-  // const {
+function ModalAddToCart(props) {
+  const {
   //   actions: { toggleCartWithLoginHandler, toggleWishlistWithLoginHandler },
-  //   handleModalAddToCart,
-  // } = props;
-  const selectedProduct = useSelector(
-    (state) => state.products.selectedProduct,
-  );
+    handleModalAddToCart,
+  } = props;
+
+  const selectedProduct = useSelector((state) => state.products.selectedProduct);
+
   log(selectedProduct);
   return (
     <div className={styles.modal_add_to_cart__container}>
@@ -50,7 +49,7 @@ function ModalAddToCart() {
             </div>
             <LinkUnderline
               to={`/product/${selectedProduct.itemNo}`}
-              // handleModalAddToCart={handleModalAddToCart}
+              onClick={handleModalAddToCart}
             >
               View Details
             </LinkUnderline>
@@ -79,7 +78,7 @@ ModalAddToCart.propTypes = {
     toggleCartWithLoginHandler: PropTypes.func,
     toggleWishlistWithLoginHandler: PropTypes.func,
   }),
-  // handleModalAddToCart: PropTypes.func,
+  handleModalAddToCart: PropTypes.func,
 };
 
 ModalAddToCart.defaultProps = {
@@ -87,5 +86,5 @@ ModalAddToCart.defaultProps = {
     toggleCartHandler: () => { },
     toggleWishlistHandler: () => { },
   },
-  // handleModalAddToCart: () => { },
+  handleModalAddToCart: () => { },
 };
