@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
-import cn from "classnames";
-
+import cn from 'classnames';
 
 // COMPONENTS:
 import LoginInput from './LoginInput/LoginInput';
@@ -15,119 +15,134 @@ import { userLoginUserAction } from '../../store/user/user.slice';
 import styles from './LoginForm.module.scss';
 import { toast } from 'react-toastify';
 
-import ButtonHeader from "../ButtonHeader/ButtonHeader";
+import ButtonHeader from '../ButtonHeader/ButtonHeader';
 
-
-import LogoIcon from "../Header/icons/LogoIcon";
-import { Link } from "react-router-dom";
-import validationSchema from "./validationLogin.js";
-import { setModal } from "../../store/modal/modal.slice.js";
-
+import LogoIcon from '../Header/icons/LogoIcon';
+import { Link } from 'react-router-dom';
+import validationSchema from './validationLogin.js';
+import { setModal } from '../../store/modal/modal.slice.js';
 
 function LoginForm(props) {
+  const navigate = useNavigate();
+  const {
+    actions: { getCart, getWishlist },
+  } = props;
 
-    const {
-        actions: {
-            getCart,
-            getWishlist,
-        }
-    } = props
+  const initialValues = {
+    loginOrEmail: '',
+    password: '',
+  };
 
+  const mockValue = {
+    loginOrEmail: 'customer@gmail.com',
+    password: '1111111',
+  };
 
-    const initialValues = {
-        loginOrEmail: '',
-        password: '',
-    };
+  /* --------------------------- INIT HOOKS: --------------------------- */
 
-    const mockValue = {
-        loginOrEmail: 'customer@gmail.com',
-        password: '1111111',
-    };
+  const dispatch = useDispatch();
 
-    /* --------------------------- INIT HOOKS: --------------------------- */
+  /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
-    const dispatch = useDispatch();
+  // USER API:
+  const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
+    useLoginUserMutation();
 
-    /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
-    // USER API:
-    const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
-        useLoginUserMutation();
+  const isLoginSuccessHandler = () => {
+    if (loginIsSuccess && loginUserToken) {
+      toast.success('You was successfully logged in!');
+      dispatch(userLoginUserAction(loginUserToken));
+      localStorage.setItem('token', loginUserToken);
+      getWishlist(loginUserToken);
+      getCart(loginUserToken);
+    }
+  };
 
-    /* --------------------------- COMPONENT LOGIC: --------------------------- */
+  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess]);
 
-
-    const isLoginSuccessHandler = () => {
-        if (loginIsSuccess && loginUserToken) {
-            console.log(loginUserToken)
-            toast.success('You was successfully logged in!')
-            dispatch(userLoginUserAction(loginUserToken));
-            localStorage.setItem('token', loginUserToken);
-            getWishlist(loginUserToken);
-            getCart(loginUserToken);
-        }
-    };
-
-    useEffect(() => isLoginSuccessHandler(), [loginIsSuccess]);
-
-
-    return (
-        <>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={(values) => {
-                    console.log('something happen');
-                    console.log(values);
-                    loginUser(values)
-                }}>
-                <Form className={styles.form}>
-                    <div className={styles.logoIcon}><LogoIcon /></div>
-                    <h2 className={styles.title}>Sing in Bud<span
-                        className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
-                    </h2>
-                    <div className={styles.wrapperLogin}>
-                        <LoginInput
-                            className={styles.loginInput}
-                            name="loginOrEmail"
-                            type="email"
-                            placeholder="Login"
-                            label="Username or email address" />
-                        <div className={styles.passwordInput}>
-                            <LoginInput
-                                className={styles.loginInput}
-                                name="password"
-                                type="password"
-                                placeholder="Password"
-                                label="Password" />
-                            <Link
-                                to="/"
-                                className={styles.forgotPassword}
-                            >
-                                Forgot password?
-                            </Link>
-                            <ButtonHeader className={styles.btnLogin} type="submit">
-                                Sign in
-                            </ButtonHeader>
-                        </div>
-                    </div>
-                </Form>
-            </Formik>
-            <div className={styles.footerInput}>
-                <ButtonHeader
-                    className={styles.btnLogin}
-                    type="submit"
-                    onClick={() => loginUser(mockValue)}
-                >DEMO</ButtonHeader>
-                <Link
-                    to="/registration"
-                    className={styles.createAcc}
-                    onClick={() => dispatch(setModal(false))}
-                >Create an account</Link>
+  return (
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          console.log('something happen');
+          console.log(values);
+          loginUser(values);
+        }}
+      >
+        <Form className={styles.form}>
+          <div className={styles.form_name}>
+            <h2 className={styles.title}>Sing in</h2>
+            <div className={styles.logoIcon}>
+              <LogoIcon />
             </div>
-        </>
-    );
-}
+            <p className={styles.title}>
+              Bud
+              <span className={cn(styles.header_logoTitle, styles.accentColor)}>
+                Wellness
+              </span>
+            </p>
+          </div>
+          {/* <h2 className={styles.title}>Sing in Bud<span
+                        className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
+                    </h2> */}
 
+          <div className={styles.wrapperLogin}>
+            <LoginInput
+              className={styles.loginInput}
+              name="loginOrEmail"
+              type="email"
+              placeholder="Login"
+              label="Username or email address"
+            />
+            <div className={styles.passwordInput}>
+              <LoginInput
+                className={styles.loginInput}
+                name="password"
+                type="password"
+                placeholder="Password"
+                label="Password"
+              />
+              <Link to="/" className={styles.forgotPassword}>
+                Forgot password?
+              </Link>
+            </div>
+            <ButtonHeader className={styles.btnLogin} type="submit">
+              Sign in
+            </ButtonHeader>
+            {/* <Link
+          to="/registration"
+          className={styles.createAcc}
+          onClick={() => dispatch(setModal(false))}
+        >
+          Create an account
+        </Link> */}
+            <ButtonHeader
+              className={styles.btnCreate}
+              onClick={() => {
+                dispatch(setModal(false));
+                navigate('/registration');
+              }}
+            >
+              Create an account
+            </ButtonHeader>
+          </div>
+        </Form>
+      </Formik>
+      <div className={styles.footerInput}>
+        <ButtonHeader
+          className={styles.btnLogin}
+          type="submit"
+          onClick={() => loginUser(mockValue)}
+        >
+          DEMO
+        </ButtonHeader>
+      </div>
+    </>
+  );
+}
 
 export default LoginForm;

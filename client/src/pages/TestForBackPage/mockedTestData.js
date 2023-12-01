@@ -773,4 +773,162 @@ export const productsJSON = [
         "Many use this strain to help treat insomnia and aid them in getting a good night's rest",
     },
   },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/hero01.png',
+      '/images/hawaiian_haze_2.png',
+      '/images/hawaiin_haze_3.png',
+    ],
+    quantity: 3,
+    rate: 4.3,
+    categories: 'Flowers',
+    name: 'Hawaiian Haze',
+    size: 15,
+    sizeType: 'g',
+    currentPrice: 38.0,
+    previousPrice: 45.0,
+    plantType: 'Sativa',
+    thc: 16,
+    cbd: 1,
+    effects: ['Energetic', 'Talkative', 'Uplifted'],
+    tags: ['Pretty smooth', 'Flowers'],
+    itemNo: 450389,
+    description: {
+      short:
+        'This sweet strain will infuses you with an invigorating euphoria perfect for outdoor activities and social gatherings',
+      complection:
+        'Hawaiian Haze is a sativa marijuana strain that produces some high-quality sativa effects. A mix of Hawaiian and Haze genetics, these light, airy buds will have your head in the clouds. Many users also report that it makes them sociable and talkative. Hawaiian Haze’s floral smell and taste of tropical fruit might just have you daydreaming about an island vacation.',
+    },
+    reviews: [
+      {
+        fullName: 'Sara',
+        reviewRating: 5,
+        reviewDate: 'Novemver 21, 2022 at 11:44 am',
+        feedback:
+          'This strain is absolutely amazing. Not only does it taste great, but it hits pretty smooth too. Also, you dont need to smoke a lot to get high. I bought a quarter and normally that would last me a day, but I only had half a gram of it and I was flying.',
+        benefit: 'Pretty smooth, absolutely amazing.',
+        disadvantages: 'Dry eyes, paranoid.',
+      },
+      {
+        fullName: 'Nikki Cala',
+        reviewRating: 5,
+        reviewDate: 'June 9, 2021 at 17:14 pm',
+        reviewText:
+          ' If you have things to do and need to be medicated.. This is the strain!',
+        feedback:
+          'The smell is what instantly hits you as you open the jar. Its like a blast of tropical fruits, or flowers, and the first taste of the vape follows suit. ',
+        benefit: 'Amazing smell, euphoric',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'sativa plant',
+      flavors: 'Mango, tropical, pineapple',
+      recommendedUsage:
+        'Recommend this strain to anyone with anxiety, depression, or insomnia',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/hero02.png',
+      '/images/sour-diesel_2.png',
+      '/images/sour-diesel_3.png',
+    ],
+    quantity: 7,
+    rate: 4.2,
+    categories: 'Flowers',
+    name: 'Sour Diesel',
+    size: 20,
+    sizeType: 'g',
+    currentPrice: 35.0,
+    previousPrice: 44.0,
+    plantType: 'Sativa',
+    thc: 19,
+    cbd: 0,
+    effects: ['Energetic', 'Happy', 'Relaxed'],
+    tags: ['Sativa', 'Flowers'],
+    itemNo: 418789,
+    description: {
+      short:
+        'This strain features a pungent smells like diesel. It helps to relieve symptoms associated with depression, pain, and stress',
+      complection:
+        'Sour Diesel, also known as "Sour D" and "Sour Deez," is a popular sativa marijuana strain made by crossing Chemdawg and Super Skunk. Sour Diesel effects are dreamy, cerebral, fast-acting and energizing. This strain features a pungent flavor profile that smells like diesel. Medical marijuana patients choose Sour Diesel to help relieve symptoms associated with depression, pain, and stress. Fun fact: Sour Diesel first became popular in the early 1990s and has been legendary ever since.',
+    },
+    reviews: [
+      {
+        fullName: 'Naomi Vera',
+        reviewRating: 5,
+        reviewDate: 'March 17, 2021 at 11:49 am',
+        feedback:
+          'I have only smoked the flower version of sour diesel thus far and lately Ihave been smoking alot of wax, kief, and hash, so when I finally for the 1st time tried Sour Diesel (since Im normally an indica or hybrid guy), it took me awhile to finally get a chance to try sour d and all I could find at the dispensaries at the time here in Sacramento was the flower/buds, so I bought an 8th the 1st time and I got home and immediately packed a bowl with it and holy shit I was surprised and in a good way.',
+        benefit:
+          'Many medical cannabis users appreciate Sour Diesel for its potential to alleviate symptoms of stress, depression, and fatigue.',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Sativa plant',
+      flavors: 'Combination of earthy, diesel, and citrus flavors',
+      recommendedUsage:
+        'It helps to relieve symptoms associated with depression, pain, and stress',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/hero03.png',
+      '/images/northern_lights_2.png',
+      '/images/northern_lights_3.png',
+    ],
+    quantity: 9,
+    rate: 4.9,
+    categories: 'Flowers',
+    name: 'Northern Lights',
+    size: 18,
+    sizeType: 'g',
+    currentPrice: 41.0,
+    previousPrice: 50.0,
+    plantType: 'Indica',
+    thc: 18,
+    cbd: 1,
+    effects: ['Stimulating', 'Energetic', 'Happy'],
+    tags: ['Indica', 'Flowers'],
+    itemNo: 459279,
+    description: {
+      short:
+        'It relaxing muscles and easing the mind, help relieve symptoms associated with depression, stress, pain and insomnia',
+      complection:
+        'Northern Lights, also known as "NL", is an indica marijuana strain made by crossing Afghani with Thai. Northern Lights produces euphoric effects that settle in firmly throughout the body, relaxing muscles and easing the mind. Consumers say this strain has a pungently sweet and spicy flavor profile that is smooth on the exhale.',
+    },
+    reviews: [
+      {
+        fullName: 'Ben Tierry',
+        reviewRating: 5,
+        reviewDate: 'February 15, 2022 at 19:10 pm',
+        feedback:
+          'Me and my friend hit this out of a bong one night in a hurry, some asshole played a joke on us and said the cops came right as we hit a giant nugget; what occurred next was legendary to us. We sat in my car, in a parking lot for 4 hours straight unable to move, and staring at the stars, after that time we drove (with great difficulty) to a restruant where we stared at our food for 2 hours before we came down. We have never even came close to being this high again, it was the strongest stuff I have ever came into contact with.',
+        benefit: 'Euphoric effect',
+        disadvantages: 'Dry mouth, dizzy',
+      },
+      {
+        fullName: 'Penelopa',
+        reviewRating: 5,
+        reviewDate: 'April 11, 2021 at 08:14 am',
+        reviewText:
+          'The purple undertones add an extra layer of aesthetic appeal.',
+        feedback:
+          'I enjoy Northern Lights! Cannabis preferences can vary widely among individuals, and Northern Lights is known for its calming and relaxing effects.',
+        benefit: 'Relaxed effeect',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'indica plant',
+      flavors: 'Pine, herbal, earthy',
+      recommendedUsage:
+        'It help relieve symptoms associated with depression, stress, pain and insomnia',
+    },
+  },
 ];

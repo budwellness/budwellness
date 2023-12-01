@@ -14,6 +14,7 @@ SwiperCore.use([Navigation, Thumbs]);
 
 function SingleProductSwiper({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   return (
     <div className={styles.wrap}>
       <Swiper

@@ -1,27 +1,32 @@
 .label {
-  font-size: 14px;
-  text-align: left;
-  margin-bottom: 8px;
-  position: relative;
+  // font-size: 14px;
+  // text-align: left;
+  // margin-bottom: 8px;
+  // position: relative;
+  font-weight: 700;
+  line-height: 25.5px;
+  font-family: $font-nunito;
+  font-size: 17px;
+  color: $main-green;
+  
 }
 
 .errorInput {
   color: red;
   font-size: 10px;
-  //margin-top: 5px;
-  //text-align: left;
-  position: absolute;
-  top: 50px;
   bottom: 0;
-  left: 0;
   width: 200px;
 }
 
 .formItem {
-  display: block;
   width: 100%;
-  padding: 4px;
+  height: 40px;
+  padding: 5px 12px;
+  font-family: $font-montserrat;
+  font-weight: 400;
   font-size: 14px;
-  line-height: 18px;
-  margin-bottom: 20px;
+  line-height: 20px;
+  outline: none;
+  border-radius: 20px;
+  border: 1px solid $tertiary-green;
 }

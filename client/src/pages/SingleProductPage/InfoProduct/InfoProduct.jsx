@@ -100,7 +100,7 @@ function InfoProduct({ data }) {
       </div>
       <p className={styles.descShort}>{data.description.short}</p>
       <p className={styles.price}>
-        {data.currentPrice}
+        {data.currentPrice.toFixed(2)}
         $
       </p>
       <div className={styles.buttonWrapper}>
