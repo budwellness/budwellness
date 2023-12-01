@@ -7,45 +7,51 @@ import PropTypes from 'prop-types';
 import { useRemoveFromCartMutation } from '../../store/serverResponse/danitApi.cart';
 
 import styles from './LinkUnderline.module.scss';
-import { removeItemFromCartAction } from '../../store/cart/cart.slice';
+import { removeItemFromCartAction, removeItemFromLocalCartAction } from '../../store/cart/cart.slice';
 
 const { log } = console;
 export default function LinkUnderline(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
-    to, children, style, type, productId, isDisabled,
+    to, children, style, type, productId, itemNo, isDisabled,
   } = props;
 
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { token: tokenReduxStore } = useSelector((state) => state.user);
+  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
-  const [removeFromCart, { isSuccess: isSuccessRemoveFromCart }] = useRemoveFromCartMutation();
+  const [removeFromCart] = useRemoveFromCartMutation();
   const Component = type ? 'button' : Link;
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
   const removeFromServerCartHandler = () => {
-    const requestData = {
-      productId,
-      token: tokenReduxStore,
-    };
-    try {
-      removeFromCart(requestData);
-    } catch (error) {
-      log(error);
+    if (isUserLogin) {
+      const requestData = {
+        productId,
+        token: tokenReduxStore,
+      };
+      try {
+        removeFromCart(requestData)
+          .unwrap()
+          .then(() => dispatch(removeItemFromCartAction(productId)));
+      } catch (error) {
+        log(error);
+      }
+    } else {
+      const localCart = JSON.parse(localStorage.getItem('localCart'));
+      const index = localCart.findIndex(
+        (product) => product.itemNo === itemNo
+      );
+      localCart.splice(index, 1);
+      localStorage.setItem('localCart', JSON.stringify(localCart));
+      dispatch(removeItemFromLocalCartAction(itemNo))
     }
   };
-
-  useEffect(() => {
-    if (isSuccessRemoveFromCart) {
-      dispatch(removeItemFromCartAction(productId));
-    }
-  }, [dispatch, isSuccessRemoveFromCart, productId]);
 
   /* ------------------------------------------------ */
 
@@ -75,6 +81,7 @@ LinkUnderline.propTypes = {
   style: PropTypes.shape({}),
   type: PropTypes.string,
   productId: PropTypes.string,
+  itemNo: PropTypes.string,
   isDisabled: PropTypes.bool,
 };
 
@@ -84,5 +91,6 @@ LinkUnderline.defaultProps = {
   style: {},
   type: '',
   productId: '',
+  itemNo: '',
   isDisabled: false,
 };

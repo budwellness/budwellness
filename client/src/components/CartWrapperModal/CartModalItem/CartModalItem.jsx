@@ -12,7 +12,9 @@ import LinkUnderline from '../../LinkUnderline/LinkUnderline';
 // CART IMPORTS:
 import {
   decreaseCartItemQuantityAction,
+  decreaseLocalCartItemQuantityAction,
   increaseCartItemQuantityAction,
+  increaseLocalCartItemQuantityAction,
 } from '../../../store/cart/cart.slice';
 import {
   useAddToCartMutation,
@@ -66,6 +68,7 @@ function CartModalItem(props) {
       const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
       localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity + 1
       localStorage.setItem('localCart', JSON.stringify(localCartProducts))
+      dispatch(increaseLocalCartItemQuantityAction(product._id))
     }
   };
 
@@ -93,6 +96,7 @@ function CartModalItem(props) {
       const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
       localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity - 1
       localStorage.setItem('localCart', JSON.stringify(localCartProducts))
+      dispatch(decreaseLocalCartItemQuantityAction(product._id))
       // код который срабатывает когда полдьзователь не залогинен
     }
   };
@@ -134,6 +138,7 @@ function CartModalItem(props) {
         <LinkUnderline
           type="button"
           productId={product._id}
+          itemNo={product.itemNo}
           style={{ order: 4, marginTop: '10px' }}
         >
           Remove
@@ -148,6 +153,7 @@ CartModalItem.propTypes = {
     cartQuantity: PropTypes.number,
     product: PropTypes.shape({
       _id: PropTypes.string,
+      itemNo: PropTypes.string,
       name: PropTypes.string,
       imageUrls: PropTypes.arrayOf(PropTypes.string),
       currentPrice: PropTypes.number,

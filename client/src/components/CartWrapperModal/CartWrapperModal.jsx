@@ -15,22 +15,21 @@ function CartWrapperModal() {
   const [localCartData, setLocalCartData] = useState(JSON.parse(localStorage.getItem('localCart')));
   const [fetchedLocalCardProducts, setFetchedLocalCardProducts] = useState([]);
   const [localCartModalItem, setLocalCartModalItem] = useState([]);
+  const [cartModalItem, setCartModalItem] = useState([]);
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
   // const {isCartModal} = useSelector((state) => state.cartModal);
   const { isCartModal } = useSelector((state) => state.cartModal);
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
   const { isUserLogin } = useSelector((state) => state.user);
-  const { localCart: localCartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   const countTotalPriceHandler = () =>
     isUserLogin ?
       countTotalPrice(cartStoreData) :
-      countTotalPrice(fetchedLocalCardProducts)
-
+      countTotalPrice(localCartStoreData)
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -42,24 +41,25 @@ function CartWrapperModal() {
           products={product}
         />
       )))
+    } else if (isCartModal && isUserLogin) {
+      setCartModalItem(cartStoreData.map((product) => (
+        <CartModalItem
+          key={product._id}
+          products={product}
+        />
+      )))
     }
-  }, [isCartModal]);
+  }, [isCartModal, cartStoreData, localCartStoreData]);
 
-  const cartProducts = cartStoreData.map((product) => (
-    <CartModalItem
-      key={product._id}
-      products={product}
-    />
-  ));
 
   return (
     <>
       {isUserLogin
         ? (
           <ul className={styles.list}>
-            {cartProducts.length === 0
+            {cartModalItem.length === 0
               ? <p> Cart is empty...</p>
-              : cartProducts}
+              : cartModalItem}
           </ul>
         )
         : (

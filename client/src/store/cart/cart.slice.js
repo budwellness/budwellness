@@ -46,12 +46,30 @@ const cartSlice = createSlice({
         state.cart[index].cartQuantity = state.cart[index].cartQuantity + 1;
       }
     },
+    increaseLocalCartItemQuantity: (state, { payload }) => {
+      const index = state.localCart.findIndex(
+        (item) => item.product._id === payload
+      );
+      if (index !== -1) {
+        state.localCart[index].cartQuantity =
+          state.localCart[index].cartQuantity + 1;
+      }
+    },
     decreaseCartItemQuantity: (state, { payload }) => {
       const index = state.cart.findIndex(
         (item) => item.product._id === payload
       );
       if (index !== -1 && state.cart[index].cartQuantity >= 1) {
         state.cart[index].cartQuantity = state.cart[index].cartQuantity - 1;
+      }
+    },
+    decreaseLocalCartItemQuantity: (state, { payload }) => {
+      const index = state.localCart.findIndex(
+        (item) => item.product._id === payload
+      );
+      if (index !== -1 && state.localCart[index].cartQuantity >= 1) {
+        state.localCart[index].cartQuantity =
+          state.localCart[index].cartQuantity - 1;
       }
     },
   },
@@ -65,6 +83,8 @@ export const {
   removeItemFromCart: removeItemFromCartAction,
   removeItemFromLocalCart: removeItemFromLocalCartAction,
   increaseCartItemQuantity: increaseCartItemQuantityAction,
+  increaseLocalCartItemQuantity: increaseLocalCartItemQuantityAction,
   decreaseCartItemQuantity: decreaseCartItemQuantityAction,
+  decreaseLocalCartItemQuantity: decreaseLocalCartItemQuantityAction,
 } = cartSlice.actions;
 export default cartSlice.reducer;

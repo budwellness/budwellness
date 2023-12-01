@@ -1,20 +1,31 @@
 const cartButtonStateHandler = (
   globalUserState,
-  globalUserDataState,
   localButtonState,
   localButtonStateSetter,
   productId,
+  globalCartDataState = [],
+  globalLocalCartDataState = []
 ) => {
+  // если юзер залогинен
   if (globalUserState) {
-    if (globalUserDataState.length > 0) {
+    // если у залогиненого юзера карта в редаксе не пустая
+    if (globalCartDataState.length > 0) {
+      // устанавливаем локальный стейт в карточке на тру если продукт имеется в корзине
       localButtonStateSetter(
-        globalUserDataState.some((p) => p.product._id === productId),
+        globalCartDataState.some((p) => p.product._id === productId)
       );
     } else if (localButtonState) {
       localButtonStateSetter(!localButtonState);
     }
   } else {
     localButtonStateSetter(false);
+    if (globalLocalCartDataState.length > 0) {
+      localButtonStateSetter(
+        globalLocalCartDataState.some((p) => p.product._id === productId)
+      );
+    } else if (localButtonState) {
+      localButtonStateSetter(!localButtonState);
+    }
   }
 };
 
