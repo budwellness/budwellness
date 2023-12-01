@@ -98,7 +98,11 @@ function PopularSwiperSlide(props) {
                   [styles.actionLink]: !isExistInCart,
                   [styles.actionLink_active]: isExistInCart,
                 })}
-                onClick={() => isUserLogin ? toggleCartWithLoginHandler() : toggleCartWithoutLoginHandler()}
+                onClick={
+                  () => isUserLogin ?
+                    toggleCartWithLoginHandler() :
+                    toggleCartWithoutLoginHandler()
+                }
               >
                 <CartIcon className={styles.styleIcon} />
               </button>

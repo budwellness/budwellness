@@ -26,11 +26,16 @@ const { log } = console;
 function ProductCard(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
-    actions: { toggleWishlistHandler, toggleCartHandler },
+    actions: {
+      toggleWishlistHandler,
+      toggleCartHandler,
+      toggleLocalCartHandler,
+    },
     product,
   } = props;
 
   const {
+    _id,
     imageUrls,
     previousPrice,
     currentPrice,
@@ -57,7 +62,7 @@ function ProductCard(props) {
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist,
   );
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
   const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
@@ -74,11 +79,10 @@ function ProductCard(props) {
   // CART:
 
   const toggleCartWithLoginHandler = () => {
-    if (isUserLogin) {
-      toggleCartHandler(product._id, tokenReduxStore, cartStoreData);
-    } else {
-      log('Please login first');
-    }
+    toggleCartHandler(product, tokenReduxStore, cartStoreData);
+  };
+  const toggleCartWithoutLoginHandler = () => {
+    toggleLocalCartHandler(product, localCartStoreData);
   };
 
   // MODAL:
@@ -103,12 +107,13 @@ function ProductCard(props) {
   useEffect(
     () => cartButtonStateHandler(
       isUserLogin,
-      cartStoreData,
       isExistInCart,
       setIsExistInCart,
       product._id,
+      cartStoreData,
+      localCartStoreData,
     ),
-    [cartStoreData, isUserLogin],
+    [cartStoreData, isUserLogin, localCartStoreData],
   );
 
   return (
@@ -186,7 +191,11 @@ function ProductCard(props) {
             whiteBtn_active: isExistInCart,
           })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
-          onClick={toggleCartWithLoginHandler}
+          onClick={
+            () => isUserLogin ?
+              toggleCartWithLoginHandler() :
+              toggleCartWithoutLoginHandler()
+          }
         />
       </div>
       {isModalAddToCart && (
