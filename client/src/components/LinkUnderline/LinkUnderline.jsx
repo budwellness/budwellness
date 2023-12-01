@@ -57,6 +57,7 @@ export default function LinkUnderline(props) {
       type={type}
       disabled={isDisabled}
       onClick={type === 'button' ? removeFromServerCartHandler : onClick}
+        // : () => {log('Error is here...=)')}
     >
       {children}
     </Component>
