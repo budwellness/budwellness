@@ -10,6 +10,9 @@ const cartSlice = createSlice({
   name: 'cartSlice',
   initialState,
   reducers: {
+    setLocalCart: (state, { payload }) => {
+      state.localCart = payload;
+    },
     setCart: (state, { payload }) => {
       state.cart = payload;
     },
@@ -45,6 +48,7 @@ const cartSlice = createSlice({
 
 export const {
   setCart: setCartAction,
+  setLocalCart: setLocalCartAction,
   addItemToCart: addItemToCartAction,
   removeItemFromCart: removeItemFromCartAction,
   increaseCartItemQuantity: increaseCartItemQuantityAction,

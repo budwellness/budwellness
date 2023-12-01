@@ -9,14 +9,11 @@ const useFetchLocalCardProducts = () => {
   const [getProduct] = useLazyGetProductQuery();
 
   const fetchLocalCardProducts = async (arrOfItemNo) => {
-    const requests = Promise.all(
-      arrOfItemNo.map((itemNo) => getProduct(itemNo))
+    const requests = await Promise.all(
+      arrOfItemNo.map((itemNo) => getProduct(itemNo).unwrap())
     );
-    console.log(requests);
-    // const data = await Promise.all(requests);
-    // const actualData = data.map((result) => result.value);
-    // console.log(actualData);
-    // return data;
+
+    return requests;
   };
 
   return fetchLocalCardProducts;

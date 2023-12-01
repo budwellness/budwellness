@@ -31,7 +31,7 @@ import { setWishlistAction } from './store/wishlist/wishList.slice';
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
 // CART IMPORTS:
-import { setCartAction } from './store/cart/cart.slice';
+import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
@@ -48,6 +48,7 @@ import LoginForm from "./components/LoginForm/LoginForm.jsx";
 import { setModal } from "./store/modal/modal.slice.js";
 import Registration from "./pages/RegistrationPage/Registration.jsx";
 import OurTeam from './pages/OurTeam/OurTeam';
+import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 
 
 const { log } = console;
@@ -63,6 +64,7 @@ function App() {
 
   const dispatch = useDispatch();
 
+
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
   // WISHLIST API:
@@ -72,7 +74,8 @@ function App() {
   ] = useLazyGetWishlistQuery();
 
   const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
-      useLazyGetCartQuery();
+    useLazyGetCartQuery();
+  const fetchLocalCartProducts = useFetchLocalCardProducts();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
@@ -84,12 +87,25 @@ function App() {
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    const userLocalCardData = localStorage.getItem('localCard');
-    const userLocalWishlistData = localStorage.getItem('localWishlist');
+    const userLocalCartData = JSON.parse(localStorage.getItem('localCart'));
     if (!localStorageToken) {
-      // 1. смотрим локал стор, есть ли там уже добавленные продукты
-      if (userLocalCardData || userLocalWishlistData)
-        2.
+      if (userLocalCartData && userLocalCartData.length > 0) {
+        const productsItemNo = userLocalCartData.map((product) => product.itemNo);
+        const fetchLocalCardProductsHandler = async () => {
+          await fetchLocalCartProducts(productsItemNo)
+            .then((response) => {
+              dispatch(setLocalCartAction(response.map(product => {
+                const localCardProductQuantity = userLocalCartData.find(
+                  (item) => item.itemNo === product.itemNo
+                );
+                return { product, cartQuantity: localCardProductQuantity.cartQuantity }
+              })))
+            })
+        }
+        fetchLocalCardProductsHandler();
+      } else {
+        localStorage.setItem('localCart', JSON.stringify([]))
+      }
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired')
@@ -126,38 +142,38 @@ function App() {
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
 
   return (
-      <>
-        <ToastContainer
-            position="bottom-right"
-            autoClose={3000}
-            theme="colored"
-        />
-        <ScrollToTop />
-        <Header actions={{ getCart, getWishlist }} />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shop" element={<ProductsPage />} />
-          <Route path="/product/:productID" element={<SingleProductPage />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/team" element={<OurTeam />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/test" element={<TestForBackPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        <Footer />
-        <CartModal />
-        {isOpenModal && (
-            isUserLogin
-                ? <button type="button" onClick={logoutHandler}>Logout</button>
-                : (
-                    <Modal handleModal={handleModal}>
-                      <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-                    </Modal>
-                )
-        )}
-      </>
+    <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        theme="colored"
+      />
+      <ScrollToTop />
+      <Header actions={{ getCart, getWishlist }} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shop" element={<ProductsPage />} />
+        <Route path="/product/:productID" element={<SingleProductPage />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/team" element={<OurTeam />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/test" element={<TestForBackPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <Footer />
+      <CartModal />
+      {isOpenModal && (
+        isUserLogin
+          ? <button type="button" onClick={logoutHandler}>Logout</button>
+          : (
+            <Modal handleModal={handleModal}>
+              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+            </Modal>
+          )
+      )}
+    </>
   );
 }
 

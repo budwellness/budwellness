@@ -18,7 +18,7 @@ function PopularSwiperSlide(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
     products: productItem,
-    actions: { toggleCartHandler, toggleWishlistHandler },
+    actions: { toggleCartHandler, toggleWishlistHandler, toggleLocalCartHandler },
   } = props;
 
   /* --------------------------- INIT HOOKS: --------------------------- */
@@ -30,7 +30,7 @@ function PopularSwiperSlide(props) {
   const [isExistInCart, setIsExistInCart] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
   const { isUserLogin, token: tokenReduxStore } = useSelector(
     (state) => state.user,
   );
@@ -50,6 +50,9 @@ function PopularSwiperSlide(props) {
 
   const toggleCartWithLoginHandler = () => {
     toggleCartHandler(productItem, tokenReduxStore, cartStoreData);
+  };
+  const toggleCartWithoutLoginHandler = () => {
+    toggleLocalCartHandler(productItem, localCartStoreData);
   };
 
   // MODAL:
@@ -94,7 +97,7 @@ function PopularSwiperSlide(props) {
                   [styles.actionLink]: !isExistInCart,
                   [styles.actionLink_active]: isExistInCart,
                 })}
-                onClick={() => toggleCartWithLoginHandler()}
+                onClick={() => isUserLogin ? toggleCartWithLoginHandler() : toggleCartWithoutLoginHandler()}
               >
                 <CartIcon className={styles.styleIcon} />
               </button>

@@ -23,7 +23,10 @@ export default function PopularSwiper() {
   const [popularCards, setPopularCards] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
-  const toggleCartHandler = useToggleCart();
+  const {
+    toggleCart: toggleCartHandler,
+    toggleLocalCart: toggleLocalCartHandler,
+  } = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
@@ -44,6 +47,7 @@ export default function PopularSwiper() {
             <PopularSwiperSlide
               products={productItem}
               actions={{
+                toggleLocalCartHandler,
                 toggleCartHandler,
                 toggleWishlistHandler,
               }}

@@ -57,7 +57,7 @@ function Header() {
     (state) => state.user,
   );
 
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
   const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
@@ -146,9 +146,12 @@ function Header() {
             </Link>
             <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
               <CartIcon />
-              {isUserLogin && cartStoreData.length > 0 && (
+              {(isUserLogin && cartStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
-              )}
+              ))}
+              {(!isUserLogin && localCartStoreData.length > 0 && (
+                <span className={styles.wishlistCounter}>{localCartStoreData.length}</span>
+              ))}
             </ButtonHeader>
           </div>
         </div>

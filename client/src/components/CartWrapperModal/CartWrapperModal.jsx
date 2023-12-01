@@ -7,36 +7,43 @@ import CartModalItem from './CartModalItem/CartModalItem';
 import countTotalPrice from '../../helpers/countTotalPrice';
 
 import styles from './CartWrapperModal.module.scss';
+import useFetchLocalCardProducts from '../../hooks/useFetchLocalCardProducts';
+
+const { log } = console;
 
 function CartWrapperModal() {
-  const [localCartData, setLocalCartData] = useState([])
-  const [localCartProducts, setLocalCartProducts] = useState(null)
+  const [localCartData, setLocalCartData] = useState(JSON.parse(localStorage.getItem('localCart')));
+  const [fetchedLocalCardProducts, setFetchedLocalCardProducts] = useState([]);
+  const [localCartModalItem, setLocalCartModalItem] = useState([]);
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
   // const {isCartModal} = useSelector((state) => state.cartModal);
+  const { isCartModal } = useSelector((state) => state.cartModal);
   const { cart: cartStoreData } = useSelector((state) => state.cart);
-  const { isUserLogin } = useSelector((state) => state.user)
+  const { isUserLogin } = useSelector((state) => state.user);
+  const { localCart: localCartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
-  const countTotalPriceHandler = () => countTotalPrice(cartStoreData);
+  const countTotalPriceHandler = () =>
+    isUserLogin ?
+      countTotalPrice(cartStoreData) :
+      countTotalPrice(fetchedLocalCardProducts)
+
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
   useEffect(() => {
-    if (isUserLogin) {
-    } else {
-      setLocalCartData(JSON.parse(localStorage.getItem('localCart')));
+    if (isCartModal && !isUserLogin) {
+      setLocalCartModalItem(localCartStoreData.map((product) => (
+        <CartModalItem
+          key={product.product._id}
+          products={product}
+        />
+      )))
     }
-  }, [])
-
-  useEffect(() => {
-    // Если в локалсторе появились продукты, при открытии корзины делаем запрос на них
-
-  }, [localCartData])
-  // Если юзер не залогинен и локал стор не пуст, брать id товаров и делать запрос на них
-
-  //Если юзер залогинен , мигрировать локал стор 
+  }, [isCartModal]);
 
   const cartProducts = cartStoreData.map((product) => (
     <CartModalItem
@@ -47,11 +54,21 @@ function CartWrapperModal() {
 
   return (
     <>
-      <ul className={styles.list}>
-        {cartProducts.length === 0
-          ? <p> Cart is empty...</p>
-          : cartProducts}
-      </ul>
+      {isUserLogin
+        ? (
+          <ul className={styles.list}>
+            {cartProducts.length === 0
+              ? <p> Cart is empty...</p>
+              : cartProducts}
+          </ul>
+        )
+        : (
+          <ul className={styles.list}>
+            {localCartModalItem.length === 0
+              ? <p> Cart is empty...</p>
+              : localCartModalItem}
+          </ul>
+        )}
       <div className={styles.footer}>
         <span className={styles.footerTitle}>Total</span>
         <span className={styles.footerPrice}>
