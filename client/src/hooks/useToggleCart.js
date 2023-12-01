@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
   addItemToCartAction,
+  addItemToLocalCartAction,
   removeItemFromCartAction,
+  removeItemFromLocalCartAction,
 } from '../store/cart/cart.slice';
 
 import {
@@ -46,64 +48,40 @@ const useToggleCart = () => {
     }
   };
 
-  const toggleLocalCart = async (product, localCartStoreData) => {
+  const toggleLocalCart = async (productItem, localCartStoreData) => {
     const localCart = JSON.parse(localStorage.getItem('localCart'));
     const isExist = localCart.some(
-      ({ product: localProduct }) => localProduct.itemNo === product.itemNo
+      ({ itemNo }) => itemNo === productItem.itemNo
     );
     log('isExist', isExist);
     if (isExist) {
-      // пишем логику на удаление
+      const index = localCart.findIndex(
+        ({ itemNo }) => itemNo === productItem.itemNo
+      );
+      if (index !== -1) {
+        localCart.splice(index, 1);
+        localStorage.setItem('localCart', JSON.stringify(localCart));
+      }
+      dispatch(removeItemFromLocalCartAction(productItem.itemNo));
     } else {
       localStorage.setItem(
         'localCart',
         JSON.stringify([
           ...localCart,
-          { itemNo: product.itemNo, cartQuantity: 1 },
+          { itemNo: productItem.itemNo, cartQuantity: 1 },
         ])
       );
-      getProduct(product.itemNo);
+      getProduct(productItem.itemNo)
+        .unwrap()
+        .then((response) =>
+          dispatch(
+            addItemToLocalCartAction({
+              product: response,
+              cartQuantity: 1,
+            })
+          )
+        );
     }
-    // if (localCartStoreData.length > 0) {
-    //   const localCartData = JSON.parse(localCart);
-    //   const isExist = localCartData.some((p) => p.productId === product._id);
-    //   if (isExist) {
-    //     // Если существует, вырезаем из локальной корзины
-    //     const index = localCartData.findIndex(
-    //       (p) => p.productId === product._id
-    //     );
-    //     if (index !== -1) {
-    //       localCartData.splice(index, 1);
-    //       localStorage.setItem('localCart', JSON.stringify(localCartData));
-    //     }
-    //   } else {
-    //     // Если не существует, добавляем в локал стор
-    //     localCartData.push({
-    //       itemNo: product.itemNo,
-    //       quantity: product.quantity,
-    //       cartQuantity: 1,
-    //     });
-    //     localStorage.setItem('localCart', JSON.stringify(localCartData));
-    //   }
-    // } else {
-    //   // Если нету localCart
-    //   // - Добавить ИД продукта в локал сторКарт
-    //   localStorage.setItem(
-    //     'localCart',
-    //     JSON.stringify([
-    //       {
-    //         itemNo: product.itemNo,
-    //         quantity: product.quantity,
-    //         cartQuantity: 1,
-    //       },
-    //     ])
-    //   );
-    // }
-
-    // Если есть localCart
-    // - Посмотреть есть ли такой продукт уже в localCart
-    // Если есть убрать его от туда
-    // Если нету добавить его туда
   };
 
   return { toggleCart, toggleLocalCart };

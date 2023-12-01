@@ -16,8 +16,19 @@ const cartSlice = createSlice({
     setCart: (state, { payload }) => {
       state.cart = payload;
     },
+    addItemToLocalCart: (state, { payload }) => {
+      state.localCart.push(payload);
+    },
     addItemToCart: (state, { payload }) => {
       state.cart = payload;
+    },
+    removeItemFromLocalCart: (state, { payload }) => {
+      const index = state.localCart.findIndex(
+        (item) => item.product.itemNo === payload
+      );
+      if (index !== -1) {
+        state.localCart.splice(index, 1);
+      }
     },
     removeItemFromCart: (state, { payload }) => {
       const index = state.cart.findIndex(
@@ -50,7 +61,9 @@ export const {
   setCart: setCartAction,
   setLocalCart: setLocalCartAction,
   addItemToCart: addItemToCartAction,
+  addItemToLocalCart: addItemToLocalCartAction,
   removeItemFromCart: removeItemFromCartAction,
+  removeItemFromLocalCart: removeItemFromLocalCartAction,
   increaseCartItemQuantity: increaseCartItemQuantityAction,
   decreaseCartItemQuantity: decreaseCartItemQuantityAction,
 } = cartSlice.actions;
