@@ -12,7 +12,10 @@ function WishlistPage() {
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist,
   );
-  const toggleCartHandler = useToggleCart();
+  const {
+    toggleCart: toggleCartHandler,
+    toggleLocalCart: toggleLocalCartHandler
+  } = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
 
   return (
@@ -31,6 +34,7 @@ function WishlistPage() {
                 actions={{
                   toggleWishlistHandler,
                   toggleCartHandler,
+                  toggleLocalCartHandler,
                 }}
               />
             ))

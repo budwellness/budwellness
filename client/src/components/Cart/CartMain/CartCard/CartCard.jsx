@@ -36,7 +36,7 @@ export default function CartCard(props) {
   const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { token: tokenReduxStore } = useSelector((state) => state.user);
+  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   const [addProductToCart] = useAddToCartMutation();
