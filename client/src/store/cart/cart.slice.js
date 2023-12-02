@@ -72,6 +72,9 @@ const cartSlice = createSlice({
           state.localCart[index].cartQuantity - 1;
       }
     },
+    mergeLocalWithServerCart: (state, { payload }) => {
+      state.cart = [...state.cart, ...payload];
+    },
   },
 });
 
@@ -86,5 +89,6 @@ export const {
   increaseLocalCartItemQuantity: increaseLocalCartItemQuantityAction,
   decreaseCartItemQuantity: decreaseCartItemQuantityAction,
   decreaseLocalCartItemQuantity: decreaseLocalCartItemQuantityAction,
+  mergeLocalWithServerCart: mergeLocalWithServerCartAction,
 } = cartSlice.actions;
 export default cartSlice.reducer;

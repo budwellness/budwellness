@@ -43,6 +43,17 @@ export const danitApiCart = createApi({
         },
       }),
     }),
+    updateCart: build.mutation({
+      query: ({ products, token }) => ({
+        url: `${API.API_UPDATE_CART}`,
+        method: 'PUT',
+        headers: {
+          Authorization: token,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(products),
+      }),
+    }),
   }),
 });
 
@@ -51,4 +62,5 @@ export const {
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useDecreaseCartQuantityMutation,
+  useUpdateCartMutation,
 } = danitApiCart;

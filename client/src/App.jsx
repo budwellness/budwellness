@@ -133,7 +133,10 @@ function App() {
 
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
-      dispatch(setCartAction(userCartData.products));
+      dispatch(setCartAction(userCartData.products.map((p) => ({
+        product: p.product,
+        cartQuantity: p.cartQuantity,
+      }))));
     }
   };
 

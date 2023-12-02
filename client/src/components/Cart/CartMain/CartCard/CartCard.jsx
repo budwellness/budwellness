@@ -15,8 +15,11 @@ import {
 } from '../../../../store/serverResponse/danitApi.cart';
 import {
   decreaseCartItemQuantityAction,
+  decreaseLocalCartItemQuantityAction,
   increaseCartItemQuantityAction,
+  increaseLocalCartItemQuantityAction,
   removeItemFromCartAction,
+  removeItemFromLocalCartAction,
 } from '../../../../store/cart/cart.slice';
 
 import styles from './CartCard.module.scss';
@@ -41,61 +44,81 @@ export default function CartCard(props) {
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
   const [addProductToCart] = useAddToCartMutation();
   const [decreaseCartQuantity] = useDecreaseCartQuantityMutation();
-  const [removeFromCart, { isSuccess: isSuccessRemoveFromCart }] = useRemoveFromCartMutation();
+  const [removeFromCart] = useRemoveFromCartMutation();
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
   const increaseCartQuantityHandler = () => {
-    const requestData = {
-      productId: product._id,
-      token: tokenReduxStore,
-    };
-    try {
-      addProductToCart(requestData);
-      dispatch(increaseCartItemQuantityAction(product._id));
-    } catch (error) {
-      log(error);
-      toast.error('Something went wrong...');
+    if (isUserLogin) {
+      const requestData = {
+        productId: product._id,
+        token: tokenReduxStore,
+      };
+      try {
+        addProductToCart(requestData);
+        dispatch(increaseCartItemQuantityAction(product._id));
+      } catch (error) {
+        log(error);
+        toast.error('Something went wrong...');
+      }
+    } else {
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'))
+      const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
+      localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity + 1
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts))
+      dispatch(increaseLocalCartItemQuantityAction(product._id))
     }
   };
 
   /* ------------------------------------------------ */
 
   const decreaseCartQuantityHandler = () => {
-    const requestData = {
-      productId: product._id,
-      token: tokenReduxStore,
-    };
-    try {
-      decreaseCartQuantity(requestData);
-      dispatch(decreaseCartItemQuantityAction(product._id));
-    } catch (error) {
-      log(error);
-      toast.error('Something went wrong...');
+    if (isUserLogin) {
+      const requestData = {
+        productId: product._id,
+        token: tokenReduxStore,
+      };
+      try {
+        decreaseCartQuantity(requestData);
+        dispatch(decreaseCartItemQuantityAction(product._id));
+      } catch (error) {
+        log(error);
+        toast.error('Something went wrong...');
+      }
+    } else {
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'))
+      const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
+      localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity - 1
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts))
+      dispatch(decreaseLocalCartItemQuantityAction(product._id))
     }
   };
 
-  /* ------------------------------------------------ */
+
 
   const removeFromServerCartHandler = () => {
-    const requestData = {
-      productId: product._id,
-      token: tokenReduxStore,
-    };
-    try {
-      removeFromCart(requestData);
-    } catch (error) {
-      log(error);
-      toast.error('Something went wrong...');
+    if (isUserLogin) {
+      const requestData = {
+        productId: product._id,
+        token: tokenReduxStore,
+      };
+      try {
+        removeFromCart(requestData)
+          .unwrap()
+          .then(() => dispatch(removeItemFromCartAction(product._id)));
+      } catch (error) {
+        log(error);
+      }
+    } else {
+      const localCart = JSON.parse(localStorage.getItem('localCart'));
+      const index = localCart.findIndex(
+        (p) => p.itemNo === product.itemNo
+      );
+      localCart.splice(index, 1);
+      localStorage.setItem('localCart', JSON.stringify(localCart));
+      dispatch(removeItemFromLocalCartAction(product.itemNo))
     }
   };
-
-  useEffect(() => {
-    if (isSuccessRemoveFromCart) {
-      dispatch(removeItemFromCartAction(product._id));
-      toast.success('Item was seccessfully removed from cart!');
-    }
-  }, [dispatch, isSuccessRemoveFromCart, product._id]);
 
   return (
     <li className={styles.cart_mainList_item}>
@@ -158,6 +181,7 @@ CartCard.propTypes = {
     product: PropTypes.shape({
       _id: PropTypes.string,
       name: PropTypes.string,
+      itemNo: PropTypes.string,
       imageUrls: PropTypes.arrayOf(PropTypes.string),
       currentPrice: PropTypes.number,
       previousPrice: PropTypes.number,
