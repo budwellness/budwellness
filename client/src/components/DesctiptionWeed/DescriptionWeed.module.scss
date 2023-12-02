@@ -8,18 +8,15 @@
     display: flex;
     justify-content: center;
     padding-top: 140px;
+    align-items: center;
+    width: 100%;
 
     @include for-size(320px) {
-        width: 320px;
+
         flex-direction: column;
     }
 
-    @include for-size(576px) {
-        width: 576px;
-    }
-
     @include for-size(768px) {
-        width: 768px;
         padding-bottom: 60px;
     }
 
@@ -87,6 +84,7 @@
     @include for-size(576px) {
         width: 552px;
         text-align-last: left;
+
         &::before {
             display: none;
         }
@@ -231,6 +229,7 @@
         width: 464px;
         height: 400px;
     }
+
     @media (min-width: 1400px) {
         margin-left: 0;
         width: 387px;
@@ -260,6 +259,7 @@
     @include for-size(992px) {
         width: 464px;
     }
+
     @media (min-width: 1400px) {
         margin-left: 0;
         width: 387px;
@@ -340,6 +340,7 @@
     @include for-size(992px) {
         width: 384px;
         margin-left: -55px;
+
         &::before {
             top: 0px;
             left: -130px;
@@ -391,9 +392,11 @@
             left: -10px;
         }
     }
+
     @include for-size(992px) {
         width: 384px;
         margin-left: -55px;
+
         &::before {
             top: 140px;
             left: -130px;
@@ -445,9 +448,11 @@
             left: -10px;
         }
     }
+
     @include for-size(992px) {
         width: 384px;
         margin-left: -55px;
+
         &::before {
             top: 280px;
             left: -130px;
@@ -479,6 +484,7 @@
         text-align: left;
         width: 277px;
     }
+
     @include for-size(992px) {
         width: 384px;
         text-align: left;
@@ -508,6 +514,7 @@
         width: 277px;
         text-align: left;
     }
+
     @include for-size(992px) {
         width: 384px;
         text-align: left;
