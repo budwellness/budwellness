@@ -25,7 +25,7 @@ function Filter(props) {
   });
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
   // const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
-  const [priceRange, setPriceRange] = useState([0, 200]); 
+  const [priceRange, setPriceRange] = useState([0, 200]);
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
 
@@ -48,7 +48,7 @@ function Filter(props) {
   const clearCategory = (category) => {
     const updatedCategories = { ...selectedCategories };
     updatedCategories[category] = '';
-  
+
     setSelectedCategories(updatedCategories);
 
     formRef.current.reset();
@@ -56,7 +56,7 @@ function Filter(props) {
       .filter(([key, value]) => value !== '')
       .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
       .join('&');
-  
+
     setStartPage(1);
     setSearchParams(`${filterQueryString}`);
   };
@@ -72,9 +72,10 @@ function Filter(props) {
   //   const { name, value } = e.target;
   //   setPriceRange({ ...priceRange, [name]: Number(value) });
   // };
-    const handlePriceChange = (value) => {
-      setPriceRange(value);
-    };
+  const handlePriceChange = (value) => {
+    setPriceRange(value);
+    formHandler();
+  };
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
   };
@@ -95,11 +96,13 @@ function Filter(props) {
         setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
       }
       if (key === 'thc' || key === 'cbd') {
-        filterDataArr.push(`${value}`); 
+        filterDataArr.push(`${value}`);
         continue;
       }
       filterDataArr.push(`${key}=${value}`);
     }
+    const [minPrice, maxPrice] = priceRange;
+    filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
 
     const filterQueryString = filterDataArr.join('&');
     setStartPage(1);
