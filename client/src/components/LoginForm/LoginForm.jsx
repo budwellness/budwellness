@@ -64,40 +64,51 @@ function LoginForm(props) {
       dispatch(userLoginUserAction(loginUserToken));
       localStorage.setItem('token', loginUserToken);
       if (localCartStoreData.length > 0) {
-        // при логине забирать корзину с сервера
+
         getCart(loginUserToken)
           .unwrap()
           .then(response => {
-            if (!response) {
-              return
-            } else {
-              const { products } = response;
-              log('localCartStoreData', localCartStoreData)
-              log('modifed response', products.map((p) => (
-                { product: p.product, cartQuantity: p.cartQuantity }
-              )))
-              log('MERGED', mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
-                { product: p.product, cartQuantity: p.cartQuantity }
-              ))))
-              return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
-                { product: p.product, cartQuantity: p.cartQuantity }
-              )))
+            let products = [];
+            if (response) {
+              products = response.products
             }
+            return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
+              { product: p.product, cartQuantity: p.cartQuantity }
+            )))
+
+
+            // if (!response) {
+            //   return
+            // } else {
+            //   const { products } = response;
+            //   log('localCartStoreData', localCartStoreData)
+            //   log('modifed response', products.map((p) => (
+            //     { product: p.product, cartQuantity: p.cartQuantity }
+            //   )))
+            //   log('MERGED', mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
+            //     { product: p.product, cartQuantity: p.cartQuantity }
+            //   ))))
+
+            // }
           })
           .then((response) => {
             if (response) {
               return updateCart(extractIdAndQuantityForCartMigration(response, loginUserToken))
             }
-            return
           })
           .then((response) => {
             if (response) {
+              log('ZAHOJU KUDA NADO')
               const { data: { products } } = response;
-              setCartAction(products.map((p) => (
+              dispatch(setCartAction(products.map((p) => (
                 { product: p.product, cartQuantity: p.cartQuantity }
-              )))
+              ))))
+              localStorage.setItem('localCart', JSON.stringify([]))
+
+            } else {
+              log('hihihihi')
             }
-            log('hihihihi')
+
           })
 
 
