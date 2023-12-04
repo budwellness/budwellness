@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import cn from 'classnames';
 
 // COMPONENT IMPORTS:
 import Header from './components/Header/Header';
@@ -27,6 +28,7 @@ import {
 
 // WISHLIST IMPORTS:
 import { setWishlistAction } from './store/wishlist/wishList.slice';
+import { isModalAddToCartAction } from './store/modal/modal.slice';
 
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
@@ -44,6 +46,7 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
 import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
 import Modal from "./components/Modal/Modal.jsx";
+import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import LoginForm from "./components/LoginForm/LoginForm.jsx";
 import { setModal } from "./store/modal/modal.slice.js";
 import Registration from "./pages/RegistrationPage/Registration.jsx";
@@ -54,10 +57,11 @@ const { log } = console;
 
 function App() {
   const { data: products, error } = useGetAllProductsQuery();
-
+  log(products);
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector((state) => state.user);
   const { isOpenModal } = useSelector((state) => state.modal);
+  const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
@@ -77,6 +81,9 @@ function App() {
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
     dispatch(setModal(!isOpenModal));
+  };
+  const handleModalAddToCart = () => {
+    dispatch(isModalAddToCartAction(!isModalAddToCart));
   };
   const logoutHandler = () => {
     localStorage.removeItem('token');
@@ -149,14 +156,24 @@ function App() {
         <Footer />
         <CartModal />
         {isOpenModal && (
-            isUserLogin
-                ? <button type="button" onClick={logoutHandler}>Logout</button>
-                : (
-                    <Modal handleModal={handleModal}>
-                      <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-                    </Modal>
-                )
+          isUserLogin
+          ? <button type="button" onClick={logoutHandler}>Logout</button>
+          : (
+            <Modal handleModal={handleModal}>
+              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+            </Modal>
+          )
         )}
+        {isModalAddToCart && (
+        <Modal
+          classNames={cn('add_to_cart__modal')}
+          handleModal={handleModalAddToCart}
+        >
+          <ModalAddToCart
+            handleModalAddToCart={handleModalAddToCart}
+          />
+        </Modal>
+      )}
       </>
   );
 }
