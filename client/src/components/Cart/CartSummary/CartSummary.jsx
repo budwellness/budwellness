@@ -8,18 +8,15 @@ import styles from './CartSummary.module.scss';
 import countTotalPrice from '../../../helpers/countTotalPrice';
 
 export default function CartSummary() {
-
-  const { isUserLogin } = useSelector((state) => state.user)
+  const { isUserLogin } = useSelector((state) => state.user);
   const {
     cart: cartStoreData,
     localCart: localCartStoreData,
   } = useSelector((state) => state.cart);
 
-
-  const countTotalPriceHandler = () =>
-    isUserLogin ?
-      countTotalPrice(cartStoreData) :
-      countTotalPrice(localCartStoreData)
+  const countTotalPriceHandler = () => (isUserLogin
+    ? countTotalPrice(cartStoreData)
+    : countTotalPrice(localCartStoreData));
 
   return (
     <div className={styles.cart_summary}>

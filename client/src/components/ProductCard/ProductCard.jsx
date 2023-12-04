@@ -35,7 +35,6 @@ function ProductCard(props) {
   } = props;
 
   const {
-    _id,
     imageUrls,
     previousPrice,
     currentPrice,
@@ -82,7 +81,7 @@ function ProductCard(props) {
     toggleCartHandler(product, tokenReduxStore, cartStoreData);
   };
   const toggleCartWithoutLoginHandler = () => {
-    toggleLocalCartHandler(product, localCartStoreData);
+    toggleLocalCartHandler(product);
   };
 
   // MODAL:
@@ -192,9 +191,9 @@ function ProductCard(props) {
           })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
           onClick={
-            () => isUserLogin ?
-              toggleCartWithLoginHandler() :
-              toggleCartWithoutLoginHandler()
+            () => (isUserLogin
+              ? toggleCartWithLoginHandler()
+              : toggleCartWithoutLoginHandler())
           }
         />
       </div>

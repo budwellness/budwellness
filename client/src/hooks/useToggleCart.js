@@ -48,15 +48,15 @@ const useToggleCart = () => {
     }
   };
 
-  const toggleLocalCart = async (productItem, localCartStoreData) => {
+  const toggleLocalCart = async (productItem) => {
     const localCart = JSON.parse(localStorage.getItem('localCart'));
     const isExist = localCart.some(
-      ({ itemNo }) => itemNo === productItem.itemNo
+      ({ itemNo }) => itemNo === productItem.itemNo,
     );
     log('isExist', isExist);
     if (isExist) {
       const index = localCart.findIndex(
-        ({ itemNo }) => itemNo === productItem.itemNo
+        ({ itemNo }) => itemNo === productItem.itemNo,
       );
       if (index !== -1) {
         localCart.splice(index, 1);
@@ -69,18 +69,16 @@ const useToggleCart = () => {
         JSON.stringify([
           ...localCart,
           { itemNo: productItem.itemNo, cartQuantity: 1 },
-        ])
+        ]),
       );
       getProduct(productItem.itemNo)
         .unwrap()
-        .then((response) =>
-          dispatch(
-            addItemToLocalCartAction({
-              product: response,
-              cartQuantity: 1,
-            })
-          )
-        );
+        .then((response) => dispatch(
+          addItemToLocalCartAction({
+            product: response,
+            cartQuantity: 1,
+          }),
+        ));
     }
   };
 
