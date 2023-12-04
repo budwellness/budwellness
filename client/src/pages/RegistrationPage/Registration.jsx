@@ -19,6 +19,7 @@ function Registration() {
   const navigate = useNavigate();
 
   const [registrationUser, { data: registrationUserData, error }] = useRegistrationUserMutation();
+    console.log(error)
 
   const initialValues = {
     firstName: '',
@@ -101,6 +102,7 @@ function Registration() {
                 placeholder="Enter your age"
                 label="Your age"
                 className={styles.formLabel}
+                value
               />
               <ButtonHeader
                 className={styles.btnForm}
