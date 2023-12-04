@@ -12,7 +12,7 @@ import useFetchLocalCardProducts from '../../hooks/useFetchLocalCardProducts';
 const { log } = console;
 
 function CartWrapperModal() {
-  const [localCartData, setLocalCartData] = useState(JSON.parse(localStorage.getItem('localCart')));
+  // const [localCartData, setLocalCartData] = useState(JSON.parse(localStorage.getItem('localCart')));
   const [fetchedLocalCardProducts, setFetchedLocalCardProducts] = useState([]);
   const [localCartModalItem, setLocalCartModalItem] = useState([]);
   const [cartModalItem, setCartModalItem] = useState([]);
