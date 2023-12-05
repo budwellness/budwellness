@@ -20,7 +20,7 @@ import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
 import {
-  userLogutUserAction,
+  userLogoutUserAction,
 } from '../../store/user/user.slice';
 
 import { setModal } from '../../store/modal/modal.slice';
@@ -65,7 +65,7 @@ function Header() {
 
   const logoutHandler = () => {
     localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
+    dispatch(userLogoutUserAction());
     dispatch(setModal(false));
   };
 
@@ -141,7 +141,7 @@ function Header() {
             </ButtonHeader>
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
-              {wishlistStoreData.length > 0 && (
+              {isUserLogin && wishlistStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>

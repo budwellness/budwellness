@@ -72,7 +72,7 @@ export default function PopularSwiper() {
               handleModalAddToCart={() => handleModalAddToCart(productItem)}
             />
           </SwiperSlide>
-        ))
+        )),
       );
     }
   }, [isSuccessFilteredProductsData, filteredProductsData]);

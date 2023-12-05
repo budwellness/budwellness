@@ -73,7 +73,7 @@ ModalAddToCart.propTypes = {
     rate: PropTypes.number.isRequired,
     name: PropTypes.string,
   }),
-  // eslint-disable-next-line react/require-default-props
+
   actions: PropTypes.shape({
     toggleCartWithLoginHandler: PropTypes.func,
     toggleWishlistWithLoginHandler: PropTypes.func,

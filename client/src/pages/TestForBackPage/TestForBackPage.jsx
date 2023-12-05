@@ -23,7 +23,7 @@ import {
 // USER IMPORTS: 
 import {
   userLoginUserAction,
-  userLogutUserAction,
+  userLogoutUserAction,
 } from '../../store/user/user.slice';
 import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
 

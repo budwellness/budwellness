@@ -32,6 +32,7 @@ function ProductList(props) {
   const toggleWishlistHandler = useToggleWishlist();
   // const { productSlug } = useParams();
   const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isModalAddToCart } = useSelector((state) => state.modal);

@@ -56,7 +56,6 @@ function ProductCard(props) {
     (state) => state.wishlist,
   );
   const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
-  const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   // WISHLIST:

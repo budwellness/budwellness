@@ -19,11 +19,10 @@ import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 // USER IMPORTS:
-import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
 
 import {
   userLoginUserAction,
-  userLogutUserAction,
+  userLogoutUserAction,
 } from './store/user/user.slice';
 
 // WISHLIST IMPORTS:
@@ -33,18 +32,15 @@ import { isModalAddToCartAction } from './store/modal/modal.slice';
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
 // CART IMPORTS:
-import { clearLocalCartAction, setCartAction, setLocalCartAction } from './store/cart/cart.slice';
+import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
-import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
 import Modal from "./components/Modal/Modal.jsx";
 import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import LoginForm from "./components/LoginForm/LoginForm.jsx";
@@ -88,7 +84,7 @@ function App() {
   };
   const logoutHandler = () => {
     localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
+    dispatch(userLogoutUserAction());
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
