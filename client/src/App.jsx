@@ -57,8 +57,6 @@ import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 const { log } = console;
 
 function App() {
-  const { data: products, error } = useGetAllProductsQuery();
-  log(products);
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector((state) => state.user);
   const { isOpenModal } = useSelector((state) => state.modal);
