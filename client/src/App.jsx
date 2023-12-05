@@ -87,7 +87,7 @@ function App() {
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    const userLocalCartData = JSON.parse(localStorage.getItem('localCart'));
+    const userLocalCartData = localStorage.getItem('localCart') === '' ? '' : JSON.parse(localStorage.getItem('localCart'));
     if (!localStorageToken) {
       if (userLocalCartData && userLocalCartData.length > 0) {
         const productsItemNo = userLocalCartData.map((product) => product.itemNo);

@@ -65,8 +65,8 @@ function CartModalItem(props) {
       }
     } else {
       const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
-      const productIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
-      localCartProducts[productIndex].cartQuantity += 1;
+      const pIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[pIndex].cartQuantity += 1;
       localStorage.setItem('localCart', JSON.stringify(localCartProducts));
       dispatch(increaseLocalCartItemQuantityAction(product._id));
     }
@@ -93,8 +93,8 @@ function CartModalItem(props) {
       }
     } else {
       const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
-      const productIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
-      localCartProducts[productIndex].cartQuantity -= 1;
+      const pIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[pIndex].cartQuantity -= 1;
       localStorage.setItem('localCart', JSON.stringify(localCartProducts));
       dispatch(decreaseLocalCartItemQuantityAction(product._id));
       // код который срабатывает когда полдьзователь не залогинен

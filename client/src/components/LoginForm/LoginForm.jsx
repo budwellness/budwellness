@@ -75,21 +75,6 @@ function LoginForm(props) {
             return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
               { product: p.product, cartQuantity: p.cartQuantity }
             )))
-
-
-            // if (!response) {
-            //   return
-            // } else {
-            //   const { products } = response;
-            //   log('localCartStoreData', localCartStoreData)
-            //   log('modifed response', products.map((p) => (
-            //     { product: p.product, cartQuantity: p.cartQuantity }
-            //   )))
-            //   log('MERGED', mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
-            //     { product: p.product, cartQuantity: p.cartQuantity }
-            //   ))))
-
-            // }
           })
           .then((response) => {
             if (response) {
@@ -98,15 +83,11 @@ function LoginForm(props) {
           })
           .then((response) => {
             if (response) {
-              log('ZAHOJU KUDA NADO')
               const { data: { products } } = response;
               dispatch(setCartAction(products.map((p) => (
                 { product: p.product, cartQuantity: p.cartQuantity }
               ))))
               localStorage.setItem('localCart', JSON.stringify([]))
-
-            } else {
-              log('hihihihi')
             }
 
           })
