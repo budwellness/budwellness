@@ -1,22 +1,41 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
 import Container from '../../components/Container/Container';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
+// PRODUCT IMPORTS:
 import useToggleCart from '../../hooks/useToggleCart';
 import useToggleWishlist from '../../hooks/useToggleWishlist';
+// MODAL IMPORTS:
+import { selectProduct } from '../../store/product/product.slice';
+import { isModalAddToCartAction } from '../../store/modal/modal.slice';
+
 import styles from './WishlistPage.module.scss';
 
 function WishlistPage() {
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { isModalAddToCart } = useSelector((state) => state.modal);
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist,
   );
+  /* --------------------------- INIT HOOKS: --------------------------- */
+  const dispatch = useDispatch();
   const {
     toggleCart: toggleCartHandler,
     toggleLocalCart: toggleLocalCartHandler,
   } = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
+
+  // MODAL:
+  const handleSelectProduct = (selectedProduct) => {
+    dispatch(selectProduct(selectedProduct));
+  };
+
+  const handleModalAddToCart = (product) => {
+    dispatch(isModalAddToCartAction(!isModalAddToCart));
+    handleSelectProduct(product);
+  };
 
   return (
     <>
@@ -36,6 +55,7 @@ function WishlistPage() {
                   toggleCartHandler,
                   toggleLocalCartHandler,
                 }}
+                handleModalAddToCart={() => handleModalAddToCart(product)}
               />
             ))
           ) : (

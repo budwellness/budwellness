@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './Filter.module.scss';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 const { log } = console;
 
@@ -22,7 +24,8 @@ function Filter(props) {
     cbd: '',
   });
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+  // const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+  const [priceRange, setPriceRange] = useState([0, 200]);
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
 
@@ -45,7 +48,7 @@ function Filter(props) {
   const clearCategory = (category) => {
     const updatedCategories = { ...selectedCategories };
     updatedCategories[category] = '';
-  
+
     setSelectedCategories(updatedCategories);
 
     formRef.current.reset();
@@ -53,7 +56,7 @@ function Filter(props) {
       .filter(([key, value]) => value !== '')
       .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
       .join('&');
-  
+
     setStartPage(1);
     setSearchParams(`${filterQueryString}`);
   };
@@ -65,9 +68,13 @@ function Filter(props) {
   const handlePlantTypeChange = (plantType) => {
     setSelectedPlantTypes(plantType);
   };
-  const handlePriceChange = (e) => {
-    const { name, value } = e.target;
-    setPriceRange({ ...priceRange, [name]: Number(value) });
+  // const handlePriceChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setPriceRange({ ...priceRange, [name]: Number(value) });
+  // };
+  const handlePriceChange = (value) => {
+    setPriceRange(value);
+    formHandler();
   };
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
@@ -94,6 +101,8 @@ function Filter(props) {
       }
       filterDataArr.push(`${key}=${value}`);
     }
+    const [minPrice, maxPrice] = priceRange;
+    filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
 
     const filterQueryString = filterDataArr.join('&');
     setStartPage(1);
@@ -116,7 +125,8 @@ function Filter(props) {
       </button>
       {(window.innerWidth >= 992 || isFilterOpen) && (
         <form ref={formRef} onChange={formHandler} className={styles.container}>
-          <div className={`${styles.filter__categories} ${styles.filter__item1}`}
+          <div
+            className={`${styles.filter__categories} ${styles.filter__item1}`}
           >
             <h4 className={styles.filter__name}>Product Categories</h4>
             <label htmlFor="All" className={styles.filter__label}>
@@ -239,7 +249,17 @@ function Filter(props) {
 
           <div className={styles.filter__categories}>
             <h4 className={styles.filter__name}>Filter by Price</h4>
-            <label>
+            <span>Min: {priceRange[0]}</span>
+            <Slider
+              min={0}
+              max={200}
+              step={1}
+              value={priceRange}
+              onChange={handlePriceChange}
+              range
+            />
+            <span>Max: {priceRange[1]}</span>
+            {/* <label>
               <input
                 type="number"
                 name="minPrice"
@@ -256,7 +276,7 @@ function Filter(props) {
                 className={`${styles.filter__label} ${styles.filter__price}`}
                 onChange={handlePriceChange}
               />
-            </label>
+            </label> */}
           </div>
 
           <div className={styles.filter__categories}>

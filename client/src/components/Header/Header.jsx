@@ -141,7 +141,7 @@ function Header() {
             </ButtonHeader>
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
-              {isUserLogin && wishlistStoreData.length > 0 && (
+              {wishlistStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
               )}
             </Link>

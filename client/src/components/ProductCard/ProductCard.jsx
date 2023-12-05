@@ -4,10 +4,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // COMPONENT IMPORTS:
-import Modal from '../Modal/Modal';
-import ModalAddToCart from '../ModalAddToCart/ModalAddToCart';
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
@@ -18,7 +16,6 @@ import getThcCategory from '../../helpers/getThcCategory';
 import getCbdCategory from '../../helpers/getCbdCategory';
 import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../helpers/cartButtonStateHandler';
-import { isModalAddToCartAction } from '../../store/modal/modal.slice';
 import styles from './ProductCard.module.scss';
 
 const { log } = console;
@@ -32,6 +29,7 @@ function ProductCard(props) {
       toggleLocalCartHandler,
     },
     product,
+    handleModalAddToCart,
   } = props;
 
   const {
@@ -50,10 +48,6 @@ function ProductCard(props) {
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
   const [isExistInCart, setIsExistInCart] = useState(false);
 
-  /* --------------------------- INIT HOOKS: --------------------------- */
-
-  const dispatch = useDispatch();
-
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin, token: tokenReduxStore } = useSelector(
     (state) => state.user,
@@ -65,7 +59,6 @@ function ProductCard(props) {
   const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
-
   // WISHLIST:
   const toggleWishlistWithLoginHandler = () => {
     if (isUserLogin) {
@@ -82,12 +75,6 @@ function ProductCard(props) {
   };
   const toggleCartWithoutLoginHandler = () => {
     toggleLocalCartHandler(product);
-  };
-
-  // MODAL:
-
-  const handleModal = () => {
-    dispatch(isModalAddToCartAction(!isModalAddToCart));
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -136,11 +123,8 @@ function ProductCard(props) {
         <div className={styles.product_card__overlay}>
           <div className={styles.product_card__action}>
             <ButtonIcon
-              classNames={cn({
-                [styles.btn__single_product_preview]: !isModalAddToCart,
-                [styles.btn__single_product_preview_active]: isModalAddToCart,
-              })}
-              onClick={handleModal}
+              classNames={styles.btn__single_product_preview}
+              onClick={handleModalAddToCart}
             >
               <EyeIcon className={styles.eye_icon} />
             </ButtonIcon>
@@ -197,17 +181,6 @@ function ProductCard(props) {
           }
         />
       </div>
-      {isModalAddToCart && (
-        <Modal
-          classNames={cn('add_to_cart__modal')}
-          handleModal={handleModal}
-        >
-          <ModalAddToCart
-            product={product}
-
-          />
-        </Modal>
-      )}
     </div>
   );
 }

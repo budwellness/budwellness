@@ -102,55 +102,55 @@ function Footer() {
             <div className={styles.shop}>
               <h4 className={styles.subtitle}>Shop Products</h4>
               <ul className={styles.shop__list}>
-                <li>
-                  <Link to="/shop" className={styles.shop__link}>
+                <li className={styles.shop__link}>
+                  <Link to="/shop" className={styles.shop__linkItem}>
                     All
                   </Link>
                 </li>
-                <li>
+                <li className={styles.shop__link}>
                   <Link
                     to="/shop?categories=Flowers"
-                    className={styles.shop__link}
+                    className={styles.shop__linkItem}
                   >
                     Flowers
                   </Link>
                 </li>
-                <li>
+                <li className={styles.shop__link}>
                   <Link
                     to="/shop?categories=Oils"
-                    className={styles.shop__link}
+                    className={styles.shop__linkItem}
                   >
                     Oils
                   </Link>
                 </li>
-                <li>
+                <li className={styles.shop__link}>
                   <Link
                     to="/shop?categories=Edible"
-                    className={styles.shop__link}
+                    className={styles.shop__linkItem}
                   >
                     Edible
                   </Link>
                 </li>
-                <li>
+                <li className={styles.shop__link}>
                   <Link
                     to="/shop?categories=Pre-Rolls"
-                    className={styles.shop__link}
+                    className={styles.shop__linkItem}
                   >
                     Pre-Rolls
                   </Link>
                 </li>
-                <li>
+                <li className={styles.shop__link}>
                   <Link
                     to="/shop?categories=Beverage"
-                    className={styles.shop__link}
+                    className={styles.shop__linkItem}
                   >
                     Beverage
                   </Link>
                 </li>
-                <li>
+                <li className={styles.shop__link}>
                   <Link
                     to="/shop?categories=Seeds"
-                    className={styles.shop__link}
+                    className={styles.shop__linkItem}
                   >
                     Seeds
                   </Link>
