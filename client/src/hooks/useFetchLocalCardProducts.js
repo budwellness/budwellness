@@ -10,7 +10,7 @@ const useFetchLocalCardProducts = () => {
 
   const fetchLocalCardProducts = async (arrOfItemNo) => {
     const requests = await Promise.all(
-      arrOfItemNo.map((itemNo) => getProduct(itemNo).unwrap())
+      arrOfItemNo.map((itemNo) => getProduct(itemNo).unwrap()),
     );
 
     return requests;

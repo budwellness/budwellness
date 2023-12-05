@@ -9,7 +9,6 @@ import CartCard from '../CartCard/CartCard';
 import styles from './CartList.module.scss';
 
 export default function CartList() {
-
   const [localCartItem, setLocalCartItem] = useState([]);
   const [cartItem, setCartItem] = useState([]);
   /* --------------------------- REDUX STATE: --------------------------- */
@@ -22,33 +21,32 @@ export default function CartList() {
     if (!isUserLogin) {
       setLocalCartItem(localCartStoreData.map((product) => (
         <CartCard key={product.product._id} card={product} />
-      )))
+      )));
     } else {
       setCartItem(cartStoreData.map((product) => (
         <CartCard key={product._id} card={product} />
-      )))
+      )));
     }
   }, [cartStoreData, localCartStoreData, isUserLogin]);
 
   return (
 
     <div>
-      {isUserLogin ?
-        (
+      {isUserLogin
+        ? (
           <ul className={styles.cart_mainList}>
             {cartItem.length === 0
               ? <p>Cart is empty...</p>
               : cartItem}
           </ul>
-        ) :
-        (
+        )
+        : (
           <ul className={styles.cart_mainList}>
             {localCartItem.length === 0
               ? <p>Cart is empty...</p>
               : localCartItem}
           </ul>
-        )
-      }
+        )}
     </div>
 
   );

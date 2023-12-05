@@ -3,17 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 import CartModalItem from './CartModalItem/CartModalItem';
-
 import countTotalPrice from '../../helpers/countTotalPrice';
 
 import styles from './CartWrapperModal.module.scss';
-import useFetchLocalCardProducts from '../../hooks/useFetchLocalCardProducts';
-
-const { log } = console;
 
 function CartWrapperModal() {
-  const [localCartData, setLocalCartData] = useState(JSON.parse(localStorage.getItem('localCart')));
-  const [fetchedLocalCardProducts, setFetchedLocalCardProducts] = useState([]);
   const [localCartModalItem, setLocalCartModalItem] = useState([]);
   const [cartModalItem, setCartModalItem] = useState([]);
   /* --------------------------- INIT HOOKS: --------------------------- */
@@ -26,10 +20,9 @@ function CartWrapperModal() {
   const { isUserLogin } = useSelector((state) => state.user);
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
-  const countTotalPriceHandler = () =>
-    isUserLogin ?
-      countTotalPrice(cartStoreData) :
-      countTotalPrice(localCartStoreData)
+  const countTotalPriceHandler = () => (isUserLogin
+    ? countTotalPrice(cartStoreData)
+    : countTotalPrice(localCartStoreData));
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -40,17 +33,16 @@ function CartWrapperModal() {
           key={product.product._id}
           products={product}
         />
-      )))
+      )));
     } else if (isCartModal && isUserLogin) {
       setCartModalItem(cartStoreData.map((product) => (
         <CartModalItem
           key={product._id}
           products={product}
         />
-      )))
+      )));
     }
   }, [isCartModal, cartStoreData, localCartStoreData]);
-
 
   return (
     <>

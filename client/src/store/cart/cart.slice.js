@@ -38,6 +38,9 @@ const cartSlice = createSlice({
         state.cart.splice(index, 1);
       }
     },
+    clearLocalCart: (state) => {
+      state.localCart = [];
+    },
     increaseCartItemQuantity: (state, { payload }) => {
       const index = state.cart.findIndex(
         (item) => item.product._id === payload
@@ -80,8 +83,10 @@ const cartSlice = createSlice({
 
 export const {
   setCart: setCartAction,
+
   setLocalCart: setLocalCartAction,
   addItemToCart: addItemToCartAction,
+  clearLocalCart: clearLocalCartAction,
   addItemToLocalCart: addItemToLocalCartAction,
   removeItemFromCart: removeItemFromCartAction,
   removeItemFromLocalCart: removeItemFromLocalCartAction,

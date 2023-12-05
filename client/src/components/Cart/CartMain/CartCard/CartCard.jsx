@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cN from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -62,11 +62,11 @@ export default function CartCard(props) {
         toast.error('Something went wrong...');
       }
     } else {
-      const localCartProducts = JSON.parse(localStorage.getItem('localCart'))
-      const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
-      localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity + 1
-      localStorage.setItem('localCart', JSON.stringify(localCartProducts))
-      dispatch(increaseLocalCartItemQuantityAction(product._id))
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
+      const productIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[productIndex].cartQuantity += 1;
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts));
+      dispatch(increaseLocalCartItemQuantityAction(product._id));
     }
   };
 
@@ -86,15 +86,13 @@ export default function CartCard(props) {
         toast.error('Something went wrong...');
       }
     } else {
-      const localCartProducts = JSON.parse(localStorage.getItem('localCart'))
-      const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
-      localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity - 1
-      localStorage.setItem('localCart', JSON.stringify(localCartProducts))
-      dispatch(decreaseLocalCartItemQuantityAction(product._id))
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
+      const productIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[productIndex].cartQuantity -= 1;
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts));
+      dispatch(decreaseLocalCartItemQuantityAction(product._id));
     }
   };
-
-
 
   const removeFromServerCartHandler = () => {
     if (isUserLogin) {
@@ -112,11 +110,11 @@ export default function CartCard(props) {
     } else {
       const localCart = JSON.parse(localStorage.getItem('localCart'));
       const index = localCart.findIndex(
-        (p) => p.itemNo === product.itemNo
+        (p) => p.itemNo === product.itemNo,
       );
       localCart.splice(index, 1);
       localStorage.setItem('localCart', JSON.stringify(localCart));
-      dispatch(removeItemFromLocalCartAction(product.itemNo))
+      dispatch(removeItemFromLocalCartAction(product.itemNo));
     }
   };
 

@@ -114,9 +114,9 @@ function InfoProduct({ data }) {
           })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
           onClick={
-            () => isUserLogin ?
-              toggleCartWithLoginHandler() :
-              toggleCartWithoutLoginHandler()
+            () => (isUserLogin
+              ? toggleCartWithLoginHandler()
+              : toggleCartWithoutLoginHandler())
           }
         />
       </div>

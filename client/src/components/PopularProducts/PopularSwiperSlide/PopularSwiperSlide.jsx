@@ -52,7 +52,7 @@ function PopularSwiperSlide(props) {
     toggleCartHandler(productItem, tokenReduxStore, cartStoreData);
   };
   const toggleCartWithoutLoginHandler = () => {
-    toggleLocalCartHandler(productItem, localCartStoreData);
+    toggleLocalCartHandler(productItem);
   };
 
   // MODAL:
@@ -99,9 +99,9 @@ function PopularSwiperSlide(props) {
                   [styles.actionLink_active]: isExistInCart,
                 })}
                 onClick={
-                  () => isUserLogin ?
-                    toggleCartWithLoginHandler() :
-                    toggleCartWithoutLoginHandler()
+                  () => (isUserLogin
+                    ? toggleCartWithLoginHandler()
+                    : toggleCartWithoutLoginHandler())
                 }
               >
                 <CartIcon className={styles.styleIcon} />
@@ -181,6 +181,7 @@ PopularSwiperSlide.propTypes = {
   actions: PropTypes.shape({
     toggleCartHandler: PropTypes.func,
     toggleWishlistHandler: PropTypes.func,
+    toggleLocalCartHandler: PropTypes.func,
   }),
 };
 
@@ -188,6 +189,7 @@ PopularSwiperSlide.defaultProps = {
   actions: {
     toggleCartHandler: () => { },
     toggleWishlistHandler: () => { },
+    toggleLocalCartHandler: () => { },
   },
 };
 

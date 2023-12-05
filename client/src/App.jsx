@@ -31,7 +31,7 @@ import { setWishlistAction } from './store/wishlist/wishList.slice';
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
 // CART IMPORTS:
-import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
+import { clearLocalCartAction, setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';

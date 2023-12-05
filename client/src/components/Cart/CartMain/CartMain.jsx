@@ -9,7 +9,6 @@ import Button from '../../Button/Button';
 import styles from './CartMain.module.scss';
 
 export default function CartMain() {
-
   const navigate = useNavigate();
   /* --------------------------- REDUX STATE: --------------------------- */
   const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);

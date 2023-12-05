@@ -1,7 +1,4 @@
 const mergeLocalAndServerCarts = (localCart = [], serverCart = []) => {
-  if (serverCart.length === 0) {
-  }
-
   const merged = [...serverCart];
   const idMap = {};
 

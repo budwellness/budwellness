@@ -14,7 +14,7 @@ function WishlistPage() {
   );
   const {
     toggleCart: toggleCartHandler,
-    toggleLocalCart: toggleLocalCartHandler
+    toggleLocalCart: toggleLocalCartHandler,
   } = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
 

@@ -27,6 +27,7 @@ import { setModal } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
+import { clearLocalCartAction } from '../../store/cart/cart.slice';
 
 function Header() {
   // const {
@@ -155,7 +156,7 @@ function Header() {
             </ButtonHeader>
           </div>
         </div>
-        {isUserLogin && <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>}
+        {isUserLogin && <button type="button" className={styles.header_userMenu} onClick={() => { dispatch(clearLocalCartAction()); logoutHandler(); }}>Logout111</button>}
       </Container>
     </header>
   );

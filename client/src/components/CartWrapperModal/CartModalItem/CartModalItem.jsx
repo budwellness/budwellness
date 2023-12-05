@@ -64,11 +64,11 @@ function CartModalItem(props) {
         toast.error('Something went wrong...');
       }
     } else {
-      const localCartProducts = JSON.parse(localStorage.getItem('localCart'))
-      const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
-      localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity + 1
-      localStorage.setItem('localCart', JSON.stringify(localCartProducts))
-      dispatch(increaseLocalCartItemQuantityAction(product._id))
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
+      const productIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[productIndex].cartQuantity += 1;
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts));
+      dispatch(increaseLocalCartItemQuantityAction(product._id));
     }
   };
 
@@ -92,11 +92,11 @@ function CartModalItem(props) {
         toast.error('Something went wrong...');
       }
     } else {
-      const localCartProducts = JSON.parse(localStorage.getItem('localCart'))
-      const productIndex = localCartProducts.findIndex(p => p.itemNo === product.itemNo)
-      localCartProducts[productIndex].cartQuantity = localCartProducts[productIndex].cartQuantity - 1
-      localStorage.setItem('localCart', JSON.stringify(localCartProducts))
-      dispatch(decreaseLocalCartItemQuantityAction(product._id))
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
+      const productIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[productIndex].cartQuantity -= 1;
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts));
+      dispatch(decreaseLocalCartItemQuantityAction(product._id));
       // код который срабатывает когда полдьзователь не залогинен
     }
   };
@@ -105,7 +105,6 @@ function CartModalItem(props) {
     <li className={styles.cartItem}>
       <div className={styles.wrapperImg}>
         <Link
-          /* eslint-disable-next-line react/prop-types */
           to={`/product/${product.itemNo}`}
           onClick={handleCloseCart}
         >
@@ -114,7 +113,6 @@ function CartModalItem(props) {
       </div>
       <div className={styles.main}>
         <Link
-          /* eslint-disable-next-line react/prop-types */
           to={`/product/${product.itemNo}`}
           className={styles.mainTitleLink}
           onClick={handleCloseCart}
