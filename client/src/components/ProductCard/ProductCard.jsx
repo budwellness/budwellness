@@ -26,6 +26,7 @@ function ProductCard(props) {
     actions: {
       toggleWishlistHandler,
       toggleCartHandler,
+      toggleLocalCartHandler,
     },
     product,
     handleModalAddToCart,
@@ -54,7 +55,7 @@ function ProductCard(props) {
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist,
   );
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   // WISHLIST:
@@ -69,11 +70,10 @@ function ProductCard(props) {
   // CART:
 
   const toggleCartWithLoginHandler = () => {
-    if (isUserLogin) {
-      toggleCartHandler(product._id, tokenReduxStore, cartStoreData);
-    } else {
-      log('Please login first');
-    }
+    toggleCartHandler(product, tokenReduxStore, cartStoreData);
+  };
+  const toggleCartWithoutLoginHandler = () => {
+    toggleLocalCartHandler(product);
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -92,12 +92,13 @@ function ProductCard(props) {
   useEffect(
     () => cartButtonStateHandler(
       isUserLogin,
-      cartStoreData,
       isExistInCart,
       setIsExistInCart,
       product._id,
+      cartStoreData,
+      localCartStoreData,
     ),
-    [cartStoreData, isUserLogin],
+    [cartStoreData, isUserLogin, localCartStoreData],
   );
 
   return (
@@ -172,7 +173,11 @@ function ProductCard(props) {
             whiteBtn_active: isExistInCart,
           })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
-          onClick={toggleCartWithLoginHandler}
+          onClick={
+            () => (isUserLogin
+              ? toggleCartWithLoginHandler()
+              : toggleCartWithoutLoginHandler())
+          }
         />
       </div>
     </div>

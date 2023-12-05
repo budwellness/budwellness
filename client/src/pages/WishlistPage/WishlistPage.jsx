@@ -21,7 +21,10 @@ function WishlistPage() {
   );
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
-  const toggleCartHandler = useToggleCart();
+  const {
+    toggleCart: toggleCartHandler,
+    toggleLocalCart: toggleLocalCartHandler,
+  } = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
 
   // MODAL:
@@ -50,6 +53,7 @@ function WishlistPage() {
                 actions={{
                   toggleWishlistHandler,
                   toggleCartHandler,
+                  toggleLocalCartHandler,
                 }}
                 handleModalAddToCart={() => handleModalAddToCart(product)}
               />

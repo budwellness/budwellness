@@ -28,7 +28,10 @@ export default function PopularSwiper() {
 
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
-  const toggleCartHandler = useToggleCart();
+  const {
+    toggleCart: toggleCartHandler,
+    toggleLocalCart: toggleLocalCartHandler,
+  } = useToggleCart();
   const toggleWishlistHandler = useToggleWishlist();
 
   /* --------------------------- REDUX STATE: --------------------------- */
@@ -62,13 +65,14 @@ export default function PopularSwiper() {
             <PopularSwiperSlide
               products={productItem}
               actions={{
+                toggleLocalCartHandler,
                 toggleCartHandler,
                 toggleWishlistHandler,
               }}
               handleModalAddToCart={() => handleModalAddToCart(productItem)}
             />
           </SwiperSlide>
-        ))
+        )),
       );
     }
   }, [isSuccessFilteredProductsData, filteredProductsData]);
