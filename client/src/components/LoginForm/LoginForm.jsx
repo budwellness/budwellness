@@ -91,21 +91,6 @@ function LoginForm(props) {
             }
 
           })
-
-
-
-
-        // .then(({ products }) => {
-        //   if (!products) {
-        //     mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
-        //       { product: p.product, cartQuantity: p.cartQuantity }
-        //     )))
-        //   }
-        // })
-        // .then((response) => updateCart(extractIdAndQuantityForCartMigration(response, loginUserToken)))
-        // .then(({ data: { products } }) => setCartAction(products.map((p) => (
-        //   { product: p.product, cartQuantity: p.cartQuantity }
-        // ))))
       } else {
         getCart(loginUserToken);
       }
@@ -114,12 +99,6 @@ function LoginForm(props) {
   };
 
   useEffect(() => isLoginSuccessHandler(), [loginIsSuccess]);
-  // useEffect(() => {
-  //   log('data', data)
-  //   log('isError', isError)
-  //   log('isSuccess', isSuccess)
-  //   log('error', error)
-  // }, [data, isError, isSuccess, error])
 
   return (
     <>
