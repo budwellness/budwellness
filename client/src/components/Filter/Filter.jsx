@@ -5,6 +5,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './Filter.module.scss';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { useDispatch } from 'react-redux';
+import { setSearchParamAction } from '../../store/filter/filter.slice';
 
 const { log } = console;
 
@@ -13,6 +15,7 @@ function Filter(props) {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const navigate = useNavigate();
   const formRef = useRef();
+  const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -106,6 +109,7 @@ function Filter(props) {
 
     const filterQueryString = filterDataArr.join('&');
     setStartPage(1);
+    dispatch(setSearchParamAction(`${filterQueryString}`))
     setSearchParams(`${filterQueryString}`);
   };
 

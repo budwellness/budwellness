@@ -1,19 +1,33 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import sortingValues from '../../configs/sortingValues';
 import styles from './Sorting.module.scss';
+import { setSortingParamAction } from '../../store/filter/filter.slice';
+
+const { log } = console;
 
 function Sorting() {
   const [sortingOptions] = useState([
     'Default sorting',
-    'Lowest Sorting',
-    'Highest Sorting',
+    'Lowest First',
+    'Highest First',
     'Most popular',
   ]);
 
   const [selectedSorting, setSelectedSorting] = useState(sortingOptions[0]);
   const [isSortingOpen, setIsSortingOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const { queryString } = useSelector((state) => state.filter);
+
   const handleSortingChange = (sorting) => {
+    log('queryString', queryString.sorting);
     setSelectedSorting(sorting);
+
+    // в зависимости от СОРТИН ВАЛЬЮ закидывать в редакс значение сортинг велью
+
+    dispatch(setSortingParamAction(sortingValues[sorting]));
     setIsSortingOpen(false);
   };
 

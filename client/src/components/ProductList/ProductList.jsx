@@ -79,7 +79,6 @@ function ProductList(props) {
       .unwrap()
       .then((response) => {
         try {
-          log(response);
           setTotalProducts(response.productsQuantity);
           setProductCards(
             <div className={styles.list__products_wrapper}>

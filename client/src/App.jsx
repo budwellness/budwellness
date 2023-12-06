@@ -110,7 +110,7 @@ function App() {
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired')
-        dispatch(userLogutUserAction())
+        dispatch(userLogoutUserAction())
       } else {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
