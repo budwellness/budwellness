@@ -35,20 +35,22 @@ import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlis
 import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
+import { useLazyGetCustomerDataQuery } from './store/serverResponse/danitApi.customer.js';
+import { setCustomerDataAction } from './store/user/user.slice';
+
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
-import Modal from "./components/Modal/Modal.jsx";
+import Modal from './components/Modal/Modal.jsx';
 import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
-import LoginForm from "./components/LoginForm/LoginForm.jsx";
-import { setModal } from "./store/modal/modal.slice.js";
-import Registration from "./pages/RegistrationPage/Registration.jsx";
+import LoginForm from './components/LoginForm/LoginForm.jsx';
+import { setModal } from './store/modal/modal.slice.js';
+import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
-
 
 const { log } = console;
 
@@ -62,7 +64,6 @@ function App() {
 
   const dispatch = useDispatch();
 
-
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
   // WISHLIST API:
@@ -74,6 +75,11 @@ function App() {
   const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
     useLazyGetCartQuery();
   const fetchLocalCartProducts = useFetchLocalCardProducts();
+
+  const [
+    getCustomerData,
+    { data: userCustomerData, isSuccess: isSuccessUserCustomerData },
+  ] = useLazyGetCustomerDataQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
@@ -88,33 +94,45 @@ function App() {
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    const userLocalCartData = localStorage.getItem('localCart') === '' ? '' : JSON.parse(localStorage.getItem('localCart'));
+    const userLocalCartData =
+      localStorage.getItem('localCart') === ''
+        ? ''
+        : JSON.parse(localStorage.getItem('localCart'));
     if (!localStorageToken) {
       if (userLocalCartData && userLocalCartData.length > 0) {
-        const productsItemNo = userLocalCartData.map((product) => product.itemNo);
+        const productsItemNo = userLocalCartData.map(
+          (product) => product.itemNo
+        );
         const fetchLocalCardProductsHandler = async () => {
-          await fetchLocalCartProducts(productsItemNo)
-            .then((response) => {
-              dispatch(setLocalCartAction(response.map(product => {
-                const localCardProductQuantity = userLocalCartData.find(
-                  (item) => item.itemNo === product.itemNo
-                );
-                return { product, cartQuantity: localCardProductQuantity.cartQuantity }
-              })))
-            })
-        }
+          await fetchLocalCartProducts(productsItemNo).then((response) => {
+            dispatch(
+              setLocalCartAction(
+                response.map((product) => {
+                  const localCardProductQuantity = userLocalCartData.find(
+                    (item) => item.itemNo === product.itemNo
+                  );
+                  return {
+                    product,
+                    cartQuantity: localCardProductQuantity.cartQuantity,
+                  };
+                })
+              )
+            );
+          });
+        };
         fetchLocalCardProductsHandler();
       } else {
-        localStorage.setItem('localCart', JSON.stringify([]))
+        localStorage.setItem('localCart', JSON.stringify([]));
       }
     } else {
       if (isTokenExpired(localStorageToken)) {
-        log('token expired')
-        dispatch(userLogoutUserAction())
+        log('token expired');
+        dispatch(userLogoutUserAction());
       } else {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
         getCart(localStorageToken);
+        getCustomerData(localStorageToken);
         log('token valid');
       }
     }
@@ -134,16 +152,29 @@ function App() {
 
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
-      dispatch(setCartAction(userCartData.products.map((p) => ({
-        product: p.product,
-        cartQuantity: p.cartQuantity,
-      }))));
+      dispatch(
+        setCartAction(
+          userCartData.products.map((p) => ({
+            product: p.product,
+            cartQuantity: p.cartQuantity,
+          }))
+        )
+      );
+    }
+  };
+  /* ------------------------------------------------ */
+
+  const initUserCustomerDataOnLoad = () => {
+    if (isUserLogin && userCustomerData) {
+      dispatch(setCustomerDataAction(userCustomerData));
     }
   };
 
   useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
+
+  useEffect(() => initUserCustomerDataOnLoad(), [isSuccessUserCustomerData]);
 
   return (
     <>
@@ -168,23 +199,22 @@ function App() {
       </Routes>
       <Footer />
       <CartModal />
-      {isOpenModal && (
-        isUserLogin
-          ? <button type="button" onClick={logoutHandler}>Logout</button>
-          : (
-            <Modal handleModal={handleModal}>
-              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-            </Modal>
-          )
-      )}
+      {isOpenModal &&
+        (isUserLogin ? (
+          <button type="button" onClick={logoutHandler}>
+            Logout
+          </button>
+        ) : (
+          <Modal handleModal={handleModal}>
+            <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+          </Modal>
+        ))}
       {isModalAddToCart && (
         <Modal
           classNames={cn('add_to_cart__modal')}
           handleModal={handleModalAddToCart}
         >
-          <ModalAddToCart
-            handleModalAddToCart={handleModalAddToCart}
-          />
+          <ModalAddToCart handleModalAddToCart={handleModalAddToCart} />
         </Modal>
       )}
     </>

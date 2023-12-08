@@ -20,11 +20,15 @@ const userSlice = createSlice({
       state.token = null;
       state.isUserLogin = false;
     },
+    setCustomerData: (state, { payload }) => {
+      state.detailInfo = payload;
+    },
   },
 });
 
 export const {
   loginUser: userLoginUserAction,
   logoutUser: userLogoutUserAction,
+  setCustomerData: setCustomerDataAction,
 } = userSlice.actions;
 export default userSlice.reducer;
