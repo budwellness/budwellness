@@ -30,7 +30,6 @@ function SingleProductPage() {
     <div>
       {isLoading ? (
         <h2 className={styles.pre_loader}>
-          {/* <Container>Loading...</Container> */}
           <Container>
             <Preloader />
           </Container>
