@@ -45,13 +45,13 @@ import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
 import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
-import Modal from "./components/Modal/Modal.jsx";
+import Modal from './components/Modal/Modal.jsx';
 import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
-import LoginForm from "./components/LoginForm/LoginForm.jsx";
-import { setModal } from "./store/modal/modal.slice.js";
-import Registration from "./pages/RegistrationPage/Registration.jsx";
+import LoginForm from './components/LoginForm/LoginForm.jsx';
+import { setModal } from './store/modal/modal.slice.js';
+import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
-
+import Profile from './pages/Profile/Profile.jsx';
 
 const { log } = console;
 
@@ -76,7 +76,7 @@ function App() {
   ] = useLazyGetWishlistQuery();
 
   const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
-      useLazyGetCartQuery();
+    useLazyGetCartQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
@@ -95,12 +95,11 @@ function App() {
     const userLocalWishlistData = localStorage.getItem('localWishlist');
     if (!localStorageToken) {
       // 1. смотрим локал стор, есть ли там уже добавленные продукты
-      if (userLocalCardData || userLocalWishlistData)
-        2.
+      if (userLocalCardData || userLocalWishlistData) 2;
     } else {
       if (isTokenExpired(localStorageToken)) {
-        log('token expired')
-        dispatch(userLogutUserAction())
+        log('token expired');
+        dispatch(userLogutUserAction());
       } else {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
@@ -133,48 +132,48 @@ function App() {
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
 
   return (
-      <>
-        <ToastContainer
-            position="bottom-right"
-            autoClose={3000}
-            theme="colored"
-        />
-        <ScrollToTop />
-        <Header actions={{ getCart, getWishlist }} />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shop" element={<ProductsPage />} />
-          <Route path="/product/:productID" element={<SingleProductPage />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/team" element={<OurTeam />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/test" element={<TestForBackPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        <Footer />
-        <CartModal />
-        {isOpenModal && (
-          isUserLogin
-          ? <button type="button" onClick={logoutHandler}>Logout</button>
-          : (
-            <Modal handleModal={handleModal}>
-              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-            </Modal>
-          )
-        )}
-        {isModalAddToCart && (
+    <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        theme="colored"
+      />
+      <ScrollToTop />
+      <Header actions={{ getCart, getWishlist }} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shop" element={<ProductsPage />} />
+        <Route path="/product/:productID" element={<SingleProductPage />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/team" element={<OurTeam />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/test" element={<TestForBackPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <Footer />
+      <CartModal />
+      {isOpenModal &&
+        (isUserLogin ? (
+          <button type="button" onClick={logoutHandler}>
+            Logout
+          </button>
+        ) : (
+          <Modal handleModal={handleModal}>
+            <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+          </Modal>
+        ))}
+      {isModalAddToCart && (
         <Modal
           classNames={cn('add_to_cart__modal')}
           handleModal={handleModalAddToCart}
         >
-          <ModalAddToCart
-            handleModalAddToCart={handleModalAddToCart}
-          />
+          <ModalAddToCart handleModalAddToCart={handleModalAddToCart} />
         </Modal>
       )}
-      </>
+    </>
   );
 }
 
