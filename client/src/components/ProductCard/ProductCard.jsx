@@ -4,10 +4,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // COMPONENT IMPORTS:
-import Modal from '../Modal/Modal';
-import ModalAddToCart from '../ModalAddToCart/ModalAddToCart';
 import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import RatingStars from '../RatingStars/RatingStars';
@@ -18,7 +16,6 @@ import getThcCategory from '../../helpers/getThcCategory';
 import getCbdCategory from '../../helpers/getCbdCategory';
 import wishlistButtonStateHandler from '../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../helpers/cartButtonStateHandler';
-import { isModalAddToCartAction } from '../../store/modal/modal.slice';
 import styles from './ProductCard.module.scss';
 
 const { log } = console;
@@ -26,8 +23,13 @@ const { log } = console;
 function ProductCard(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
-    actions: { toggleWishlistHandler, toggleCartHandler },
+    actions: {
+      toggleWishlistHandler,
+      toggleCartHandler,
+      toggleLocalCartHandler,
+    },
     product,
+    handleModalAddToCart,
   } = props;
 
   const {
@@ -46,10 +48,6 @@ function ProductCard(props) {
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
   const [isExistInCart, setIsExistInCart] = useState(false);
 
-  /* --------------------------- INIT HOOKS: --------------------------- */
-
-  const dispatch = useDispatch();
-
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin, token: tokenReduxStore } = useSelector(
     (state) => state.user,
@@ -57,11 +55,9 @@ function ProductCard(props) {
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist,
   );
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
-  const { isModalAddToCart } = useSelector((state) => state.modal);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
-
   // WISHLIST:
   const toggleWishlistWithLoginHandler = () => {
     if (isUserLogin) {
@@ -74,17 +70,10 @@ function ProductCard(props) {
   // CART:
 
   const toggleCartWithLoginHandler = () => {
-    if (isUserLogin) {
-      toggleCartHandler(product._id, tokenReduxStore, cartStoreData);
-    } else {
-      log('Please login first');
-    }
+    toggleCartHandler(product, tokenReduxStore, cartStoreData);
   };
-
-  // MODAL:
-
-  const handleModal = () => {
-    dispatch(isModalAddToCartAction(!isModalAddToCart));
+  const toggleCartWithoutLoginHandler = () => {
+    toggleLocalCartHandler(product);
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -103,12 +92,13 @@ function ProductCard(props) {
   useEffect(
     () => cartButtonStateHandler(
       isUserLogin,
-      cartStoreData,
       isExistInCart,
       setIsExistInCart,
       product._id,
+      cartStoreData,
+      localCartStoreData,
     ),
-    [cartStoreData, isUserLogin],
+    [cartStoreData, isUserLogin, localCartStoreData],
   );
 
   return (
@@ -132,11 +122,8 @@ function ProductCard(props) {
         <div className={styles.product_card__overlay}>
           <div className={styles.product_card__action}>
             <ButtonIcon
-              classNames={cn({
-                [styles.btn__single_product_preview]: !isModalAddToCart,
-                [styles.btn__single_product_preview_active]: isModalAddToCart,
-              })}
-              onClick={handleModal}
+              classNames={styles.btn__single_product_preview}
+              onClick={handleModalAddToCart}
             >
               <EyeIcon className={styles.eye_icon} />
             </ButtonIcon>
@@ -186,20 +173,13 @@ function ProductCard(props) {
             whiteBtn_active: isExistInCart,
           })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
-          onClick={toggleCartWithLoginHandler}
+          onClick={
+            () => (isUserLogin
+              ? toggleCartWithLoginHandler()
+              : toggleCartWithoutLoginHandler())
+          }
         />
       </div>
-      {isModalAddToCart && (
-        <Modal
-          classNames={cn('add_to_cart__modal')}
-          handleModal={handleModal}
-        >
-          <ModalAddToCart
-            product={product}
-
-          />
-        </Modal>
-      )}
     </div>
   );
 }

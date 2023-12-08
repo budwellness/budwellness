@@ -4,40 +4,35 @@ import PropTypes from 'prop-types';
 import cN from 'classnames';
 import { toast } from 'react-toastify';
 // COMPONENT IMPORTS:
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CartIcon from '../../UI/CartIcon';
 import FavouriteIcon from '../../UI/FavouriteIcon';
 import EyeIcon from '../../UI/EyeIcon';
 import RatingStars from '../../RatingStars/RatingStars';
 import wishlistButtonStateHandler from '../../../helpers/wishlistButtonStateHandler';
 import cartButtonStateHandler from '../../../helpers/cartButtonStateHandler';
-import { isModalAddToCartAction } from '../../../store/modal/modal.slice';
 import styles from './PopularSwiperSlide.module.scss';
 
 function PopularSwiperSlide(props) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
     products: productItem,
-    actions: { toggleCartHandler, toggleWishlistHandler },
+    actions: { toggleCartHandler, toggleWishlistHandler, toggleLocalCartHandler },
+    handleModalAddToCart,
   } = props;
-
-  /* --------------------------- INIT HOOKS: --------------------------- */
-
-  const dispatch = useDispatch();
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
   const [isExistInCart, setIsExistInCart] = useState(false);
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
   const { isUserLogin, token: tokenReduxStore } = useSelector(
     (state) => state.user,
   );
   const { wishList: wishlistStoreData } = useSelector(
     (state) => state.wishlist,
   );
-  const { isModalAddToCart } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const toggleWishlistWithLoginHandler = () => {
@@ -49,16 +44,10 @@ function PopularSwiperSlide(props) {
   };
 
   const toggleCartWithLoginHandler = () => {
-    if (isUserLogin) {
-      toggleCartHandler(productItem._id, tokenReduxStore, cartStoreData);
-    } else {
-      toast.error('Please login first!');
-    }
+    toggleCartHandler(productItem, tokenReduxStore, cartStoreData);
   };
-
-  // MODAL:
-  const handleModal = () => {
-    dispatch(isModalAddToCartAction(!isModalAddToCart));
+  const toggleCartWithoutLoginHandler = () => {
+    toggleLocalCartHandler(productItem);
   };
 
   useEffect(
@@ -75,12 +64,13 @@ function PopularSwiperSlide(props) {
   useEffect(
     () => cartButtonStateHandler(
       isUserLogin,
-      cartStoreData,
       isExistInCart,
       setIsExistInCart,
       productItem._id,
+      cartStoreData,
+      localCartStoreData,
     ),
-    [cartStoreData, isUserLogin],
+    [cartStoreData, isUserLogin, localCartStoreData],
   );
 
   return (
@@ -98,7 +88,11 @@ function PopularSwiperSlide(props) {
                   [styles.actionLink]: !isExistInCart,
                   [styles.actionLink_active]: isExistInCart,
                 })}
-                onClick={() => toggleCartWithLoginHandler()}
+                onClick={
+                  () => (isUserLogin
+                    ? toggleCartWithLoginHandler()
+                    : toggleCartWithoutLoginHandler())
+                }
               >
                 <CartIcon className={styles.styleIcon} />
               </button>
@@ -118,12 +112,8 @@ function PopularSwiperSlide(props) {
             <li className={styles.listItem}>
               <button
                 type="button"
-                className={cN({
-                  [styles.actionLink]: !isModalAddToCart,
-                  [styles.actionLink_active]: isModalAddToCart,
-                })}
-                // className={styles.actionLink}
-                onClick={handleModal}
+                className={styles.actionLink}
+                onClick={handleModalAddToCart}
               >
                 <EyeIcon className={styles.styleIcon} />
               </button>
@@ -177,14 +167,18 @@ PopularSwiperSlide.propTypes = {
   actions: PropTypes.shape({
     toggleCartHandler: PropTypes.func,
     toggleWishlistHandler: PropTypes.func,
+    toggleLocalCartHandler: PropTypes.func,
   }),
+  handleModalAddToCart: PropTypes.func,
 };
 
 PopularSwiperSlide.defaultProps = {
   actions: {
     toggleCartHandler: () => { },
     toggleWishlistHandler: () => { },
+    toggleLocalCartHandler: () => { },
   },
+  handleModalAddToCart: () => { },
 };
 
 export default PopularSwiperSlide;

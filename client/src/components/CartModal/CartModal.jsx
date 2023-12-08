@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { toast } from 'react-toastify';
 
@@ -13,6 +13,7 @@ import { useLazyGetCartQuery } from '../../store/serverResponse/danitApi.cart';
 import styles from './CartModal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCartModal } from "../../store/cartModal/cartModal.slice.js";
+import useFetchLocalCardProducts from '../../hooks/useFetchLocalCardProducts';
 
 
 function CartModal() {
@@ -20,7 +21,7 @@ function CartModal() {
 
     /* --------------------------- REDUX STATE: --------------------------- */
     const { isCartModal } = useSelector((state) => state.cartModal);
-
+    const { isUserLogin } = useSelector((state) => state.user)
 
 
 

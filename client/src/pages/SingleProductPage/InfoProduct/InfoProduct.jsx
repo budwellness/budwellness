@@ -19,10 +19,14 @@ function InfoProduct({ data }) {
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
   const [isExistInCart, setIsExistInCart] = useState(false);
 
-  const toggleCartHandler = useToggleCart();
+  const {
+    toggleCart: toggleCartHandler,
+    toggleLocalCart: toggleLocalCartHandler,
+  } = useToggleCart();
+
   const toggleWishlistHandler = useToggleWishlist();
 
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
   const { isUserLogin, token: tokenReduxStore } = useSelector(
     (state) => state.user,
   );
@@ -39,11 +43,10 @@ function InfoProduct({ data }) {
   };
 
   const toggleCartWithLoginHandler = () => {
-    if (isUserLogin) {
-      toggleCartHandler(data._id, tokenReduxStore, cartStoreData);
-    } else {
-      toast.error('Please login first!');
-    }
+    toggleCartHandler(data, tokenReduxStore, cartStoreData);
+  };
+  const toggleCartWithoutLoginHandler = () => {
+    toggleLocalCartHandler(data, localCartStoreData);
   };
 
   useEffect(
@@ -60,12 +63,13 @@ function InfoProduct({ data }) {
   useEffect(
     () => cartButtonStateHandler(
       isUserLogin,
-      cartStoreData,
       isExistInCart,
       setIsExistInCart,
       data._id,
+      cartStoreData,
+      localCartStoreData,
     ),
-    [cartStoreData, isUserLogin],
+    [cartStoreData, isUserLogin, localCartStoreData],
   );
 
   return (
@@ -106,7 +110,11 @@ function InfoProduct({ data }) {
             whiteBtn_active: isExistInCart,
           })}
           text={isExistInCart ? 'Remove from cart' : 'Add to cart'}
-          onClick={() => toggleCartWithLoginHandler()}
+          onClick={
+            () => (isUserLogin
+              ? toggleCartWithLoginHandler()
+              : toggleCartWithoutLoginHandler())
+          }
         />
       </div>
       <ul className={styles.infoLlist}>

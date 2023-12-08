@@ -20,13 +20,14 @@ import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
 import {
-  userLogutUserAction,
+  userLogoutUserAction,
 } from '../../store/user/user.slice';
 
 import { setModal } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
+import { clearLocalCartAction } from '../../store/cart/cart.slice';
 
 function Header() {
   // const {
@@ -57,14 +58,14 @@ function Header() {
     (state) => state.user,
   );
 
-  const { cart: cartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
   const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
   const logoutHandler = () => {
     localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
+    dispatch(userLogoutUserAction());
     dispatch(setModal(false));
   };
 
@@ -146,13 +147,16 @@ function Header() {
             </Link>
             <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
               <CartIcon />
-              {isUserLogin && cartStoreData.length > 0 && (
+              {(isUserLogin && cartStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
-              )}
+              ))}
+              {(!isUserLogin && localCartStoreData.length > 0 && (
+                <span className={styles.wishlistCounter}>{localCartStoreData.length}</span>
+              ))}
             </ButtonHeader>
           </div>
         </div>
-        {isUserLogin && <button type="button" className={styles.header_userMenu} onClick={logoutHandler}>Logout</button>}
+        {isUserLogin && <button type="button" className={styles.header_userMenu} onClick={() => { dispatch(clearLocalCartAction()); logoutHandler(); }}>Logout111</button>}
       </Container>
     </header>
   );

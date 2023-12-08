@@ -12,7 +12,9 @@ import LinkUnderline from '../../LinkUnderline/LinkUnderline';
 // CART IMPORTS:
 import {
   decreaseCartItemQuantityAction,
+  decreaseLocalCartItemQuantityAction,
   increaseCartItemQuantityAction,
+  increaseLocalCartItemQuantityAction,
 } from '../../../store/cart/cart.slice';
 import {
   useAddToCartMutation,
@@ -44,21 +46,29 @@ function CartModalItem(props) {
 
   /* --------------------------- REDUX STATE: --------------------------- */
 
-  const { token: tokenReduxStore } = useSelector((state) => state.user);
+  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
   const increaseCartQuantityHandler = () => {
-    const requestData = {
-      productId: product._id,
-      token: tokenReduxStore,
-    };
-    try {
-      addProductToCart(requestData);
-      dispatch(increaseCartItemQuantityAction(product._id));
-    } catch (error) {
-      log(error);
-      toast.error('Something went wrong...');
+    if (isUserLogin) {
+      const requestData = {
+        productId: product._id,
+        token: tokenReduxStore,
+      };
+      try {
+        addProductToCart(requestData);
+        dispatch(increaseCartItemQuantityAction(product._id));
+      } catch (error) {
+        log(error);
+        toast.error('Something went wrong...');
+      }
+    } else {
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
+      const pIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[pIndex].cartQuantity += 1;
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts));
+      dispatch(increaseLocalCartItemQuantityAction(product._id));
     }
   };
 
@@ -69,16 +79,25 @@ function CartModalItem(props) {
   /* ------------------------------------------------ */
 
   const decreaseCartQuantityHandler = () => {
-    const requestData = {
-      productId: product._id,
-      token: tokenReduxStore,
-    };
-    try {
-      decreaseCartQuantity(requestData);
-      dispatch(decreaseCartItemQuantityAction(product._id));
-    } catch (error) {
-      log(error);
-      toast.error('Something went wrong...');
+    if (isUserLogin) {
+      const requestData = {
+        productId: product._id,
+        token: tokenReduxStore,
+      };
+      try {
+        decreaseCartQuantity(requestData);
+        dispatch(decreaseCartItemQuantityAction(product._id));
+      } catch (error) {
+        log(error);
+        toast.error('Something went wrong...');
+      }
+    } else {
+      const localCartProducts = JSON.parse(localStorage.getItem('localCart'));
+      const pIndex = localCartProducts.findIndex((p) => p.itemNo === product.itemNo);
+      localCartProducts[pIndex].cartQuantity -= 1;
+      localStorage.setItem('localCart', JSON.stringify(localCartProducts));
+      dispatch(decreaseLocalCartItemQuantityAction(product._id));
+      // код который срабатывает когда полдьзователь не залогинен
     }
   };
 
@@ -86,7 +105,6 @@ function CartModalItem(props) {
     <li className={styles.cartItem}>
       <div className={styles.wrapperImg}>
         <Link
-            /* eslint-disable-next-line react/prop-types */
           to={`/product/${product.itemNo}`}
           onClick={handleCloseCart}
         >
@@ -95,7 +113,6 @@ function CartModalItem(props) {
       </div>
       <div className={styles.main}>
         <Link
-            /* eslint-disable-next-line react/prop-types */
           to={`/product/${product.itemNo}`}
           className={styles.mainTitleLink}
           onClick={handleCloseCart}
@@ -119,6 +136,7 @@ function CartModalItem(props) {
         <LinkUnderline
           type="button"
           productId={product._id}
+          itemNo={product.itemNo}
           style={{ order: 4, marginTop: '10px' }}
         >
           Remove
@@ -133,6 +151,7 @@ CartModalItem.propTypes = {
     cartQuantity: PropTypes.number,
     product: PropTypes.shape({
       _id: PropTypes.string,
+      itemNo: PropTypes.string,
       name: PropTypes.string,
       imageUrls: PropTypes.arrayOf(PropTypes.string),
       currentPrice: PropTypes.number,

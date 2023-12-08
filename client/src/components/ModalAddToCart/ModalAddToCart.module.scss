@@ -68,8 +68,8 @@
             margin: 30px 0;
 
             @include _576 {
+                min-width: 430px;
                 @include dflex-jcsb-aic;
-                justify-content: flex-start;
             }
             
             .about__current_price {
@@ -137,6 +137,8 @@
       &:hover {
         background-color: $color-white;
         color: $main-orange;
+        border: 1px solid $color-white;
+        box-shadow: 1px 2px 15px rgba(33,72,66,.17);
         transition: 0.5s ease-in-out;
     
         .favorite_icon {

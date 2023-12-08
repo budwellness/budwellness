@@ -3,12 +3,12 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import {
   userLoginUserAction,
-  userLogutUserAction,
+  userLogoutUserAction,
 } from '../store/user/user.slice';
 
 const rootActions = {
   ...userLoginUserAction,
-  ...userLogutUserAction,
+  ...userLogoutUserAction,
 };
 
 const useActions = () => {
