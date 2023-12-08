@@ -59,7 +59,13 @@ function Filter(props) {
 
     setStartPage(1);
     setSearchParams(`${filterQueryString}`);
+    const currentSearchParams = new URLSearchParams(searchParams);
+    currentSearchParams.delete(category);
+
+    setStartPage(1);
+    setSearchParams(currentSearchParams.toString());
   };
+  
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
@@ -76,6 +82,7 @@ function Filter(props) {
     setPriceRange(value);
     formHandler();
   };
+
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
   };
@@ -120,6 +127,23 @@ function Filter(props) {
 
   return (
     <div className={styles.filterContainer}>
+      <div className={styles.cancel}>
+        {/* {' '} */}
+        {Object.values(selectedCategories).filter((el) => el !== '').length >
+          0 &&
+          Object.entries(selectedCategories).map(([fieldType, fieldValue]) =>
+            fieldValue !== '' ? (
+              <button
+                type="button"
+                key={fieldType}
+                onClick={() => clearCategory(fieldType)}
+                className={styles.clearButton}
+              >
+                {fieldValue} <span className={styles.cross}>&times;</span>
+              </button>
+            ) : null
+          )}
+      </div>
       <button onClick={toggleFilter} className={styles.filterButton}>
         Filters
       </button>
@@ -376,23 +400,6 @@ function Filter(props) {
           </div>
         </form>
       )}
-      <div className={styles.cancel}>
-        {/* {' '} */}
-        {Object.values(selectedCategories).filter((el) => el !== '').length >
-          0 &&
-          Object.entries(selectedCategories).map(([fieldType, fieldValue]) =>
-            fieldValue !== '' ? (
-              <button
-                type="button"
-                key={fieldType}
-                onClick={() => clearCategory(fieldType)}
-                className={styles.clearButton}
-              >
-                {fieldValue} <span className={styles.cross}>&times;</span>
-              </button>
-            ) : null
-          )}
-      </div>
     </div>
   );
 }
