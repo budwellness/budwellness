@@ -19,11 +19,10 @@ import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 // USER IMPORTS:
-import { useLoginUserMutation } from './store/serverResponse/danitApi.auth';
 
 import {
   userLoginUserAction,
-  userLogutUserAction,
+  userLogoutUserAction,
 } from './store/user/user.slice';
 
 // WISHLIST IMPORTS:
@@ -33,31 +32,27 @@ import { isModalAddToCartAction } from './store/modal/modal.slice';
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
 // CART IMPORTS:
-import { setCartAction } from './store/cart/cart.slice';
+import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { useGetAllProductsQuery } from './store/serverResponse/danitApi.products';
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
-import { loginHandler } from './pages/TestForBackPage/vanilaJsHelpers';
 import Modal from './components/Modal/Modal.jsx';
 import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
 import LoginForm from './components/LoginForm/LoginForm.jsx';
 import { setModal } from './store/modal/modal.slice.js';
 import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
+import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 import Profile from './pages/Profile/Profile.jsx';
 
 const { log } = console;
 
 function App() {
-  const { data: products, error } = useGetAllProductsQuery();
-  log(products);
   /* --------------------------- REDUX STATE: --------------------------- */
   const { isUserLogin } = useSelector((state) => state.user);
   const { isOpenModal } = useSelector((state) => state.modal);
@@ -77,6 +72,7 @@ function App() {
 
   const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
     useLazyGetCartQuery();
+  const fetchLocalCartProducts = useFetchLocalCardProducts();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
@@ -87,19 +83,44 @@ function App() {
   };
   const logoutHandler = () => {
     localStorage.removeItem('token');
-    dispatch(userLogutUserAction());
+    dispatch(userLogoutUserAction());
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    const userLocalCardData = localStorage.getItem('localCard');
-    const userLocalWishlistData = localStorage.getItem('localWishlist');
+    const userLocalCartData =
+      localStorage.getItem('localCart') === ''
+        ? ''
+        : JSON.parse(localStorage.getItem('localCart'));
     if (!localStorageToken) {
-      // 1. смотрим локал стор, есть ли там уже добавленные продукты
-      if (userLocalCardData || userLocalWishlistData) 2;
+      if (userLocalCartData && userLocalCartData.length > 0) {
+        const productsItemNo = userLocalCartData.map(
+          (product) => product.itemNo
+        );
+        const fetchLocalCardProductsHandler = async () => {
+          await fetchLocalCartProducts(productsItemNo).then((response) => {
+            dispatch(
+              setLocalCartAction(
+                response.map((product) => {
+                  const localCardProductQuantity = userLocalCartData.find(
+                    (item) => item.itemNo === product.itemNo
+                  );
+                  return {
+                    product,
+                    cartQuantity: localCardProductQuantity.cartQuantity,
+                  };
+                })
+              )
+            );
+          });
+        };
+        fetchLocalCardProductsHandler();
+      } else {
+        localStorage.setItem('localCart', JSON.stringify([]));
+      }
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired');
-        dispatch(userLogutUserAction());
+        dispatch(userLogoutUserAction());
       } else {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
@@ -123,7 +144,14 @@ function App() {
 
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
-      dispatch(setCartAction(userCartData.products));
+      dispatch(
+        setCartAction(
+          userCartData.products.map((p) => ({
+            product: p.product,
+            cartQuantity: p.cartQuantity,
+          }))
+        )
+      );
     }
   };
 

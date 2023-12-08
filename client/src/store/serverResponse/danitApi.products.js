@@ -59,4 +59,5 @@ export const {
   useGetFilteredProductsQuery,
   useLazyGetFilteredProductsQuery,
   useGetProductQuery,
+  useLazyGetProductQuery,
 } = danitApiProducts;

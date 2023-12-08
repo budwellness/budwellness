@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import cn from 'classnames';
@@ -21,6 +21,12 @@ import LogoIcon from '../Header/icons/LogoIcon';
 import { Link } from 'react-router-dom';
 import validationSchema from './validationLogin.js';
 import { setModal } from '../../store/modal/modal.slice.js';
+import { useUpdateCartMutation } from '../../store/serverResponse/danitApi.cart';
+import extractIdAndQuantityForCartMigration from '../../helpers/extractIdAndQuantityForCartMigration';
+import { mergeLocalWithServerCartAction, setCartAction } from '../../store/cart/cart.slice';
+import mergeLocalAndServerCarts from '../../helpers/mergeLocalAndServerCarts';
+
+const { log } = console
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -42,12 +48,14 @@ function LoginForm(props) {
 
   const dispatch = useDispatch();
 
+  const { localCart: localCartStoreData, cart } = useSelector((state) => state.cart)
+
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
   // USER API:
   const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
     useLoginUserMutation();
-
+  const [updateCart, { data, isError, isSuccess, error }] = useUpdateCartMutation();
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   const isLoginSuccessHandler = () => {
@@ -55,8 +63,38 @@ function LoginForm(props) {
       toast.success('You was successfully logged in!');
       dispatch(userLoginUserAction(loginUserToken));
       localStorage.setItem('token', loginUserToken);
+      if (localCartStoreData.length > 0) {
+
+        getCart(loginUserToken)
+          .unwrap()
+          .then(response => {
+            let products = [];
+            if (response) {
+              products = response.products
+            }
+            return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
+              { product: p.product, cartQuantity: p.cartQuantity }
+            )))
+          })
+          .then((response) => {
+            if (response) {
+              return updateCart(extractIdAndQuantityForCartMigration(response, loginUserToken))
+            }
+          })
+          .then((response) => {
+            if (response) {
+              const { data: { products } } = response;
+              dispatch(setCartAction(products.map((p) => (
+                { product: p.product, cartQuantity: p.cartQuantity }
+              ))))
+              localStorage.setItem('localCart', JSON.stringify([]))
+            }
+
+          })
+      } else {
+        getCart(loginUserToken);
+      }
       getWishlist(loginUserToken);
-      getCart(loginUserToken);
     }
   };
 
