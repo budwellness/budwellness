@@ -12,7 +12,6 @@ import cartButtonStateHandler from '../../../helpers/cartButtonStateHandler';
 import RatingStars from '../../../components/RatingStars/RatingStars';
 import Button from '../../../components/Button/Button';
 import FavouriteIcon from '../../../components/UI/FavouriteIcon';
-// import ButtonIcon from '../../../components/ButtonIcon/ButtonIcon';
 
 import styles from './InfoProduct.module.scss';
 
@@ -100,10 +99,8 @@ function InfoProduct({ data }) {
         $
       </p>
       <div className={styles.buttonWrapper}>
-        {/* <ButtonCount /> */}
         <Button
           type="button"
-          // className="orangeBtn"
           className={cN({
             orangeBtn: !isExistInCart,
             whiteBtn_active: isExistInCart,
