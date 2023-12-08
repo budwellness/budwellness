@@ -1,8 +1,8 @@
 const sortingValues = {
   'Default sorting': '',
-  'Lowest First': 'sort=-price',
-  'Highest First': 'sort=+price',
-  'Most popular': 'sort=+rating',
+  'Lowest First': 'sort=+currentPrice',
+  'Highest First': 'sort=-currentPrice',
+  'Most popular': 'sort=-rate',
 };
 
 export default sortingValues;

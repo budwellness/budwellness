@@ -6,7 +6,7 @@ import styles from './Filter.module.scss';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useDispatch } from 'react-redux';
-import { setSearchParamAction } from '../../store/filter/filter.slice';
+import { setSearchParamAction, setStartPageAction } from '../../store/filter/filter.slice';
 
 const { log } = console;
 
@@ -90,8 +90,7 @@ function Filter(props) {
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
-
-  const formHandler = () => {
+  const formHandlerToRedux = () => {
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
     for (let [key, value] of filterData.entries()) {
@@ -102,16 +101,39 @@ function Filter(props) {
         filterDataArr.push(`${value}`);
         continue;
       }
+      if (key === 'categories' && value === 'all') {
+        continue;
+      }
       filterDataArr.push(`${key}=${value}`);
     }
     const [minPrice, maxPrice] = priceRange;
     filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
-
     const filterQueryString = filterDataArr.join('&');
-    setStartPage(1);
+    dispatch(setStartPageAction(1))
     dispatch(setSearchParamAction(`${filterQueryString}`))
-    setSearchParams(`${filterQueryString}`);
   };
+
+
+  // const formHandler = () => {
+  //   const filterDataArr = [];
+  //   const filterData = new FormData(formRef.current);
+  //   for (let [key, value] of filterData.entries()) {
+  //     if (key !== 'minPrice' && key !== 'maxPrice') {
+  //       setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
+  //     }
+  //     if (key === 'thc' || key === 'cbd') {
+  //       filterDataArr.push(`${value}`);
+  //       continue;
+  //     }
+  //     filterDataArr.push(`${key}=${value}`);
+  //   }
+  //   const [minPrice, maxPrice] = priceRange;
+  //   filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
+
+  //   const filterQueryString = filterDataArr.join('&');
+  //   setStartPage(1);
+  //   setSearchParams(`${filterQueryString}`);
+  // };
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -128,7 +150,7 @@ function Filter(props) {
         Filters
       </button>
       {(window.innerWidth >= 992 || isFilterOpen) && (
-        <form ref={formRef} onChange={formHandler} className={styles.container}>
+        <form ref={formRef} onChange={() => { formHandlerToRedux() }} className={styles.container}>
           <div
             className={`${styles.filter__categories} ${styles.filter__item1}`}
           >

@@ -22,11 +22,7 @@ function Sorting() {
   const { queryString } = useSelector((state) => state.filter);
 
   const handleSortingChange = (sorting) => {
-    log('queryString', queryString.sorting);
     setSelectedSorting(sorting);
-
-    // в зависимости от СОРТИН ВАЛЬЮ закидывать в редакс значение сортинг велью
-
     dispatch(setSortingParamAction(sortingValues[sorting]));
     setIsSortingOpen(false);
   };
