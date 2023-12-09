@@ -64,7 +64,6 @@ function LoginForm(props) {
       dispatch(userLoginUserAction(loginUserToken));
       localStorage.setItem('token', loginUserToken);
       if (localCartStoreData.length > 0) {
-
         getCart(loginUserToken)
           .unwrap()
           .then(response => {
@@ -72,9 +71,10 @@ function LoginForm(props) {
             if (response) {
               products = response.products
             }
-            return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
-              { product: p.product, cartQuantity: p.cartQuantity }
-            )))
+            // return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
+            //   { product: p.product, cartQuantity: p.cartQuantity }
+            // )))
+            return mergeLocalAndServerCarts(localCartStoreData, products)
           })
           .then((response) => {
             if (response) {
@@ -82,11 +82,10 @@ function LoginForm(props) {
             }
           })
           .then((response) => {
+
             if (response) {
               const { data: { products } } = response;
-              dispatch(setCartAction(products.map((p) => (
-                { product: p.product, cartQuantity: p.cartQuantity }
-              ))))
+              dispatch(setCartAction(products))
               localStorage.setItem('localCart', JSON.stringify([]))
             }
 
