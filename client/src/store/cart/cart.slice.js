@@ -83,7 +83,6 @@ const cartSlice = createSlice({
 
 export const {
   setCart: setCartAction,
-
   setLocalCart: setLocalCartAction,
   addItemToCart: addItemToCartAction,
   clearLocalCart: clearLocalCartAction,
