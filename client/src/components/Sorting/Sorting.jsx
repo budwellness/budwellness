@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import sortingValues from '../../configs/sortingValues';
 import styles from './Sorting.module.scss';
 import { setSortingParamAction } from '../../store/filter/filter.slice';
 
-const { log } = console;
+// const { log } = console;
 
 function Sorting() {
   const [sortingOptions] = useState([
@@ -19,7 +19,7 @@ function Sorting() {
 
   const dispatch = useDispatch();
 
-  const { queryString } = useSelector((state) => state.filter);
+  // const { queryString } = useSelector((state) => state.filter);
 
   const handleSortingChange = (sorting) => {
     setSelectedSorting(sorting);

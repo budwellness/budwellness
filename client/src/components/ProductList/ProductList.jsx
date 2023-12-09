@@ -15,12 +15,10 @@ import { isModalAddToCartAction } from '../../store/modal/modal.slice';
 
 import styles from './ProductList.module.scss';
 import { setTotalProductsAction } from '../../store/filter/filter.slice';
-import Preloader from '../Preloader/Preloader';
 
 const { log } = console;
 
 function ProductList(props) {
-
   const { startPage, setStartPage } = props;
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
@@ -67,17 +65,16 @@ function ProductList(props) {
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   useEffect(() => {
-    setSearchParams(queryString)
+    setSearchParams(queryString);
     log(queryString);
-  }, [queryString])
-
+  }, [queryString]);
 
   useEffect(() => {
     getFilteredProducts(queryString)
       .unwrap()
       .then((response) => {
         try {
-          dispatch(setTotalProductsAction(response.productsQuantity))
+          dispatch(setTotalProductsAction(response.productsQuantity));
           setProductCards(
             <div className={styles.list__products_wrapper}>
               {response.products?.map((product) => (

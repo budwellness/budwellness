@@ -2,15 +2,13 @@ import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
-import styles from './Pagination.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import styles from './Pagination.module.scss';
 import { setStartPageAction } from '../../../store/filter/filter.slice';
 
 function Pagination(props) {
   const {
     productsPerPage,
-    setStartPage,
-    startPage,
   } = props;
 
   const pageNumbers = [];
@@ -18,7 +16,7 @@ function Pagination(props) {
 
   /* --------------------------- REDUX STATE: --------------------------- */
 
-  const { pagination } = useSelector(state => state.filter)
+  const { pagination } = useSelector((state) => state.filter);
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
@@ -56,8 +54,5 @@ function Pagination(props) {
 
 Pagination.propTypes = {
   productsPerPage: PropTypes.number.isRequired,
-  totalProducts: PropTypes.number.isRequired,
-  setStartPage: PropTypes.func.isRequired,
-  startPage: PropTypes.number.isRequired,
 };
 export default Pagination;
