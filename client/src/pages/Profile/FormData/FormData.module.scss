@@ -1,0 +1,93 @@
+.formDataWrapper {
+  width: 100%;
+  @include for-size(992px) {
+    // width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5%;
+  }
+}
+
+.form {
+  position: relative;
+  display: grid;
+  width: 100%;
+  margin-bottom: 15px;
+
+  @include for-size(1200px) {
+    // margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    font-weight: 700;
+    font-size: 17px;
+    color: $main-green;
+    font-family: $font-nunito;
+    margin-bottom: 5px;
+
+    @include for-size(992px) {
+      margin-bottom: 15px;
+    }
+
+    @include for-size(1200px) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__message {
+    border-radius: 24px;
+    border: 1px solid $secondary-text-color;
+    padding: 13px 20px;
+  }
+
+  &__errorMessage {
+    position: absolute;
+    bottom: -20px;
+    color: red;
+    font-size: 14px;
+    // padding-top: 5px;
+    // margin-bottom: 10px;
+  }
+
+  //   &__messageText {
+  //     border-radius: 24px;
+  //     border: 1px solid $secondary-text-color;
+  //     padding: 13px 20px;
+  //     min-height: 135px;
+  //     resize: none;
+  //     @include for-size(992px) {
+  //     }
+  //   }
+  // &:last-child {
+  //   margin-bottom: 30px;
+  // }
+}
+
+.buttonWrapp {
+  // margin-top: 40px; - 1200px
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: $main-orange;
+  border-radius: 24px;
+  // transition-timing-function: ease-in-out;
+  // transition-duration: 0.5s;
+  @include for-size(992px) {
+    // margin-top: 40px;
+    // width: 200px;
+    // margin: 0 auto;
+    // margin-top: 30px;
+    background-color: white;
+  }
+  @include for-size(992px) {
+    // width: 50%;
+    // margin: 0 auto;
+    margin-top: 0;
+    // display: flex;
+  }
+  // &:hover {
+  //   cursor: pointer;
+  //   transform: scale(1.1);
+  // }
+}
