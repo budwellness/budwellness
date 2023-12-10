@@ -60,6 +60,21 @@
     color: red;
     font-size: 14px;
   }
+
+  &__longErrorMessage {
+    position: absolute;
+    bottom: -30px;
+    color: red;
+    font-size: 10px;
+    margin-bottom: 4px;
+    @include for-size(768px) {
+      bottom: -20px;
+    }
+    @include for-size(992px) {
+      margin-bottom: 0;
+      bottom: -30px;
+    }
+  }
 }
 
 .buttonWrapp {
@@ -73,7 +88,7 @@
     background-color: white;
   }
   @include for-size(992px) {
-    margin-top: 90px;
+    margin-top: 120px;
     display: flex;
     justify-content: center;
   }

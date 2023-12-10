@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+import {
+  Formik, Form, Field, ErrorMessage,
+} from 'formik';
+import validationSchema from './validationSchema';
 import Button from '../../../components/Button/Button';
 import EyeIcon from '../../../components/UI/EyeIcon';
 import styles from './FormData.module.scss';
@@ -15,46 +17,9 @@ const initialValues = {
   newPassword: '',
   phone: '+380',
   age: '',
+  city: '',
+  street: '',
 };
-
-const validationSchema = yup.object().shape({
-  name: yup
-    .string()
-    .min(2, 'The name is too short')
-    .max(25, 'The name is too long')
-    .required('This field is required')
-    .matches(/^([^0-9]*)$/gm, 'Only letters'),
-  lastName: yup
-    .string()
-    .min(2, 'The last name is too short')
-    .max(25, 'The last name is too long')
-    .required('This field is required')
-    .matches(/^([^0-9]*)$/gm, 'Only letters'),
-  userName: yup
-    .string()
-    .min(2, 'The user name is too short')
-    .max(25, 'The user name is too long')
-    .required('This field is required'),
-  email: yup.string().email('Invalid e-mail format'),
-  password: yup
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('This field is required'),
-  newPassword: yup
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('This field is required'),
-  phone: yup
-    .string()
-    .matches(/^\+(?:[0-9] ?){11,12}[0-9]$/, 'Invalid phone number')
-    .required('This field is required'),
-  age: yup
-    .number()
-    .integer('Integer only')
-    .min(16, 'You are not 16 yet')
-    .max(100, 'Enter the correct age')
-    .required('This field is required'),
-});
 
 function FormData() {
   const [showPassword, setShowPassword] = useState(false);
@@ -221,7 +186,7 @@ function FormData() {
             </div>
 
             <div className={styles.form}>
-              <label htmlFor=" age" className={styles.form__subtitle}>
+              <label htmlFor="age" className={styles.form__subtitle}>
                 Your age
               </label>
               <Field
@@ -233,6 +198,49 @@ function FormData() {
               />
               <ErrorMessage
                 name="age"
+                render={(message) => (
+                  <div
+                    className={`${styles.form__errorMessage} ${
+                      message.length > 35 ? styles.form__longErrorMessage : ''
+                    }`}
+                  >
+                    {message}
+                  </div>
+                )}
+              />
+            </div>
+
+            <div className={styles.form}>
+              <label htmlFor="city" className={styles.form__subtitle}>
+                Enter your city
+              </label>
+              <Field
+                type="text"
+                id="city"
+                name="city"
+                placeholder="City"
+                className={styles.form__message}
+              />
+              <ErrorMessage
+                name="city"
+                component="div"
+                className={styles.form__errorMessage}
+              />
+            </div>
+
+            <div className={styles.form}>
+              <label htmlFor="street" className={styles.form__subtitle}>
+                Enter your street, build
+              </label>
+              <Field
+                type="text"
+                id="street"
+                name="street"
+                placeholder="Street, build"
+                className={styles.form__message}
+              />
+              <ErrorMessage
+                name="street"
                 component="div"
                 className={styles.form__errorMessage}
               />
