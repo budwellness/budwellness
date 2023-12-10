@@ -145,15 +145,21 @@ function App() {
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
       dispatch(
-        setCartAction(
-          userCartData.products.map((p) => ({
-            product: p.product,
-            cartQuantity: p.cartQuantity,
-          }))
-        )
+        setCartAction(userCartData.products)
+        // setCartAction(
+        //   userCartData.products.map((p) => {
+        //     log('product', p)
+        //     return {
+        //       _id: p._id,
+        //       product: p.product,
+        //       cartQuantity: p.cartQuantity,
+        //     }
+        //   })
+        // )
       );
     }
   };
+
 
   useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
