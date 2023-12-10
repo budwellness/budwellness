@@ -1,10 +1,9 @@
 .formDataWrapper {
-  width: 100%;
   @include for-size(992px) {
-    // width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5%;
+    column-gap: 15%;
   }
 }
 
@@ -13,10 +12,6 @@
   display: grid;
   width: 100%;
   margin-bottom: 15px;
-
-  @include for-size(1200px) {
-    // margin-bottom: 20px;
-  }
 
   &__subtitle {
     font-weight: 700;
@@ -40,54 +35,46 @@
     padding: 13px 20px;
   }
 
+  &__passwordIcon {
+    width: 25px;
+    height: 25px;
+    fill: #c6c6c6;
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    cursor: pointer;
+  }
+
+  &__passwordIconActive {
+    width: 25px;
+    height: 25px;
+    fill: $main-green;
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    cursor: pointer;
+  }
   &__errorMessage {
     position: absolute;
     bottom: -20px;
     color: red;
     font-size: 14px;
-    // padding-top: 5px;
-    // margin-bottom: 10px;
   }
-
-  //   &__messageText {
-  //     border-radius: 24px;
-  //     border: 1px solid $secondary-text-color;
-  //     padding: 13px 20px;
-  //     min-height: 135px;
-  //     resize: none;
-  //     @include for-size(992px) {
-  //     }
-  //   }
-  // &:last-child {
-  //   margin-bottom: 30px;
-  // }
 }
 
 .buttonWrapp {
-  // margin-top: 40px; - 1200px
   margin-top: 30px;
   display: flex;
   justify-content: center;
   width: 100%;
   background-color: $main-orange;
   border-radius: 24px;
-  // transition-timing-function: ease-in-out;
-  // transition-duration: 0.5s;
-  @include for-size(992px) {
-    // margin-top: 40px;
-    // width: 200px;
-    // margin: 0 auto;
-    // margin-top: 30px;
+  @include for-size(476px) {
     background-color: white;
   }
   @include for-size(992px) {
-    // width: 50%;
-    // margin: 0 auto;
-    margin-top: 0;
-    // display: flex;
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
   }
-  // &:hover {
-  //   cursor: pointer;
-  //   transform: scale(1.1);
-  // }
 }

@@ -1,13 +1,9 @@
 .menuContainer {
   //   max-width: 240px;
-  //   width: 30%;
   //   margin-right: 110px;
 }
 
 .menu {
-  //   width: 240px;
-  //   max-width: 30%;
-  //   text-decoration: underline;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -15,11 +11,12 @@
   justify-content: center;
   justify-items: center;
   margin-bottom: 20px;
-  //   grid-template-columns: repeat(4, 1fr);
-  //   display: flex;
-  //   justify-content: space-between;
 
-  //   gap: 23px; - 1200 px
+  @include for-size(992px) {
+    gap: 23px;
+    justify-content: flex-start;
+    justify-items: start;
+  }
 
   &__item {
     color: $secondary-green;
@@ -36,17 +33,19 @@
   .menu__item::after {
     content: '';
     position: absolute;
-    // top: 10px;
-    // transform: rotate(90deg);
-    // right: -60px;
     left: 0px;
     bottom: 0px;
     height: 2px;
     width: 100%;
-    // width: 50px; - 1200px
     background-color: $secondary-green;
     opacity: 0;
     transition: opacity 0.3s ease;
+    @include for-size(992px) {
+      transform: rotate(90deg);
+      width: 50px;
+      left: 180px;
+      top: 10px;
+    }
   }
 
   .menu__item:hover::after,

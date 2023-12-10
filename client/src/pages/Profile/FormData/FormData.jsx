@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Button from '../../../components/Button/Button';
+import EyeIcon from '../../../components/UI/EyeIcon';
 import styles from './FormData.module.scss';
 
 const initialValues = {
@@ -12,7 +13,7 @@ const initialValues = {
   email: '',
   password: '',
   newPassword: '',
-  phone: '+',
+  phone: '+380',
   age: '',
 };
 
@@ -23,16 +24,49 @@ const validationSchema = yup.object().shape({
     .max(25, 'The name is too long')
     .required('This field is required')
     .matches(/^([^0-9]*)$/gm, 'Only letters'),
+  lastName: yup
+    .string()
+    .min(2, 'The last name is too short')
+    .max(25, 'The last name is too long')
+    .required('This field is required')
+    .matches(/^([^0-9]*)$/gm, 'Only letters'),
+  userName: yup
+    .string()
+    .min(2, 'The user name is too short')
+    .max(25, 'The user name is too long')
+    .required('This field is required'),
   email: yup.string().email('Invalid e-mail format'),
+  password: yup
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('This field is required'),
+  newPassword: yup
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('This field is required'),
+  phone: yup
+    .string()
+    .matches(/^\+(?:[0-9] ?){11,12}[0-9]$/, 'Invalid phone number')
+    .required('This field is required'),
   age: yup
     .number()
-    .integer('Тільки ціле число')
-    .min(16, 'Вам ще немає 16')
-    .max(100, 'Введіть коректний вік')
-    .required("Поле обов'язкове для заповнення"),
+    .integer('Integer only')
+    .min(16, 'You are not 16 yet')
+    .max(100, 'Enter the correct age')
+    .required('This field is required'),
 });
 
 function FormData() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const toggleNewPasswordVisibility = () => {
+    setShowNewPassword(!showNewPassword);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -122,16 +156,24 @@ function FormData() {
                 Your password
               </label>
               <Field
-                type="text"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
-                // placeholder="you@example.com"
+                placeholder="Your password"
                 className={styles.form__message}
               />
               <ErrorMessage
                 name="password"
                 component="div"
                 className={styles.form__errorMessage}
+              />
+              <EyeIcon
+                className={
+                  !showPassword
+                    ? styles.form__passwordIcon
+                    : styles.form__passwordIconActive
+                }
+                onClick={togglePasswordVisibility}
               />
             </div>
 
@@ -140,16 +182,24 @@ function FormData() {
                 Your new password
               </label>
               <Field
-                type="text"
+                type={showNewPassword ? 'text' : 'password'}
                 id="newPassword"
                 name="newPassword"
-                // placeholder="you@example.com"
+                placeholder="Your new password"
                 className={styles.form__message}
               />
               <ErrorMessage
                 name="newPassword"
                 component="div"
                 className={styles.form__errorMessage}
+              />
+              <EyeIcon
+                className={
+                  !showNewPassword
+                    ? styles.form__passwordIcon
+                    : styles.form__passwordIconActive
+                }
+                onClick={toggleNewPasswordVisibility}
               />
             </div>
 
@@ -161,7 +211,6 @@ function FormData() {
                 type="text"
                 id="phone"
                 name="phone"
-                // placeholder="Code+number "
                 className={styles.form__message}
               />
               <ErrorMessage
@@ -188,11 +237,9 @@ function FormData() {
                 className={styles.form__errorMessage}
               />
             </div>
-
-            <div className={styles.buttonWrapp}>
-              <Button type="button" text="Save" className="orangeBtn" />
-            </div>
-            {/* <Button type="button" text="Save" className="orangeBtn" /> */}
+          </div>
+          <div className={styles.buttonWrapp}>
+            <Button type="button" text="Save" className="profileBtn" />
           </div>
         </Form>
       )}
