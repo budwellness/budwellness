@@ -9,7 +9,9 @@
   font-size: 17px;
   color: $main-green;
   position: relative;
-  
+}
+.titleInput{
+  margin: 0;
 }
 
 .errorInput {
@@ -18,7 +20,7 @@
   bottom: 0;
   width: 200px;
   position: absolute;
-  top: 70px;
+  top: 17px;
   left: 5px;
 }
 
