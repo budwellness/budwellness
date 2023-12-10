@@ -28,6 +28,14 @@ const initialState = {
     startPage: 1,
   },
   queryString: 'perPage=3&startPage=1',
+  filterTags: {
+    categories: '',
+    plantType: '',
+    thc: '',
+    cbd: '',
+    minPrice: '',
+    maxPrice: '',
+  },
 };
 
 const filterSlice = createSlice({
@@ -59,6 +67,35 @@ const filterSlice = createSlice({
     setTotalProducts: (state, { payload }) => {
       state.pagination.totalProducts = payload;
     },
+    addFilterTag: (state, { payload }) => {
+      /* ------------------------------------- */
+      // filterTags: {
+      //   categories: '',
+      //   plantType: '',
+      //   thc: '',
+      //   cbd: '',
+      //   minPrice: '',
+      //   maxPrice: '',
+      // }
+      /* ------------------------------------- */
+      // приходит пэйлоад типа { [key]: value }
+      /* ------------------------------------- */
+      const key = Object.keys(payload)[0]; // Получаем ключ из payload
+      const value = payload[key]; // Получаем значение из payload
+
+      state.filterTags = {
+        ...state.filterTags,
+        key: value, // Используем квадратные скобки для динамического ключа
+      };
+
+      // console.log('state', { ...state.filterTags });
+      // console.log('payload', { ...payload });
+      // state.filterTags = { ...state.filterTags, ...payload };
+      // const isExist = state.filterTags.some((p) => p === payload);
+      // if (!isExist) {
+      //   state.filterTags.push(payload);
+      // }
+    },
   },
 });
 
@@ -67,6 +104,7 @@ export const {
   setSearchParam: setSearchParamAction,
   setStartPage: setStartPageAction,
   setTotalProducts: setTotalProductsAction,
+  addFilterTag: addFilterTagAction,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

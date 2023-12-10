@@ -6,6 +6,7 @@ import Filter from '../../components/Filter/Filter';
 import ProductList from '../../components/ProductList/ProductList';
 import Sorting from '../../components/Sorting/Sorting';
 import styles from './ProductsPage.module.scss';
+import SelectedCategories from '../../components/Filter/SelectedCategories/SelectedCategories';
 
 function ProductsPage() {
   const [startPage, setStartPage] = useState(1);
@@ -19,6 +20,9 @@ function ProductsPage() {
         <div className={styles.wrapperContainer}>
           <div className={styles.Sorting}>
             <Sorting />
+          </div>
+          <div className={styles.SelectedCategories}>
+            <SelectedCategories />
           </div>
           <div className={styles.ProductList}>
             <ProductList startPage={startPage} setStartPage={setStartPage} />

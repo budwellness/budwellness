@@ -6,7 +6,7 @@ import styles from './Filter.module.scss';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useDispatch } from 'react-redux';
-import { setSearchParamAction, setStartPageAction } from '../../store/filter/filter.slice';
+import { addFilterTagAction, setSearchParamAction, setStartPageAction } from '../../store/filter/filter.slice';
 
 const { log } = console;
 
@@ -48,6 +48,8 @@ function Filter(props) {
   //   formRef.current.reset();
   // };
 
+
+  // -----------------//
   const clearCategory = (category) => {
     const updatedCategories = { ...selectedCategories };
     updatedCategories[category] = '';
@@ -68,7 +70,9 @@ function Filter(props) {
     setStartPage(1);
     setSearchParams(currentSearchParams.toString());
   };
-  
+
+  // -----------------//
+
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
@@ -97,13 +101,17 @@ function Filter(props) {
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
   const formHandlerToRedux = () => {
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
     for (let [key, value] of filterData.entries()) {
+      // -----------------//
       if (key !== 'minPrice' && key !== 'maxPrice') {
         setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
       }
+      dispatch(addFilterTagAction({ [key]: value }))
+      // -----------------//
       if (key === 'thc' || key === 'cbd') {
         filterDataArr.push(`${value}`);
         continue;
@@ -111,6 +119,7 @@ function Filter(props) {
       if (key === 'categories' && value === 'all') {
         continue;
       }
+      dispatch(addFilterTagAction(value))
       filterDataArr.push(`${key}=${value}`);
     }
     const [minPrice, maxPrice] = priceRange;
