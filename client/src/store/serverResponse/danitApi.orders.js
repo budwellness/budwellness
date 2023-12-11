@@ -8,17 +8,27 @@ export const danitApiOrders = createApi({
   }),
   endpoints: (build) => ({
     createOrder: build.mutation({
-      query: ({ token, ...patch }) => ({
+      query: ({ token, newOrder }) => ({
         url: API.API_CREATE_ORDER,
         method: 'POST',
         headers: {
           Authorization: token,
           'Content-type': 'application/json',
         },
-        body: patch,
+        body: newOrder,
+      }),
+    }),
+    getAllOrders: build.query({
+      query: (token) => ({
+        url: API.API_GET_ORDERS,
+        method: 'GET',
+        headers: {
+          Authorization: token,
+        },
       }),
     }),
   }),
 });
 
-export const { useCreateOrderMutation } = danitApiOrders;
+export const { useCreateOrderMutation, useLazyGetAllOrdersQuery } =
+  danitApiOrders;

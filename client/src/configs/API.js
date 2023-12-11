@@ -29,6 +29,7 @@ export const API_UPDATE_CART = '/cart';
 
 // ORDERS API's:
 export const API_CREATE_ORDER = '/orders';
+export const API_GET_ORDERS = '/orders';
 
 // CUSTOMER API's:
 export const API_GET_CUSTOMER = '/customers/customer';

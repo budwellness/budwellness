@@ -9,11 +9,15 @@ import Button from '../../Button/Button';
 import validationSchema from './validationSchema';
 
 import styles from './ShippingForm.module.scss';
+import {
+  useCreateOrderMutation,
+  // useLazyGetAllOrdersQuery,
+} from '../../../store/serverResponse/danitApi.orders';
 
 const { log } = console;
 
 export default function ShippingForm() {
-  const { isUserLogin, detailInfo } = useSelector((state) => state.user);
+  const { isUserLogin, token, detailInfo } = useSelector((state) => state.user);
   const [formic, setFormic] = useState();
   const [initialValuesLoggedCustomer, setInitialValuesLoggedCustomer] =
     useState({});
@@ -33,11 +37,39 @@ export default function ShippingForm() {
         email: detailInfo.email,
         deliveryAddress: '',
       });
+    } else {
+      setInitialValuesLoggedCustomer({});
     }
   }, [detailInfo]);
 
+  const [createOrder] = useCreateOrderMutation();
+  // const [getAllOrders] = useLazyGetAllOrdersQuery();
+  // getAllOrders(token).then((response) => log(response));
+
   const onSubmit = (values, actions) => {
-    log(values);
+    if (isUserLogin) {
+      const newOrder = {
+        customerId: detailInfo._id,
+        email: values.email,
+        mobile: values.mobilePhone,
+        letterSubject: 'Thank you for order! You are welcome!',
+        letterHtml:
+          '<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
+        deliveryAddress: values.deliveryAddress,
+        shipping: 'free',
+        paymentInfo: 'Credit card',
+        canceled: false,
+        status: 'not shipped',
+      };
+      log(newOrder);
+      log(token);
+
+      createOrder({
+        token,
+        newOrder,
+      });
+    }
+
     actions.resetForm();
   };
 
@@ -80,7 +112,8 @@ export default function ShippingForm() {
         );
       }
     } else {
-      log('Работаю при разлогине');
+      // log('detailInfo-', detailInfo);
+      // log('initialValuesLoggedCustomer-', initialValuesLoggedCustomer);
       // setInitialValuesLoggedCustomer({});
     }
   }, [isUserLogin, initialValuesLoggedCustomer]);
