@@ -119,7 +119,6 @@ function Filter(props) {
       if (key === 'categories' && value === 'all') {
         continue;
       }
-      dispatch(addFilterTagAction(value))
       filterDataArr.push(`${key}=${value}`);
     }
     const [minPrice, maxPrice] = priceRange;
@@ -163,7 +162,7 @@ function Filter(props) {
   return (
     <div className={styles.filterContainer}>
       <div className={styles.cancel}>
-        {/* {' '} */}
+        {' '}
         {Object.values(selectedCategories).filter((el) => el !== '').length >
           0 &&
           Object.entries(selectedCategories).map(([fieldType, fieldValue]) =>

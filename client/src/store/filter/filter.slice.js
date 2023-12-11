@@ -16,6 +16,14 @@ const buildQueryString = (queryStringObj) => {
 };
 
 const initialState = {
+  filterTags: {
+    categories: '',
+    plantType: '',
+    thc: '',
+    cbd: '',
+    minPrice: '',
+    maxPrice: '',
+  },
   queryChunks: {
     filter: '',
     perPage: 'perPage=3',
@@ -28,14 +36,6 @@ const initialState = {
     startPage: 1,
   },
   queryString: 'perPage=3&startPage=1',
-  filterTags: {
-    categories: '',
-    plantType: '',
-    thc: '',
-    cbd: '',
-    minPrice: '',
-    maxPrice: '',
-  },
 };
 
 const filterSlice = createSlice({
@@ -68,33 +68,10 @@ const filterSlice = createSlice({
       state.pagination.totalProducts = payload;
     },
     addFilterTag: (state, { payload }) => {
-      /* ------------------------------------- */
-      // filterTags: {
-      //   categories: '',
-      //   plantType: '',
-      //   thc: '',
-      //   cbd: '',
-      //   minPrice: '',
-      //   maxPrice: '',
-      // }
-      /* ------------------------------------- */
-      // приходит пэйлоад типа { [key]: value }
-      /* ------------------------------------- */
-      const key = Object.keys(payload)[0]; // Получаем ключ из payload
-      const value = payload[key]; // Получаем значение из payload
-
       state.filterTags = {
         ...state.filterTags,
-        key: value, // Используем квадратные скобки для динамического ключа
+        ...payload,
       };
-
-      // console.log('state', { ...state.filterTags });
-      // console.log('payload', { ...payload });
-      // state.filterTags = { ...state.filterTags, ...payload };
-      // const isExist = state.filterTags.some((p) => p === payload);
-      // if (!isExist) {
-      //   state.filterTags.push(payload);
-      // }
     },
   },
 });

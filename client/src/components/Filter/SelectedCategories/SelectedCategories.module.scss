@@ -1,0 +1,25 @@
+.selectedCategories {
+  display: flex;
+  list-style-type: none;
+}
+
+.clearButton {
+  font-size: 12px;
+  line-height: 1;
+  color: $main-green;
+  font-weight: 600;
+  border: 1px solid $tertiary-green;
+  border-radius: 100px;
+  height: 35px;
+  background-color: $color-white;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cross {
+  display: block;
+  size: 20px;
+  margin-left: 5px;
+}
