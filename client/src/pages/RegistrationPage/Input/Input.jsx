@@ -9,7 +9,7 @@ import styles from './Input.module.scss';
 function Input(props) {
   const [field, meta] = useField(props);
   const {
-    type, placeholder, classNames, label, name,
+    type, placeholder, classNames, label, name, emailError, loginError,
   } = props;
   return (
   // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -20,12 +20,19 @@ function Input(props) {
         className={styles.formItem}
         name={name}
         placeholder={placeholder}
-            // eslint-disable-next-line react/jsx-props-no-spreading
+                // eslint-disable-next-line react/jsx-props-no-spreading
         {...field}
       />
+      {!!loginError && !meta.error && (
+        <p className={styles.errorInput}>{loginError}</p>
+      )}
+      {!!emailError && !meta.error && (
+        <p className={styles.errorInput}>{emailError}</p>
+      )}
       {!!meta.error && meta.touched && (
         <ErrorMessage name={name} className={styles.errorInput} component="p" />
       )}
+
     </label>
   );
 }
@@ -36,6 +43,8 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.string,
+  emailError: PropTypes.string,
+  loginError: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -43,6 +52,8 @@ Input.defaultProps = {
   label: '',
   classNames: '',
   placeholder: '',
+  emailError: '',
+  loginError: '',
   // eslint-disable-next-line react/default-props-match-prop-types
   rows: 0,
 };
