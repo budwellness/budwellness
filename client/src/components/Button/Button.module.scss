@@ -38,3 +38,16 @@
   border: 1px solid $secondary-green;
   background-color: $secondary-green;
 }
+
+.profileBtn {
+  background-color: $main-orange;
+  color: $main-green;
+  border: none;
+  padding: 10px 75px;
+  @include for-size(476px) {
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}

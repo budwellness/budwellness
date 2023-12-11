@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { userMockData, productsJSON } from './mockedTestData';
 import { uploadHandler } from './vanilaJsHelpers';
 
-// COMPONENTS: 
+// COMPONENTS:
 import Container from '../../components/Container/Container';
 import TestProductCard from './TestProductCard';
 
@@ -20,7 +20,7 @@ import {
   useLazyGetFilteredProductsQuery,
 } from '../../store/serverResponse/danitApi.products';
 
-// USER IMPORTS: 
+// USER IMPORTS:
 import {
   userLoginUserAction,
   userLogoutUserAction,
@@ -46,7 +46,7 @@ import {
   removeItemFromCartAction,
   increaseCartItemQuantityAction,
   decreaseCartItemQuantityAction,
-} from '../../store/cart/cart.slice'
+} from '../../store/cart/cart.slice';
 import {
   useLazyGetCartQuery,
   useAddToCartMutation,
@@ -54,14 +54,11 @@ import {
   useDecreaseCartQuantityMutation,
 } from '../../store/serverResponse/danitApi.cart';
 
-
 import styles from './TestForBackPage.module.scss';
-
 
 const { log } = console;
 
 function TestForBackPage() {
-
   const dispatch = useDispatch();
 
   /* --------------------------- REDUX STATE: --------------------------- */
@@ -72,9 +69,8 @@ function TestForBackPage() {
     (state) => state.wishlist
   );
 
-  const { cart: cartStoreData } = useSelector(state => state.cart)
+  const { cart: cartStoreData } = useSelector((state) => state.cart);
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
-
 
   // PRODUCTS API:
   const {
@@ -105,7 +101,7 @@ function TestForBackPage() {
     {
       data: lazyFilteredProductsData,
       isError: isErrorlazyFilteredProductsData,
-    }
+    },
   ] = useLazyGetFilteredProductsQuery();
 
   // USER API:
@@ -142,13 +138,8 @@ function TestForBackPage() {
 
   // CART API:
 
-  const [
-    getCart,
-    {
-      data: userCartData,
-      isSuccess: isSuccessUserCartData
-    }
-  ] = useLazyGetCartQuery()
+  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
+    useLazyGetCartQuery();
 
   const [
     addProductToCart,
@@ -156,9 +147,9 @@ function TestForBackPage() {
       data: cartAddToCartData,
       isSuccess: isSuccessAddToCart,
       isError: isErrorAddToCart,
-      error: errorAddToCart
-    }
-  ] = useAddToCartMutation()
+      error: errorAddToCart,
+    },
+  ] = useAddToCartMutation();
 
   const [
     removeProductFromCart,
@@ -167,12 +158,10 @@ function TestForBackPage() {
       isSuccess: isSuccessRemoveFromCart,
       isError: isErrorRemoveFromCart,
       error: errorRemoveFromCart,
-    }
-  ] = useRemoveFromCartMutation()
+    },
+  ] = useRemoveFromCartMutation();
 
-  const [
-    decreaseCartQuantity
-  ] = useDecreaseCartQuantityMutation()
+  const [decreaseCartQuantity] = useDecreaseCartQuantityMutation();
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
@@ -231,15 +220,15 @@ function TestForBackPage() {
 
     if (isExist) {
       try {
-        removeProductFromWishlist({ productId: product._id, token })
-        dispatch(removeItemFromWishListAction(product))
+        removeProductFromWishlist({ productId: product._id, token });
+        dispatch(removeItemFromWishListAction(product));
       } catch (error) {
         log(error);
       }
     } else {
       try {
-        addProductToWishlist({ productId: product._id, token })
-        dispatch(addItemToWishListAction(product))
+        addProductToWishlist({ productId: product._id, token });
+        dispatch(addItemToWishListAction(product));
       } catch (error) {
         log(error);
       }
@@ -249,75 +238,75 @@ function TestForBackPage() {
   /* ------------------------------------------------ */
 
   const showCartStoreHandler = () => {
-    log(cartStoreData)
-  }
+    log(cartStoreData);
+  };
 
   /* ------------------------------------------------ */
 
   const showUserCartDataHandler = () => {
-    log(userCartData)
-  }
+    log(userCartData);
+  };
 
   /* ------------------------------------------------ */
 
   const toggleCartHandler = (product, token) => {
-    const isExist = cartStoreData.some(p => p.product._id === product._id)
+    const isExist = cartStoreData.some((p) => p.product._id === product._id);
 
     if (isExist) {
       try {
-        removeProductFromCart({ productId: product._id, token })
-        dispatch(removeItemFromCartAction(product))
+        removeProductFromCart({ productId: product._id, token });
+        dispatch(removeItemFromCartAction(product));
       } catch (error) {
-        log(error)
+        log(error);
       }
     } else {
       try {
         addProductToCart({ productId: product._id, token })
           .unwrap()
-          .then(response => dispatch(addItemToCartAction(response.products)))
+          .then((response) => dispatch(addItemToCartAction(response.products)));
       } catch (error) {
-        log(error)
+        log(error);
       }
     }
-  }
+  };
 
   /* ------------------------------------------------ */
 
   const increaseCartQuantityHandler = (productId, token) => {
     try {
-      addProductToCart({ productId, token })
-      dispatch(increaseCartItemQuantityAction(productId))
+      addProductToCart({ productId, token });
+      dispatch(increaseCartItemQuantityAction(productId));
     } catch (error) {
-      log(error)
+      log(error);
     }
-  }
+  };
 
   /* ------------------------------------------------ */
 
   const decreaseCartQuantityHandler = (productId, token) => {
     try {
-      decreaseCartQuantity({ productId, token })
-      dispatch(decreaseCartItemQuantityAction(productId))
+      decreaseCartQuantity({ productId, token });
+      dispatch(decreaseCartItemQuantityAction(productId));
     } catch (error) {
-      log(error)
+      log(error);
     }
-  }
+  };
 
   /* ------------------------------------------------ */
 
   const productsToDateBaseHandler = () => {
-    productsJSON.forEach(product => {
+    productsJSON.forEach((product) => {
       const requestData = {
         token: tokenReduxStore,
         product,
-      }
+      };
       try {
-        uploadProductToDataBase(requestData)
+        uploadProductToDataBase(requestData);
       } catch (error) {
-        log(error)
+        log(error);
       }
-    })
-  }
+    });
+  };
 
   // const getSingleProductHandler = (itemNo) => {
   //   getSingleProduct(itemNo);
@@ -356,7 +345,7 @@ function TestForBackPage() {
       log('token is present, put it into store...');
       dispatch(userLoginUserAction(localStorageToken));
       getWishlist(localStorageToken);
-      getCart(localStorageToken)
+      getCart(localStorageToken);
     }
   };
 
@@ -417,11 +406,11 @@ function TestForBackPage() {
 
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
-      dispatch(setCartAction(userCartData.products))
+      dispatch(setCartAction(userCartData.products));
     }
-  }
+  };
 
-  useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData])
+  useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
   /* ------------------------------------------------ */
 
@@ -446,7 +435,7 @@ function TestForBackPage() {
             decreaseCartQuantityHandler,
           }}
         />
-      )
+      );
     }
   });
 
@@ -454,8 +443,7 @@ function TestForBackPage() {
 
   const getFilteredProductsHandler = () => {
     getFilteredProducts(mockFilterQueryString);
-  }
-
+  };
 
   return (
     <>
@@ -482,6 +470,9 @@ function TestForBackPage() {
           </button>
           <button type="button" onClick={() => getFilteredProductsHandler()}>
             Filtered
+          </button>
+          <button type="button" onClick={() => getFilteredProductsHandler()}>
+            Slider with server data
           </button>
         </div>
         <div className={styles.btnWrapper}>
