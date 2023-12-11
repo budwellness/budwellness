@@ -35,6 +35,9 @@ import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlis
 import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
+import { useLazyGetCustomerDataQuery } from './store/serverResponse/danitApi.customer.js';
+import { setCustomerDataAction } from './store/user/user.slice';
+
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
@@ -73,6 +76,11 @@ function App() {
   const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
     useLazyGetCartQuery();
   const fetchLocalCartProducts = useFetchLocalCardProducts();
+
+  const [
+    getCustomerData,
+    { data: userCustomerData, isSuccess: isSuccessUserCustomerData },
+  ] = useLazyGetCustomerDataQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
@@ -125,6 +133,7 @@ function App() {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
         getCart(localStorageToken);
+        getCustomerData(localStorageToken);
         log('token valid');
       }
     }
@@ -160,10 +169,17 @@ function App() {
     }
   };
 
+  const initUserCustomerDataOnLoad = () => {
+    if (isUserLogin && userCustomerData) {
+      dispatch(setCustomerDataAction(userCustomerData));
+    }
+  };
 
   useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
+
+  useEffect(() => initUserCustomerDataOnLoad(), [isSuccessUserCustomerData]);
 
   return (
     <>

@@ -27,3 +27,10 @@ export const API_ADD_TO_CART = '/cart/';
 export const API_REMOVE_FROM_CART = '/cart/';
 export const API_DEACREASE_PRODUCT_QUANTITY = '/cart/product/';
 export const API_UPDATE_CART = '/cart';
+
+// ORDERS API's:
+export const API_CREATE_ORDER = '/orders';
+export const API_GET_ORDERS = '/orders';
+
+// CUSTOMER API's:
+export const API_GET_CUSTOMER = '/customers/customer';
