@@ -11,10 +11,10 @@ import { addFilterTagAction, setSearchParamAction, setStartPageAction } from '..
 const { log } = console;
 
 function Filter(props) {
-  const { startPage, setStartPage } = props;
+  const { startPage, setStartPage, formRef } = props;
   /* --------------------------- INIT HOOKS: --------------------------- */
   const navigate = useNavigate();
-  const formRef = useRef();
+  // const formRef = useRef();
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,31 +49,6 @@ function Filter(props) {
   // };
 
 
-  // -----------------//
-  const clearCategory = (category) => {
-    const updatedCategories = { ...selectedCategories };
-    updatedCategories[category] = '';
-
-    setSelectedCategories(updatedCategories);
-
-    formRef.current.reset();
-    const filterQueryString = Object.entries(updatedCategories)
-      .filter(([key, value]) => value !== '')
-      .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
-      .join('&');
-
-    setStartPage(1);
-    setSearchParams(`${filterQueryString}`);
-    const currentSearchParams = new URLSearchParams(searchParams);
-    currentSearchParams.delete(category);
-
-    setStartPage(1);
-    setSearchParams(currentSearchParams.toString());
-  };
-
-  // -----------------//
-
-
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
     // setSelectedCategories(category);
@@ -100,11 +75,33 @@ function Filter(props) {
     setIsFilterOpen(window.innerWidth >= 992);
   };
 
+  const clearCategory = (category) => {
+    const updatedCategories = { ...selectedCategories };
+    updatedCategories[category] = '';
+
+    setSelectedCategories(updatedCategories);
+
+    formRef.current.reset();
+    const filterQueryString = Object.entries(updatedCategories)
+      .filter(([key, value]) => value !== '')
+      .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
+      .join('&');
+
+    setStartPage(1);
+    setSearchParams(`${filterQueryString}`);
+    const currentSearchParams = new URLSearchParams(searchParams);
+    currentSearchParams.delete(category);
+
+    setStartPage(1);
+    setSearchParams(currentSearchParams.toString());
+  };
+
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   const formHandlerToRedux = () => {
     const filterDataArr = [];
     const filterData = new FormData(formRef.current);
+    log('filterData.entries()', filterData.entries())
     for (let [key, value] of filterData.entries()) {
       // -----------------//
       if (key !== 'minPrice' && key !== 'maxPrice') {
@@ -125,6 +122,7 @@ function Filter(props) {
     filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
     const filterQueryString = filterDataArr.join('&');
     dispatch(setStartPageAction(1))
+    log('filterQueryString', filterQueryString)
     dispatch(setSearchParamAction(`${filterQueryString}`))
   };
 
@@ -163,7 +161,7 @@ function Filter(props) {
     <div className={styles.filterContainer}>
       <div className={styles.cancel}>
         {' '}
-        {Object.values(selectedCategories).filter((el) => el !== '').length >
+        {/* {Object.values(selectedCategories).filter((el) => el !== '').length >
           0 &&
           Object.entries(selectedCategories).map(([fieldType, fieldValue]) =>
             fieldValue !== '' ? (
@@ -176,7 +174,7 @@ function Filter(props) {
                 {fieldValue} <span className={styles.cross}>&times;</span>
               </button>
             ) : null
-          )}
+          )} */}
       </div>
       <button onClick={toggleFilter} className={styles.filterButton}>
         Filters
