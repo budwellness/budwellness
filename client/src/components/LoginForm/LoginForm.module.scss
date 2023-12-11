@@ -1,10 +1,11 @@
 .form {
-  text-align: left;
+  //text-align: left;
 }
 
 .form_name {
-  display: flex;
-  align-items: center;
+  //display: flex;
+  //align-items: center;
+  text-align: center;
 }
 
 .logoIcon {
@@ -18,9 +19,10 @@
   font-size: 28px;
   font-style: normal;
   font-weight: 900;
-  // margin-left: 10px;
+   //margin-left: 10px;
   line-height: 30px;
   // text-align: center;
+  margin: 0;
 }
 
 .accentColor {
@@ -41,9 +43,9 @@
 
 .forgotPassword {
   position: absolute;
-  top: 90px;
+  top: 65px;
   right: 0;
-  font-size: 12px;
+  //font-size: 12px;
   color: $secondary-green;
   font-family: $font-nunito;
   font-size: 15px;
@@ -57,7 +59,7 @@
   height: 40px;
   background: $main-orange;
   border-radius: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
   padding: 5px 16px;
   color: white;
 
@@ -67,10 +69,10 @@
 }
 
 .btnCreate {
-  border-radius: 24px;
+  //border-radius: 24px;
   border: 1px solid $secondary-green;
   border-radius: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
   padding: 5px 16px;
   width: 100%;
   height: 40px;
@@ -84,11 +86,12 @@
 }
 
 .footerInput {
-  border: 1px solid #21262d;
+  //border: 1px solid #21262d;
   // padding: 16px;
   // margin-top: 16px;
   border: none;
   text-align: center;
+  padding: 0 10px;
 }
 
 .createAcc {
@@ -110,39 +113,3 @@
   //}
 }
 
-//.title {
-//}
-
-//.socialLinksWrapper {
-//
-//}
-//
-//.facebook {
-//  background-color: #228BE6;
-//  border-radius: 5px;
-//  color: white;
-//  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//  padding: 15px 25px;
-//  width: 100%;
-//
-//
-//  svg {
-//    fill: white;
-//    margin-right: 5px;
-//  }
-//}
-
-//.google {
-//  border-radius: 5px;
-//  color: gray;
-//  background-color: white;
-//
-//  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//  padding: 15px 25px;
-//  width: 100%;
-//  margin-top: 15px;
-//
-//  svg {
-//    margin-right: 5px;
-//  }
-//}
