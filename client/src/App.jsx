@@ -51,6 +51,7 @@ import { setModal } from './store/modal/modal.slice.js';
 import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
+import Profile from './pages/Profile/Profile.jsx';
 
 const { log } = console;
 
@@ -153,16 +154,20 @@ function App() {
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
       dispatch(
-        setCartAction(
-          userCartData.products.map((p) => ({
-            product: p.product,
-            cartQuantity: p.cartQuantity,
-          }))
-        )
+        setCartAction(userCartData.products)
+        // setCartAction(
+        //   userCartData.products.map((p) => {
+        //     log('product', p)
+        //     return {
+        //       _id: p._id,
+        //       product: p.product,
+        //       cartQuantity: p.cartQuantity,
+        //     }
+        //   })
+        // )
       );
     }
   };
-  /* ------------------------------------------------ */
 
   const initUserCustomerDataOnLoad = () => {
     if (isUserLogin && userCustomerData) {
@@ -194,6 +199,7 @@ function App() {
         <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
