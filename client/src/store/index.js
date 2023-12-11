@@ -33,15 +33,14 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(danitApiCart.middleware)
-      .concat(danitApiProducts.middleware)
-      .concat(danitApiAuth.middleware)
-      .concat(danitApiWishlist.middleware)
-      .concat(danitApiCustomer.middleware)
-      .concat(danitApiOrders.middleware)
-      .concat(localJsonApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(danitApiCart.middleware)
+    .concat(danitApiProducts.middleware)
+    .concat(danitApiAuth.middleware)
+    .concat(danitApiWishlist.middleware)
+    .concat(danitApiCustomer.middleware)
+    .concat(danitApiOrders.middleware)
+    .concat(localJsonApi.middleware),
 });
 
 export default store;

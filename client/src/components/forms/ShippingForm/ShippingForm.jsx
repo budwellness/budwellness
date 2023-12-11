@@ -19,8 +19,7 @@ const { log } = console;
 export default function ShippingForm() {
   const { isUserLogin, token, detailInfo } = useSelector((state) => state.user);
   const [formic, setFormic] = useState();
-  const [initialValuesLoggedCustomer, setInitialValuesLoggedCustomer] =
-    useState({});
+  const [initialValuesLoggedCustomer, setInitialValuesLoggedCustomer] = useState({});
 
   const initialValuesNonAuthenticatedCustomer = {
     fullName: '',
@@ -108,7 +107,7 @@ export default function ShippingForm() {
                 />
               </Form>
             )}
-          </Formik>
+          </Formik>,
         );
       }
     } else {

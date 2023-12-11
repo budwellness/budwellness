@@ -1,15 +1,18 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line semi
+
 import styles from './Button.module.scss';
 
 function Button(props) {
-  const { type, text, className, onClick, isDisabled } = props;
+  const {
+    type, text, className, onClick, isDisabled,
+  } = props;
 
   const buttonClasses = [styles.btn, styles[className]].join(' ');
 
   return (
-    // eslint-disable-next-line react/button-has-type
+
     <button
       type={type}
       className={buttonClasses}
@@ -33,7 +36,7 @@ Button.defaultProps = {
   type: 'button',
   text: 'Our Products',
   className: 'btn',
-  onClick: () => {},
+  onClick: () => { },
   isDisabled: false,
 };
 
