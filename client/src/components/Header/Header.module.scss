@@ -11,8 +11,9 @@
   background: #ffffff;
   //padding-top: 10px;
   //padding-bottom: 10px;
-  transition: transform 0.3s ease, padding 0.3s ease;
-
+  transition:
+    transform 0.3s ease,
+    padding 0.3s ease;
 
   &.scrolled {
     transform: translateY(0);
@@ -48,11 +49,9 @@
   //color: #000;
   text-transform: capitalize;
 
-
   display: flex;
   align-items: center;
 }
-
 
 .wrapper {
   display: flex;
@@ -87,7 +86,6 @@
 .accentColor {
   color: $secondary-green;
 }
-
 
 .toggleBtn {
   display: inline-flex;
@@ -215,37 +213,66 @@
   }
 }
 .header_userMenu {
+  // position: absolute;
+  // color: $main-orange;
+  // font-family: $font-nunito;
+  // font-size: 14px;
+  // background-color: transparent;
+  // border: 1px solid;
+  // border-radius: 20px;
+  // cursor: pointer;
+  // @include for-size(320px) {
+  //   top: 115%;
+  //   right: 30%;
+  // }
+  // @include for-size(576px) {
+  //   top: 115%;
+  //   right: 17%;
+  // }
+  // @include for-size(768px) {
+  //   top: 115%;
+  //   right: 13%;
+  // }
+  // @include for-size(992px) {
+  //   top: 115%;
+  //   right: 10%;
+  // }
+  // @include for-size(1200px) {
+  //   top: 75%;
+  //   right: 12%;
+  // }
+  // @include for-size(1440px) {
+  //   top: 75%;
+  //   right: 12%;
+  // }
+
   position: absolute;
-  color: $main-orange;
-  font-family: $font-nunito;
-  font-size: 14px;
-  background-color: transparent;
-  border: 1px solid;
-  border-radius: 20px;
+  // background-color: transparent;
   cursor: pointer;
   @include for-size(320px) {
-    top: 115%;
-    right: 30%;
+    // top: 115%;
+    top: 60%;
+    right: 2%;
   }
-  @include for-size(576px) {
-    top: 115%;
-    right: 17%;
-  }
+  // @include for-size(576px) {
+  //   top: 115%;
+  //   right: 17%;
+  // }
   @include for-size(768px) {
-    top: 115%;
-    right: 13%;
+    top: 80%;
+    right: 1%;
   }
-  @include for-size(992px) {
-    top: 115%;
-    right: 10%;
-  }
+  // @include for-size(992px) {
+  //   top: 80%;
+  //   right: 1%;
+  // }
   @include for-size(1200px) {
-    top: 75%;
-    right: 12%;
+    top: 60%;
+    right: 8%;
   }
   @include for-size(1440px) {
-    top: 75%;
-    right: 12%;
+    top: 60%;
+    right: 8%;
   }
 }
 
@@ -266,4 +293,3 @@
   border-radius: 50%;
   color: white;
 }
-

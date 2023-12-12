@@ -17,7 +17,6 @@ import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-import UserPopup from './components/Header/UserPopup/UserPopup.jsx';
 
 // USER IMPORTS:
 
@@ -185,7 +184,6 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/test" element={<TestForBackPage />} />
-        <Route path="/popup" element={<UserPopup />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
