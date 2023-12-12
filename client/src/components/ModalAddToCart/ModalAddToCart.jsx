@@ -146,28 +146,9 @@ function ModalAddToCart(props) {
 export default ModalAddToCart;
 
 ModalAddToCart.propTypes = {
-  // eslint-disable-next-line react/require-default-props
-  product: PropTypes.shape({
-    imageUrls: PropTypes.arrayOf(PropTypes.string),
-    reviews: PropTypes.arrayOf(PropTypes.string),
-    description: PropTypes.arrayOf(PropTypes.string),
-    itemNo: PropTypes.number.isRequired,
-    currentPrice: PropTypes.number.isRequired,
-    rate: PropTypes.number.isRequired,
-    name: PropTypes.string,
-  }),
-
-  actions: PropTypes.shape({
-    toggleCartWithLoginHandler: PropTypes.func,
-    toggleWishlistWithLoginHandler: PropTypes.func,
-  }),
   handleModalAddToCart: PropTypes.func,
 };
 
 ModalAddToCart.defaultProps = {
-  actions: {
-    toggleCartHandler: () => {},
-    toggleWishlistHandler: () => {},
-  },
   handleModalAddToCart: () => {},
 };

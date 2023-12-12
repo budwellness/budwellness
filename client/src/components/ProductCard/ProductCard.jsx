@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -185,8 +183,8 @@ function ProductCard(props) {
 }
 
 ProductCard.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   product: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     imageUrls: PropTypes.arrayOf(PropTypes.string),
     thc: PropTypes.number.isRequired,
     cbd: PropTypes.number.isRequired,
@@ -197,11 +195,30 @@ ProductCard.propTypes = {
     name: PropTypes.string,
     classNames: PropTypes.string,
   }),
-  // eslint-disable-next-line react/require-default-props
   actions: PropTypes.shape({
     toggleWishlistHandler: PropTypes.func,
     toggleCartHandler: PropTypes.func,
+    toggleLocalCartHandler: PropTypes.func,
   }),
+  handleModalAddToCart: PropTypes.func,
+};
+
+ProductCard.defaultProps = {
+  product: {
+    thc: '',
+    cbd: '',
+    previousPrice: 30,
+    currentPrice: 23,
+    rate: 1,
+    name: '',
+    classNames: '',
+  },
+  actions: {
+    toggleWishlistHandler: () => {},
+    toggleCartHandler: () => {},
+    toggleLocalCartHandler: () => {},
+  },
+  handleModalAddToCart: () => {},
 };
 
 export default ProductCard;
