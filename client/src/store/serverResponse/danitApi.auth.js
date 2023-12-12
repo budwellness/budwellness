@@ -18,7 +18,18 @@ export const danitApiAuth = createApi({
       }),
       transformResponse: (response) => response.token,
     }),
+    registrationUser: build.mutation({
+      query: ({ ...userData }) => ({
+        url: API.API_REGISTRATION_USER,
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: userData,
+      }),
+
+    }),
   }),
 });
 
-export const { useLoginUserMutation } = danitApiAuth;
+export const { useLoginUserMutation, useRegistrationUserMutation } = danitApiAuth;

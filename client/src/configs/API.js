@@ -2,7 +2,8 @@
 export const API_URL = 'http://localhost:4000/api';
 
 // LOGIN API's:
-export const API_LOGIN = `${API_URL}/customers/login`;
+export const API_LOGIN = '/customers/login';
+export const API_REGISTRATION_USER = '/customers';
 
 // PRODUCT API's:
 export const API_ADD_PRODUCT = '/products';

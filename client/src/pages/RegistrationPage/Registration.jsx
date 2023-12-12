@@ -1,45 +1,82 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Input from './Input/Input';
 // import Textarea from './Textarea/Textarea';
 
-import styles from './Registration.module.scss';
-import validationSchema from './validation';
+import validationSchema from './validationRegistrationForm';
+import { useRegistrationUserMutation } from '../../store/serverResponse/danitApi.auth';
+import { setModal } from '../../store/modal/modal.slice';
 
 import Container from '../../components/Container/Container';
 import ButtonHeader from '../../components/ButtonHeader/ButtonHeader';
 
+import styles from './Registration.module.scss';
+
 function Registration() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [loginError, setLoginError] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const [registrationUser,
+    { data: registrationData, error: registrationError }] = useRegistrationUserMutation();
+
   const initialValues = {
-    email: '',
-    username: '',
-    password: '',
-    name: '',
+    firstName: '',
     lastName: '',
+    login: '',
+    email: '',
+    password: '',
+    telephone: '+380',
     age: '',
-    address: '',
-    phone: '',
   };
-  const onSubmit = () => {
-    // console.log(values, 'Reg!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    navigate('/');
+
+  const submit = async (value) => {
+    try {
+      const response = await registrationUser(value);
+      if (response.error) {
+        const errorMessage = response.error.data.message;
+
+        if (errorMessage.includes('Login')) {
+          setLoginError(errorMessage);
+          setEmailError(null);
+        } else if (errorMessage.includes('Email')) {
+          setEmailError(errorMessage);
+          setLoginError(null);
+        } else {
+          setLoginError(null);
+          setEmailError(null);
+        }
+      } else {
+        setLoginError(null);
+        setEmailError(null);
+        navigate('/');
+        dispatch(setModal(true));
+      }
+    } catch (error) {
+      setLoginError(null);
+      setEmailError(null);
+    }
   };
+
   return (
     <Container>
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
         validationSchema={validationSchema}
+        onSubmit={submit}
       >
         {({ isValid }) => (
           <Form className={styles.wrapperForm}>
             <div className={styles.form}>
               <h3 className={styles.registration}>Registration</h3>
               <Input
-                name="name"
+                name="firstName"
                 type="text"
                 placeholder="Enter your name"
                 label="Your name"
@@ -53,11 +90,12 @@ function Registration() {
                 className={styles.formLabel}
               />
               <Input
-                name="username"
+                name="login"
                 type="text"
-                placeholder="Enter your Username"
-                label="Your Username"
+                placeholder="Enter your Login"
+                label="Your Login"
                 className={styles.formLabel}
+                loginError={loginError}
               />
               <Input
                 name="email"
@@ -65,6 +103,7 @@ function Registration() {
                 placeholder="Enter your email"
                 label="Your email"
                 className={styles.formLabel}
+                emailError={emailError}
               />
               <Input
                 name="password"
@@ -81,23 +120,23 @@ function Registration() {
                 className={styles.formLabel}
               />
               <Input
-                name="phone"
-                type="number"
+                name="telephone"
+                type="text"
                 placeholder="Enter your phone number"
                 label="Your phone number"
                 className={styles.formLabel}
               />
               <Input
                 name="age"
-                type="number"
+                type="text"
                 placeholder="Enter your age"
                 label="Your age"
                 className={styles.formLabel}
+                value
               />
               <ButtonHeader
                 className={styles.btnForm}
                 type="submit"
-                disabled={!isValid}
               >
                 Sign in
               </ButtonHeader>
