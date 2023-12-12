@@ -45,25 +45,30 @@ export default function ShippingForm() {
   const [createOrder] = useCreateOrderMutation();
   // const [getAllOrders] = useLazyGetAllOrdersQuery();
   // getAllOrders(token).then((response) => log(response));
+  log(token);
 
   const onSubmit = (values, actions) => {
-    if (isUserLogin) {
-      const newOrder = {
-        customerId: detailInfo._id,
-        email: values.email,
-        mobile: values.mobilePhone,
-        letterSubject: 'Thank you for order! You are welcome!',
-        letterHtml:
-          '<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
-        deliveryAddress: values.deliveryAddress,
-        shipping: 'free',
-        paymentInfo: 'Credit card',
-        canceled: false,
-        status: 'not shipped',
-      };
-      log(newOrder);
-      log(token);
+    const newOrder = {
+      customerId: detailInfo._id,
+      email: values.email,
+      mobile: values.mobilePhone,
+      letterSubject: 'Thank you for order! You are welcome!',
+      letterHtml:
+        '<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
+      deliveryAddress: values.deliveryAddress,
+      shipping: 'free',
+      paymentInfo: 'Credit card',
+      canceled: false,
+      status: 'not shipped',
+    };
+    log('newOrder-', newOrder);
 
+    if (isUserLogin) {
+      createOrder({
+        token,
+        newOrder,
+      });
+    } else {
       createOrder({
         token,
         newOrder,

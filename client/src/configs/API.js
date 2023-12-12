@@ -34,3 +34,6 @@ export const API_GET_ORDERS = '/orders';
 
 // CUSTOMER API's:
 export const API_GET_CUSTOMER = '/customers/customer';
+
+// GLOBAL_CONFIG API's:
+export const API_ADD_GLOBAL_CONFIG = '/configs';

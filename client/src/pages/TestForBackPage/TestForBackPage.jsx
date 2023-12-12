@@ -55,6 +55,7 @@ import {
 } from '../../store/serverResponse/danitApi.cart';
 
 import styles from './TestForBackPage.module.scss';
+import { useAddGlobalConfigMutation } from '../../store/serverResponse/danitApi.globalConfig';
 
 const { log } = console;
 
@@ -445,6 +446,51 @@ function TestForBackPage() {
     getFilteredProducts(mockFilterQueryString);
   };
 
+  const globalConfigMock = {
+    newConfig: {
+      customId: 'some-global-configs',
+      development: {
+        database: {
+          uri: 'mongodb+srv://admin:admin@cluster0.kdzkxkn.mongodb.net/?retryWrites=true&w=majority',
+        },
+        email: {
+          mailUser: 'budwellnessproject@gmail.com',
+          mailPassword: 'Qazwsx#123',
+          mailService: 'gmail',
+        },
+        auth: {
+          secretOrKey: 'budWellnessVerySecretKey',
+        },
+        infinitScrollEnabled: true,
+        minOrderValue: 5,
+        someCustomParam: 'custom params value',
+      },
+      production: {
+        database: {
+          uri: 'mongodb+srv://admin:admin@cluster0.kdzkxkn.mongodb.net/?retryWrites=true&w=majority',
+        },
+        email: {
+          mailUser: 'budwellnessproject@gmail.com',
+          mailPassword: 'Qazwsx#123',
+          mailService: 'gmail',
+        },
+        auth: {
+          secretOrKey: 'budWellnessVerySecretKey',
+        },
+        infinitScrollEnabled: true,
+        minOrderValue: 5,
+        someCustomParam: 'custom params value',
+      },
+    },
+    token: tokenReduxStore,
+  };
+
+  const [addGlobalConfig] = useAddGlobalConfigMutation();
+
+  const addGlobalConfigHandler = () => {
+    addGlobalConfig(globalConfigMock);
+  };
+
   return (
     <>
       <div className={styles.mainWrapper}>
@@ -473,6 +519,9 @@ function TestForBackPage() {
           </button>
           <button type="button" onClick={() => getFilteredProductsHandler()}>
             Slider with server data
+          </button>
+          <button type="button" onClick={() => addGlobalConfigHandler()}>
+            Add global config
           </button>
         </div>
         <div className={styles.btnWrapper}>

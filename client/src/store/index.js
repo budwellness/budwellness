@@ -6,6 +6,7 @@ import { danitApiWishlist } from './serverResponse/danitApi.wishlist';
 import { danitApiCart } from './serverResponse/danitApi.cart';
 import { danitApiCustomer } from './serverResponse/danitApi.customer';
 import { danitApiOrders } from './serverResponse/danitApi.orders';
+import { danitApiGlobalConfig } from './serverResponse/danitApi.globalConfig';
 import userReducer from './user/user.slice';
 import wishlistReducer from './wishlist/wishList.slice';
 import cartReducer from './cart/cart.slice';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   [danitApiProducts.reducerPath]: danitApiProducts.reducer,
   [danitApiCustomer.reducerPath]: danitApiCustomer.reducer,
   [danitApiOrders.reducerPath]: danitApiOrders.reducer,
+  [danitApiGlobalConfig.reducerPath]: danitApiGlobalConfig.reducer,
 });
 
 const store = configureStore({
@@ -41,6 +43,7 @@ const store = configureStore({
       .concat(danitApiWishlist.middleware)
       .concat(danitApiCustomer.middleware)
       .concat(danitApiOrders.middleware)
+      .concat(danitApiGlobalConfig.middleware)
       .concat(localJsonApi.middleware),
 });
 
