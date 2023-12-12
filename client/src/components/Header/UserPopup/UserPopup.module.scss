@@ -1,0 +1,82 @@
+.popupContainer {
+  //   background-image: url(/images/leaf.png);
+  //   background-image: url(/images/leaf_2.png);
+  //   background-image: url(/images/leaf_3.png);
+  //   background-size: cover;
+  //   background-position: center;
+  //   width: 300px;
+  //   height: 300px;
+  //   width: 200px;
+  //   height: 150px;
+  //   margin-top: 100px;
+  //   margin-bottom: 100px;
+  //   background-repeat: no-repeat;
+  //   background-size: initial;
+  //   background-position: bottom right;
+  //   background-color: #fafaf5;
+  //   border-radius: 15px;
+  //   position: relative;
+}
+
+.popupList {
+  width: 200px;
+  height: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  //   background-color: #fafaf5;
+  background-color: rgba(211, 211, 211, 0.2);
+  border-radius: 3px;
+  //   border-top: 1px solid $secondary-green;
+  border-top: 2px solid rgba(211, 211, 211, 0.8);
+  box-shadow: 2px 3px 3px 1px rgba(192, 192, 192, 0.5);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //   row-gap: 5px;
+
+  &__item {
+    // list-style: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(211, 211, 211, 0.5);
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    height: auto;
+    // color: $secondary-green;
+    width: 100%;
+    color: darkgray;
+    font-family: $font-nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25.5px;
+    cursor: pointer;
+    // &:hover {
+    //   cursor: pointer;
+    // }
+  }
+}
+
+// .buttonWrap {
+//   position: absolute;
+//   //   bottom: 40%;
+//   //   right: 50%;
+//   bottom: 50%;
+//   right: 60%;
+//   display: grid;
+//   justify-content: flex-start;
+//   //   row-gap: 50%;
+//   row-gap: 20px;
+// }
