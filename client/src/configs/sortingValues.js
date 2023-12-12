@@ -1,7 +1,7 @@
 const sortingValues = {
   'Default sorting': '',
-  'Lowest First': 'sort=+currentPrice',
-  'Highest First': 'sort=-currentPrice',
+  'Lowest Price': 'sort=+currentPrice',
+  'Highest Price': 'sort=-currentPrice',
   'Most popular': 'sort=-rate',
 };
 

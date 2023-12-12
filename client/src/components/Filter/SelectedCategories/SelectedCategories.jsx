@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SelectedCategories.module.scss';
 import { addFilterTagAction, setSearchParamAction, setStartPageAction } from '../../../store/filter/filter.slice';
+import convertAbbreviationToQueryString from '../../../helpers/convertAbbreviationToQueryString';
 
 const { log } = console;
 
@@ -52,8 +53,8 @@ function SelectedCategories(props) {
                 return value[1] !== '';
             })
             .map(([key, value]) => {
-                if (false) {
-
+                if (value[0] === 'thc' || value[0] === 'cbd') {
+                    return convertAbbreviationToQueryString(`${value[0]}=${value[1]}`)
                 }
                 // нучно вычленить из value[1] значения thc/cbd и сделать из них 
                 // такие который подходят серверу
