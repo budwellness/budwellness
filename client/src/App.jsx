@@ -52,6 +52,9 @@ import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 import Profile from './pages/Profile/Profile.jsx';
+import UserInformation from "./components/UserInformation/UserInformation.jsx";
+import OrderHistory from "./components/OrderHistory/OrderHistory.jsx";
+import ChangePassword from "./components/ChangePassword/ChangePassword.jsx";
 
 const { log } = console;
 
@@ -199,7 +202,11 @@ function App() {
         <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} >
+          <Route path={"information"} element={<UserInformation/>}/>
+          <Route path={"password"} element={<ChangePassword/>}/>
+          <Route path={"history"} element={<OrderHistory/>}/>
+        </Route>
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
