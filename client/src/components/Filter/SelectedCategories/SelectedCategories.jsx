@@ -37,26 +37,34 @@ function SelectedCategories(props) {
         )
         dispatch(addFilterTagAction({ [key]: '' }))
         formRef.current.reset();
-        const filterDataArr = [];
+
         const updatedCategories = Object.entries(updatedFilterTags)
-        // .filter(([key, value]) => value !== '')
-        // .map()
-        // log('OBJ', Object.entries(updatedCategories))
-        for (let [key, value] of updatedCategories) {
-            dispatch(addFilterTagAction({ [key]: value }))
-            if (key === 'thc' || key === 'cbd') {
-                filterDataArr.push(`${value}`);
-                continue;
-            }
-            if (key === 'categories' && value === 'all') {
-                continue;
-            }
-            filterDataArr.push(`${key}=${value}`);
-        }
-        // filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
-        log('filterDataArr', filterDataArr)
-        const filterQueryString = filterDataArr.join('&');
+        /*
+
+        http://localhost:5173/shop?thc=thc+10%25-20%25&perPage=3&startPage=1
+
+        */
+        const filterQueryString = Object.entries(updatedCategories)
+            .filter(([key, value]) => {
+                if (value[1] === 'all') {
+                    return false;
+                }
+                return value[1] !== '';
+            })
+            .map(([key, value]) => {
+                if (false) {
+
+                }
+                // нучно вычленить из value[1] значения thc/cbd и сделать из них 
+                // такие который подходят серверу
+                // filterQueryString thc=thc 0%-10%
+                return `${value[0]}=${value[1]}`
+            })
+            // .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
+            .join('&');
         log('filterQueryString', filterQueryString)
+        // filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
+        // log('filterQueryString', filterQueryString)
         dispatch(setStartPageAction(1))
         dispatch(setSearchParamAction(`${filterQueryString}`))
     }

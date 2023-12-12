@@ -20,12 +20,12 @@ function Filter(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
-  const [selectedCategories, setSelectedCategories] = useState({
-    categories: '',
-    plantType: '',
-    thc: '',
-    cbd: '',
-  });
+  // const [selectedCategories, setSelectedCategories] = useState({
+  //   categories: '',
+  //   plantType: '',
+  //   thc: '',
+  //   cbd: '',
+  // });
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
   // const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
   const [priceRange, setPriceRange] = useState([0, 200]);
@@ -75,54 +75,59 @@ function Filter(props) {
     setIsFilterOpen(window.innerWidth >= 992);
   };
 
-  const clearCategory = (category) => {
-    const updatedCategories = { ...selectedCategories };
-    updatedCategories[category] = '';
+  // const clearCategory = (category) => {
+  //   const updatedCategories = { ...selectedCategories };
+  //   updatedCategories[category] = '';
 
-    setSelectedCategories(updatedCategories);
+  //   setSelectedCategories(updatedCategories);
 
-    formRef.current.reset();
-    const filterQueryString = Object.entries(updatedCategories)
-      .filter(([key, value]) => value !== '')
-      .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
-      .join('&');
+  //   formRef.current.reset();
+  //   const filterQueryString = Object.entries(updatedCategories)
+  //     .filter(([key, value]) => value !== '')
+  //     .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
+  //     .join('&');
 
-    setStartPage(1);
-    setSearchParams(`${filterQueryString}`);
-    const currentSearchParams = new URLSearchParams(searchParams);
-    currentSearchParams.delete(category);
+  //   setStartPage(1);
+  //   setSearchParams(`${filterQueryString}`);
+  //   const currentSearchParams = new URLSearchParams(searchParams);
+  //   currentSearchParams.delete(category);
 
-    setStartPage(1);
-    setSearchParams(currentSearchParams.toString());
-  };
+  //   setStartPage(1);
+  //   setSearchParams(currentSearchParams.toString());
+  // };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   const formHandlerToRedux = () => {
     const filterDataArr = [];
+
     const filterData = new FormData(formRef.current);
-    log('filterData.entries()', filterData.entries())
+
     for (let [key, value] of filterData.entries()) {
-      // -----------------//
-      if (key !== 'minPrice' && key !== 'maxPrice') {
-        setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
-      }
-      dispatch(addFilterTagAction({ [key]: value }))
-      // -----------------//
+      // if (key !== 'minPrice' && key !== 'maxPrice') {
+      //   setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
+      // }
+
       if (key === 'thc' || key === 'cbd') {
+        const digits = value.match(/\d+/g);
+        dispatch(addFilterTagAction({ [key]: `${key} ${digits[0]}%-${digits[1]}%` }))
         filterDataArr.push(`${value}`);
         continue;
       }
+      dispatch(addFilterTagAction({ [key]: value }))
       if (key === 'categories' && value === 'all') {
         continue;
       }
       filterDataArr.push(`${key}=${value}`);
     }
+
     const [minPrice, maxPrice] = priceRange;
+
     filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
+
     const filterQueryString = filterDataArr.join('&');
+
     dispatch(setStartPageAction(1))
-    log('filterQueryString', filterQueryString)
     dispatch(setSearchParamAction(`${filterQueryString}`))
   };
 
