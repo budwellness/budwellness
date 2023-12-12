@@ -8,7 +8,7 @@ const validationSchema = object({
   mobilePhone: string()
     .phone(
       'UA',
-      'Please enter a valid phone number for the territory of Ukraine'
+      'Please enter a valid phone number for the territory of Ukraine',
     )
     .required('A phone number is required'),
   email: string().required('E-mail is required').email('Invalid E-mail format'),

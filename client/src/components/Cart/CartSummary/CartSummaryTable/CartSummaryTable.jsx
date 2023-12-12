@@ -9,7 +9,7 @@ import styles from './CartSummaryTable.module.scss';
 export default function CartSummaryTable() {
   const { isUserLogin } = useSelector((state) => state.user);
   const { cart: cartStoreData, localCart: localCartStoreData } = useSelector(
-    (state) => state.cart
+    (state) => state.cart,
   );
   // eslint-disable-next-line no-confusing-arrow
   const countTotalPriceHandler = () =>

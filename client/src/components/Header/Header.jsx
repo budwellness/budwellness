@@ -53,13 +53,13 @@ function Header() {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist
+    (state) => state.wishlist,
   );
 
   const { isUserLogin } = useSelector((state) => state.user);
 
   const { cart: cartStoreData, localCart: localCartStoreData } = useSelector(
-    (state) => state.cart
+    (state) => state.cart,
   );
   const { isOpenModal } = useSelector((state) => state.modal);
 
