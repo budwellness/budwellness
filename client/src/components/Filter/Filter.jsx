@@ -2,51 +2,30 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './Filter.module.scss';
 import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import { useDispatch } from 'react-redux';
 import { addFilterTagAction, setSearchParamAction, setStartPageAction } from '../../store/filter/filter.slice';
+import useDebounced from '../../hooks/useDebounce';
+import debounce from 'lodash.debounce'
+
+import 'rc-slider/assets/index.css';
+import styles from './Filter.module.scss';
 
 const { log } = console;
 
 function Filter(props) {
   const { startPage, setStartPage, formRef } = props;
   /* --------------------------- INIT HOOKS: --------------------------- */
-  const navigate = useNavigate();
-  // const formRef = useRef();
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
-  // const [selectedCategories, setSelectedCategories] = useState({
-  //   categories: '',
-  //   plantType: '',
-  //   thc: '',
-  //   cbd: '',
-  // });
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
-  // const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
-  const [priceRange, setPriceRange] = useState([0, 200]);
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
-
-  // const clearCategory = (category) => {
-  //   const updatedCategories = Object.keys(selectedCategories).reduce(
-  //     (acc, key) => {
-  //       if (key !== category) {
-  //         acc[key] = selectedCategories[key];
-  //       }
-  //       return acc;
-  //     },
-  //     {}
-  //   );
-
-  //   setSelectedCategories(updatedCategories);
-
-  //   formRef.current.reset();
-  // };
+  const [priceRange, setPriceRange] = useState([0, 200]);
+  // const [debouncedPriceRange, setDebouncedPriceRange] = useState([0, 200]);
 
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
@@ -56,14 +35,10 @@ function Filter(props) {
   const handlePlantTypeChange = (plantType) => {
     setSelectedPlantTypes(plantType);
   };
-  // const handlePriceChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setPriceRange({ ...priceRange, [name]: Number(value) });
-  // };
-  const handlePriceChange = (value) => {
+  const handlePriceChange = () => {
     setPriceRange(value);
-    formHandler();
-  };
+    formHandlerToRedux();
+  }
 
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
@@ -74,27 +49,6 @@ function Filter(props) {
   const handleResize = () => {
     setIsFilterOpen(window.innerWidth >= 992);
   };
-
-  // const clearCategory = (category) => {
-  //   const updatedCategories = { ...selectedCategories };
-  //   updatedCategories[category] = '';
-
-  //   setSelectedCategories(updatedCategories);
-
-  //   formRef.current.reset();
-  //   const filterQueryString = Object.entries(updatedCategories)
-  //     .filter(([key, value]) => value !== '')
-  //     .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
-  //     .join('&');
-
-  //   setStartPage(1);
-  //   setSearchParams(`${filterQueryString}`);
-  //   const currentSearchParams = new URLSearchParams(searchParams);
-  //   currentSearchParams.delete(category);
-
-  //   setStartPage(1);
-  //   setSearchParams(currentSearchParams.toString());
-  // };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
@@ -166,20 +120,6 @@ function Filter(props) {
     <div className={styles.filterContainer}>
       <div className={styles.cancel}>
         {' '}
-        {/* {Object.values(selectedCategories).filter((el) => el !== '').length >
-          0 &&
-          Object.entries(selectedCategories).map(([fieldType, fieldValue]) =>
-            fieldValue !== '' ? (
-              <button
-                type="button"
-                key={fieldType}
-                onClick={() => clearCategory(fieldType)}
-                className={styles.clearButton}
-              >
-                {fieldValue} <span className={styles.cross}>&times;</span>
-              </button>
-            ) : null
-          )} */}
       </div>
       <button onClick={toggleFilter} className={styles.filterButton}>
         Filters
@@ -316,28 +256,11 @@ function Filter(props) {
               max={200}
               step={1}
               value={priceRange}
+              // обернуть в дебаунс
               onChange={handlePriceChange}
               range
             />
             <span>Max: {priceRange[1]}</span>
-            {/* <label>
-              <input
-                type="number"
-                name="minPrice"
-                value={priceRange.min}
-                className={`${styles.filter__label} ${styles.filter__price}`}
-                onChange={handlePriceChange}
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                name="maxPrice"
-                value={priceRange.max}
-                className={`${styles.filter__label} ${styles.filter__price}`}
-                onChange={handlePriceChange}
-              />
-            </label> */}
           </div>
 
           <div className={styles.filter__categories}>

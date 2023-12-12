@@ -52,6 +52,7 @@ import {
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useDecreaseCartQuantityMutation,
+  useCreateCartMutation,
 } from '../../store/serverResponse/danitApi.cart';
 
 import styles from './TestForBackPage.module.scss';
@@ -445,6 +446,28 @@ function TestForBackPage() {
     getFilteredProducts(mockFilterQueryString);
   };
 
+
+  /*------------------------------------------------------- */
+  const mockedCreateCartData = {
+    products: [
+      {
+        product: "65652475c44ae0a358d4c302",
+        cartQuantity: 2
+      },
+      {
+        product: "65652475c44ae0a358d4c2fe",
+        cartQuantity: 2
+      }
+    ]
+  }
+
+  const [createCart] = useCreateCartMutation();
+
+  const createCartHandler = () => {
+    createCart(mockedCreateCartData)
+  }
+  /*------------------------------------------------------- */
+
   return (
     <>
       <div className={styles.mainWrapper}>
@@ -473,6 +496,9 @@ function TestForBackPage() {
           </button>
           <button type="button" onClick={() => getFilteredProductsHandler()}>
             Slider with server data
+          </button>
+          <button type="button" onClick={() => createCartHandler()}>
+            Create New Cart
           </button>
         </div>
         <div className={styles.btnWrapper}>

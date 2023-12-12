@@ -16,6 +16,7 @@
         "classnames": "^2.3.2",
         "formik": "^2.4.5",
         "jsonwebtoken": "^9.0.2",
+        "lodash": "^4.17.21",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.8.1",
         "rc-slider": "^10.4.0",

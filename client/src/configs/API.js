@@ -27,3 +27,4 @@ export const API_ADD_TO_CART = '/cart/';
 export const API_REMOVE_FROM_CART = '/cart/';
 export const API_DEACREASE_PRODUCT_QUANTITY = '/cart/product/';
 export const API_UPDATE_CART = '/cart';
+export const API_CREATE_CART = '/cart';
