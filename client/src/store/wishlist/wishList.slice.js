@@ -1,5 +1,5 @@
-/* eslint-disable */
-
+/* eslint no-param-reassign:
+["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }] */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -36,7 +36,7 @@ const wishListSlice = createSlice({
     },
     removeItemFromWishList: (state, { payload }) => {
       const index = state.wishList.findIndex(
-        (item) => item._id === payload._id
+        (item) => item._id === payload._id,
       );
       if (index !== -1) {
         state.wishList.splice(index, 1);

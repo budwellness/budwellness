@@ -1,11 +1,9 @@
-/* eslint-disable */
-
+/* eslint no-param-reassign:
+["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }] */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   selectedProduct: null,
-  // isUserLogin,
-  // token,
 };
 
 const productsSlice = createSlice({

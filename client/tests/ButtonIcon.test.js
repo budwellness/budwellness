@@ -1,7 +1,7 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable no-undef */
+/* global describe, jest, test, expect */
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import ButtonIcon from '../src/components/ButtonIcon/ButtonIcon';
 
 describe('ButtonIcon Component', () => {
