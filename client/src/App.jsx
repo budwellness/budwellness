@@ -41,14 +41,14 @@ import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
-import Modal from "./components/Modal/Modal.jsx";
+import Modal from './components/Modal/Modal.jsx';
 import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
-import LoginForm from "./components/LoginForm/LoginForm.jsx";
-import { setModal } from "./store/modal/modal.slice.js";
-import Registration from "./pages/RegistrationPage/Registration.jsx";
+import LoginForm from './components/LoginForm/LoginForm.jsx';
+import { setModal } from './store/modal/modal.slice.js';
+import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
-
+import Profile from './pages/Profile/Profile.jsx';
 
 const { log } = console;
 
@@ -61,7 +61,6 @@ function App() {
   /* --------------------------- INIT HOOKS: --------------------------- */
 
   const dispatch = useDispatch();
-
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
@@ -88,29 +87,40 @@ function App() {
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    const userLocalCartData = localStorage.getItem('localCart') === '' ? '' : JSON.parse(localStorage.getItem('localCart'));
+    const userLocalCartData =
+      localStorage.getItem('localCart') === ''
+        ? ''
+        : JSON.parse(localStorage.getItem('localCart'));
     if (!localStorageToken) {
       if (userLocalCartData && userLocalCartData.length > 0) {
-        const productsItemNo = userLocalCartData.map((product) => product.itemNo);
+        const productsItemNo = userLocalCartData.map(
+          (product) => product.itemNo
+        );
         const fetchLocalCardProductsHandler = async () => {
-          await fetchLocalCartProducts(productsItemNo)
-            .then((response) => {
-              dispatch(setLocalCartAction(response.map(product => {
-                const localCardProductQuantity = userLocalCartData.find(
-                  (item) => item.itemNo === product.itemNo
-                );
-                return { product, cartQuantity: localCardProductQuantity.cartQuantity }
-              })))
-            })
-        }
+          await fetchLocalCartProducts(productsItemNo).then((response) => {
+            dispatch(
+              setLocalCartAction(
+                response.map((product) => {
+                  const localCardProductQuantity = userLocalCartData.find(
+                    (item) => item.itemNo === product.itemNo
+                  );
+                  return {
+                    product,
+                    cartQuantity: localCardProductQuantity.cartQuantity,
+                  };
+                })
+              )
+            );
+          });
+        };
         fetchLocalCardProductsHandler();
       } else {
-        localStorage.setItem('localCart', JSON.stringify([]))
+        localStorage.setItem('localCart', JSON.stringify([]));
       }
     } else {
       if (isTokenExpired(localStorageToken)) {
-        log('token expired')
-        dispatch(userLogoutUserAction())
+        log('token expired');
+        dispatch(userLogoutUserAction());
       } else {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
@@ -134,12 +144,22 @@ function App() {
 
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
-      dispatch(setCartAction(userCartData.products.map((p) => ({
-        product: p.product,
-        cartQuantity: p.cartQuantity,
-      }))));
+      dispatch(
+        setCartAction(userCartData.products)
+        // setCartAction(
+        //   userCartData.products.map((p) => {
+        //     log('product', p)
+        //     return {
+        //       _id: p._id,
+        //       product: p.product,
+        //       cartQuantity: p.cartQuantity,
+        //     }
+        //   })
+        // )
+      );
     }
   };
+
 
   useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
@@ -163,28 +183,28 @@ function App() {
         <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
       <CartModal />
-      {isOpenModal && (
-        isUserLogin
-          ? <button type="button" onClick={logoutHandler}>Logout</button>
-          : (
-            <Modal handleModal={handleModal}>
-              <LoginForm actions={{ handleModal, getCart, getWishlist }} />
-            </Modal>
-          )
-      )}
+      {isOpenModal &&
+        (isUserLogin ? (
+          <button type="button" onClick={logoutHandler}>
+            Logout
+          </button>
+        ) : (
+          <Modal handleModal={handleModal}>
+            <LoginForm actions={{ handleModal, getCart, getWishlist }} />
+          </Modal>
+        ))}
       {isModalAddToCart && (
         <Modal
           classNames={cn('add_to_cart__modal')}
           handleModal={handleModalAddToCart}
         >
-          <ModalAddToCart
-            handleModalAddToCart={handleModalAddToCart}
-          />
+          <ModalAddToCart handleModalAddToCart={handleModalAddToCart} />
         </Modal>
       )}
     </>

@@ -1,15 +1,17 @@
+/* eslint-disable */
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import * as API from '../../configs/API';
 
-export const danitApiAuth = createApi({
-  reducerPath: 'danitApiAuth',
+export const danitApiCarousel = createApi({
+  reducerPath: 'danitApiCarousel',
   baseQuery: fetchBaseQuery({
     baseUrl: API.API_URL,
   }),
   endpoints: (build) => ({
     loginUser: build.mutation({
       query: ({ ...credentials }) => ({
-        url: API.API_LOGIN,
+        url: API.API_GET_SLIDES,
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -18,18 +20,7 @@ export const danitApiAuth = createApi({
       }),
       transformResponse: (response) => response.token,
     }),
-    registrationUser: build.mutation({
-      query: ({ ...userData }) => ({
-        url: API.API_REGISTRATION_USER,
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: userData,
-      }),
-
-    }),
   }),
 });
 
-export const { useLoginUserMutation, useRegistrationUserMutation } = danitApiAuth;
+export const { useCarouselMutation } = danitApiCarousel;

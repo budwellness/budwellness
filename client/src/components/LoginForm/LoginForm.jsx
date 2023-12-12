@@ -64,7 +64,6 @@ function LoginForm(props) {
       dispatch(userLoginUserAction(loginUserToken));
       localStorage.setItem('token', loginUserToken);
       if (localCartStoreData.length > 0) {
-
         getCart(loginUserToken)
           .unwrap()
           .then(response => {
@@ -72,9 +71,10 @@ function LoginForm(props) {
             if (response) {
               products = response.products
             }
-            return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
-              { product: p.product, cartQuantity: p.cartQuantity }
-            )))
+            // return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
+            //   { product: p.product, cartQuantity: p.cartQuantity }
+            // )))
+            return mergeLocalAndServerCarts(localCartStoreData, products)
           })
           .then((response) => {
             if (response) {
@@ -82,11 +82,10 @@ function LoginForm(props) {
             }
           })
           .then((response) => {
+
             if (response) {
               const { data: { products } } = response;
-              dispatch(setCartAction(products.map((p) => (
-                { product: p.product, cartQuantity: p.cartQuantity }
-              ))))
+              dispatch(setCartAction(products))
               localStorage.setItem('localCart', JSON.stringify([]))
             }
 
@@ -112,11 +111,11 @@ function LoginForm(props) {
         }}
       >
         <Form className={styles.form}>
+          <div className={styles.logoIcon}>
+            <LogoIcon/>
+          </div>
           <div className={styles.form_name}>
             <h2 className={styles.title}>Sing in</h2>
-            <div className={styles.logoIcon}>
-              <LogoIcon />
-            </div>
             <p className={styles.title}>
               Bud
               <span className={cn(styles.header_logoTitle, styles.accentColor)}>
@@ -130,19 +129,19 @@ function LoginForm(props) {
 
           <div className={styles.wrapperLogin}>
             <LoginInput
-              className={styles.loginInput}
-              name="loginOrEmail"
-              type="email"
-              placeholder="Login"
-              label="Username or email address"
+                className={styles.loginInput}
+                name="loginOrEmail"
+                type="email"
+                placeholder="Login"
+                label="Username or email address"
             />
             <div className={styles.passwordInput}>
               <LoginInput
-                className={styles.loginInput}
-                name="password"
-                type="password"
-                placeholder="Password"
-                label="Password"
+                  className={styles.loginInput}
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  label="Password"
               />
               <Link to="/" className={styles.forgotPassword}>
                 Forgot password?
@@ -159,11 +158,11 @@ function LoginForm(props) {
           Create an account
         </Link> */}
             <ButtonHeader
-              className={styles.btnCreate}
-              onClick={() => {
-                dispatch(setModal(false));
-                navigate('/registration');
-              }}
+                className={styles.btnCreate}
+                onClick={() => {
+                  dispatch(setModal(false));
+                  navigate('/registration');
+                }}
             >
               Create an account
             </ButtonHeader>

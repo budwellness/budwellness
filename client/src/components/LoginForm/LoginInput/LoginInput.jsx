@@ -14,7 +14,7 @@ function LoginInput(props) {
   return (
   // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className={cn(styles.label, classNames)}>
-      <p className={styles.label}>{label}</p>
+      <p className={styles.titleInput}>{label}</p>
       <Field
         type={type}
         className={styles.formItem}

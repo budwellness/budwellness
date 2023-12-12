@@ -14,45 +14,43 @@ import { selectProduct } from '../../store/product/product.slice';
 import { isModalAddToCartAction } from '../../store/modal/modal.slice';
 
 import styles from './ProductList.module.scss';
+import { setTotalProductsAction } from '../../store/filter/filter.slice';
 
 const { log } = console;
 
 function ProductList(props) {
   const { startPage, setStartPage } = props;
+
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [productCards, setProductCards] = useState([]);
   const [productsPerPage] = useState(3);
-  const [totalProducts, setTotalProducts] = useState(null);
 
   /* --------------------------- INIT HOOKS: --------------------------- */
+  const dispatch = useDispatch();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const toggleWishlistHandler = useToggleWishlist();
+
   const {
     toggleCart: toggleCartHandler,
     toggleLocalCart: toggleLocalCartHandler,
   } = useToggleCart();
-  const toggleWishlistHandler = useToggleWishlist();
-  // const { productSlug } = useParams();
-  const [searchParams] = useSearchParams();
-  const dispatch = useDispatch();
+
+  const [
+    getFilteredProducts,
+    {
+      isLoading: isLoadingLazyFilteredProducts,
+      isError: isErrorLazyFilteredProducts,
+    },
+  ] = useLazyGetFilteredProductsQuery();
 
   /* --------------------------- REDUX STATE: --------------------------- */
-  const { isModalAddToCart } = useSelector((state) => state.modal);
 
-  const filteredQueryString = (params, pageStart, perPage = 1) => {
-    const filterStringArr = [];
-    for (const [key, value] of params.entries()) {
-      filterStringArr.push(`${key}=${value}`);
-    }
-    const filterString = filterStringArr.join('&');
-    if (
-      filterStringArr[0] === 'categories=all'
-      && filterString !== 'categories=all'
-    ) {
-      return `${filterStringArr
-        .slice(1)
-        .join('&')}&perPage=${perPage}&startPage=${pageStart}`;
-    }
-    return `${filterString}&perPage=${perPage}&startPage=${pageStart}`;
-  };
+  const { isModalAddToCart } = useSelector((state) => state.modal);
+  const { queryString } = useSelector((state) => state.filter);
+
+  /* --------------------------- COMPONENT HANDLERS: --------------------------- */
 
   // MODAL:
   const handleSelectProduct = (selectedProduct) => {
@@ -64,23 +62,19 @@ function ProductList(props) {
     handleSelectProduct(product);
   };
 
-  const [
-    getFilteredProducts,
-    {
-      isLoading: isLoadingLazyFilteredProducts,
-      isError: isErrorLazyFilteredProducts,
-    },
-  ] = useLazyGetFilteredProductsQuery();
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   useEffect(() => {
-    getFilteredProducts(
-      filteredQueryString(searchParams, startPage, productsPerPage),
-    )
+    setSearchParams(queryString);
+    log(queryString);
+  }, [queryString]);
+
+  useEffect(() => {
+    getFilteredProducts(queryString)
       .unwrap()
       .then((response) => {
         try {
-          log(response);
-          setTotalProducts(response.productsQuantity);
+          dispatch(setTotalProductsAction(response.productsQuantity));
           setProductCards(
             <div className={styles.list__products_wrapper}>
               {response.products?.map((product) => (
@@ -101,7 +95,37 @@ function ProductList(props) {
           log(error, isErrorLazyFilteredProducts);
         }
       });
-  }, [searchParams, startPage]);
+  }, [searchParams]);
+
+  // useEffect(() => {
+  //   getFilteredProducts(
+  //     filteredQueryString(searchParams, startPage, productsPerPage),
+  //   )
+  //     .unwrap()
+  //     .then((response) => {
+  //       try {
+  //         setTotalProducts(response.productsQuantity);
+  //         setProductCards(
+  //           <div className={styles.list__products_wrapper}>
+  //             {response.products?.map((product) => (
+  //               <ProductCard
+  //                 actions={{
+  //                   toggleWishlistHandler,
+  //                   toggleCartHandler,
+  //                   toggleLocalCartHandler,
+  //                 }}
+  //                 product={product}
+  //                 key={product._id}
+  //                 handleModalAddToCart={() => handleModalAddToCart(product)}
+  //               />
+  //             ))}
+  //           </div>,
+  //         );
+  //       } catch (error) {
+  //         log(error, isErrorLazyFilteredProducts);
+  //       }
+  //     });
+  // }, [searchParams, startPage]);
 
   return (
     <div className={styles.list__products}>
@@ -115,7 +139,6 @@ function ProductList(props) {
       )}
       <Pagination
         productsPerPage={productsPerPage}
-        totalProducts={totalProducts}
         setStartPage={setStartPage}
         startPage={startPage}
       />

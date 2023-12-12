@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
@@ -122,7 +122,7 @@ function Carousel() {
             >
               <SwiperSlide>
                 <div className={styles.paginationWrap}>
-                  <h2 className={styles.title}>Purple Haze</h2>
+                  <h2 className={styles.title}>Hawaiian Haze</h2>
                   <p className={styles.info}>
                     This sweet strain will infuses you with an invigorating
                     euphoria perfect for outdoor activities and social
@@ -148,7 +148,9 @@ function Carousel() {
                       <li>CBD 0.0-1.0mg/g</li>
                     </div>
                   </ul>
-                  <p className={styles.aboutProduct}>About Product</p>
+                  <Link to="/product/11532" className={styles.aboutProduct}>
+                    About Product
+                  </Link>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -179,7 +181,9 @@ function Carousel() {
                       <li>CBD 0.0-2.0mg/g</li>
                     </div>
                   </ul>
-                  <p className={styles.aboutProduct}>About Product</p>
+                  <Link to="/product/729879" className={styles.aboutProduct}>
+                    About Product
+                  </Link>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -210,7 +214,9 @@ function Carousel() {
                       <li>CBD 0.0-1.0mg/g</li>
                     </div>
                   </ul>
-                  <p className={styles.aboutProduct}>About Product</p>
+                  <Link to="/product/499299" className={styles.aboutProduct}>
+                    About Product
+                  </Link>
                 </div>
               </SwiperSlide>
             </Swiper>

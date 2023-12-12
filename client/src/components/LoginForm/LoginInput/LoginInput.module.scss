@@ -8,7 +8,10 @@
   font-family: $font-nunito;
   font-size: 17px;
   color: $main-green;
-  
+  position: relative;
+}
+.titleInput{
+  margin: 0;
 }
 
 .errorInput {
@@ -16,6 +19,9 @@
   font-size: 10px;
   bottom: 0;
   width: 200px;
+  position: absolute;
+  top: 50px;
+  left: 5px;
 }
 
 .formItem {
