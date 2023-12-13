@@ -52,9 +52,9 @@ import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 import Profile from './pages/Profile/Profile.jsx';
-import UserInformation from "./components/UserInformation/UserInformation.jsx";
-import OrderHistory from "./components/OrderHistory/OrderHistory.jsx";
-import ChangePassword from "./components/ChangePassword/ChangePassword.jsx";
+import UserInformation from "./pages/Profile/UserInformation/UserInformation.jsx";
+import OrderHistory from "./pages/Profile/OrderHistory/OrderHistory.jsx";
+import ChangePassword from "./pages/Profile/ChangePassword/ChangePassword.jsx";
 
 const { log } = console;
 
