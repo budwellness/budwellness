@@ -22,7 +22,7 @@ import LoginIcon from './icons/LoginIcon';
 // USER IMPORTS:
 import { userLogoutUserAction } from '../../store/user/user.slice';
 
-import { setModal } from '../../store/modal/modal.slice';
+import { setModal, isPopupOpenAction } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
@@ -142,12 +142,23 @@ function Header() {
           <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
             <Search />
-            <ButtonHeader
-              className={styles.header_userLink}
-              onClick={handleModal}
-            >
-              <LoginIcon />
-            </ButtonHeader>
+            {isUserLogin ? (
+              <ButtonHeader
+                className={styles.header_userLink}
+                onClick={() => {
+                  dispatch(isPopupOpenAction(true));
+                }}
+              >
+                <LoginIcon />
+              </ButtonHeader>
+            ) : (
+              <ButtonHeader
+                className={styles.header_userLink}
+                onClick={handleModal}
+              >
+                <LoginIcon />
+              </ButtonHeader>
+            )}
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
@@ -173,39 +184,21 @@ function Header() {
               )}
             </ButtonHeader>
           </div>
-
           {isUserLogin && (
-            <div className={styles.header_userMenu}>
+            <div
+              className={cn(styles.header_userMenu, {
+                [styles.header_userMenuScrolled]: scrolled,
+                [styles.header_userMenuHide]: hide,
+              })}
+            >
               {() => {
                 dispatch(clearLocalCartAction());
                 logoutHandler();
               }}
-              <UserPopup />
+              <UserPopup logoutHandler={logoutHandler} />
             </div>
           )}
         </div>
-        {/* {isUserLogin && (
-          <button
-            type="button"
-            className={styles.header_userMenu}
-            onClick={() => {
-              dispatch(clearLocalCartAction());
-              logoutHandler();
-            }}
-          >
-            Logout111
-          </button>
-        )} */}
-
-        {/* {isUserLogin && (
-          <div className={styles.header_userMenu}>
-            {() => {
-              dispatch(clearLocalCartAction());
-              logoutHandler();
-            }}
-            <UserPopup />
-          </div>
-        )} */}
       </Container>
     </header>
   );
