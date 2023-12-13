@@ -10,7 +10,7 @@ import ModalAddToCart from '../src/components/ModalAddToCart/ModalAddToCart';
 describe('ModalAddToCart component', () => {
   const mockStore = configureStore(); // Создание макетного store
   const initialState = {
-    // Инициализация вашего начального состояния Redux
+    // Инициализация начального состояния Redux
     user: { isUserLogin: false, token: null },
     cart: { cartStoreData: [], localCartStoreData: [] },
     wishlist: { wishList: [] },
@@ -47,7 +47,7 @@ describe('ModalAddToCart component', () => {
 
     // Предоставление макетных данных для localStorage перед каждым тестом
     localStorageMock.getItem.mockReturnValue(
-      JSON.stringify([{ itemNo: 'someItemNo' }]), // ваш макет данных в localStorage
+      JSON.stringify([{ itemNo: 'someItemNo' }]), // макет данных в localStorage
     );
   });
 

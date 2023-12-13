@@ -17,8 +17,6 @@ import FavouriteIcon from '../UI/FavouriteIcon';
 import LinkUnderline from '../LinkUnderline/LinkUnderline';
 import styles from './ModalAddToCart.module.scss';
 
-const { log } = console;
-
 function ModalAddToCart(props) {
   const { handleModalAddToCart } = props;
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
@@ -86,7 +84,6 @@ function ModalAddToCart(props) {
     [cartStoreData, isUserLogin, localCartStoreData],
   );
 
-  log(selectedProduct);
   return (
     <div className={styles.modal_add_to_cart__container}>
       {selectedProduct && (
