@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -27,7 +26,7 @@ import {
 
 // WISHLIST IMPORTS:
 import { setWishlistAction } from './store/wishlist/wishList.slice';
-import { isModalAddToCartAction } from './store/modal/modal.slice';
+import { isModalAddToCartAction, setModal } from './store/modal/modal.slice';
 
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
 
@@ -41,14 +40,13 @@ import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
-import Modal from './components/Modal/Modal.jsx';
+import Modal from './components/Modal/Modal';
 import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
-import LoginForm from './components/LoginForm/LoginForm.jsx';
-import { setModal } from './store/modal/modal.slice.js';
-import Registration from './pages/RegistrationPage/Registration.jsx';
+import LoginForm from './components/LoginForm/LoginForm';
+import Registration from './pages/RegistrationPage/Registration';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
-import Profile from './pages/Profile/Profile.jsx';
+import Profile from './pages/Profile/Profile';
 
 const { log } = console;
 
@@ -70,8 +68,7 @@ function App() {
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
-  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
-    useLazyGetCartQuery();
+  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] = useLazyGetCartQuery();
   const fetchLocalCartProducts = useFetchLocalCardProducts();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
@@ -87,14 +84,13 @@ function App() {
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    const userLocalCartData =
-      localStorage.getItem('localCart') === ''
-        ? ''
-        : JSON.parse(localStorage.getItem('localCart'));
+    const userLocalCartData = localStorage.getItem('localCart') === ''
+      ? ''
+      : JSON.parse(localStorage.getItem('localCart'));
     if (!localStorageToken) {
       if (userLocalCartData && userLocalCartData.length > 0) {
         const productsItemNo = userLocalCartData.map(
-          (product) => product.itemNo
+          (product) => product.itemNo,
         );
         const fetchLocalCardProductsHandler = async () => {
           await fetchLocalCartProducts(productsItemNo).then((response) => {
@@ -102,14 +98,14 @@ function App() {
               setLocalCartAction(
                 response.map((product) => {
                   const localCardProductQuantity = userLocalCartData.find(
-                    (item) => item.itemNo === product.itemNo
+                    (item) => item.itemNo === product.itemNo,
                   );
                   return {
                     product,
                     cartQuantity: localCardProductQuantity.cartQuantity,
                   };
-                })
-              )
+                }),
+              ),
             );
           });
         };
@@ -117,16 +113,14 @@ function App() {
       } else {
         localStorage.setItem('localCart', JSON.stringify([]));
       }
+    } else if (isTokenExpired(localStorageToken)) {
+      log('token expired');
+      dispatch(userLogoutUserAction());
     } else {
-      if (isTokenExpired(localStorageToken)) {
-        log('token expired');
-        dispatch(userLogoutUserAction());
-      } else {
-        dispatch(userLoginUserAction(localStorageToken));
-        getWishlist(localStorageToken);
-        getCart(localStorageToken);
-        log('token valid');
-      }
+      dispatch(userLoginUserAction(localStorageToken));
+      getWishlist(localStorageToken);
+      getCart(localStorageToken);
+      log('token valid');
     }
   };
 
@@ -145,7 +139,7 @@ function App() {
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
       dispatch(
-        setCartAction(userCartData.products)
+        setCartAction(userCartData.products),
         // setCartAction(
         //   userCartData.products.map((p) => {
         //     log('product', p)
@@ -159,7 +153,6 @@ function App() {
       );
     }
   };
-
 
   useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
@@ -189,8 +182,8 @@ function App() {
       </Routes>
       <Footer />
       <CartModal />
-      {isOpenModal &&
-        (isUserLogin ? (
+      {isOpenModal
+        && (isUserLogin ? (
           <button type="button" onClick={logoutHandler}>
             Logout
           </button>
