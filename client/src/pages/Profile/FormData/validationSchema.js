@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
-  name: yup
+  firstName: yup
     .string()
     .min(2, 'The name is too short')
     .max(25, 'The name is too long')
@@ -13,20 +13,20 @@ const validationSchema = yup.object().shape({
     .max(25, 'The last name is too long')
     .required('This field is required')
     .matches(/^([^0-9]*)$/gm, 'Only letters'),
-  userName: yup
+  login: yup
     .string()
     .min(2, 'The user name is too short')
     .max(25, 'The user name is too long')
     .required('This field is required'),
   email: yup.string().email('Invalid e-mail format'),
-  password: yup
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('This field is required'),
-  newPassword: yup
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('This field is required'),
+  // password: yup
+  //   .string()
+  //   .min(8, 'Password must be at least 8 characters')
+  //   .required('This field is required'),
+  // newPassword: yup
+  //   .string()
+  //   .min(8, 'Password must be at least 8 characters')
+  //   .required('This field is required'),
   phone: yup
     .string()
     .matches(/^\+(?:[0-9] ?){11,12}[0-9]$/, 'Invalid phone number')

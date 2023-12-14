@@ -51,3 +51,16 @@
     }
   }
 }
+
+.profileRedBtn {
+  background-color: #d83a3a;
+  color: $main-green;
+  border: none;
+  padding: 10px 75px;
+  @include for-size(476px) {
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}

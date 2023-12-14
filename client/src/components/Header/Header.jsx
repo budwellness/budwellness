@@ -20,22 +20,19 @@ import CartIcon from './icons/CartIcon';
 import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
-import { userLogoutUserAction } from '../../store/user/user.slice';
+import {
+  clearCustomerDataAction,
+  userLogoutUserAction,
+} from '../../store/user/user.slice';
 
 import { setModal, isPopupOpenAction } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
 import { clearLocalCartAction } from '../../store/cart/cart.slice';
+import { clearWishListAction } from '../../store/wishlist/wishList.slice';
 
 function Header() {
-  // const {
-  //   actions: {
-  //     getCart,
-  //     getWishlist,
-  //   },
-  // } = props;
-
   /* --------------------------- INIT HOOKS: --------------------------- */
 
   const dispatch = useDispatch();
@@ -50,13 +47,13 @@ function Header() {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist
+    (state) => state.wishlist,
   );
 
   const { isUserLogin } = useSelector((state) => state.user);
 
   const { cart: cartStoreData, localCart: localCartStoreData } = useSelector(
-    (state) => state.cart
+    (state) => state.cart,
   );
   const { isOpenModal } = useSelector((state) => state.modal);
 
@@ -65,6 +62,8 @@ function Header() {
   const logoutHandler = () => {
     localStorage.removeItem('token');
     dispatch(userLogoutUserAction());
+    dispatch(clearCustomerDataAction());
+    dispatch(clearWishListAction());
     dispatch(setModal(false));
   };
 

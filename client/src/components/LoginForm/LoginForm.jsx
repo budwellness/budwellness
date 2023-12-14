@@ -10,7 +10,10 @@ import LoginInput from './LoginInput/LoginInput';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
-import { userLoginUserAction } from '../../store/user/user.slice';
+import {
+  setCustomerDataAction,
+  userLoginUserAction,
+} from '../../store/user/user.slice';
 
 import styles from './LoginForm.module.scss';
 import { toast } from 'react-toastify';
@@ -23,10 +26,14 @@ import validationSchema from './validationLogin.js';
 import { setModal } from '../../store/modal/modal.slice.js';
 import { useUpdateCartMutation } from '../../store/serverResponse/danitApi.cart';
 import extractIdAndQuantityForCartMigration from '../../helpers/extractIdAndQuantityForCartMigration';
-import { mergeLocalWithServerCartAction, setCartAction } from '../../store/cart/cart.slice';
+import {
+  mergeLocalWithServerCartAction,
+  setCartAction,
+} from '../../store/cart/cart.slice';
 import mergeLocalAndServerCarts from '../../helpers/mergeLocalAndServerCarts';
+import { useLazyGetCustomerDataQuery } from '../../store/serverResponse/danitApi.customer.js';
 
-const { log } = console
+const { log } = console;
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -48,14 +55,18 @@ function LoginForm(props) {
 
   const dispatch = useDispatch();
 
-  const { localCart: localCartStoreData, cart } = useSelector((state) => state.cart)
+  const { localCart: localCartStoreData, cart } = useSelector(
+    (state) => state.cart
+  );
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
   // USER API:
   const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
     useLoginUserMutation();
-  const [updateCart, { data, isError, isSuccess, error }] = useUpdateCartMutation();
+  const [updateCart, { data, isError, isSuccess, error }] =
+    useUpdateCartMutation();
+  const [getCustomer] = useLazyGetCustomerDataQuery();
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   const isLoginSuccessHandler = () => {
@@ -66,34 +77,40 @@ function LoginForm(props) {
       if (localCartStoreData.length > 0) {
         getCart(loginUserToken)
           .unwrap()
-          .then(response => {
+          .then((response) => {
+            log(response);
             let products = [];
             if (response) {
-              products = response.products
+              products = response.products;
             }
             // return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
             //   { product: p.product, cartQuantity: p.cartQuantity }
             // )))
-            return mergeLocalAndServerCarts(localCartStoreData, products)
+            return mergeLocalAndServerCarts(localCartStoreData, products);
           })
           .then((response) => {
             if (response) {
-              return updateCart(extractIdAndQuantityForCartMigration(response, loginUserToken))
+              return updateCart(
+                extractIdAndQuantityForCartMigration(response, loginUserToken)
+              );
             }
           })
           .then((response) => {
-
             if (response) {
-              const { data: { products } } = response;
-              dispatch(setCartAction(products))
-              localStorage.setItem('localCart', JSON.stringify([]))
+              const {
+                data: { products },
+              } = response;
+              dispatch(setCartAction(products));
+              localStorage.setItem('localCart', JSON.stringify([]));
             }
-
-          })
+          });
       } else {
         getCart(loginUserToken);
       }
       getWishlist(loginUserToken);
+      getCustomer(loginUserToken)
+        .unwrap()
+        .then((response) => dispatch(setCustomerDataAction(response)));
     }
   };
 
