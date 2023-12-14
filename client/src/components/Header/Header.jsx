@@ -11,6 +11,7 @@ import Container from '../Container/Container';
 import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
 import ButtonHeader from '../ButtonHeader/ButtonHeader';
+import UserPopup from './UserPopup/UserPopup';
 
 // ICONS IMPORT:
 import LogoIcon from './icons/LogoIcon';
@@ -24,7 +25,7 @@ import {
   userLogoutUserAction,
 } from '../../store/user/user.slice';
 
-import { setModal } from '../../store/modal/modal.slice';
+import { setModal, isPopupOpenAction } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
@@ -48,7 +49,7 @@ function Header() {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist,
+    (state) => state.wishlist
   );
 
   const { isUserLogin } = useSelector((state) => state.user);
@@ -142,18 +143,29 @@ function Header() {
           <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
             <Search />
-            <ButtonHeader
-              className={styles.header_userLink}
-              onClick={handleModal}
-            >
-              <LoginIcon />
-            </ButtonHeader>
+            {isUserLogin ? (
+              <ButtonHeader
+                className={styles.header_userLink}
+                onClick={() => {
+                  dispatch(isPopupOpenAction(true));
+                }}
+              >
+                <LoginIcon />
+              </ButtonHeader>
+            ) : (
+              <ButtonHeader
+                className={styles.header_userLink}
+                onClick={handleModal}
+              >
+                <LoginIcon />
+              </ButtonHeader>
+            )}
             <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>
-                {wishlistStoreData.length}
-              </span>
+                <span className={styles.wishlistCounter}>
+                  {wishlistStoreData.length}
+                </span>
               )}
             </Link>
             <ButtonHeader
@@ -162,46 +174,32 @@ function Header() {
             >
               <CartIcon />
               {isUserLogin && cartStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>
-                {cartStoreData.length}
-              </span>
+                <span className={styles.wishlistCounter}>
+                  {cartStoreData.length}
+                </span>
               )}
               {!isUserLogin && localCartStoreData.length > 0 && (
-              <span className={styles.wishlistCounter}>
-                {localCartStoreData.length}
-              </span>
+                <span className={styles.wishlistCounter}>
+                  {localCartStoreData.length}
+                </span>
               )}
             </ButtonHeader>
           </div>
+          {isUserLogin && (
+            <div
+              className={cn(styles.header_userMenu, {
+                [styles.header_userMenuScrolled]: scrolled,
+                [styles.header_userMenuHide]: hide,
+              })}
+            >
+              {() => {
+                dispatch(clearLocalCartAction());
+                logoutHandler();
+              }}
+              <UserPopup logoutHandler={logoutHandler} />
+            </div>
+          )}
         </div>
-        {isUserLogin && (
-        <>
-          <button
-            type="button"
-            className={styles.header_userMenu}
-            onClick={() => {
-              dispatch(clearLocalCartAction());
-              dispatch(clearCartAction());
-
-              navigate('/');
-              logoutHandler();
-            }}
-          >
-            Logout111
-          </button>
-          <Link
-            to="/profile/information"
-            type="button"
-            className={styles.header_userMenu}
-            onClick={() => {
-              // dispatch(clearLocalCartAction());
-              // logoutHandler();
-            }}
-          >
-            profile
-          </Link>
-        </>
-        )}
       </Container>
     </header>
   );
@@ -216,10 +214,8 @@ Header.propTypes = {
 
 Header.defaultProps = {
   actions: {
-    getCart: () => {
-    },
-    getWishlist: () => {
-    },
+    getCart: () => {},
+    getWishlist: () => {},
   },
 };
 
