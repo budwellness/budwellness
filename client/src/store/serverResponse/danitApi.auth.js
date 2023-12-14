@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import * as API from '../../configs/API';
-import {API_EDIT_USER} from "../../configs/API";
+import { API_EDIT_USER } from '../../configs/API';
 
 export const danitApiAuth = createApi({
   reducerPath: 'danitApiAuth',
@@ -30,7 +30,7 @@ export const danitApiAuth = createApi({
       }),
     }),
     editUser: build.mutation({
-      query: ({ userData,token }) => ({
+      query: ({ userData, token }) => ({
         url: API.API_EDIT_USER,
         method: 'PUT',
         headers: {
@@ -41,7 +41,7 @@ export const danitApiAuth = createApi({
       }),
     }),
     changePassword: build.mutation({
-      query: ({ userData,token }) => ({
+      query: ({ userData, token }) => ({
         url: API.API_CHANGEPASSWORD_USER,
         method: 'PUT',
         headers: {
@@ -54,4 +54,6 @@ export const danitApiAuth = createApi({
   }),
 });
 
-export const { useLoginUserMutation, useRegistrationUserMutation, useEditUserMutation, useChangePasswordMutation} = danitApiAuth;
+export const {
+  useLoginUserMutation, useRegistrationUserMutation, useEditUserMutation, useChangePasswordMutation,
+} = danitApiAuth;

@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import React, {useState, useEffect} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // COMPONENTS IMPORT:
@@ -20,207 +20,207 @@ import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
 import {
-    clearCustomerDataAction,
-    userLogoutUserAction,
+  clearCustomerDataAction,
+  userLogoutUserAction,
 } from '../../store/user/user.slice';
 
-import {setModal} from '../../store/modal/modal.slice';
-import {setCartModal} from '../../store/cartModal/cartModal.slice';
+import { setModal } from '../../store/modal/modal.slice';
+import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
-import {clearCartAction, clearLocalCartAction} from '../../store/cart/cart.slice';
-import {clearWishListAction} from '../../store/wishlist/wishList.slice';
+import { clearCartAction, clearLocalCartAction } from '../../store/cart/cart.slice';
+import { clearWishListAction } from '../../store/wishlist/wishList.slice';
 
 function Header() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    /* --------------------------- INIT HOOKS: --------------------------- */
+  /* --------------------------- INIT HOOKS: --------------------------- */
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    /* --------------------------- LOCAL STATE: --------------------------- */
+  /* --------------------------- LOCAL STATE: --------------------------- */
 
-    const [showBurger, setShowBurger] = useState(false);
+  const [showBurger, setShowBurger] = useState(false);
 
-    const [scrolled, setScrolled] = useState(false);
-    const [hide, setHide] = useState(false);
-    const [prevScrollY, setPrevScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [hide, setHide] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0);
 
-    /* --------------------------- REDUX STATE: --------------------------- */
-    const {wishList: wishlistStoreData} = useSelector(
-        (state) => state.wishlist,
-    );
+  /* --------------------------- REDUX STATE: --------------------------- */
+  const { wishList: wishlistStoreData } = useSelector(
+    (state) => state.wishlist,
+  );
 
-    const {isUserLogin} = useSelector((state) => state.user);
+  const { isUserLogin } = useSelector((state) => state.user);
 
-    const {cart: cartStoreData, localCart: localCartStoreData} = useSelector(
-        (state) => state.cart,
-    );
-    const {isOpenModal} = useSelector((state) => state.modal);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector(
+    (state) => state.cart,
+  );
+  const { isOpenModal } = useSelector((state) => state.modal);
 
-    /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
+  /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
 
-    const logoutHandler = () => {
-        localStorage.removeItem('token');
-        dispatch(userLogoutUserAction());
-        dispatch(clearCustomerDataAction());
-        dispatch(clearWishListAction());
-        dispatch(setModal(false));
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    dispatch(userLogoutUserAction());
+    dispatch(clearCustomerDataAction());
+    dispatch(clearWishListAction());
+    dispatch(setModal(false));
+  };
+
+  /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
+  /* --------------------------- COMPONENT Modal: --------------------------- */
+  const handleModal = () => {
+    dispatch(setModal(!isOpenModal));
+  };
+
+  const handleOpenCartModal = () => {
+    dispatch(setCartModal(true));
+  };
+
+  // ========================================================
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollY } = window;
+
+      if (scrollY >= 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      if (scrollY >= 400) {
+        setHide(true);
+      } else {
+        setHide(false);
+      }
+
+      if (scrollY < prevScrollY) {
+        setHide(false);
+      }
+
+      setPrevScrollY(scrollY);
     };
 
-    /* --------------------------- COMPONENT LOGIC: --------------------------- */
+    window.addEventListener('scroll', handleScroll);
 
-    /* --------------------------- COMPONENT Modal: --------------------------- */
-    const handleModal = () => {
-        dispatch(setModal(!isOpenModal));
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
+  }, [scrolled, prevScrollY]);
 
-    const handleOpenCartModal = () => {
-        dispatch(setCartModal(true));
-    };
+  //= ===================================================
 
-    // ========================================================
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const {scrollY} = window;
-
-            if (scrollY >= 100) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-
-            if (scrollY >= 400) {
-                setHide(true);
-            } else {
-                setHide(false);
-            }
-
-            if (scrollY < prevScrollY) {
-                setHide(false);
-            }
-
-            setPrevScrollY(scrollY);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [scrolled, prevScrollY]);
-
-    //= ===================================================
-
-    return (
-        <header
-            className={cn(styles.header, {
-                [styles.scrolled]: scrolled,
-                [styles.hide]: hide,
-            })}
-        >
-            <Container>
-                <div className={styles.wrapper}>
-                    {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-                    <span
-                        className={cn(styles.toggleBtn, {[styles.active]: showBurger})}
-                        onClick={() => setShowBurger(!showBurger)}
-                    >
-            <span className={cn(styles.line, styles.shortLine)}/>
-            <span className={styles.line}/>
-            <span className={cn(styles.line, styles.shortLine)}/>
-            <span className={styles.line}/>
+  return (
+    <header
+      className={cn(styles.header, {
+        [styles.scrolled]: scrolled,
+        [styles.hide]: hide,
+      })}
+    >
+      <Container>
+        <div className={styles.wrapper}>
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+          <span
+            className={cn(styles.toggleBtn, { [styles.active]: showBurger })}
+            onClick={() => setShowBurger(!showBurger)}
+          >
+            <span className={cn(styles.line, styles.shortLine)} />
+            <span className={styles.line} />
+            <span className={cn(styles.line, styles.shortLine)} />
+            <span className={styles.line} />
           </span>
-                    <Link to="/" className={styles.logoLink}>
-                        <LogoIcon/>
-                        <span className={styles.header_logoTitle}>Bud</span>
-                        <span className={cn(styles.header_logoTitle, styles.accentColor)}>
+          <Link to="/" className={styles.logoLink}>
+            <LogoIcon />
+            <span className={styles.header_logoTitle}>Bud</span>
+            <span className={cn(styles.header_logoTitle, styles.accentColor)}>
               Wellness
             </span>
-                    </Link>
-                    <Nav showBurger={showBurger} setShowBurger={setShowBurger}/>
-                    <div className={styles.header_user}>
-                        <Search/>
-                        <ButtonHeader
-                            className={styles.header_userLink}
-                            onClick={handleModal}
-                        >
-                            <LoginIcon/>
-                        </ButtonHeader>
-                        <Link to="/wishlist" className={styles.header_userLink}>
-                            <WishlistIcon/>
-                            {isUserLogin && wishlistStoreData.length > 0 && (
-                                <span className={styles.wishlistCounter}>
-                  {wishlistStoreData.length}
-                </span>
-                            )}
-                        </Link>
-                        <ButtonHeader
-                            className={styles.header_userLink}
-                            onClick={handleOpenCartModal}
-                        >
-                            <CartIcon/>
-                            {isUserLogin && cartStoreData.length > 0 && (
-                                <span className={styles.wishlistCounter}>
-                  {cartStoreData.length}
-                </span>
-                            )}
-                            {!isUserLogin && localCartStoreData.length > 0 && (
-                                <span className={styles.wishlistCounter}>
-                  {localCartStoreData.length}
-                </span>
-                            )}
-                        </ButtonHeader>
-                    </div>
-                </div>
-                {isUserLogin && (
-                    <>
-                        <button
-                            type="button"
-                            className={styles.header_userMenu}
-                            onClick={() => {
-                                dispatch(clearLocalCartAction());
-                                dispatch(clearCartAction());
+          </Link>
+          <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
+          <div className={styles.header_user}>
+            <Search />
+            <ButtonHeader
+              className={styles.header_userLink}
+              onClick={handleModal}
+            >
+              <LoginIcon />
+            </ButtonHeader>
+            <Link to="/wishlist" className={styles.header_userLink}>
+              <WishlistIcon />
+              {isUserLogin && wishlistStoreData.length > 0 && (
+              <span className={styles.wishlistCounter}>
+                {wishlistStoreData.length}
+              </span>
+              )}
+            </Link>
+            <ButtonHeader
+              className={styles.header_userLink}
+              onClick={handleOpenCartModal}
+            >
+              <CartIcon />
+              {isUserLogin && cartStoreData.length > 0 && (
+              <span className={styles.wishlistCounter}>
+                {cartStoreData.length}
+              </span>
+              )}
+              {!isUserLogin && localCartStoreData.length > 0 && (
+              <span className={styles.wishlistCounter}>
+                {localCartStoreData.length}
+              </span>
+              )}
+            </ButtonHeader>
+          </div>
+        </div>
+        {isUserLogin && (
+        <>
+          <button
+            type="button"
+            className={styles.header_userMenu}
+            onClick={() => {
+              dispatch(clearLocalCartAction());
+              dispatch(clearCartAction());
 
-                                navigate("/")
-                                logoutHandler();
-                            }}
-                        >
-                            Logout111
-                        </button>
-                        <Link
-                            to={"/profile/information"}
-                            type="button"
-                            className={styles.header_userMenu}
-                            onClick={() => {
-                                // dispatch(clearLocalCartAction());
-                                // logoutHandler();
-                            }}
-                        >
-                            profile
-                        </Link>
-                    </>
-                )}
-            </Container>
-        </header>
-    );
+              navigate('/');
+              logoutHandler();
+            }}
+          >
+            Logout111
+          </button>
+          <Link
+            to="/profile/information"
+            type="button"
+            className={styles.header_userMenu}
+            onClick={() => {
+              // dispatch(clearLocalCartAction());
+              // logoutHandler();
+            }}
+          >
+            profile
+          </Link>
+        </>
+        )}
+      </Container>
+    </header>
+  );
 }
 
 Header.propTypes = {
-    actions: PropTypes.shape({
-        getCart: PropTypes.func.isRequired,
-        getWishlist: PropTypes.func.isRequired,
-    }),
+  actions: PropTypes.shape({
+    getCart: PropTypes.func.isRequired,
+    getWishlist: PropTypes.func.isRequired,
+  }),
 };
 
 Header.defaultProps = {
-    actions: {
-        getCart: () => {
-        },
-        getWishlist: () => {
-        },
+  actions: {
+    getCart: () => {
     },
+    getWishlist: () => {
+    },
+  },
 };
 
 export default Header;

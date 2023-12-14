@@ -1,11 +1,11 @@
 import React from 'react';
 
-const OrderHistory = () => {
-    return (
-        <div>
-            OrderHistory
-        </div>
-    );
-};
+function OrderHistory() {
+  return (
+    <div>
+      OrderHistory
+    </div>
+  );
+}
 
 export default OrderHistory;
