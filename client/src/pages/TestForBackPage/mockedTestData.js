@@ -1391,9 +1391,9 @@ export const productsJSON = [
   {
     enabled: true,
     imageUrls: [
-      '/images/Reign_drops_oil_1.jpeg',
-      '/images/Reign_drops_oil_2.jpeg',
-      '/images/Reign_drops_oil_3.jpeg',
+      '/images/Five_Founders_Oil_1.jpeg',
+      '/images/Five_Founders_Oil_2.jpeg',
+      '/images/Five_Founders_Oil_3.jpeg',
     ],
     quantity: 10,
     rate: 2.5,
