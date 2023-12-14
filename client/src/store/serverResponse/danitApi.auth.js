@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import * as API from '../../configs/API';
-import { API_EDIT_USER } from '../../configs/API';
 
 export const danitApiAuth = createApi({
   reducerPath: 'danitApiAuth',

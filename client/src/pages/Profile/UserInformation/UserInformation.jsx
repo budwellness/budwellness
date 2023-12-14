@@ -1,9 +1,8 @@
 import React from 'react';
 
-import styles from './UserInformation.module.scss';
-import FormData from '../FormData/FormData.jsx';
+import FormData from '../FormData/FormData';
 
-function UserInformation(props) {
+function UserInformation() {
   return <FormData />;
 }
 

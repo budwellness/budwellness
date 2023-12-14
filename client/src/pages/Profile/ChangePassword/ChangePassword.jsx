@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import EyeIcon from '../../../components/UI/EyeIcon';
-import Button from '../../../components/Button/Button.jsx';
-import validationSchemaChangePass from './validationSchemaChangePass.js';
+import Button from '../../../components/Button/Button';
+import validationSchemaChangePass from './validationSchemaChangePass';
 
 import styles from './ChangePassword.module.scss';
-import { useChangePasswordMutation } from '../../../store/serverResponse/danitApi.auth.js';
+import { useChangePasswordMutation } from '../../../store/serverResponse/danitApi.auth';
 
 function ChangePassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatNewPassword, setRepeatShowNewPassword] = useState(false);
 
-  const { isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
+  const { token: tokenReduxStore } = useSelector((state) => state.user);
 
-  const [changePassword, { data, isSuccess }] = useChangePasswordMutation();
-  console.log('ответ', data);
+  const [changePassword] = useChangePasswordMutation();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

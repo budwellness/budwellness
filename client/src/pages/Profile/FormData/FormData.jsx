@@ -4,13 +4,11 @@ import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Logger } from 'sass';
 import validationSchema from './validationSchema';
 import Button from '../../../components/Button/Button';
-import EyeIcon from '../../../components/UI/EyeIcon';
 import styles from './FormData.module.scss';
-import { useEditUserMutation } from '../../../store/serverResponse/danitApi.auth.js';
-import { setCustomerDataAction } from '../../../store/user/user.slice.js';
+import { useEditUserMutation } from '../../../store/serverResponse/danitApi.auth';
+import { setCustomerDataAction } from '../../../store/user/user.slice';
 
 function FormData() {
   const dispatch = useDispatch();
@@ -18,8 +16,7 @@ function FormData() {
   const [readOnly, setReadOnly] = useState(true);
 
   //= ================== тут приходят с редакса
-  const { detailInfo, isUserLogin, token: tokenReduxStore } = useSelector((state) => state.user);
-  console.log('detailInfo', detailInfo);
+  const { detailInfo, token: tokenReduxStore } = useSelector((state) => state.user);
   const [initialValues, setInitialValues] = useState({
     firstName: detailInfo?.firstName || '',
     lastName: detailInfo?.lastName || '',
@@ -33,8 +30,7 @@ function FormData() {
     //= =================================
 
   // тут приходят ответ с сервера
-  const [editUser, { data, isSuccess }] = useEditUserMutation();
-  console.log('data', data);
+  const [editUser, { data }] = useEditUserMutation();
 
   const toggleForm = () => {
     setReadOnly(!readOnly);
@@ -75,7 +71,6 @@ function FormData() {
       initialValues={initialValues}
       onSubmit={(values) => {
         editUser({ userData: values, token: tokenReduxStore });
-        console.log('sub', values);
         toggleForm();
       }}
       validationSchema={validationSchema}
@@ -196,8 +191,8 @@ function FormData() {
                 render={(message) => (
                   <div
                     className={`${styles.form__errorMessage} ${
-                          message.length > 35 ? styles.form__longErrorMessage : ''
-                        }`}
+                      message.length > 35 ? styles.form__longErrorMessage : ''
+                    }`}
                   >
                     {message}
                   </div>
