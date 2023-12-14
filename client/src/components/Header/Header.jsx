@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -29,12 +29,10 @@ import { setModal, isPopupOpenAction } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
-import { clearCartAction, clearLocalCartAction } from '../../store/cart/cart.slice';
+import { clearLocalCartAction } from '../../store/cart/cart.slice';
 import { clearWishListAction } from '../../store/wishlist/wishList.slice';
 
 function Header() {
-  const navigate = useNavigate();
-
   /* --------------------------- INIT HOOKS: --------------------------- */
 
   const dispatch = useDispatch();
@@ -49,7 +47,7 @@ function Header() {
 
   /* --------------------------- REDUX STATE: --------------------------- */
   const { wishList: wishlistStoreData } = useSelector(
-    (state) => state.wishlist
+    (state) => state.wishlist,
   );
 
   const { isUserLogin } = useSelector((state) => state.user);
