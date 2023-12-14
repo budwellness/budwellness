@@ -160,7 +160,6 @@ function App() {
     }
   };
 
-
   useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
