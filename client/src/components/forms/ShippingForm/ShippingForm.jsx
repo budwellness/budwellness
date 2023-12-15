@@ -24,8 +24,6 @@ import {
   clearLocalCartAction,
 } from '../../../store/cart/cart.slice';
 
-const { log } = console;
-
 export default function ShippingForm() {
   const dispatch = useDispatch();
 
