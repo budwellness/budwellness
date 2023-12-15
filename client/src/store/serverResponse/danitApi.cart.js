@@ -16,6 +16,17 @@ export const danitApiCart = createApi({
         },
       }),
     }),
+    createCart: build.mutation({
+      query: ({ newCart, token }) => ({
+        url: API.API_CREATE_CART,
+        method: 'POST',
+        headers: {
+          Authorization: token,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newCart),
+      }),
+    }),
     addToCart: build.mutation({
       query: ({ productId, token }) => ({
         url: `${API.API_ADD_TO_CART}${productId}`,
@@ -63,4 +74,5 @@ export const {
   useRemoveFromCartMutation,
   useDecreaseCartQuantityMutation,
   useUpdateCartMutation,
+  useCreateCartMutation,
 } = danitApiCart;
