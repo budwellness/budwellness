@@ -19,11 +19,11 @@ function UserPopup({ logoutHandler }) {
     <ul className={styles.popupList}>
       <li className={styles.popupList__item}>
         <Link
-            to="/profile"
-            className={styles.popupList__link}
-        onClick={()=> {
+          to="/profile"
+          className={styles.popupList__link}
+          onClick={() => {
             dispatch(isPopupOpenAction(false));
-        }}
+          }}
         >
           Profile
         </Link>
