@@ -62,8 +62,14 @@ function LoginForm(props) {
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
   // USER API:
-  const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
-    useLoginUserMutation();
+  const [
+      loginUser,
+    {
+      data: loginUserToken,
+      isSuccess: loginIsSuccess ,
+      isError:loginIsError,
+    }
+  ] = useLoginUserMutation();
   const [updateCart, { data, isError, isSuccess, error }] =
     useUpdateCartMutation();
   const [getCustomer] = useLazyGetCustomerDataQuery();
@@ -112,18 +118,20 @@ function LoginForm(props) {
         .unwrap()
         .then((response) => dispatch(setCustomerDataAction(response)));
     }
+    if(loginIsError){
+      toast.error("Invalid Login or Password")
+    }
   };
 
-  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess]);
+  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess,loginIsError]);
 
   return (
     <>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log('something happen');
-          console.log(values);
+          console.log(values)
           loginUser(values);
         }}
       >
@@ -143,14 +151,14 @@ function LoginForm(props) {
           {/* <h2 className={styles.title}>Sing in Bud<span
                         className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
                     </h2> */}
-
           <div className={styles.wrapperLogin}>
             <LoginInput
                 className={styles.loginInput}
                 name="loginOrEmail"
-                type="email"
+                type="text"
                 placeholder="Login"
                 label="Username or email address"
+                loginIsError={loginIsError}
             />
             <div className={styles.passwordInput}>
               <LoginInput
