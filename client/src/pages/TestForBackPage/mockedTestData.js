@@ -931,4 +931,860 @@ export const productsJSON = [
         'It help relieve symptoms associated with depression, stress, pain and insomnia',
     },
   },
+
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Doja_Ultra_Sour_1.jpeg',
+      '/images/Doja_Ultra_Sour_2.jpeg',
+      '/images/Doja_Ultra_Sour_3.jpeg',
+    ],
+    quantity: 10,
+    rate: 4.9,
+    categories: 'Pre-Rolls',
+    name: 'Doja Ultra Sour',
+    size: 0.5,
+    sizeType: 'g',
+    currentPrice: 55.0,
+    previousPrice: 75.0,
+    plantType: 'Sativa',
+    thc: 26,
+    cbd: 1,
+    effects: ['Energetic', 'Happy', 'Inspired'],
+    tags: ['Cannabis', 'pre-rolls'],
+    itemNo: 887645,
+    description: {
+      short:
+        '3 Masterfully pre-rolled 0.5g joints containing DOJA Ultra Sour: a sativa-dominant strain with a East Coast Sour Diesel x MK Ultra lineage, emitting pungent citrusy aromas.',
+      complection:
+        'These three masterfully rolled 0.5g pre-rolls contain DOJA 91K - an indica-dominant strain that delivers a high level of THC and minimal amounts of CBD. Doja 91K is bred from the Chemdawg 91 crossed with the infamous Captain Krypt OG.Together this lineage creates a strain that emits a deep, dank terpene profile that includes caryophyllene and limonene.These medium- sized nugs have a pungent, classic earthy smell, with distinct floral and musky undertones.',
+    },
+    reviews: [
+      {
+        fullName: 'Crutis',
+        reviewRating: 5,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Sanchez',
+        reviewRating: 4.5,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Dried Cannabis, Bubble Hash',
+      flavors: 'These medium-sized nugs have a pungent, classic earthy smell, with distinct floral and musky undertones.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Dab_Bods_Limoncello_Resin_1.jpeg',
+      '/images/Dab_Bods_Limoncello_Resin_2.jpeg',
+      '/images/Dab_Bods_Limoncello_Resin_3.jpeg',
+    ],
+    quantity: 7,
+    rate: 4.1,
+    categories: 'Pre-Rolls',
+    name: 'Dab Bods Limoncello Resin',
+    size: 0.5,
+    sizeType: 'g',
+    currentPrice: 29.95,
+    previousPrice: 29.95,
+    plantType: 'Sativa',
+    thc: 43,
+    cbd: 0.30,
+    effects: ['Giggly', 'Happy', 'Relaxing'],
+    tags: ['Cannabis', 'pre-rolls'],
+    itemNo: 848645,
+    description: {
+      short:
+        'DAB Bods Resin Infused Pre-rolls featuring the popular strain “Limoncello”. Robust flavours of lemon with hints of mango, pine and pepper explode out of these 3 packs, providing a perfect combination of concentrate and pre roll.',
+      complection:
+        'DAB Bods resin infused joints are custom designed for people who truly love cannabis and only want the most out of their experience. Starting with Alberta`s locally grown craft bud and delicately infusing it with our top selling resin to provide a smooth smoke with the power kick of a concentrate.The resin infused pre rolls maintain all of the terpenes from the live plant and combines them with cured hand crafted flower in a convenient 0.5 gram format for individual consumption.These pre rolls feature the popular strain `Limoncello` - a hybrid strain that has been known to carry giggly, happy and relaxing body effects.Robust flavours of lemon with hints of mango, pine and pepper explode out of these 3 pack pre rolls.Providing you a perfect combination of concentrate and pre roll, Dab Bods infused pre rolls are a must have to share with friends.',
+    },
+    reviews: [
+      {
+        fullName: 'Alison',
+        reviewRating: 5,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Stiv',
+        reviewRating: 3,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Dried Cannabis, Cannabis Extract',
+      flavors: 'Robust flavours of lemon with hints of mango, pine and pepper explode out of these 3 packs.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Embark_Hash_Hits_1.jpeg',
+      '/images/Embark_Hash_Hits_2.jpeg',
+      '/images/Embark_Hash_Hits_3.jpeg',
+    ],
+    quantity: 7,
+    rate: 3.5,
+    categories: 'Pre-Rolls',
+    name: 'Embark Hash Hits',
+    size: 0.2,
+    sizeType: 'g',
+    currentPrice: 92.33,
+    previousPrice: 92.33,
+    plantType: 'Indica',
+    thc: 50,
+    cbd: 0.50,
+    effects: ['Relaxed', 'Sleepy', 'Happy'],
+    tags: ['Cannabis', 'pre-rolls'],
+    itemNo: 842635,
+    description: {
+      short:
+        'Ready to use, on the go, Hash Hits is solventless hash that has been loaded into discrete single use pipes that are easy to use, just remove cap, light and inhale. Packed with a pure hash blend in a stainless steel bowl, and compostable pipe.',
+      complection:
+        'It is the destiny of mint to be crushed, just ask our Back Forty Kush Mint Infused Pre-Rolls. These infused pre-rolls by Back Forty are a remix of some of your favourite Back Forty products. Starting with our best selling Back Forty flower, we’ve taken it for a spin with our proprietary collision extraction process before combining it with Kush Mint THC distillate to hit potencies up to 32%. The result? Re-invigorating clouds of fresh and minty sweetness. Take a trip and explore the Back Forty.',
+    },
+    reviews: [
+      {
+        fullName: 'Jess',
+        reviewRating: 2,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Misty',
+        reviewRating: 5,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Dried Cannabis, Cannabis Concentrate',
+      flavors: 'This heets has a velvety taste with a special roasted tobacco touch.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Monjour_Berry_GoodDay_1.jpeg',
+      '/images/Monjour_Berry_GoodDay_2.jpeg',
+      '/images/Monjour_Berry_GoodDay_3.jpeg',
+    ],
+    quantity: 15,
+    rate: 5,
+    categories: 'Edible',
+    name: 'Monjour Berry Good Day CBD (Gelatin Free)',
+    size: 20,
+    sizeType: 'g',
+    currentPrice: 36.35,
+    previousPrice: 22.99,
+    plantType: 'Hybrid',
+    thc: 1,
+    cbd: 20,
+    effects: ['Relaxed', 'Focused', 'Happy'],
+    tags: ['Cannabis', 'edible'],
+    itemNo: 842645,
+    description: {
+      short:
+        'Greet the day and make it your own with a gummy that contains 20 mg CBD per piece. Monjour’s vegan gummies are available in 30-packs and feature a mix of Blueberry, Strawberry, and Wild Berry flavours. These gummies are made with CBD Isolate and natural flavours.',
+      complection:
+        'Berry Good Day Monjour vegan-friendly gummies are made with CBD isolate and come in an assortment of three mouth-watering natural flavours: blueberry, strawberry, and wild berry. Consistent and convenient (no measuring or droppers necessary), containing exactly 20 mg of CBD per gummy and available in 30-piece packs. Portable, discreet, and tasty. The perfect CBD edible to meet you wherever you are in your day.',
+    },
+    reviews: [
+      {
+        fullName: 'Mike',
+        reviewRating: 5,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Ginger',
+        reviewRating: 5,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Sugars (sugar, glucose syrup, glucose), Water, Pectin, Citric acid, Natural flavours, Sodium citrate, Modified coconut oil, Cannabis extract, Anthocyanin (colour), Coconut oil, Carnauba wax, Propylene glycol, Alpha-tocopherol',
+      flavors: 'Blueberry, strawberry, and wild berry.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Mint_Cookie_BLZRD_1.jpeg',
+      '/images/Mint_Cookie_BLZRD_2.jpeg',
+      '/images/Mint_Cookie_BLZRD_3.jpeg',
+    ],
+    quantity: 8,
+    rate: 4.3,
+    categories: 'Edible',
+    name: 'Mint Cookie BLZRD White Chocolate',
+    size: 10,
+    sizeType: 'g',
+    currentPrice: 5.99,
+    previousPrice: 5.99,
+    plantType: 'Hybrid',
+    thc: 10,
+    cbd: 0.1,
+    effects: ['Energetic', 'Happy', 'Calm'],
+    tags: ['Cannabis', 'edible'],
+    itemNo: 842345,
+    description: {
+      short:
+        'Happy St. Patrick’s Day Legends. Make it Legendary with some Mint Cookie BLZRD white chocolate bar!',
+      complection:
+        'Legend`s Mint flavoured, Organic Fairtrade white chocolate, with dark cookie crumble made without gluten, delivers an exceptional taste experience.This delicious chocolate comes with 10mg of THC, and utilizes MCT oil to improve the bioavailability of the cannabinoids in each mouth- watering bite.',
+    },
+    reviews: [
+      {
+        fullName: 'Chris',
+        reviewRating: 4,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Bobby',
+        reviewRating: 4.6,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Organic White Chocolate (organic cocoa butter, organic raw cane sugar, organic whole milk powder), chocolate cookie crumbles (Sugars (cane sugar, tapioca syrup), Non-hydrogenated shortening (palm oil, modified palm oil), Pea starch, Potato starch, White rice flour, Cocoa powder, Tapioca starch, Water, Pea protein, Salt, Natural flavour, Pea fibre, Sunflower lecithin, Inulin, Sodium bicarbonate, Modified cellulose), food colour preparation (tartrazine, brilliant blue FCF), peppermint flavour, cannabis distillate.',
+      flavors: 'Chocolate, mint.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Blackberry_Lemonade_Gummies_1.jpeg',
+      '/images/Blackberry_Lemonade_Gummies_2.jpeg',
+      '/images/Blackberry_Lemonade_Gummies_3.jpeg',
+    ],
+    quantity: 22,
+    rate: 4,
+    categories: 'Edible',
+    name: 'Blackberry Lemonade Gummies',
+    size: 15,
+    sizeType: 'g',
+    currentPrice: 18.47,
+    previousPrice: 18.47,
+    plantType: 'Indica',
+    thc: 10,
+    cbd: 10,
+    effects: ['Relaxed', 'Happy', 'Sleepy'],
+    tags: ['Cannabis', 'edible'],
+    itemNo: 841345,
+    description: {
+      short:
+        'Blackberry Lemonade Pearls are infused with CBN, CBD and THC. Each soft chew contains 2 mg of CBN, 2 mg of CBD and 2 mg of THC. 5 soft chews per pack.',
+      complection:
+        'Blackberry Lemonade Pearls are infused with equal parts CBN, CBD and THC in a 1:1:1 ratio. Each sugar-coated pearl gives your tastebuds a tart pucker with blackberry lemonade flavours and contains 2 mg of CBN, 2 mg of CBD and 2 mg of THC. Pearls are bursting with natural flavour, and coated in sugar for a sweet treat no matter where you are. 5 soft chews per pack.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 3,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 5,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Sugars (sugar, glucose), Water, Gelatin, Citric acid, Coconut oil, Propylene glycol, Fumaric acid, Blackberry Powder, Cannabis extract, Natural flavour, artificial Color (FD&C Blue NO. 1, FD&C Red NO. 40, FD&C Red NO. 3, Propyl Paraben (preservative)).',
+      flavors: 'Blackberry.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/NightNight_Oil_1.jpeg',
+      '/images/NightNight_Oil_2.jpeg',
+      '/images/NightNight_Oil_3.jpeg',
+    ],
+    quantity: 20,
+    rate: 3,
+    categories: 'Oils',
+    name: 'NightNight Full Spectrum Oil',
+    size: 30,
+    sizeType: 'ml',
+    currentPrice: 32.25,
+    previousPrice: 52.25,
+    plantType: 'Sativa',
+    thc: 0.28,
+    cbd: 50,
+    effects: ['Creative', 'Happy', 'Energetic'],
+    tags: ['Cannabis', 'oil'],
+    itemNo: 841645,
+    description: {
+      short:
+        'NightNight Full Spectrum CBN+CBD Oil contains CBN and CBD without THC, in a tincture format. NightNight’s CBN+CBD formulation is combined with pharmaceutical-grade MCT oil and terpenes, resulting in a full-spectrum functional oil. All NightNight`s CBN products are enhanced with CBD and other natural ingredients to create consumer- focused products of unparalleled quality.',
+      complection:
+        'NightNight Full Spectrum CBN+CBD Oil contains 10mg/g of CBN, 30mg/g of CBD, and no THC, creating a new way to experience the synergistic effects of CBN and CBD in a familiar format. NightNight’s CBN+CBD formulation is combined with pharmaceutical-grade MCT and terpenes, resulting in a full spectrum functional oil ideal for nighttime use. All NightNight`s CBN products are enhanced with CBD and other natural ingredients to create consumer- focused products of unparalleled quality and utility.NightNight products are developed and manufactured by Purileaf in Niagara Falls, Ontario.Each lot is tested by accredited laboratory to ensure quality and consistency.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 3,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 3.1,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: '35% CBN, 50% CBD, 10% CBG, and 12 natural, indica-strain terpenes',
+      flavors: 'Blackberry.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Reign_drops_oil_1.jpeg',
+      '/images/Reign_drops_oil_2.jpeg',
+      '/images/Reign_drops_oil_3.jpeg',
+    ],
+    quantity: 20,
+    rate: 4.6,
+    categories: 'Oils',
+    name: 'Redecan Reign Drops Oil',
+    size: 30,
+    sizeType: 'ml',
+    currentPrice: 31.25,
+    previousPrice: 31.25,
+    plantType: 'Hybrid',
+    thc: 45,
+    cbd: 50,
+    effects: ['Calm', 'Energetic', 'Relaxed'],
+    tags: ['Cannabis', 'oil'],
+    itemNo: 841745,
+    description: {
+      short:
+        'Redecan believes that everyone should be able to buy high quality cannabis products for reasonable prices.They remain one of the very few private, 100% Canadian owned and operated companies in the cannabis industry, and they maintain a family- oriented mindset towards staff and all of their patients and customers across the country. 100 % Canadian homegrown. 100 % Greenhouse grown. Natural growing conditions',
+      complection:
+        'Redecan’s golden-coloured oil drops are formulated in Niagara, Ont. The oil is made with a greenhouse-grown blend of cannabis, put through a state-of-the-art CO2 extraction process and diluted to the optimal concentration. It’s available in a 30 ml bottle and has a THC potency balanced with an even amount of CBD. All oil products sold at OCS.ca are meant for ingestion only. DO NOT smoke or vape these oils. Use as directed.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 4.3,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 4.3,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'MCT oil, Cannabis Extract',
+      flavors: 'Caryophyllene - Peppery, Humulene Hoppy, Myrcene - Earthy',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Five_Founders_Oil_1.jpeg',
+      '/images/Five_Founders_Oil_2.jpeg',
+      '/images/Five_Founders_Oil_3.jpeg',
+    ],
+    quantity: 10,
+    rate: 2.5,
+    categories: 'Oils',
+    name: 'Five Founders THC Oil',
+    size: 30,
+    sizeType: 'ml',
+    currentPrice: 31.67,
+    previousPrice: 31.67,
+    plantType: 'Hybrid',
+    thc: 30,
+    cbd: 3,
+    effects: ['Calm', 'Energetic', 'Relaxed'],
+    tags: ['Cannabis', 'oil'],
+    itemNo: 841755,
+    description: {
+      short:
+        'Five Founders oils are high quality concentrates with premium olive oil as a carrier. Our oils are a convenient and discreet method of consumption.',
+      complection:
+        'Five Founders THC Oils are CO2 extracted from mid to high THC cannabis strains grown indoors in a state-of-the-art pharmaceutical grade facility. Five Founders` extraction process is designed to efficiently convert quality dried cannabis flower into a quality finished product using a premium olive oil as a carrier.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 2,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 2.9,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'MCT oil, Cannabis Extract',
+      flavors: 'Coconut',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Peach_Ginger_Tea_1.jpeg',
+      '/images/Peach_Ginger_Tea_2.jpeg',
+      '/images/Peach_Ginger_Tea_3.jpeg',
+    ],
+    quantity: 15,
+    rate: 4,
+    categories: 'Beverage',
+    name: 'Decaffeinated Peach Ginger Green Tea',
+    size: 10,
+    sizeType: 'g',
+    currentPrice: 14.99,
+    previousPrice: 40.0,
+    plantType: 'Hybrid',
+    thc: 0,
+    cbd: 20,
+    effects: ['Calm', 'Energetic', 'Relaxed'],
+    tags: ['Cannabis', 'beverage'],
+    itemNo: 841775,
+    description: {
+      short:
+        'Decaffeinated premium whole-leaf tea blend with notes of peach and a kick of ginger. Contains biodegradable tea bag sachets with 20mg CBD each. ',
+      complection:
+        'Peach Ginger Green Tea is a decaffeinated premium whole-leaf tea blend that brings together sweet notes of peach and a zesty kick of ginger for an exceptionally well-balanced taste. Each pack contains ten biodegradable pyramid tea bag sachets, each infused with 20mg of CBD.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 4.7,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 4,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Decaffeinated green tea, Sugars (Cane sugar), Ginger, Sweet blackberry leaves, Natural flavour, Acacia gum, Modified coconut oil, Cannabis extract, Peach, Potassium sorbate, Sunflower lecithin',
+      flavors: 'Peach',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Kaleida_Blue_1.jpeg',
+      '/images/Kaleida_Blue_2.jpeg',
+      '/images/Kaleida_Blue_3.jpeg',
+    ],
+    quantity: 13,
+    rate: 4,
+    categories: 'Beverage',
+    name: 'Kaleida Blue',
+    size: 355,
+    sizeType: 'ml',
+    currentPrice: 6.95,
+    previousPrice: 6.95,
+    plantType: 'Hybrid',
+    thc: 10,
+    cbd: 1,
+    effects: ['Calm', 'Energetic', 'Relaxed'],
+    tags: ['Cannabis', 'beverage'],
+    itemNo: 811775,
+    description: {
+      short:
+        'This non-carbonated, ready-to-drink cannabis beverage is infused with 10 mg of THC and is bursting with blue! Serve cold and pour into a chilled glass. Almost no taste or smell of cannabis.',
+      complection:
+        'Peach Ginger Green Tea is a decaffeinated premium whole-leaf tea blend that brings together sweet notes of peach and a zesty kick of ginger for an exceptionally well-balanced taste. Each pack contains ten biodegradable pyramid tea bag sachets, each infused with 20mg of CBD.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 4.7,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 4,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Water, cane sugar, citric acid, cannabis emulsion (glycerin, ethyl alcohol, water, polysorbate 80, modified palm oil, sunflower lecithin, THC distillate), concentrates of carrot and blackcurrant (for colour), natural flavor',
+      flavors: 'Citrus and tropical, coconut.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Versus_Neon_1.jpeg',
+      '/images/Versus_Neon_2.jpeg',
+      '/images/Versus_Neon_3.jpeg',
+    ],
+    quantity: 14,
+    rate: 4.8,
+    categories: 'Beverage',
+    name: 'Versus Neon Rush Cali Blast',
+    size: 355,
+    sizeType: 'ml',
+    currentPrice: 6.99,
+    previousPrice: 6.99,
+    plantType: 'Hybrid',
+    thc: 10,
+    cbd: 5,
+    effects: ['Calm', 'Focused', 'Relaxed'],
+    tags: ['Cannabis', 'beverage'],
+    itemNo: 821775,
+    description: {
+      short:
+        'Versus Neon Rush Cali Blast is made with S?RSE® cannabis emulsion technology which delivers a consistent onset with almost no cannabis taste or smell. Containing 10mg of THC and 30mg of caffeine, this tropical-lime carbonated beverage tastes big, bold, and sweet.',
+      complection:
+        'Versus Neon Rush Cali Blast is made with SōRSE® cannabis emulsion technology which delivers a predictable and consistent onset with almost no cannabis taste or smell. Containing 10mg of THC and 30mg of caffeine, this tropical lime carbonated beverage tast',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 4.7,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 4,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: 'Water, Sugar, Guarana seed extract, Cannabis extract, Modified coconut oil(medium chain triglycerides), Citric acid, Sodium benzoate, Ascorbic acid, Potassium sorbate, Calcium disodium EDTA, Sucrose acetate isobutyrate, Gluconic acid, Natural flavours, Tartrazine, Brilliant blue FCF, Allura red',
+      flavors: 'Tropical lime.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Jamaican_Seeds_1.jpeg',
+      '/images/Jamaican_Seeds_2.jpeg',
+      '/images/Jamaican_Seeds_3.jpeg',
+    ],
+    quantity: 16,
+    rate: 4.8,
+    categories: 'Seeds',
+    name: 'Jamaican Pearl Feminized Seeds',
+    size: 10,
+    sizeType: 'g',
+    currentPrice: 61.0,
+    previousPrice: 61.0,
+    plantType: 'Sativa',
+    thc: 18,
+    cbd: 0,
+    effects: ['Happy', 'Positive', 'Energetic'],
+    tags: ['Cannabis', 'Seeds'],
+    itemNo: 821745,
+    description: {
+      short:
+        'Jamaican Pearl regular cannabis seeds become tall cannabis plants with a very large yield. The weed has a sweet fruity taste and gives a Sativa high.',
+      complection:
+        'With its fruity flavour and mood-lifting effect, Jamaican Pearl Feminized guarantees a good mood. Recreate the Caribbean in your lounge with this cannabis strain! This is one of the few tropical sativas that also thrives in cool climates. You’ll be amazed at how many resinous buds these seeds produce. The high may be less intensive than with certain resin types, but it is more controllable as a result.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 4.7,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 4,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: '85% Sativa, 15% Indica.',
+      flavors: 'Fruity and earthy tones',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Lockdown_Seeds_1.jpeg',
+      '/images/Lockdown_Seeds_2.jpeg',
+      '/images/Lockdown_Seeds_3.jpeg',
+    ],
+    quantity: 13,
+    rate: 4.8,
+    categories: 'Seeds',
+    name: 'Lockdown Kush Feminized Seeds',
+    size: 3,
+    sizeType: 'seeds',
+    currentPrice: 20.0,
+    previousPrice: 20.0,
+    plantType: 'Hybrid',
+    thc: 20,
+    cbd: 0.5,
+    effects: ['Calm', 'Focused', 'Relaxed'],
+    tags: ['Cannabis', 'Seeds'],
+    itemNo: 831775,
+    description: {
+      short:
+        'Lockdown Kush Feminized is a 40% indica / 60% sativa plant with a parental lineage of San Fernando Valley OG crossed with Afghani #1. Full body effects can be anticipated from the heavily potent flower. This strain will finish as a compact-sized plant with short flowering times and a sturdy structure. Citrus and pine aromas dominate the terpene profile of this medium-yielding cultivar. Lockdown Kush can be grown successfully in indoor and outdoor gardens, including colder continental climates.',
+      complection:
+        'Lockdown Kush Feminized swells with chunky and dense trichome-covered flowers. Multiple colas form a thick canopy that rises above the large, broad leaves below. The progeny of two heavy-hitting parents, Lockdown Kush gets you to the finish line faster with a blazing 55-to-60-day flowering period. Sharp and refreshing citrus aromas strike the nose first, followed by a shot of pungently pine terpenes. The effects start by changing the headspace and then migrate down into the body. This strain has something for everyone.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 4.7,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 4,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: '40% Indica / 60% Sativa',
+      flavors: 'Sharp and refreshing citrus aromas strike the nose first, followed by a shot of pungently pine terpenes.',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
+  {
+    enabled: true,
+    imageUrls: [
+      '/images/Ruderalis_Seeds_1.jpeg',
+      '/images/Ruderalis_Seeds_2.jpeg',
+      '/images/Ruderalis_Seeds_3.jpeg',
+    ],
+    quantity: 16,
+    rate: 4.8,
+    categories: 'Seeds',
+    name: 'Ruderalis Skunk Regular Seeds',
+    size: 10,
+    sizeType: 'seeds',
+    currentPrice: 48.00,
+    previousPrice: 63.35,
+    plantType: 'Hybrid',
+    thc: 18,
+    cbd: 0,
+    effects: ['Calm', 'Sleep', 'Relaxed'],
+    tags: ['Cannabis', 'Seeds'],
+    itemNo: 821765,
+    description: {
+      short:
+        'Ruderalis Skunk Regular is 90% indica, 10% sativa. It combines several ruderalis landraces, and has the robustness of a typical ruderalis strain. It’s been bred to have a higher THC than other ruderalis varieties. The plants are relatively short in height, and they produce an earthy, sweet scent, with a hint of coffee. The stone is relaxing and calming, both physically and mentally.',
+      complection:
+        'Ruderalis Skunk Regular is 90% indica. It combines the strength and resiliance of a classic ruderalis, with the potency of Skunk #1. The plants are compact enough to be grown in even small indoor spaces, and can be grown outdoors in most climates, making them really easy to cultivate. Users claim that the high is relaxing and sedative, and the scent pleasantly skunky; earthy and sweet, with a touch of coffee and liquorice. This is a regular variant, which means that the seeds produce both female and male plants.',
+    },
+    reviews: [
+      {
+        fullName: 'Lory',
+        reviewRating: 4.7,
+        reviewDate: 'September 31, 2022 at 21:52 am',
+        feedback:
+          'Convallis posuere morbi leo urna molestie at elementum. Quis auctor elit sed vulputate mi. In nulla posuere sollicitudin aliquam ultrices.',
+        benefit: 'In nulla posuere sollicitudin aliquam ultrices.',
+        disadvantages:
+          'Viverra aliquet eget sit amet tellus cras adipiscing enim.',
+      },
+      {
+        fullName: 'Elif',
+        reviewRating: 4,
+        reviewDate: 'October 1, 2021 at 11:52 am',
+        reviewText:
+          'I usually only eat a square and that’s good enough for me. It’s very potent',
+        feedback:
+          'I actually take a half of one cause the first time I took a full one and I felt a little too good lol but it’s very manageable with the half dose. Then I can still get stuff done and go about my day but I just enjoy it a little more.',
+        benefit: '',
+        disadvantages: '',
+      },
+    ],
+    additionalInformation: {
+      ingredients: '70% Indica / 30% Sativa',
+      flavors: 'Earthy and rich, with notes of coffee beans and sweet liquorice',
+      recommendedUsage:
+        'Begin with a small portion, wait for the effects to kick in, and then decide if you want to consume more',
+    },
+  },
 ];
