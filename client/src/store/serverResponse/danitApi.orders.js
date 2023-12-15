@@ -15,7 +15,7 @@ export const danitApiOrders = createApi({
           Authorization: token,
           'Content-type': 'application/json',
         },
-        body: newOrder,
+        body: JSON.stringify(newOrder),
       }),
     }),
     getAllOrders: build.query({
