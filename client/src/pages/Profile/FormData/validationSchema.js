@@ -19,15 +19,7 @@ const validationSchema = yup.object().shape({
     .max(25, 'The user name is too long')
     .required('This field is required'),
   email: yup.string().email('Invalid e-mail format'),
-  // password: yup
-  //   .string()
-  //   .min(8, 'Password must be at least 8 characters')
-  //   .required('This field is required'),
-  // newPassword: yup
-  //   .string()
-  //   .min(8, 'Password must be at least 8 characters')
-  //   .required('This field is required'),
-  phone: yup
+  telephone: yup
     .string()
     .matches(/^\+(?:[0-9] ?){11,12}[0-9]$/, 'Invalid phone number')
     .required('This field is required'),

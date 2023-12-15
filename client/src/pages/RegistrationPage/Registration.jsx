@@ -15,6 +15,7 @@ import Container from '../../components/Container/Container';
 import ButtonHeader from '../../components/ButtonHeader/ButtonHeader';
 
 import styles from './Registration.module.scss';
+import {toast} from "react-toastify";
 
 function Registration() {
   const dispatch = useDispatch();
@@ -41,13 +42,16 @@ function Registration() {
       const response = await registrationUser(value);
       if (response.error) {
         const errorMessage = response.error.data.message;
+        console.log(errorMessage)
 
         if (errorMessage.includes('Login')) {
           setLoginError(errorMessage);
           setEmailError(null);
+          toast.error(errorMessage)
         } else if (errorMessage.includes('Email')) {
           setEmailError(errorMessage);
           setLoginError(null);
+          toast.error(errorMessage)
         } else {
           setLoginError(null);
           setEmailError(null);
@@ -57,6 +61,7 @@ function Registration() {
         setEmailError(null);
         navigate('/');
         dispatch(setModal(true));
+        toast.success('You was successfully registered!');
       }
     } catch (error) {
       setLoginError(null);

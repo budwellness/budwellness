@@ -4,6 +4,7 @@ import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import EyeIcon from '../../../components/UI/EyeIcon';
 import Button from '../../../components/Button/Button';
 import validationSchemaChangePass from './validationSchemaChangePass';
@@ -31,9 +32,9 @@ function ChangePassword() {
   };
 
   const initialValues = {
-    password: 'testtest',
-    newPassword: 'testtest',
-    repeatNewPassword: 'testtest',
+    password: '',
+    newPassword: '',
+    repeatNewPassword: '',
   };
 
   return (
@@ -41,8 +42,22 @@ function ChangePassword() {
       initialValues={initialValues}
       validationSchema={validationSchemaChangePass}
       onSubmit={(values, { resetForm }) => {
-        changePassword({ userData: values, token: tokenReduxStore });
-        resetForm();
+        try {
+          changePassword({ userData: values, token: tokenReduxStore })
+            .unwrap()
+            .then(((response) => {
+              if (response.password) {
+                toast.error(response.password);
+              } else if (response.message) {
+                toast.success(response.message);
+                resetForm();
+              }
+            }), ((reject) => {
+              toast.error(reject.error);
+            }));
+        } catch (e) {
+          toast.error(e);
+        }
       }}
     >
       <Form>
