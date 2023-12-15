@@ -11,8 +11,6 @@ const buildQueryString = (queryStringObj) => {
     filterStringArr.push(`${value}`);
   }
   return filterStringArr.join('&');
-  // Например, используя Object.entries() или другие методы
-  // и объединяя их в строку запроса
 };
 
 const initialState = {

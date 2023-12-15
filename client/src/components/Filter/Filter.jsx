@@ -3,13 +3,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Slider from 'rc-slider';
+// import TooltipSlider from './components/TooltipSlider';
 import { useDispatch } from 'react-redux';
 import { addFilterTagAction, setSearchParamAction, setStartPageAction } from '../../store/filter/filter.slice';
-import useDebounced from '../../hooks/useDebounce';
-import debounce from 'lodash.debounce'
 
 import 'rc-slider/assets/index.css';
 import styles from './Filter.module.scss';
+
 
 const { log } = console;
 
@@ -18,14 +18,14 @@ function Filter(props) {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 200]);
-  // const [debouncedPriceRange, setDebouncedPriceRange] = useState([0, 200]);
+  const [searchParams, setSearchParams] = useSearchParams()
+
+
 
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
@@ -35,10 +35,13 @@ function Filter(props) {
   const handlePlantTypeChange = (plantType) => {
     setSelectedPlantTypes(plantType);
   };
-  const handlePriceChange = () => {
+  const handlePriceChange = (value) => {
     setPriceRange(value);
-    formHandlerToRedux();
   }
+
+  useEffect(() => {
+    formHandlerToRedux();
+  }, [priceRange]);
 
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
@@ -52,15 +55,14 @@ function Filter(props) {
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
+
+
   const formHandlerToRedux = () => {
     const filterDataArr = [];
 
     const filterData = new FormData(formRef.current);
 
     for (let [key, value] of filterData.entries()) {
-      // if (key !== 'minPrice' && key !== 'maxPrice') {
-      //   setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
-      // }
 
       if (key === 'thc' || key === 'cbd') {
         const digits = value.match(/\d+/g);
@@ -85,27 +87,44 @@ function Filter(props) {
     dispatch(setSearchParamAction(`${filterQueryString}`))
   };
 
+  useEffect(() => {
+    const searchParamDataArr = [];
+    const priceArr = [];
 
-  // const formHandler = () => {
-  //   const filterDataArr = [];
-  //   const filterData = new FormData(formRef.current);
-  //   for (let [key, value] of filterData.entries()) {
-  //     if (key !== 'minPrice' && key !== 'maxPrice') {
-  //       setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
-  //     }
-  //     if (key === 'thc' || key === 'cbd') {
-  //       filterDataArr.push(`${value}`);
-  //       continue;
-  //     }
-  //     filterDataArr.push(`${key}=${value}`);
-  //   }
-  //   const [minPrice, maxPrice] = priceRange;
-  //   filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
 
-  //   const filterQueryString = filterDataArr.join('&');
-  //   setStartPage(1);
-  //   setSearchParams(`${filterQueryString}`);
-  // };
+    for (let [key, value] of searchParams.entries()) {
+
+      if (key === 'thc' || key === 'cbd') {
+        const digits = value.match(/\d+/g);
+        dispatch(addFilterTagAction({ [key]: `${key} ${digits[0]}%-${digits[1]}%` }))
+        searchParamDataArr.push(`${value}`);
+        continue;
+      }
+      if (key === 'perPage' || key === 'startPage') {
+        if (key === 'startPage') {
+          dispatch(setStartPageAction(value))
+        }
+        continue;
+      }
+      if (key === 'minPrice' || key === 'maxPrice') {
+        priceArr.push(`${key}=${value}`)
+        continue;
+      }
+      dispatch(addFilterTagAction({ [key]: value }))
+      if (key === 'categories' && value === 'all') {
+        continue;
+      }
+      searchParamDataArr.push(`${key}=${value}`);
+    }
+    searchParamDataArr.push(priceArr.join('&'));
+
+    const filterQueryString = searchParamDataArr.join('&');
+    log('filterQueryString', filterQueryString)
+
+    // dispatch(setStartPageAction(1))
+    dispatch(setSearchParamAction(`${filterQueryString}`))
+  }, [])
+
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -125,7 +144,10 @@ function Filter(props) {
         Filters
       </button>
       {(window.innerWidth >= 992 || isFilterOpen) && (
-        <form ref={formRef} onChange={() => { formHandlerToRedux() }} className={styles.container}>
+        <form ref={formRef} onChange={() => {
+          formHandlerToRedux()
+        }
+        } className={styles.container}>
           <div
             className={`${styles.filter__categories} ${styles.filter__item1}`}
           >
@@ -251,16 +273,17 @@ function Filter(props) {
           <div className={styles.filter__categories}>
             <h4 className={styles.filter__name}>Filter by Price</h4>
             <span>Min: {priceRange[0]}</span>
+            <span>Max: {priceRange[1]}</span>
             <Slider
+              marks={{ 0: '0$', 200: '200$' }}
               min={0}
               max={200}
               step={1}
-              value={priceRange}
-              // обернуть в дебаунс
-              onChange={handlePriceChange}
+              defaultValue={priceRange}
+              onChangeComplete={(value) => handlePriceChange(value)}
               range
             />
-            <span>Max: {priceRange[1]}</span>
+
           </div>
 
           <div className={styles.filter__categories}>
