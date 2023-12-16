@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -204,9 +204,9 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/profile" element={<Profile />}>
-          <Route path={'information'} element={<UserInformation />} />
-          <Route path={'password'} element={<ChangePassword />} />
-          <Route path={'history'} element={<OrderHistory />} />
+          <Route index="information" element={<UserInformation />} />
+          <Route path="password" element={<ChangePassword />} />
+          <Route path="history" element={<OrderHistory />} />
         </Route>
         <Route path={'historyItem'} element={<OrderHistoryItem />} />
         <Route path="/test" element={<TestForBackPage />} />

@@ -63,6 +63,7 @@ const useToggleCart = () => {
         localStorage.setItem('localCart', JSON.stringify(localCart));
       }
       dispatch(removeItemFromLocalCartAction(productItem.itemNo));
+      toast.warn('Product was removed from cart!');
     } else {
       localStorage.setItem(
         'localCart',
@@ -73,12 +74,15 @@ const useToggleCart = () => {
       );
       getProduct(productItem.itemNo)
         .unwrap()
-        .then((response) => dispatch(
-          addItemToLocalCartAction({
-            product: response,
-            cartQuantity: 1,
-          }),
-        ));
+        .then((response) => {
+          dispatch(
+            addItemToLocalCartAction({
+              product: response,
+              cartQuantity: 1,
+            }),
+          );
+          toast.success('Product was added to cart!');
+        });
     }
   };
 

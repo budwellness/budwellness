@@ -25,6 +25,7 @@ export const API_REMOVE_FROM_WISHLIST = '/wishlist/';
 
 // CART API's:
 export const API_GET_CART = '/cart';
+export const API_CREATE_CART = '/cart';
 export const API_ADD_TO_CART = '/cart/';
 export const API_REMOVE_FROM_CART = '/cart/';
 export const API_DEACREASE_PRODUCT_QUANTITY = '/cart/product/';
@@ -36,3 +37,6 @@ export const API_GET_ORDERS = '/orders';
 
 // CUSTOMER API's:
 export const API_GET_CUSTOMER = '/customers/customer';
+
+// GLOBAL_CONFIG API's:
+export const API_ADD_GLOBAL_CONFIG = '/configs';

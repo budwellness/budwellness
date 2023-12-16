@@ -22,7 +22,7 @@ function FormData() {
     lastName: detailInfo?.lastName || '',
     login: detailInfo?.login || '',
     email: detailInfo?.email || '',
-    phone: detailInfo?.phone || '',
+    telephone: detailInfo?.telephone || '',
     age: detailInfo?.age || '',
     city: detailInfo?.city || '',
     street: detailInfo?.street || '',
@@ -43,7 +43,7 @@ function FormData() {
         lastName: data?.lastName,
         login: data?.login,
         email: data?.email,
-        phone: data?.telephone,
+        telephone: data?.telephone,
         age: data?.age,
         city: data?.city || '',
         street: data?.street || '',
@@ -59,7 +59,7 @@ function FormData() {
       lastName: detailInfo?.lastName || '',
       login: detailInfo?.login || '',
       email: detailInfo?.email || '',
-      phone: detailInfo?.phone || '',
+      telephone: detailInfo?.telephone || '',
       age: detailInfo?.age || '',
       city: detailInfo?.city || '',
       street: detailInfo?.street || '',
@@ -157,18 +157,18 @@ function FormData() {
             </div>
 
             <div className={styles.form}>
-              <label htmlFor="phone" className={styles.form__subtitle}>
-                Your phone number
+              <label htmlFor="telephone" className={styles.form__subtitle}>
+                Your telephone number
               </label>
               <Field
                 type="text"
-                id="phone"
-                name="phone"
+                id="telephone"
+                name="telephone"
                 className={styles.form__message}
                 readOnly={readOnly}
               />
               <ErrorMessage
-                name="phone"
+                name="telephone"
                 component="div"
                 className={styles.form__errorMessage}
               />
