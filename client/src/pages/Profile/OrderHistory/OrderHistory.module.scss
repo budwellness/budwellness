@@ -1,0 +1,84 @@
+.container {
+    width: 100%;
+}
+
+.orderCard {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 16px;
+    box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+    align-items: center;
+    padding: 30px;
+}
+
+.orderInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.orderNum {
+    font-family: $font-nunito;
+    color: $main-green;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24.2px;
+    margin: 0;
+}
+
+.orderDate {
+    margin: 0;
+    font-family: $font-montserrat;
+    color: $secondary-text-color;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25.5px;
+}
+
+.orderStatus {
+    font-family: $font-nunito;
+    color: $secondary-green;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 24.2px;
+    margin-top: 23px;
+    margin-bottom: 0;
+}
+
+.totalTitle {
+    font-family: $font-montserrat;
+    color: $secondary-text-color;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.2px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.totalSum {
+    font-family: $font-nunito;
+    color: $main-green;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 30.8px;
+    margin: 0;
+
+}
+
+.orderImage {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    & img {
+        border-radius: 12px;
+        box-shadow: 0 0 15px 0 rgba(37, 143, 103, 0.1);
+    }
+}
+
+.orderCount {
+    font-family: $font-montserrat;
+    color: $secondary-text-color;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25.5px;
+}
