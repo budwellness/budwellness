@@ -27,3 +27,11 @@ export const API_ADD_TO_CART = '/cart/';
 export const API_REMOVE_FROM_CART = '/cart/';
 export const API_DEACREASE_PRODUCT_QUANTITY = '/cart/product/';
 export const API_UPDATE_CART = '/cart';
+
+// COMMENTS API's:
+export const API_ADD_COMMENT = '/comments';
+export const API_UPDATE_COMMENT = '/comments/';
+export const API_REMOVE_COMMENT = '/comments/';
+export const API_GET_ALL_COMMENTS = '/comments';
+export const API_GET_ALL_COMMENTS_OF_CUSTOMER = '/comments/customer/';
+export const API_GET_COMMENTS_OF_PRODUCT = '/comments/product/';
