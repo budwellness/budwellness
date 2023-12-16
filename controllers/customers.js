@@ -6,6 +6,7 @@ const getConfigs = require("../config/getConfigs");
 const passport = require("passport");
 const uniqueRandom = require("unique-random");
 const rand = uniqueRandom(10000000, 99999999);
+const sendMail = require("../commonHelpers/mailSender");
 
 // Load Customer model
 const Customer = require("../models/Customer");
@@ -30,20 +31,16 @@ exports.createCustomer = (req, res, next) => {
   }
 
   Customer.findOne({
-    $or: [{ email: req.body.email }, { login: req.body.login }]
+    $or: [{ email: req.body.email }, { login: req.body.login }],
   })
-    .then(customer => {
+    .then((customer) => {
       if (customer) {
         if (customer.email === req.body.email) {
-          return res
-            .status(400)
-            .json({ message: `Email ${customer.email} already exists"` });
+          return res.status(400).json({ message: `Email ${customer.email} already exists"` });
         }
 
         if (customer.login === req.body.login) {
-          return res
-            .status(400)
-            .json({ message: `Login ${customer.login} already exists` });
+          return res.status(400).json({ message: `Login ${customer.login} already exists` });
         }
       }
 
@@ -53,9 +50,7 @@ exports.createCustomer = (req, res, next) => {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newCustomer.password, salt, (err, hash) => {
           if (err) {
-            res
-              .status(400)
-              .json({ message: `Error happened on server: ${err}` });
+            res.status(400).json({ message: `Error happened on server: ${err}` });
 
             return;
           }
@@ -63,18 +58,37 @@ exports.createCustomer = (req, res, next) => {
           newCustomer.password = hash;
           newCustomer
             .save()
-            .then(customer => res.json(customer))
-            .catch(err =>
+            .then((customer) => {
+              const subscriberMail = customer.email;
+              const letterSubject = "Registration on Budwellness"; // Заголовок письма
+              const letterHtml = `
+              <p>Dear ${newCustomer.firstName} ${newCustomer.lastName},</p>
+              <p>Thank you for registering with us!</p>
+              <p>Your login credentials:</p>
+              <ul>
+                <li><strong>Login:</strong> ${newCustomer.login}</li>
+                <li><strong>Password:</strong> ${initialQuery.password}</li>
+              </ul>
+              <p>We're excited to have you on board!</p>
+              <!-- Дополнительные детали или информация -->
+              `;
+              sendMail(subscriberMail, letterSubject, letterHtml)
+                .then((mailResult) => res.json({ customer, mailResult }))
+                .catch((mailError) => {
+                  res.status(400).json({ message: `Error sending email: ${mailError}` });
+                });
+            })
+            .catch((err) =>
               res.status(400).json({
-                message: `Error happened on server: "${err}" `
+                message: `Error happened on server: "${err}" `,
               })
             );
         });
       });
     })
-    .catch(err =>
+    .catch((err) =>
       res.status(400).json({
-        message: `Error happened on server: "${err}" `
+        message: `Error happened on server: "${err}" `,
       })
     );
 };
@@ -94,9 +108,9 @@ exports.loginCustomer = async (req, res, next) => {
 
   // Find customer by email
   Customer.findOne({
-    $or: [{ email: loginOrEmail }, { login: loginOrEmail }]
+    $or: [{ email: loginOrEmail }, { login: loginOrEmail }],
   })
-    .then(customer => {
+    .then((customer) => {
       // Check for customer
       if (!customer) {
         errors.loginOrEmail = "Customer not found";
@@ -104,37 +118,32 @@ exports.loginCustomer = async (req, res, next) => {
       }
 
       // Check Password
-      bcrypt.compare(password, customer.password).then(isMatch => {
+      bcrypt.compare(password, customer.password).then((isMatch) => {
         if (isMatch) {
           // Customer Matched
           const payload = {
             id: customer.id,
             firstName: customer.firstName,
             lastName: customer.lastName,
-            isAdmin: customer.isAdmin
+            isAdmin: customer.isAdmin,
           }; // Create JWT Payload
 
           // Sign Token
-          jwt.sign(
-            payload,
-            keys.secretOrKey,
-            { expiresIn: 36000 },
-            (err, token) => {
-              res.json({
-                success: true,
-                token: "Bearer " + token
-              });
-            }
-          );
+          jwt.sign(payload, keys.secretOrKey, { expiresIn: 36000 }, (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer " + token,
+            });
+          });
         } else {
           errors.password = "Password incorrect";
           return res.status(400).json(errors);
         }
       });
     })
-    .catch(err =>
+    .catch((err) =>
       res.status(400).json({
-        message: `Error happened on server: "${err}" `
+        message: `Error happened on server: "${err}" `,
       })
     );
 };
@@ -157,7 +166,7 @@ exports.editCustomerInfo = (req, res) => {
   }
 
   Customer.findOne({ _id: req.user.id })
-    .then(customer => {
+    .then((customer) => {
       if (!customer) {
         errors.id = "Customer not found";
         return res.status(404).json(errors);
@@ -172,7 +181,7 @@ exports.editCustomerInfo = (req, res) => {
         newEmail = req.body.email;
 
         if (currentEmail !== newEmail) {
-          Customer.findOne({ email: newEmail }).then(customer => {
+          Customer.findOne({ email: newEmail }).then((customer) => {
             if (customer) {
               errors.email = `Email ${newEmail} is already exists`;
               res.status(400).json(errors);
@@ -186,7 +195,7 @@ exports.editCustomerInfo = (req, res) => {
         newLogin = req.body.login;
 
         if (currentLogin !== newLogin) {
-          Customer.findOne({ login: newLogin }).then(customer => {
+          Customer.findOne({ login: newLogin }).then((customer) => {
             if (customer) {
               errors.login = `Login ${newLogin} is already exists`;
               res.status(400).json(errors);
@@ -199,21 +208,17 @@ exports.editCustomerInfo = (req, res) => {
       // Create query object for qustomer for saving him to DB
       const updatedCustomer = queryCreator(initialQuery);
 
-      Customer.findOneAndUpdate(
-        { _id: req.user.id },
-        { $set: updatedCustomer },
-        { new: true }
-      )
-        .then(customer => res.json(customer))
-        .catch(err =>
+      Customer.findOneAndUpdate({ _id: req.user.id }, { $set: updatedCustomer }, { new: true })
+        .then((customer) => res.json(customer))
+        .catch((err) =>
           res.status(400).json({
-            message: `Error happened on server: "${err}" `
+            message: `Error happened on server: "${err}" `,
           })
         );
     })
-    .catch(err =>
+    .catch((err) =>
       res.status(400).json({
-        message: `Error happened on server:"${err}" `
+        message: `Error happened on server:"${err}" `,
       })
     );
 };
@@ -231,7 +236,7 @@ exports.updatePassword = (req, res) => {
   Customer.findOne({ _id: req.user.id }, (err, customer) => {
     let oldPassword = req.body.password;
 
-    customer.comparePassword(oldPassword, function(err, isMatch) {
+    customer.comparePassword(oldPassword, function (err, isMatch) {
       if (!isMatch) {
         errors.password = "Password does not match";
         res.json(errors);
@@ -246,20 +251,20 @@ exports.updatePassword = (req, res) => {
               { _id: req.user.id },
               {
                 $set: {
-                  password: newPassword
-                }
+                  password: newPassword,
+                },
               },
               { new: true }
             )
-              .then(customer => {
+              .then((customer) => {
                 res.json({
                   message: "Password successfully changed",
-                  customer: customer
+                  customer: customer,
                 });
               })
-              .catch(err =>
+              .catch((err) =>
                 res.status(400).json({
-                  message: `Error happened on server: "${err}" `
+                  message: `Error happened on server: "${err}" `,
                 })
               );
           });
