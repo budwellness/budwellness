@@ -140,7 +140,7 @@ export default function ShippingForm() {
                           } else {
                             toast.error('Something went wrong...');
                           }
-                        }
+                        },
                       );
                   });
               });
@@ -152,7 +152,7 @@ export default function ShippingForm() {
             } else {
               toast.error('Something went wrong...');
             }
-          }
+          },
         );
     }
   };

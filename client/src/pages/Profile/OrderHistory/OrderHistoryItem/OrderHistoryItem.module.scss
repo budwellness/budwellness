@@ -6,34 +6,88 @@
   box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
 
   .elem {
-  }
+    display: grid;
+    grid-template-columns: repeat(4, 12% 48% 20% 20%);
+    padding: 17px 80px;
 
-  .img {
-  }
-
-  .mainInfo {
-    .title {
+    .imgWpapper {
+      display: grid;
+      align-items: center;
+      .img {
+        width: 102px;
+        height: 100px;
+        border-radius: 12px;
+        box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+      }
     }
-    .weight {
-    }
-  }
 
-  .quantity {
-    display: flex;
-    justify-content: center;
-    padding: 12px 28px;
-    border-radius: 24px;
-    background: #fff;
-    box-shadow: 1px 2px 15px 0px rgba(33, 72, 66, 0.07);
+    .mainInfo {
+      display: grid;
+      grid-template-rows: repeat(2, 35% 65%);
 
-    .quantityText {
+      .title {
+        color: $main-green;
+        font-family: $font-nunito;
+        text-transform: capitalize;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24.2px;
+      }
+      .weight {
+        color: $main-text-color;
+        font-family: $font-montserrat;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25.5px;
+      }
     }
-  }
 
-  .priceWrapper {
-    .priceText {
+    .quantity {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      .quantityTextWrapper {
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        padding: 12px 28px;
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 1px 2px 15px 0px rgba(33, 72, 66, 0.07);
+        width: 93px;
+        gap: 5px;
+        .quantityText {
+          color: $main-green;
+          font-family: $font-nunito;
+          font-size: 17px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+      }
     }
-    .price {
+
+    .priceWrapper {
+      display: grid;
+      grid-template-rows: repeat(2, 10% 90%);
+      justify-content: flex-end;
+      .priceText {
+        color: $secondary-text-color;
+        font-family: $font-montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18.2px;
+      }
+      .price {
+        color: $main-green;
+        font-family: $font-nunito;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 30.8px;
+      }
     }
   }
 }
