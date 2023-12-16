@@ -106,8 +106,8 @@ export default function ShippingForm() {
       registrationUser(registrationData)
         .unwrap()
         .then(
-          ({ email, _id }) => {
-            loginUser({ loginOrEmail: email, password: temporaryPassword })
+          ({ customer }) => {
+            loginUser({ loginOrEmail: customer.email, password: temporaryPassword })
               .unwrap()
               .then((res) => {
                 const products = localCart.map((elem) => ({
@@ -121,7 +121,7 @@ export default function ShippingForm() {
                   .unwrap()
                   .then((resolve) => {
                     newOrder.products = resolve.products;
-                    newOrder.customerId = _id;
+                    newOrder.customerId = customer._id;
                     createOrder({
                       token: res,
                       newOrder,
@@ -188,7 +188,7 @@ export default function ShippingForm() {
               isDisabled={!form.isValid}
               text="Checkout"
               className="orangeBtn"
-              onClick={() => {}}
+              onClick={() => { }}
             />
           </Form>
         )}
