@@ -120,6 +120,9 @@ function App() {
       } else {
         localStorage.setItem('localCart', JSON.stringify([]));
       }
+    } else if (isTokenExpired(localStorageToken)) {
+      log('token expired');
+      dispatch(userLogoutUserAction());
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired');
