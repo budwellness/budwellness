@@ -38,7 +38,27 @@ const mockData = {
 function OrderHistoryItem() {
   return (
     <Container>
-      <div>OrderHistoryItem</div>
+      <div className={styles.orderHistoryWrapper__item}>
+        <div className={styles.elem}>
+          <img
+            src="/images/chocolate_brownies_1.png"
+            alt="product"
+            className={styles.img}
+          />
+          <div className={styles.mainInfo}>
+            <h3 className={styles.title}>bhang milk chocolate</h3>
+            <p className={styles.weight}>3.5mg</p>
+          </div>
+        </div>
+        <div className={styles.quantity}>
+          <span className={styles.quantityText}>2</span>
+          <span className={styles.quantityText}>th</span>
+        </div>
+        <div className={styles.priceWrapper}>
+          <p className={styles.priceText}>Subtotal</p>
+          <p className={styles.price}>$29.96</p>
+        </div>
+      </div>
     </Container>
   );
 }
