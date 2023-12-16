@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './OrderHistory.module.scss';
+import ArrowProfile from '../../../components/UI/ArrowProfile';
 
 function OrderHistory() {
   return (
@@ -10,7 +11,7 @@ function OrderHistory() {
           <p className={styles.orderDate}>28 dec 2023</p>
           <p className={styles.orderStatus}>Done</p>
         </div>
-        <div>
+        <div className={styles.total}>
           <p className={styles.totalTitle}>Total</p>
           <p className={styles.totalSum}>$74.72</p>
         </div>
@@ -35,6 +36,7 @@ function OrderHistory() {
             alt="product_image_3"
           />
         </div>
+        <ArrowProfile className={styles.arrow} />
       </div>
     </section>
   );

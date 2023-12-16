@@ -43,6 +43,11 @@ $font-nunito: 'Nunito Sans', sans-serif;
     @content;
   }
 }
+@mixin _1200 {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
 @mixin _1380 {
   @media (min-width: 1380px) {
     @content;

@@ -17,7 +17,6 @@ import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-import OrderHistoryItem from './pages/Profile/OrderHistory/OrderHistoryItem/OrderHistoryItem.jsx';
 
 // USER IMPORTS:
 
@@ -56,6 +55,7 @@ import Profile from './pages/Profile/Profile.jsx';
 import UserInformation from './pages/Profile/UserInformation/UserInformation.jsx';
 import OrderHistory from './pages/Profile/OrderHistory/OrderHistory.jsx';
 import ChangePassword from './pages/Profile/ChangePassword/ChangePassword.jsx';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const { log } = console;
 
@@ -198,20 +198,30 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
-        <Route path="/wishlist" element={
-          <PrivateRoute>
-            <WishlistPage />
-          </PrivateRoute>} />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <WishlistPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/profile" element={<Profile />}>
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        >
           <Route index="information" element={<UserInformation />} />
           <Route path="password" element={<ChangePassword />} />
           <Route path="history" element={<OrderHistory />} />
         </Route>
-        <Route path={'historyItem'} element={<OrderHistoryItem />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
