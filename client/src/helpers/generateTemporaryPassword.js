@@ -1,6 +1,5 @@
 const generateTemporaryPassword = (length = 8) => {
-  const charset =
-    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let temporaryPassword = '';
 
   // eslint-disable-next-line no-plusplus
