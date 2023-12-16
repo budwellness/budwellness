@@ -17,6 +17,7 @@ import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import OrderHistoryItem from './pages/Profile/OrderHistory/OrderHistoryItem/OrderHistoryItem.jsx';
 
 // USER IMPORTS:
 
@@ -52,9 +53,9 @@ import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 import Profile from './pages/Profile/Profile.jsx';
-import UserInformation from "./pages/Profile/UserInformation/UserInformation.jsx";
-import OrderHistory from "./pages/Profile/OrderHistory/OrderHistory.jsx";
-import ChangePassword from "./pages/Profile/ChangePassword/ChangePassword.jsx";
+import UserInformation from './pages/Profile/UserInformation/UserInformation.jsx';
+import OrderHistory from './pages/Profile/OrderHistory/OrderHistory.jsx';
+import ChangePassword from './pages/Profile/ChangePassword/ChangePassword.jsx';
 
 const { log } = console;
 
@@ -202,11 +203,12 @@ function App() {
         <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/profile" element={<Profile />} >
-          <Route path={"information"} element={<UserInformation/>}/>
-          <Route path={"password"} element={<ChangePassword/>}/>
-          <Route path={"history"} element={<OrderHistory/>}/>
+        <Route path="/profile" element={<Profile />}>
+          <Route path={'information'} element={<UserInformation />} />
+          <Route path={'password'} element={<ChangePassword />} />
+          <Route path={'history'} element={<OrderHistory />} />
         </Route>
+        <Route path={'historyItem'} element={<OrderHistoryItem />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
