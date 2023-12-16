@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import styles from './PrivateRoute.module.scss';
 import LoadingToRedirect from './LoadingToRedirect/LoadingToRedirect';
 
 function PrivateRoute({ children }) {
@@ -9,5 +8,13 @@ function PrivateRoute({ children }) {
 
   return tokenReduxStore ? children : <LoadingToRedirect />;
 }
+
+PrivateRoute.defaultProps = {
+  children: null,
+};
+
+PrivateRoute.propTypes = {
+  children: PropTypes.node,
+};
 
 export default PrivateRoute;

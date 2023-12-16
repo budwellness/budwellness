@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import styles from './Modal.module.scss';
 
 function RedirectModal({ children }) {
