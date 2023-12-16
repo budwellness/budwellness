@@ -25,12 +25,12 @@ export default function ButtonIcon(props) {
 
 ButtonIcon.defaultProps = {
   onClick: () => {},
+  classNames: '',
+  children: '',
 };
 
 ButtonIcon.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   classNames: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types, react/require-default-props
-  children: PropTypes.object,
+  children: PropTypes.string,
   onClick: PropTypes.func,
 };

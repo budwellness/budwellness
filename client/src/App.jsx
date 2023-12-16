@@ -17,6 +17,10 @@ import TestForBackPage from './pages/TestForBackPage/TestForBackPage';
 import CartModal from './components/CartModal/CartModal';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import UserInformation from './pages/Profile/UserInformation/UserInformation';
+import ChangePassword from './pages/Profile/ChangePassword/ChangePassword';
+import OrderHistory from './pages/Profile/OrderHistory/OrderHistory';
 
 // USER IMPORTS:
 
@@ -31,6 +35,7 @@ import { setWishlistAction } from './store/wishlist/wishList.slice';
 import { isModalAddToCartAction, setModal } from './store/modal/modal.slice';
 
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
+import { useLazyGetCustomerDataQuery } from './store/serverResponse/danitApi.customer';
 
 // CART IMPORTS:
 import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
