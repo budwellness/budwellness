@@ -72,7 +72,7 @@ exports.createCustomer = (req, res, next) => {
               <p>We're excited to have you on board!</p>
               <!-- Дополнительные детали или информация -->
               `;
-              sendMail(subscriberMail, letterSubject, letterHtml)
+              sendMail(subscriberMail, letterSubject, letterHtml, res)
                 .then((mailResult) => res.json({ customer, mailResult }))
                 .catch((mailError) => {
                   res.status(400).json({ message: `Error sending email: ${mailError}` });
