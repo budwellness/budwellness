@@ -18,7 +18,11 @@ function OrderHistoryItem() {
           </div>
 
           <div className={styles.mainInfo}>
-            <h3 className={styles.title}>bhang milk chocolate</h3>
+            {/* <h3 className={styles.title}>bhang milk chocolate</h3> */}
+            <h3 className={styles.title}>
+              {' '}
+              pure power plant feminized seeds by white label
+            </h3>
             <p className={styles.weight}>3.5mg</p> {/* size+sizeType  */}
             {/* <p className={styles.weight}>mg</p> sizeType */}
           </div>

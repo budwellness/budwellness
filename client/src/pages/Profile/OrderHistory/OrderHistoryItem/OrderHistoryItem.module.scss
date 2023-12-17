@@ -4,43 +4,85 @@
   border-radius: 16px;
   background: #fff;
   box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+  height: 100%;
 
   .elem {
     display: grid;
-    grid-template-columns: repeat(4, 12% 48% 20% 20%);
-    padding: 17px 80px;
+    padding: 9px 25px;
+    grid-template-columns: repeat(2, 1fr);
+    // grid-template-rows: repeat(2, 50% 30%);
+    // row-gap: 0;
+    // grid-template-columns: repeat(3, 30% 30% 10%);
+    @include for-size(768px) {
+      grid-template-columns: repeat(4, 20% 40% 25% 15%);
+      padding: 17px 80px;
+    }
+    @include for-size(1200px) {
+      grid-template-columns: repeat(4, 12% 48% 20% 20%);
+      padding: 17px 80px;
+    }
+    // grid-template-columns: repeat(4, 12% 48% 20% 20%);
+    // padding: 17px 80px;
 
     .imgWpapper {
       display: grid;
       align-items: center;
+      // justify-content: center;
       .img {
-        width: 102px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 12px;
         box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+        @include for-size(768px) {
+          width: 102px;
+          height: 100px;
+        }
       }
     }
 
     .mainInfo {
       display: grid;
-      grid-template-rows: repeat(2, 35% 65%);
+      grid-template-rows: repeat(2, 45% 55%);
+      @include for-size(768px) {
+        grid-template-rows: repeat(2, 35% 65%);
+        // grid-template-rows: repeat(2, 50% 50%);
+      }
+      @include for-size(992px) {
+        grid-template-rows: repeat(2, 40% 60%);
+      }
+      // @include for-size(1200px) {
+      //   grid-template-rows: repeat(2, 35% 65%);
+      // }
 
       .title {
         color: $main-green;
         font-family: $font-nunito;
         text-transform: capitalize;
-        font-size: 22px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 700;
-        line-height: 24.2px;
+        // line-height: 24.2px;
+        // width: 100%;
+        @include for-size(768px) {
+          font-size: 17px;
+        }
+        @include for-size(992px) {
+          font-size: 22px;
+        }
       }
       .weight {
         color: $main-text-color;
         font-family: $font-montserrat;
-        font-size: 17px;
+        font-size: 12px;
         font-style: normal;
         font-weight: 400;
         line-height: 25.5px;
+        @include for-size(768px) {
+          font-size: 15px;
+        }
+        @include for-size(992px) {
+          font-size: 17px;
+        }
       }
     }
 
@@ -48,22 +90,34 @@
       display: grid;
       justify-content: center;
       align-items: center;
+      // align-content: space-between;
+      // @include for-size(768px) {
+      //   justify-content: center;
+      // }
       .quantityTextWrapper {
-        grid-template-columns: repeat(2, 1fr);
-        justify-content: center;
-        padding: 12px 28px;
+        // grid-template-columns: repeat(2, 1fr);
+        // justify-content: center;
+        padding: 6px 12px;
         border-radius: 24px;
         background: #fff;
         box-shadow: 1px 2px 15px 0px rgba(33, 72, 66, 0.07);
-        width: 93px;
-        gap: 5px;
+        width: 53px;
+
+        @include for-size(768px) {
+          padding: 12px 28px;
+          width: 93px;
+          gap: 5px;
+        }
         .quantityText {
           color: $main-green;
           font-family: $font-nunito;
-          font-size: 17px;
+          font-size: 12px;
           font-style: normal;
           font-weight: 700;
           line-height: normal;
+          @include for-size(768px) {
+            font-size: 17px;
+          }
         }
       }
     }
@@ -71,22 +125,35 @@
     .priceWrapper {
       display: grid;
       grid-template-rows: repeat(2, 10% 90%);
-      justify-content: flex-end;
+      justify-content: center;
+      @include for-size(768px) {
+        // justify-content: flex-start;
+        justify-content: flex-end;
+      }
       .priceText {
         color: $secondary-text-color;
         font-family: $font-montserrat;
-        font-size: 14px;
+        font-size: 12px;
         font-style: normal;
         font-weight: 500;
         line-height: 18.2px;
+        @include for-size(768px) {
+          font-size: 12px;
+        }
       }
       .price {
         color: $main-green;
         font-family: $font-nunito;
-        font-size: 28px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 800;
         line-height: 30.8px;
+        @include for-size(768px) {
+          font-size: 20px;
+        }
+        @include for-size(992px) {
+          font-size: 28px;
+        }
       }
     }
   }
