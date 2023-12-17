@@ -41,7 +41,6 @@ function OrderHistoryCard() {
           </p>
         </div>
       </div>
-      <hr className={styles.line} />
 
       <div className={styles.elem}>
         <div className={styles.imgWpapper}>

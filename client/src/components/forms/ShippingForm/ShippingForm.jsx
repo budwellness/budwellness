@@ -103,7 +103,7 @@ export default function ShippingForm() {
             } else {
               toast.error('Something went wrong...');
             }
-          }
+          },
         );
     } else {
       const temporaryLogin = generateTemporaryLogin(values.email);
@@ -158,7 +158,7 @@ export default function ShippingForm() {
                           } else {
                             toast.error('Something went wrong...');
                           }
-                        }
+                        },
                       );
                   });
               });
@@ -170,7 +170,7 @@ export default function ShippingForm() {
             } else {
               toast.error('Something went wrong...');
             }
-          }
+          },
         );
     }
   };
