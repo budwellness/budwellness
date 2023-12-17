@@ -89,7 +89,22 @@ export default function ShippingForm() {
       createOrder({
         token,
         newOrder,
-      });
+      })
+        .unwrap()
+        .then(
+          () => {
+            dispatch(clearLocalCartAction());
+            dispatch(clearCartAction());
+            toast.success(`Your order №${tempOrderNo} is placed`);
+          },
+          (rejOrder) => {
+            if (rejOrder.data.message) {
+              toast.error(rejOrder.data.message);
+            } else {
+              toast.error('Something went wrong...');
+            }
+          }
+        );
     } else {
       const temporaryLogin = generateTemporaryLogin(values.email);
       const temporaryPassword = generateTemporaryPassword();
@@ -107,7 +122,10 @@ export default function ShippingForm() {
         .unwrap()
         .then(
           ({ customer }) => {
-            loginUser({ loginOrEmail: customer.email, password: temporaryPassword })
+            loginUser({
+              loginOrEmail: customer.email,
+              password: temporaryPassword,
+            })
               .unwrap()
               .then((res) => {
                 const products = localCart.map((elem) => ({
@@ -140,7 +158,7 @@ export default function ShippingForm() {
                           } else {
                             toast.error('Something went wrong...');
                           }
-                        },
+                        }
                       );
                   });
               });
@@ -152,7 +170,7 @@ export default function ShippingForm() {
             } else {
               toast.error('Something went wrong...');
             }
-          },
+          }
         );
     }
   };
@@ -188,7 +206,7 @@ export default function ShippingForm() {
               isDisabled={!form.isValid}
               text="Checkout"
               className="orangeBtn"
-              onClick={() => { }}
+              onClick={() => {}}
             />
           </Form>
         )}
