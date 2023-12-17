@@ -15,6 +15,7 @@
     box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
     row-gap: 20px;
     padding: 20px;
+    position: relative;
 
     @include _768 {
         display: grid;
@@ -32,6 +33,40 @@
 .orderInfo {
     display: flex;
     flex-direction: column;
+
+}
+
+.orderCard::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10px;
+    width: 2px;
+    height: 80%;
+
+    border-radius: 4px;
+    background: $secondary-green;
+
+    @include _576 {
+        // top: 127%;
+        // left: -143%;
+        // width: 255px;
+    }
+
+    @include _768 {
+        // top: 62%;
+        // left: -85%;
+        // width: 160px;
+    }
+
+    @include _992 {}
+
+    @include _1200 {
+        // top: 50%;
+        // left: -50%;
+        // width: 99px;
+        // height: 2px;
+    }
 }
 
 .orderNum {
@@ -131,7 +166,7 @@
         width: 60px;
         height: 60px;
 
-        @include _576{
+        @include _576 {
             width: 100px;
             height: 100px;
         }
