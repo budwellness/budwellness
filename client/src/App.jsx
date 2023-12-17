@@ -208,7 +208,6 @@ function App() {
           <Route path="password" element={<ChangePassword />} />
           <Route path="history" element={<OrderHistory />} />
         </Route>
-        <Route path={'historyItem'} element={<OrderHistoryItem />} />
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
