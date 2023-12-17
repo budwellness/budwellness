@@ -24,8 +24,11 @@ function LoginInput(props) {
         {...field}
       />
       {loginIsError && (
-        <p className={styles.errorInput}>Invalid Login or Password</p>
-        // <ErrorMessage name={name} className={styles.errorInput} component="p" />
+          <div className={styles.wrapperError}>
+            <p className={styles.errorInput}>Invalid Login or Password</p>
+          </div>
+
+          // <ErrorMessage name={name} className={styles.errorInput} component="p" />
       )}
     </label>
   );

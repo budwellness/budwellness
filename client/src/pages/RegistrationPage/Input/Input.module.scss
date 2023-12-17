@@ -1,7 +1,7 @@
 .label {
   // font-size: 14px;
   // text-align: left;
-  position: relative;
+  //position: relative;
   text-align: left;
   margin-bottom: 0;
   font-size: 17px;
@@ -12,6 +12,10 @@
   color: $main-green;
 }
 
+.wrapperError {
+  position: relative;
+}
+
 .errorInput {
   color: red !important;
   padding: 0;
@@ -19,7 +23,8 @@
   //margin-top: 5px;
   //text-align: left;
   position: absolute;
-  top: 77px;
+  //top: 77px;
+  top: -35px;
   width: 250px;
 }
 
