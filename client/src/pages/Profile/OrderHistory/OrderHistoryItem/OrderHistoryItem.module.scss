@@ -1,39 +1,210 @@
-.orderHistoryWrapper__item {
-  margin-top: 100px;
-  margin-bottom: 100px; //видалити//
+.container {
+  width: 100%;
+  padding-top: 20px;
+
+  @include _1200 {
+    padding: 0;
+  }
+}
+
+.currency {
+  font-size: 20px;
+}
+
+.orderCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   border-radius: 16px;
-  background: #fff;
   box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+  row-gap: 20px;
+  padding: 20px;
+  position: relative;
 
-  .elem {
+  @include _768 {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
   }
 
-  .img {
-  }
-
-  .mainInfo {
-    .title {
-    }
-    .weight {
-    }
-  }
-
-  .quantity {
+  @include _1200 {
     display: flex;
-    justify-content: center;
-    padding: 12px 28px;
-    border-radius: 24px;
-    background: #fff;
-    box-shadow: 1px 2px 15px 0px rgba(33, 72, 66, 0.07);
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 30px;
+  }
+}
 
-    .quantityText {
-    }
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderCard::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10px;
+  width: 2px;
+  height: 80%;
+
+  border-radius: 4px;
+  background: $secondary-green;
+
+  @include _576 {
+    // top: 127%;
+    // left: -143%;
+    // width: 255px;
   }
 
-  .priceWrapper {
-    .priceText {
+  @include _768 {
+    // top: 62%;
+    // left: -85%;
+    // width: 160px;
+  }
+
+  @include _992 {
+  }
+
+  @include _1200 {
+    // top: 50%;
+    // left: -50%;
+    // width: 99px;
+    // height: 2px;
+  }
+}
+
+.orderNum {
+  font-family: $font-nunito;
+  color: $main-green;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24.2px;
+  margin: 0;
+
+  @include _1200 {
+    font-size: 22px;
+  }
+}
+
+.orderDate {
+  margin: 0;
+  font-family: $font-montserrat;
+  color: $secondary-text-color;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25.5px;
+}
+
+.orderStatus {
+  font-family: $font-nunito;
+  color: $secondary-green;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24.2px;
+  margin-top: 23px;
+  margin-bottom: 0;
+}
+
+.total {
+  margin-right: 0;
+  margin-left: 0;
+
+  @include _768 {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @include _1200 {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.totalTitle {
+  font-family: $font-montserrat;
+  color: $secondary-text-color;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18.2px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.totalSum {
+  font-family: $font-nunito;
+  color: $main-green;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 30.8px;
+  margin: 0;
+
+  @include _1200 {
+    font-size: 28px;
+  }
+}
+
+.orderImage {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+
+  @include _576 {
+    justify-content: center;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    gap: 40px;
+  }
+
+  @include _1200 {
+    gap: 25px;
+    width: auto;
+  }
+
+  & img {
+    border-radius: 12px;
+    box-shadow: 0 0 15px 0 rgba(37, 143, 103, 0.1);
+    width: 60px;
+    height: 60px;
+
+    @include _576 {
+      width: 100px;
+      height: 100px;
     }
-    .price {
+
+    @include _768 {
+      width: 120px;
+      height: 120px;
     }
+
+    @include _1200 {
+      width: 90px;
+      height: 90px;
+    }
+  }
+}
+
+.orderCount {
+  font-family: $font-montserrat;
+  color: $secondary-text-color;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25.5px;
+}
+
+.arrow {
+  margin-left: auto;
+  margin-right: auto;
+
+  @include _768 {
+    grid-column: span 3;
+    justify-self: center;
+  }
+
+  @include _1200 {
+    margin-left: 30px;
+    margin-right: 0;
   }
 }
