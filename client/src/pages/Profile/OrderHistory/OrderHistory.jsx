@@ -1,4 +1,7 @@
+/* eslint-disable */
+
 import React from 'react';
+import OrderHistoryCard from './OrderHistoryCard/OrderHistoryCard';
 import styles from './OrderHistory.module.scss';
 import ArrowProfile from '../../../components/UI/ArrowProfile';
 
@@ -38,6 +41,7 @@ function OrderHistory() {
         </div>
         <ArrowProfile className={styles.arrow} />
       </div>
+      <OrderHistoryCard />
     </section>
   );
 }
