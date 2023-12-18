@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // COMPONENTS IMPORT:
+import { toast } from 'react-toastify';
 import Container from '../Container/Container';
 import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
@@ -31,7 +32,6 @@ import { setCartModal } from '../../store/cartModal/cartModal.slice';
 import styles from './Header.module.scss';
 import { clearCartAction, clearLocalCartAction } from '../../store/cart/cart.slice';
 import { clearWishListAction } from '../../store/wishlist/wishList.slice';
-import { toast } from 'react-toastify';
 
 function Header() {
   /* --------------------------- INIT HOOKS: --------------------------- */
@@ -117,7 +117,7 @@ function Header() {
 
   const handleWishlistClick = () => {
     if (!isUserLogin) {
-      toast.error('Please log in first!')
+      toast.error('Please log in first!');
     }
   };
 

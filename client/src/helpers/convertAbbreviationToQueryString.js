@@ -1,6 +1,5 @@
 function convertAbbreviationToQueryString(str) {
   const matches = str.match(/([^=]+)=(\w+ (\d+)%-(\d+)%)/);
-  console.log('matches', matches);
   if (!matches || matches.length < 5) {
     return '';
   }
@@ -9,8 +8,7 @@ function convertAbbreviationToQueryString(str) {
   const minRange = matches[3];
   const maxRange = matches[4];
 
-  const capitalizeAbbreviation =
-    abbreviation.charAt(0).toUpperCase() + abbreviation.slice(1);
+  const capitalizeAbbreviation = abbreviation.charAt(0).toUpperCase() + abbreviation.slice(1);
 
   const minParam = `min${capitalizeAbbreviation}`;
   const maxParam = `max${capitalizeAbbreviation}`;

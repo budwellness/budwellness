@@ -65,16 +65,6 @@ export const danitApiCart = createApi({
         body: JSON.stringify(products),
       }),
     }),
-    createCart: build.mutation({
-      query: (products) => ({
-        url: API.API_CREATE_CART,
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(products),
-      }),
-    }),
   }),
 });
 
