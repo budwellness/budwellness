@@ -1,9 +1,9 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import Input from './Input/Input';
 // import Textarea from './Textarea/Textarea';
 
@@ -15,7 +15,6 @@ import Container from '../../components/Container/Container';
 import ButtonHeader from '../../components/ButtonHeader/ButtonHeader';
 
 import styles from './Registration.module.scss';
-import {toast} from "react-toastify";
 
 function Registration() {
   const dispatch = useDispatch();
@@ -24,8 +23,7 @@ function Registration() {
   const [loginError, setLoginError] = useState('');
   const [emailError, setEmailError] = useState('');
 
-  const [registrationUser,
-    { data: registrationData, error: registrationError }] = useRegistrationUserMutation();
+  const [registrationUser] = useRegistrationUserMutation();
 
   const initialValues = {
     firstName: '',
@@ -42,16 +40,15 @@ function Registration() {
       const response = await registrationUser(value);
       if (response.error) {
         const errorMessage = response.error.data.message;
-        console.log(errorMessage)
 
         if (errorMessage.includes('Login')) {
           setLoginError(errorMessage);
           setEmailError(null);
-          toast.error(errorMessage)
+          toast.error(errorMessage);
         } else if (errorMessage.includes('Email')) {
           setEmailError(errorMessage);
           setLoginError(null);
-          toast.error(errorMessage)
+          toast.error(errorMessage);
         } else {
           setLoginError(null);
           setEmailError(null);
@@ -76,7 +73,7 @@ function Registration() {
         validationSchema={validationSchema}
         onSubmit={submit}
       >
-        {({ isValid }) => (
+        {() => (
           <Form className={styles.wrapperForm}>
             <div className={styles.form}>
               <h3 className={styles.registration}>Registration</h3>
