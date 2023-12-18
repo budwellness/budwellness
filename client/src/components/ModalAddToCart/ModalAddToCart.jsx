@@ -17,8 +17,6 @@ import FavouriteIcon from '../UI/FavouriteIcon';
 import LinkUnderline from '../LinkUnderline/LinkUnderline';
 import styles from './ModalAddToCart.module.scss';
 
-const { log } = console;
-
 function ModalAddToCart(props) {
   const { handleModalAddToCart } = props;
   const [isExistInWishlist, setIsExistInWishlist] = useState(false);
@@ -86,7 +84,6 @@ function ModalAddToCart(props) {
     [cartStoreData, isUserLogin, localCartStoreData],
   );
 
-  log(selectedProduct);
   return (
     <div className={styles.modal_add_to_cart__container}>
       {selectedProduct && (
@@ -146,28 +143,9 @@ function ModalAddToCart(props) {
 export default ModalAddToCart;
 
 ModalAddToCart.propTypes = {
-  // eslint-disable-next-line react/require-default-props
-  product: PropTypes.shape({
-    imageUrls: PropTypes.arrayOf(PropTypes.string),
-    reviews: PropTypes.arrayOf(PropTypes.string),
-    description: PropTypes.arrayOf(PropTypes.string),
-    itemNo: PropTypes.number.isRequired,
-    currentPrice: PropTypes.number.isRequired,
-    rate: PropTypes.number.isRequired,
-    name: PropTypes.string,
-  }),
-
-  actions: PropTypes.shape({
-    toggleCartWithLoginHandler: PropTypes.func,
-    toggleWishlistWithLoginHandler: PropTypes.func,
-  }),
   handleModalAddToCart: PropTypes.func,
 };
 
 ModalAddToCart.defaultProps = {
-  actions: {
-    toggleCartHandler: () => {},
-    toggleWishlistHandler: () => {},
-  },
   handleModalAddToCart: () => {},
 };

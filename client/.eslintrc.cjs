@@ -21,5 +21,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'no-restricted-syntax': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
   },
 };

@@ -8,8 +8,9 @@ import styles from './Tabs.module.scss';
 
 function Tabs(props) {
   const {
-    data: { description, reviews, additionalInformation },
+    data: { _id, description, reviews, additionalInformation },
   } = props;
+  console.log(_id)
   const [toggle, setToggle] = useState(1);
 
   function updateToggle(index) {
@@ -118,10 +119,10 @@ function Tabs(props) {
             ))}
             <div className={styles.formReview}>
               <h4 className={styles.formTitle}>Add Review</h4>
-              <FormRespond />
+              <FormRespond productId={_id} />
             </div>
           </div>
-
+ 
           <div
             className={toggle === 3 ? styles.showContent : styles.tabContent}
           >
@@ -154,6 +155,7 @@ function Tabs(props) {
 
 Tabs.propTypes = {
   data: PropTypes.shape({
+    _id: PropTypes.string,
     description: PropTypes.shape({
       complection: PropTypes.string.isRequired,
       short: PropTypes.string.isRequired,
