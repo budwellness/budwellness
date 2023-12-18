@@ -96,7 +96,7 @@ function ContactPage() {
           <div className={styles.container__content}>
             <div>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056596.3992083236!2d-76.35384261862308!3d41.57016611795026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259c45d0398a7%3A0x290436033fa05c6e!2sQueen%20Cannabis%20NYC%20Marijuana%20Weed%20Dispensary!5e0!3m2!1sru!2sua!4v1699489211731!5m2!1sru!2sua"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7623.719905047335!2d30.522197146692424!3d50.437860430750284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cefe0307e81f%3A0x1f234c3b0a0b492!2z0JPRg9C70ZbQstC10YA!5e0!3m2!1suk!2sua!4v1702848397934!5m2!1suk!2sua"
                 width="600"
                 height="450"
                 allowfullscreen=""
@@ -109,8 +109,8 @@ function ContactPage() {
               <li className={styles.list__item}>
                 <LocationIcon className={styles.locationImgFill} />
                 <div className={styles.list__desc}>
-                  <p className={styles.list__link}>304 E 62nd St</p>
-                  <p className={styles.list__link}>New York</p>
+                  <p className={styles.list__link}>Sports Square, 1a</p>
+                  <p className={styles.list__link}>Kyiv</p>
                 </div>
               </li>
               <li className={styles.list__item}>

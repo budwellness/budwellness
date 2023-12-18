@@ -1,66 +1,131 @@
-/* eslint-disable */
-
-import React from 'react';
-import Container from '../../../../components/Container/Container';
+import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import extractImageName from '../../../../helpers/extractImageName';
+import formatDate from '../../../../helpers/formatDate';
+import OrderHistoryCard from '../OrderHistoryCard/OrderHistoryCard';
+import ArrowProfile from '../../../../components/UI/ArrowProfile';
 import styles from './OrderHistoryItem.module.scss';
 
-const mockData = {
-  _id: '5dac4ecd6bbe0e05e487f0be',
-  product: {
-    enabled: true,
-    imageUrls: [
-      '/images/chocolate_brownies_1.png',
-      '/images/chocolate_brownies_2.png',
-      '/images/chocolate_brownies_3.png',
-    ],
-    quantity: 156,
-    _id: '5da463678cca382250dd7bc7',
-    name: 'updted product for testing purposes 222',
-    currentPrice: 100,
-    previousPrice: 250,
-    categories: 'flowers',
-    color: 'red',
-    productUrl: '/flower',
-    brand: 'braaaand',
-    myCustomParam: 'some string or json for custom param',
-    itemNo: '291759',
-    date: '2019-10-14T12:00:39.679Z',
-    __v: 0,
-    oneMoreCustomParam: {
-      description: 'blablabla',
-      rate: 4.8,
-      likes: 20,
-    },
-  },
-  cartQuantity: 2,
-};
+function OrderHistoryItem({ item }) {
+  /* --------------------------- INIT PROPS: --------------------------- */
+  const {
+    tempOrderNo,
+    date,
+    canceled,
+    totalSum,
+    status,
+    products,
+  } = item;
 
-function OrderHistoryItem() {
+  /* --------------------------- COMPONENT STATE: --------------------------- */
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [remainingCount, setRemainingCount] = useState(0);
+  const [displayCards, setDisplayCards] = useState(false);
+
+  useEffect(() => {
+    const MAX_IMAGES_TO_DISPLAY = 3;
+    const remaining = products.length - MAX_IMAGES_TO_DISPLAY;
+
+    setRemainingCount(remaining > 0 ? remaining : 0);
+    setDisplayedProducts(products.slice(0, MAX_IMAGES_TO_DISPLAY));
+  }, [products]);
+
+  const onClickHandler = () => {
+    setDisplayCards((prevDisplayCards) => !prevDisplayCards);
+  };
+
+  const defineOrderStatus = (isCancel, orderStatus) => {
+    if (isCancel === true) {
+      return 'canceled';
+    } if (isCancel === false && orderStatus === 'not shipped') {
+      return 'inprogress';
+    } if (isCancel === false && orderStatus === 'shipped') {
+      return 'done';
+    }
+    return 'unknown';
+  };
+
+  const statuses = {
+    canceled: 'Canceled',
+    inprogress: 'In Progress',
+    done: 'Done',
+  };
+
   return (
-    <Container>
-      <div className={styles.orderHistoryWrapper__item}>
-        <div className={styles.elem}>
-          <img
-            src="/images/chocolate_brownies_1.png"
-            alt="product"
-            className={styles.img}
-          />
-          <div className={styles.mainInfo}>
-            <h3 className={styles.title}>bhang milk chocolate</h3>
-            <p className={styles.weight}>3.5mg</p>
-          </div>
+
+    <section className={styles.container}>
+      <div
+        onClick={onClickHandler}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            onClickHandler();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        className={cn(styles.orderCard, styles[defineOrderStatus(canceled, status)])}
+      >
+        <div className={styles.orderInfo}>
+          <p className={styles.orderNum}>
+            Order
+            {' '}
+            {tempOrderNo}
+          </p>
+          <p className={styles.orderDate}>{formatDate(date)}</p>
+          <p className={cn(styles.orderStatus, styles[defineOrderStatus(canceled, status)])}>
+            {statuses[defineOrderStatus(canceled, status)]}
+          </p>
         </div>
-        <div className={styles.quantity}>
-          <span className={styles.quantityText}>2</span>
-          <span className={styles.quantityText}>th</span>
+        <div className={styles.total}>
+          <p className={styles.totalTitle}>Total</p>
+          <p className={styles.totalSum}>
+            {totalSum.toFixed(2)}
+            <span className={styles.currency}>$</span>
+          </p>
         </div>
-        <div className={styles.priceWrapper}>
-          <p className={styles.priceText}>Subtotal</p>
-          <p className={styles.price}>$29.96</p>
+        <div className={styles.orderImage}>
+          {remainingCount > 0 && (
+            <p className={styles.orderCount}>
+              +
+              {remainingCount}
+            </p>
+          )}
+          {displayedProducts.map((el) => (
+            <img
+              key={el._id}
+              src={el.product.imageUrls[0]}
+              width="90"
+              height="90"
+              alt={extractImageName(el.product.imageUrls[0])}
+            />
+          ))}
         </div>
+        {!displayCards && <ArrowProfile className={styles.arrow} />}
+        {displayCards && <ArrowProfile className={`${styles.arrow} ${styles.rotate}`} />}
+
       </div>
-    </Container>
+      <OrderHistoryCard display={displayCards} products={products} />
+    </section>
   );
 }
+
+OrderHistoryItem.propTypes = {
+  item: PropTypes.shape({
+    tempOrderNo: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    canceled: PropTypes.bool.isRequired,
+    totalSum: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+    products: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        product: PropTypes.shape({
+          imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+        }).isRequired,
+      }),
+    ).isRequired,
+  }).isRequired,
+};
 
 export default OrderHistoryItem;

@@ -5,7 +5,7 @@
 }
 
 .wrapperForm {
-  padding-top: 150px;
+  margin-top: 25px;
   background-image: url("./img/leaf.webp.png");
   background-repeat: no-repeat;
   background-position: right bottom;
@@ -25,6 +25,13 @@
 
   @include for-size(992px) {
     background-size: 60%;
+    margin-top: 50px;
+  }
+
+  @include for-size(1200px) {
+    background-size: 60%;
+    //padding-top: 100px;
+    margin-top: 100px;
   }
 
 
@@ -42,12 +49,13 @@
   & h3 {
     color: $main-green;
     font-size: 20px;
-    text-align: left;
+    //text-align: left;
     font-size: 36px;
     font-style: normal;
     font-weight: 800;
     line-height: 43.2px;
     font-family: $font-nunito;
+    text-align: center;
   }
 
 
