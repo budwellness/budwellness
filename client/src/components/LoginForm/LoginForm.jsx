@@ -48,8 +48,8 @@ function LoginForm(props) {
   };
 
   const mockValue = {
-    loginOrEmail: 'budwellnes',
-    password: '11111111',
+    loginOrEmail: 'customer@gmail.com',
+    password: '1111111',
   };
 
   /* --------------------------- INIT HOOKS: --------------------------- */
@@ -112,22 +112,11 @@ function LoginForm(props) {
             }
           });
       } else {
-        getCart(loginUserToken)
-          .unwrap()
-          .then(serverCart => {
-            if (serverCart) {
-              dispatch(setCartAction(serverCart.products))
-            } else return
-          });
+        getCart(loginUserToken);
       }
       getWishlist(loginUserToken)
         .unwrap()
-        .then(serverWishlist => {
-          if (serverWishlist) {
-            dispatch(setWishlistAction(serverWishlist.products))
-          } else return
-
-        });
+        .then(response => dispatch(setWishlistAction(response.products)));
       getCustomer(loginUserToken)
         .unwrap()
         .then((response) => dispatch(setCustomerDataAction(response)));

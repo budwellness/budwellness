@@ -29,9 +29,8 @@ import { setModal, isPopupOpenAction } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
-import { clearCartAction, clearLocalCartAction } from '../../store/cart/cart.slice';
+import { clearLocalCartAction } from '../../store/cart/cart.slice';
 import { clearWishListAction } from '../../store/wishlist/wishList.slice';
-import { toast } from 'react-toastify';
 
 function Header() {
   /* --------------------------- INIT HOOKS: --------------------------- */
@@ -64,8 +63,6 @@ function Header() {
     localStorage.removeItem('token');
     dispatch(userLogoutUserAction());
     dispatch(clearCustomerDataAction());
-    dispatch(clearCartAction());
-    dispatch(clearLocalCartAction());
     dispatch(clearWishListAction());
     dispatch(setModal(false));
   };
@@ -115,12 +112,6 @@ function Header() {
 
   //= ===================================================
 
-  const handleWishlistClick = () => {
-    if (!isUserLogin) {
-      toast.error('Please log in first!')
-    }
-  };
-
   return (
     <header
       className={cn(styles.header, {
@@ -167,8 +158,7 @@ function Header() {
                 <LoginIcon />
               </ButtonHeader>
             )}
-
-            <Link to={isUserLogin ? '/wishlist' : undefined} className={styles.header_userLink} onClick={handleWishlistClick}>
+            <Link to="/wishlist" className={styles.header_userLink}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
                 <span className={styles.wishlistCounter}>
@@ -201,6 +191,7 @@ function Header() {
               })}
             >
               {() => {
+                dispatch(clearLocalCartAction());
                 logoutHandler();
               }}
               <UserPopup logoutHandler={logoutHandler} />
@@ -221,8 +212,8 @@ Header.propTypes = {
 
 Header.defaultProps = {
   actions: {
-    getCart: () => { },
-    getWishlist: () => { },
+    getCart: () => {},
+    getWishlist: () => {},
   },
 };
 
