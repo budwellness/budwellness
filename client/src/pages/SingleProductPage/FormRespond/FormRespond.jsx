@@ -17,8 +17,7 @@ import Button from '../../../components/Button/Button';
 import styles from './FormRespond.module.scss';
 
 function FormRespond({ productId }) {
-  // const dispatch = useDispatch();
-  console.log(productId);
+  // const dispatch = useDispatch()
 
   const { isUserLogin, token, detailInfo } = useSelector((state) => state.user);
 
