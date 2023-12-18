@@ -174,7 +174,8 @@
 
   @include _1200 {
     gap: 25px;
-    width: auto;
+    width: 360px;
+    justify-content: right;
   }
 
   & img {
