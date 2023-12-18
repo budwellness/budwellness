@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames'
 import ArrowProfile from '../../../../components/UI/ArrowProfile';
 
-import styles from './OrderHistoryItem.module.scss';
-import formatDate from '../../../../helpers/formatDate';
 
+import formatDate from '../../../../helpers/formatDate';
+import OrderHistoryCard from '../OrderHistoryCard/OrderHistoryCard';
+import styles from './OrderHistoryItem.module.scss';
 const { log } = console;
 
 function OrderHistoryItem(props) {
@@ -76,6 +77,9 @@ function OrderHistoryItem(props) {
           ))}
         </div>
         <ArrowProfile className={styles.arrow} />
+      </div>
+      <div className={styles.orderHistoryWrapper__item}>
+        <OrderHistoryCard />
       </div>
     </section>
   );
