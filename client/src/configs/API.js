@@ -46,5 +46,5 @@ export const API_ADD_COMMENT = '/comments';
 export const API_UPDATE_COMMENT = '/comments/';
 export const API_REMOVE_COMMENT = '/comments/';
 export const API_GET_ALL_COMMENTS = '/comments';
-export const API_GET_ALL_COMMENTS_OF_CUSTOMER = '/comments/customer/';
+export const API_GET_COMMENTS_OF_CUSTOMER = '/comments/customer/';
 export const API_GET_COMMENTS_OF_PRODUCT = '/comments/product/';
