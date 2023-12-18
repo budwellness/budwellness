@@ -15,18 +15,13 @@ function Modal({ classNames, handleModal, children }) {
     return null;
   };
 
-  // useEffect(() => {
-  //   document.body.style.overflow = 'hidden';
-  //
-  //   return () => {
-  //     document.body.style.overflow = 'auto';
-  //   };
-  // }, []);
-
   return (
   // eslint-disable-next-line max-len
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div className={styles.modalWrapper} onClick={(e) => handleOutSideModal(e)}>
+    <div
+      className={styles.modalWrapper}
+      onClick={(e) => handleOutSideModal(e)}
+    >
       <div className={cn(styles.modal, styles[classNames])}>
         {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}

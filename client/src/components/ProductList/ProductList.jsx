@@ -66,7 +66,7 @@ function ProductList(props) {
 
   useEffect(() => {
     setSearchParams(queryString);
-    log(queryString);
+    // log(queryString);
   }, [queryString]);
 
   useEffect(() => {
