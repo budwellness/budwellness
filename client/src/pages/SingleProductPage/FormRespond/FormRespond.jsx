@@ -59,6 +59,7 @@ function FormRespond({ productId }) {
             content: values.message,
           };
           addComment({ token, newComment });
+          toast.success('Your comment has been sent!');
           // getCommentsOfProduct({ token, productId });
           // .unwrap()
           // .then((response) => dispatch(setCommentsOfProductAction(response)));
