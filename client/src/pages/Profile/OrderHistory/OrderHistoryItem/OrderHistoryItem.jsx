@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import cn from 'classnames'
-import ArrowProfile from '../../../../components/UI/ArrowProfile';
-
-
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import extractImageName from '../../../../helpers/extractImageName';
 import formatDate from '../../../../helpers/formatDate';
 import OrderHistoryCard from '../OrderHistoryCard/OrderHistoryCard';
+import ArrowProfile from '../../../../components/UI/ArrowProfile';
 import styles from './OrderHistoryItem.module.scss';
-import extractImageName from '../../../../helpers/extractImageName';
-const { log } = console;
 
-function OrderHistoryItem(props) {
-
+function OrderHistoryItem({ item }) {
   /* --------------------------- INIT PROPS: --------------------------- */
   const {
     tempOrderNo,
@@ -18,13 +15,13 @@ function OrderHistoryItem(props) {
     canceled,
     totalSum,
     status,
-    products
-  } = props.item
+    products,
+  } = item;
 
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [displayedProducts, setDisplayedProducts] = useState([]);
   const [remainingCount, setRemainingCount] = useState(0);
-  const [displayCards, setDisplayCards] = useState(false)
+  const [displayCards, setDisplayCards] = useState(false);
 
   useEffect(() => {
     const MAX_IMAGES_TO_DISPLAY = 3;
@@ -41,19 +38,19 @@ function OrderHistoryItem(props) {
   const defineOrderStatus = (isCancel, orderStatus) => {
     if (isCancel === true) {
       return 'canceled';
-    } else if (isCancel === false && orderStatus === 'not shipped') {
+    } if (isCancel === false && orderStatus === 'not shipped') {
       return 'inprogress';
-    } else if (isCancel === false && orderStatus === 'shipped') {
+    } if (isCancel === false && orderStatus === 'shipped') {
       return 'done';
     }
-  }
+    return 'unknown';
+  };
 
   const statuses = {
     canceled: 'Canceled',
     inprogress: 'In Progress',
     done: 'Done',
   };
-
 
   return (
 
@@ -67,14 +64,15 @@ function OrderHistoryItem(props) {
         }}
         role="button"
         tabIndex={0}
-        className={cn(styles.orderCard, styles[defineOrderStatus(canceled, status)])}>
+        className={cn(styles.orderCard, styles[defineOrderStatus(canceled, status)])}
+      >
         <div className={styles.orderInfo}>
           <p className={styles.orderNum}>
-            Order {tempOrderNo}
+            Order
+            {' '}
+            {tempOrderNo}
           </p>
-          {/* <p className={styles.orderDate}>{date}</p> */}
           <p className={styles.orderDate}>{formatDate(date)}</p>
-          {/* <p className={styles.orderStatus, styles[defineOrderStatus(canceled, status)]}>{statuses[defineOrderStatus(canceled, status)]}</p> */}
           <p className={cn(styles.orderStatus, styles[defineOrderStatus(canceled, status)])}>
             {statuses[defineOrderStatus(canceled, status)]}
           </p>
@@ -93,13 +91,13 @@ function OrderHistoryItem(props) {
               {remainingCount}
             </p>
           )}
-          {displayedProducts.map((item) => (
+          {displayedProducts.map((el) => (
             <img
-              key={item._id}
-              src={item.product.imageUrls[0]}
+              key={el._id}
+              src={el.product.imageUrls[0]}
               width="90"
               height="90"
-              alt={extractImageName(item.product.imageUrls[0])}
+              alt={extractImageName(el.product.imageUrls[0])}
             />
           ))}
         </div>
@@ -111,5 +109,23 @@ function OrderHistoryItem(props) {
     </section>
   );
 }
+
+OrderHistoryItem.propTypes = {
+  item: PropTypes.shape({
+    tempOrderNo: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    canceled: PropTypes.bool.isRequired,
+    totalSum: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+    products: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        product: PropTypes.shape({
+          imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+        }).isRequired,
+      }),
+    ).isRequired,
+  }).isRequired,
+};
 
 export default OrderHistoryItem;
