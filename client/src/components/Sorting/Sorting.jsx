@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import sortingValues from '../../configs/sortingValues';
-import styles from './Sorting.module.scss';
 import { setSortingParamAction } from '../../store/filter/filter.slice';
-
-// const { log } = console;
+import styles from './Sorting.module.scss';
 
 function Sorting() {
   const [sortingOptions] = useState([
     'Default sorting',
-    'Lowest First',
-    'Highest First',
+    'Lowest Price',
+    'Highest Price',
     'Most popular',
   ]);
 
@@ -19,12 +17,10 @@ function Sorting() {
 
   const dispatch = useDispatch();
 
-  // const { queryString } = useSelector((state) => state.filter);
-
   const handleSortingChange = (sorting) => {
     setSelectedSorting(sorting);
-    dispatch(setSortingParamAction(sortingValues[sorting]));
     setIsSortingOpen(false);
+    dispatch(setSortingParamAction(sortingValues[sorting]));
   };
 
   const handleKeyDown = (event, sorting) => {

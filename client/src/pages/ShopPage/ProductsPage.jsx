@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Container from '../../components/Container/Container';
 import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import PagePreviewHeader from '../../components/PagePreviewHeader/PagePreviewHeader';
@@ -6,9 +6,12 @@ import Filter from '../../components/Filter/Filter';
 import ProductList from '../../components/ProductList/ProductList';
 import Sorting from '../../components/Sorting/Sorting';
 import styles from './ProductsPage.module.scss';
+import SelectedCategories from '../../components/Filter/SelectedCategories/SelectedCategories';
 
 function ProductsPage() {
   const [startPage, setStartPage] = useState(1);
+
+  const formRef = useRef();
   return (
     <>
       <PagePreviewHeader
@@ -20,11 +23,14 @@ function ProductsPage() {
           <div className={styles.Sorting}>
             <Sorting />
           </div>
+          <div className={styles.SelectedCategories}>
+            <SelectedCategories formRef={formRef} />
+          </div>
           <div className={styles.ProductList}>
             <ProductList startPage={startPage} setStartPage={setStartPage} />
           </div>
           <div className={styles.Filter}>
-            <Filter startPage={startPage} setStartPage={setStartPage} />
+            <Filter startPage={startPage} setStartPage={setStartPage} formRef={formRef} />
           </div>
         </div>
         <PopularProducts />

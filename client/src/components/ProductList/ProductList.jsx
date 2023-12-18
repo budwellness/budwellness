@@ -14,7 +14,9 @@ import { selectProduct } from '../../store/product/product.slice';
 import { isModalAddToCartAction } from '../../store/modal/modal.slice';
 
 import styles from './ProductList.module.scss';
-import { setTotalProductsAction } from '../../store/filter/filter.slice';
+import {
+  setTotalProductsAction,
+} from '../../store/filter/filter.slice';
 
 const { log } = console;
 
@@ -96,7 +98,6 @@ function ProductList(props) {
         }
       });
   }, [searchParams]);
-
   // useEffect(() => {
   //   getFilteredProducts(
   //     filteredQueryString(searchParams, startPage, productsPerPage),

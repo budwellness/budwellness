@@ -11,11 +11,17 @@ const buildQueryString = (queryStringObj) => {
     filterStringArr.push(`${value}`);
   }
   return filterStringArr.join('&');
-  // Например, используя Object.entries() или другие методы
-  // и объединяя их в строку запроса
 };
 
 const initialState = {
+  filterTags: {
+    categories: '',
+    plantType: '',
+    thc: '',
+    cbd: '',
+    minPrice: '',
+    maxPrice: '',
+  },
   queryChunks: {
     filter: '',
     perPage: 'perPage=3',
@@ -59,6 +65,12 @@ const filterSlice = createSlice({
     setTotalProducts: (state, { payload }) => {
       state.pagination.totalProducts = payload;
     },
+    addFilterTag: (state, { payload }) => {
+      state.filterTags = {
+        ...state.filterTags,
+        ...payload,
+      };
+    },
   },
 });
 
@@ -67,6 +79,7 @@ export const {
   setSearchParam: setSearchParamAction,
   setStartPage: setStartPageAction,
   setTotalProducts: setTotalProductsAction,
+  addFilterTag: addFilterTagAction,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -52,6 +52,7 @@ import {
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useDecreaseCartQuantityMutation,
+  useCreateCartMutation,
 } from '../../store/serverResponse/danitApi.cart';
 
 import styles from './TestForBackPage.module.scss';
@@ -446,50 +447,27 @@ function TestForBackPage() {
     getFilteredProducts(mockFilterQueryString);
   };
 
-  const globalConfigMock = {
-    newConfig: {
-      customId: 'some-global-configs',
-      development: {
-        database: {
-          uri: 'mongodb+srv://admin:admin@cluster0.kdzkxkn.mongodb.net/?retryWrites=true&w=majority',
-        },
-        email: {
-          mailUser: 'budwellnessproject@gmail.com',
-          mailPassword: 'Qazwsx#123',
-          mailService: 'gmail',
-        },
-        auth: {
-          secretOrKey: 'budWellnessVerySecretKey',
-        },
-        infinitScrollEnabled: true,
-        minOrderValue: 5,
-        someCustomParam: 'custom params value',
-      },
-      production: {
-        database: {
-          uri: 'mongodb+srv://admin:admin@cluster0.kdzkxkn.mongodb.net/?retryWrites=true&w=majority',
-        },
-        email: {
-          mailUser: 'budwellnessproject@gmail.com',
-          mailPassword: 'Qazwsx#123',
-          mailService: 'gmail',
-        },
-        auth: {
-          secretOrKey: 'budWellnessVerySecretKey',
-        },
-        infinitScrollEnabled: true,
-        minOrderValue: 5,
-        someCustomParam: 'custom params value',
-      },
-    },
-    token: tokenReduxStore,
-  };
 
-  const [addGlobalConfig] = useAddGlobalConfigMutation();
+  /*------------------------------------------------------- */
+  const mockedCreateCartData = {
+    products: [
+      {
+        product: "65652475c44ae0a358d4c302",
+        cartQuantity: 2
+      },
+      {
+        product: "65652475c44ae0a358d4c2fe",
+        cartQuantity: 2
+      }
+    ]
+  }
 
-  const addGlobalConfigHandler = () => {
-    addGlobalConfig(globalConfigMock);
-  };
+  const [createCart] = useCreateCartMutation();
+
+  const createCartHandler = () => {
+    createCart(mockedCreateCartData)
+  }
+  /*------------------------------------------------------- */
 
   return (
     <>
@@ -522,6 +500,9 @@ function TestForBackPage() {
           </button>
           <button type="button" onClick={() => addGlobalConfigHandler()}>
             Add global config
+          </button>
+          <button type="button" onClick={() => createCartHandler()}>
+            Create New Cart
           </button>
         </div>
         <div className={styles.btnWrapper}>

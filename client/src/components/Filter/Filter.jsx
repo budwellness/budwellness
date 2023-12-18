@@ -2,73 +2,31 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './Filter.module.scss';
 import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+// import TooltipSlider from './components/TooltipSlider';
 import { useDispatch } from 'react-redux';
-import { setSearchParamAction, setStartPageAction } from '../../store/filter/filter.slice';
+import { addFilterTagAction, setSearchParamAction, setStartPageAction } from '../../store/filter/filter.slice';
+
+import 'rc-slider/assets/index.css';
+import styles from './Filter.module.scss';
+
 
 const { log } = console;
 
 function Filter(props) {
-  const { startPage, setStartPage } = props;
+  const { startPage, setStartPage, formRef } = props;
   /* --------------------------- INIT HOOKS: --------------------------- */
-  const navigate = useNavigate();
-  const formRef = useRef();
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-
   /* --------------------------- COMPONENT STATE: --------------------------- */
-  const [selectedCategories, setSelectedCategories] = useState({
-    categories: '',
-    plantType: '',
-    thc: '',
-    cbd: '',
-  });
   const [selectedPlantTypes, setSelectedPlantTypes] = useState('');
-  // const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
-  const [priceRange, setPriceRange] = useState([0, 200]);
   const [selectedTHCRange, setSelectedTHCRange] = useState([]);
   const [selectedCBDRange, setSelectedCBDRange] = useState([]);
+  const [priceRange, setPriceRange] = useState([0, 200]);
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  // const clearCategory = (category) => {
-  //   const updatedCategories = Object.keys(selectedCategories).reduce(
-  //     (acc, key) => {
-  //       if (key !== category) {
-  //         acc[key] = selectedCategories[key];
-  //       }
-  //       return acc;
-  //     },
-  //     {}
-  //   );
 
-  //   setSelectedCategories(updatedCategories);
 
-  //   formRef.current.reset();
-  // };
-
-  const clearCategory = (category) => {
-    const updatedCategories = { ...selectedCategories };
-    updatedCategories[category] = '';
-
-    setSelectedCategories(updatedCategories);
-
-    formRef.current.reset();
-    const filterQueryString = Object.entries(updatedCategories)
-      .filter(([key, value]) => value !== '')
-      .map(([key, value]) => (key === 'categories' ? value : `${key}=${value}`))
-      .join('&');
-
-    setStartPage(1);
-    setSearchParams(`${filterQueryString}`);
-    const currentSearchParams = new URLSearchParams(searchParams);
-    currentSearchParams.delete(category);
-
-    setStartPage(1);
-    setSearchParams(currentSearchParams.toString());
-  };
-  
 
   /* --------------------------- COMPONENT HANDLERS: --------------------------- */
   const handleCategoryChange = (category) => {
@@ -77,14 +35,13 @@ function Filter(props) {
   const handlePlantTypeChange = (plantType) => {
     setSelectedPlantTypes(plantType);
   };
-  // const handlePriceChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setPriceRange({ ...priceRange, [name]: Number(value) });
-  // };
   const handlePriceChange = (value) => {
     setPriceRange(value);
-    formHandler();
-  };
+  }
+
+  useEffect(() => {
+    formHandlerToRedux();
+  }, [priceRange]);
 
   const handleTHCChange = (thc) => {
     setSelectedTHCRange([thc]);
@@ -97,50 +54,77 @@ function Filter(props) {
   };
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
+
+
+
   const formHandlerToRedux = () => {
     const filterDataArr = [];
+
     const filterData = new FormData(formRef.current);
+
     for (let [key, value] of filterData.entries()) {
-      if (key !== 'minPrice' && key !== 'maxPrice') {
-        setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
-      }
+
       if (key === 'thc' || key === 'cbd') {
+        const digits = value.match(/\d+/g);
+        dispatch(addFilterTagAction({ [key]: `${key} ${digits[0]}%-${digits[1]}%` }))
         filterDataArr.push(`${value}`);
         continue;
       }
+      dispatch(addFilterTagAction({ [key]: value }))
       if (key === 'categories' && value === 'all') {
         continue;
       }
       filterDataArr.push(`${key}=${value}`);
     }
+
     const [minPrice, maxPrice] = priceRange;
+
     filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
+
     const filterQueryString = filterDataArr.join('&');
+
     dispatch(setStartPageAction(1))
     dispatch(setSearchParamAction(`${filterQueryString}`))
   };
 
+  useEffect(() => {
+    const searchParamDataArr = [];
+    const priceArr = [];
 
-  // const formHandler = () => {
-  //   const filterDataArr = [];
-  //   const filterData = new FormData(formRef.current);
-  //   for (let [key, value] of filterData.entries()) {
-  //     if (key !== 'minPrice' && key !== 'maxPrice') {
-  //       setSelectedCategories((prevValue) => ({ ...prevValue, [key]: value }));
-  //     }
-  //     if (key === 'thc' || key === 'cbd') {
-  //       filterDataArr.push(`${value}`);
-  //       continue;
-  //     }
-  //     filterDataArr.push(`${key}=${value}`);
-  //   }
-  //   const [minPrice, maxPrice] = priceRange;
-  //   filterDataArr.push(`minPrice=${minPrice}&maxPrice=${maxPrice}`);
 
-  //   const filterQueryString = filterDataArr.join('&');
-  //   setStartPage(1);
-  //   setSearchParams(`${filterQueryString}`);
-  // };
+    for (let [key, value] of searchParams.entries()) {
+
+      if (key === 'thc' || key === 'cbd') {
+        const digits = value.match(/\d+/g);
+        dispatch(addFilterTagAction({ [key]: `${key} ${digits[0]}%-${digits[1]}%` }))
+        searchParamDataArr.push(`${value}`);
+        continue;
+      }
+      if (key === 'perPage' || key === 'startPage') {
+        if (key === 'startPage') {
+          dispatch(setStartPageAction(value))
+        }
+        continue;
+      }
+      if (key === 'minPrice' || key === 'maxPrice') {
+        priceArr.push(`${key}=${value}`)
+        continue;
+      }
+      dispatch(addFilterTagAction({ [key]: value }))
+      if (key === 'categories' && value === 'all') {
+        continue;
+      }
+      searchParamDataArr.push(`${key}=${value}`);
+    }
+    searchParamDataArr.push(priceArr.join('&'));
+
+    const filterQueryString = searchParamDataArr.join('&');
+    log('filterQueryString', filterQueryString)
+
+    // dispatch(setStartPageAction(1))
+    dispatch(setSearchParamAction(`${filterQueryString}`))
+  }, [])
+
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -154,27 +138,16 @@ function Filter(props) {
   return (
     <div className={styles.filterContainer}>
       <div className={styles.cancel}>
-        {/* {' '} */}
-        {Object.values(selectedCategories).filter((el) => el !== '').length >
-          0 &&
-          Object.entries(selectedCategories).map(([fieldType, fieldValue]) =>
-            fieldValue !== '' ? (
-              <button
-                type="button"
-                key={fieldType}
-                onClick={() => clearCategory(fieldType)}
-                className={styles.clearButton}
-              >
-                {fieldValue} <span className={styles.cross}>&times;</span>
-              </button>
-            ) : null
-          )}
+        {' '}
       </div>
       <button onClick={toggleFilter} className={styles.filterButton}>
         Filters
       </button>
       {(window.innerWidth >= 992 || isFilterOpen) && (
-        <form ref={formRef} onChange={() => { formHandlerToRedux() }} className={styles.container}>
+        <form ref={formRef} onChange={() => {
+          formHandlerToRedux()
+        }
+        } className={styles.container}>
           <div
             className={`${styles.filter__categories} ${styles.filter__item1}`}
           >
@@ -300,33 +273,17 @@ function Filter(props) {
           <div className={styles.filter__categories}>
             <h4 className={styles.filter__name}>Filter by Price</h4>
             <span>Min: {priceRange[0]}</span>
+            <span>Max: {priceRange[1]}</span>
             <Slider
+              marks={{ 0: '0$', 200: '200$' }}
               min={0}
               max={200}
               step={1}
-              value={priceRange}
-              onChange={handlePriceChange}
+              defaultValue={priceRange}
+              onChangeComplete={(value) => handlePriceChange(value)}
               range
             />
-            <span>Max: {priceRange[1]}</span>
-            {/* <label>
-              <input
-                type="number"
-                name="minPrice"
-                value={priceRange.min}
-                className={`${styles.filter__label} ${styles.filter__price}`}
-                onChange={handlePriceChange}
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                name="maxPrice"
-                value={priceRange.max}
-                className={`${styles.filter__label} ${styles.filter__price}`}
-                onChange={handlePriceChange}
-              />
-            </label> */}
+
           </div>
 
           <div className={styles.filter__categories}>
