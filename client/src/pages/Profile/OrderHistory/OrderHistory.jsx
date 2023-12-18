@@ -15,24 +15,15 @@ function OrderHistory() {
   /* --------------------------- INIT HOOKS: --------------------------- */
   const { data: allOrdersData, isLoading, isError, isSuccess } = useGetAllOrdersQuery(tokenReduxState);
 
-  log(allOrdersData)
-
   useEffect(() => {
     if (allOrdersData) {
       setOrderHistoryItems(
-        allOrdersData?.map((item) => {
-          // log(item)
-          return (
-            <OrderHistoryItem key={item._id} item={item} />
-          )
-        })
+        allOrdersData?.map((item) => <OrderHistoryItem key={item._id} item={item} />)
       )
     }
 
-
   }, [allOrdersData])
 
-  log(orderHistoryItems)
 
   return (
     <section className={styles.container}>

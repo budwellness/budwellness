@@ -39,7 +39,7 @@
   flex-direction: column;
 }
 
-.orderCard::before {
+.orderCard.done::before {
   content: '';
   position: absolute;
   top: 10%;
@@ -49,28 +49,30 @@
 
   border-radius: 4px;
   background: $secondary-green;
+}
 
-  @include _576 {
-    // top: 127%;
-    // left: -143%;
-    // width: 255px;
-  }
+.orderCard.canceled::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10px;
+  width: 2px;
+  height: 80%;
 
-  @include _768 {
-    // top: 62%;
-    // left: -85%;
-    // width: 160px;
-  }
+  border-radius: 4px;
+  background: red;
+}
 
-  @include _992 {
-  }
+.orderCard.inprogress::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10px;
+  width: 2px;
+  height: 80%;
 
-  @include _1200 {
-    // top: 50%;
-    // left: -50%;
-    // width: 99px;
-    // height: 2px;
-  }
+  border-radius: 4px;
+  background: lightgray;
 }
 
 .orderNum {
@@ -104,6 +106,18 @@
   line-height: 24.2px;
   margin-top: 23px;
   margin-bottom: 0;
+}
+
+.orderStatus.canceled {
+  color: red;
+}
+
+.orderStatus.inprogress {
+  color: gray;
+}
+
+.orderStatus.done {
+  color: green;
 }
 
 .total {
@@ -214,4 +228,12 @@
   border-radius: 16px;
   background: #fff;
   box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+}
+
+.orderItemCards {
+  display: none;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }

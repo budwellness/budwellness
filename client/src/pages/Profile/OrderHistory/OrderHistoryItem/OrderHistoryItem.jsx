@@ -6,6 +6,7 @@ import ArrowProfile from '../../../../components/UI/ArrowProfile';
 import formatDate from '../../../../helpers/formatDate';
 import OrderHistoryCard from '../OrderHistoryCard/OrderHistoryCard';
 import styles from './OrderHistoryItem.module.scss';
+import extractImageName from '../../../../helpers/extractImageName';
 const { log } = console;
 
 function OrderHistoryItem(props) {
@@ -23,14 +24,7 @@ function OrderHistoryItem(props) {
   /* --------------------------- COMPONENT STATE: --------------------------- */
   const [displayedProducts, setDisplayedProducts] = useState([]);
   const [remainingCount, setRemainingCount] = useState(0);
-
-
-  const extractImageName = (path) => {
-    const parts = path.split('/');
-    const fileName = parts[parts.length - 1];
-    const fileNameWithoutExtension = fileName.split('.')[0];
-    return fileNameWithoutExtension;
-  }
+  const [displayCards, setDisplayCards] = useState(false)
 
   useEffect(() => {
     const MAX_IMAGES_TO_DISPLAY = 3;
@@ -40,17 +34,50 @@ function OrderHistoryItem(props) {
     setDisplayedProducts(products.slice(0, MAX_IMAGES_TO_DISPLAY));
   }, [products]);
 
+  const onClickHandler = () => {
+    setDisplayCards((prevDisplayCards) => !prevDisplayCards);
+  };
+
+  const defineOrderStatus = (isCancel, orderStatus) => {
+    if (isCancel === true) {
+      return 'canceled';
+    } else if (isCancel === false && orderStatus === 'not shipped') {
+      return 'inprogress';
+    } else if (isCancel === false && orderStatus === 'shipped') {
+      return 'done';
+    }
+  }
+
+  const statuses = {
+    canceled: 'Canceled',
+    inprogress: 'In Progress',
+    done: 'Done',
+  };
+
 
   return (
+
     <section className={styles.container}>
-      <div className={cn(styles.orderCard)}>
+      <div
+        onClick={onClickHandler}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            onClickHandler();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        className={cn(styles.orderCard, styles[defineOrderStatus(canceled, status)])}>
         <div className={styles.orderInfo}>
           <p className={styles.orderNum}>
             Order {tempOrderNo}
           </p>
           {/* <p className={styles.orderDate}>{date}</p> */}
           <p className={styles.orderDate}>{formatDate(date)}</p>
-          <p className={styles.orderStatus}>Done</p>
+          {/* <p className={styles.orderStatus, styles[defineOrderStatus(canceled, status)]}>{statuses[defineOrderStatus(canceled, status)]}</p> */}
+          <p className={cn(styles.orderStatus, styles[defineOrderStatus(canceled, status)])}>
+            {statuses[defineOrderStatus(canceled, status)]}
+          </p>
         </div>
         <div className={styles.total}>
           <p className={styles.totalTitle}>Total</p>
@@ -76,11 +103,11 @@ function OrderHistoryItem(props) {
             />
           ))}
         </div>
-        <ArrowProfile className={styles.arrow} />
+        {!displayCards && <ArrowProfile className={styles.arrow} />}
+        {displayCards && <ArrowProfile className={`${styles.arrow} ${styles.rotate}`} />}
+
       </div>
-      <div className={styles.orderHistoryWrapper__item}>
-        <OrderHistoryCard />
-      </div>
+      <OrderHistoryCard display={displayCards} products={products} />
     </section>
   );
 }
