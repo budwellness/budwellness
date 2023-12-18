@@ -1,15 +1,20 @@
-.orderHistoryWrapper__item {
-  margin-top: 25px;
+.orderHistoryWrapper__item__active {
+  opacity: 1;
+  max-height: 100%;
+  transition:
+    max-height 1s ease-out,
+    opacity 1s ease-out;
+  // margin-top: 25px;
   border-radius: 16px;
   background: #fff;
   box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
   padding: 9px 25px;
   @include for-size(768px) {
-    margin-top: 40px;
+    // margin-top: 40px;
     padding: 12px 50px;
   }
   @include for-size(992px) {
-    margin-top: 50px;
+    // margin-top: 50px;
   }
   @include for-size(1200px) {
     padding: 17px 80px;
@@ -172,4 +177,17 @@
       width: calc(100% - 160px);
     }
   }
+}
+
+// .orderHistoryWrapper__item {
+//   display: none;
+//   transition:
+//     max-height 0.5s ease-out,
+//     opacity 0.5s ease-out;
+// }
+
+.orderHistoryWrapper__item {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
 }

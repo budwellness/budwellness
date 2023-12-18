@@ -30,4 +30,4 @@ export const danitApiOrders = createApi({
   }),
 });
 
-export const { useCreateOrderMutation, useLazyGetAllOrdersQuery } = danitApiOrders;
+export const { useCreateOrderMutation, useGetAllOrdersQuery } = danitApiOrders;
