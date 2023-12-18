@@ -32,6 +32,7 @@ import {
 } from '../../store/cart/cart.slice';
 import mergeLocalAndServerCarts from '../../helpers/mergeLocalAndServerCarts';
 import { useLazyGetCustomerDataQuery } from '../../store/serverResponse/danitApi.customer.js';
+import { setWishlistAction } from '../../store/wishlist/wishList.slice';
 
 const { log } = console;
 
@@ -63,11 +64,11 @@ function LoginForm(props) {
 
   // USER API:
   const [
-      loginUser,
+    loginUser,
     {
       data: loginUserToken,
-      isSuccess: loginIsSuccess ,
-      isError:loginIsError,
+      isSuccess: loginIsSuccess,
+      isError: loginIsError,
     }
   ] = useLoginUserMutation();
   const [updateCart, { data, isError, isSuccess, error }] =
@@ -113,17 +114,19 @@ function LoginForm(props) {
       } else {
         getCart(loginUserToken);
       }
-      getWishlist(loginUserToken);
+      getWishlist(loginUserToken)
+        .unwrap()
+        .then(response => dispatch(setWishlistAction(response.products)));
       getCustomer(loginUserToken)
         .unwrap()
         .then((response) => dispatch(setCustomerDataAction(response)));
     }
-    if(loginIsError){
+    if (loginIsError) {
       toast.error("Invalid Login or Password")
     }
   };
 
-  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess,loginIsError]);
+  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess, loginIsError]);
 
   return (
     <>
@@ -137,7 +140,7 @@ function LoginForm(props) {
       >
         <Form className={styles.form}>
           <div className={styles.logoIcon}>
-            <LogoIcon/>
+            <LogoIcon />
           </div>
           <div className={styles.form_name}>
             <h2 className={styles.title}>Sing in</h2>
@@ -153,20 +156,20 @@ function LoginForm(props) {
                     </h2> */}
           <div className={styles.wrapperLogin}>
             <LoginInput
-                className={styles.loginInput}
-                name="loginOrEmail"
-                type="text"
-                placeholder="Login"
-                label="Username or email address"
-                loginIsError={loginIsError}
+              className={styles.loginInput}
+              name="loginOrEmail"
+              type="text"
+              placeholder="Login"
+              label="Username or email address"
+              loginIsError={loginIsError}
             />
             <div className={styles.passwordInput}>
               <LoginInput
-                  className={styles.loginInput}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  label="Password"
+                className={styles.loginInput}
+                name="password"
+                type="password"
+                placeholder="Password"
+                label="Password"
               />
               <Link to="/" className={styles.forgotPassword}>
                 Forgot password?
@@ -183,11 +186,11 @@ function LoginForm(props) {
           Create an account
         </Link> */}
             <ButtonHeader
-                className={styles.btnCreate}
-                onClick={() => {
-                  dispatch(setModal(false));
-                  navigate('/registration');
-                }}
+              className={styles.btnCreate}
+              onClick={() => {
+                dispatch(setModal(false));
+                navigate('/registration');
+              }}
             >
               Create an account
             </ButtonHeader>
