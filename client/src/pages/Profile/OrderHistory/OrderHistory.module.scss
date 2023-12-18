@@ -47,26 +47,6 @@
     border-radius: 4px;
     background: $secondary-green;
 
-    @include _576 {
-        // top: 127%;
-        // left: -143%;
-        // width: 255px;
-    }
-
-    @include _768 {
-        // top: 62%;
-        // left: -85%;
-        // width: 160px;
-    }
-
-    @include _992 {}
-
-    @include _1200 {
-        // top: 50%;
-        // left: -50%;
-        // width: 99px;
-        // height: 2px;
-    }
 }
 
 .orderNum {
@@ -148,6 +128,7 @@
     gap: 15px;
     justify-content: center;
 
+
     @include _576 {
         justify-content: center;
         grid-column-start: 2;
@@ -158,6 +139,7 @@
     @include _1200 {
         gap: 25px;
         width: auto;
+        width: 360px;
     }
 
     & img {
