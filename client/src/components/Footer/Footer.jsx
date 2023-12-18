@@ -82,8 +82,8 @@ function Footer() {
                 <li className={styles.contacts__item}>
                   <LocationIcon className={styles.locationImgFill} />
                   <div className={styles.contacts__desc}>
-                    <p className={styles.contacts__link}>304 E 62nd St</p>
-                    <p className={styles.contacts__link}>New York</p>
+                    <p className={styles.contacts__link}>Sports Square, 1a</p>
+                    <p className={styles.contacts__link}>Kyiv</p>
                   </div>
                 </li>
                 <li className={styles.contacts__item}>
