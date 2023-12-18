@@ -25,6 +25,7 @@ const validationSchema = Yup.object({
     .email('That is not a valid email.'),
   password: Yup
     .string()
+    .matches(/^[a-zA-Z0-9]+$/, 'Only letters (a-z, A-Z) and numbers (0-9).')
     .min(7, 'Password must be at least 7 characters')
     .required('Password is required'),
   repeatPassword: Yup
