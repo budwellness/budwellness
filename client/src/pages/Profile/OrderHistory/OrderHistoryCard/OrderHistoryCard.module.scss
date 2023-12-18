@@ -1,20 +1,35 @@
 .orderHistoryWrapper__item {
-  margin-top: 100px;
+  margin-top: 25px;
   border-radius: 16px;
   background: #fff;
   box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+  padding: 9px 25px;
+  @include for-size(768px) {
+    margin-top: 40px;
+    padding: 12px 50px;
+  }
+  @include for-size(992px) {
+    margin-top: 50px;
+  }
+  @include for-size(1200px) {
+    padding: 17px 80px;
+  }
 
   .elem {
     display: grid;
-    padding: 9px 25px;
+    // padding: 9px 25px;
     grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid $tertiary-green;
+    &:last-child {
+      border-bottom: none;
+    }
     @include for-size(768px) {
       grid-template-columns: repeat(4, 20% 40% 25% 15%);
-      padding: 12px 50px;
+      // padding: 12px 50px;
     }
     @include for-size(1200px) {
       grid-template-columns: repeat(4, 12% 48% 20% 20%);
-      padding: 17px 80px;
+      // padding: 17px 80px;
     }
 
     .imgWpapper {
