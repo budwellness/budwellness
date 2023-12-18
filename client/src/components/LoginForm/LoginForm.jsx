@@ -10,7 +10,10 @@ import LoginInput from './LoginInput/LoginInput';
 
 // USER IMPORTS:
 import { useLoginUserMutation } from '../../store/serverResponse/danitApi.auth';
-import { userLoginUserAction } from '../../store/user/user.slice';
+import {
+  setCustomerDataAction,
+  userLoginUserAction,
+} from '../../store/user/user.slice';
 
 import styles from './LoginForm.module.scss';
 import { toast } from 'react-toastify';
@@ -23,10 +26,15 @@ import validationSchema from './validationLogin.js';
 import { setModal } from '../../store/modal/modal.slice.js';
 import { useUpdateCartMutation } from '../../store/serverResponse/danitApi.cart';
 import extractIdAndQuantityForCartMigration from '../../helpers/extractIdAndQuantityForCartMigration';
-import { mergeLocalWithServerCartAction, setCartAction } from '../../store/cart/cart.slice';
+import {
+  mergeLocalWithServerCartAction,
+  setCartAction,
+} from '../../store/cart/cart.slice';
 import mergeLocalAndServerCarts from '../../helpers/mergeLocalAndServerCarts';
+import { useLazyGetCustomerDataQuery } from '../../store/serverResponse/danitApi.customer.js';
+import { setWishlistAction } from '../../store/wishlist/wishList.slice';
 
-const { log } = console
+const { log } = console;
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -40,22 +48,32 @@ function LoginForm(props) {
   };
 
   const mockValue = {
-    loginOrEmail: 'customer@gmail.com',
-    password: '1111111',
+    loginOrEmail: 'budwellnes',
+    password: '11111111',
   };
 
   /* --------------------------- INIT HOOKS: --------------------------- */
 
   const dispatch = useDispatch();
 
-  const { localCart: localCartStoreData, cart } = useSelector((state) => state.cart)
+  const { localCart: localCartStoreData, cart } = useSelector(
+    (state) => state.cart
+  );
 
   /* --------------------------- RTK QUERY CUSTOM HOOKS: --------------------------- */
 
   // USER API:
-  const [loginUser, { data: loginUserToken, isSuccess: loginIsSuccess }] =
-    useLoginUserMutation();
-  const [updateCart, { data, isError, isSuccess, error }] = useUpdateCartMutation();
+  const [
+    loginUser,
+    {
+      data: loginUserToken,
+      isSuccess: loginIsSuccess,
+      isError: loginIsError,
+    }
+  ] = useLoginUserMutation();
+  const [updateCart, { data, isError, isSuccess, error }] =
+    useUpdateCartMutation();
+  const [getCustomer] = useLazyGetCustomerDataQuery();
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
 
   const isLoginSuccessHandler = () => {
@@ -66,53 +84,74 @@ function LoginForm(props) {
       if (localCartStoreData.length > 0) {
         getCart(loginUserToken)
           .unwrap()
-          .then(response => {
+          .then((response) => {
+            log(response);
             let products = [];
             if (response) {
-              products = response.products
+              products = response.products;
             }
             // return mergeLocalAndServerCarts(localCartStoreData, products.map((p) => (
             //   { product: p.product, cartQuantity: p.cartQuantity }
             // )))
-            return mergeLocalAndServerCarts(localCartStoreData, products)
+            return mergeLocalAndServerCarts(localCartStoreData, products);
           })
           .then((response) => {
             if (response) {
-              return updateCart(extractIdAndQuantityForCartMigration(response, loginUserToken))
+              return updateCart(
+                extractIdAndQuantityForCartMigration(response, loginUserToken)
+              );
             }
           })
           .then((response) => {
-
             if (response) {
-              const { data: { products } } = response;
-              dispatch(setCartAction(products))
-              localStorage.setItem('localCart', JSON.stringify([]))
+              const {
+                data: { products },
+              } = response;
+              dispatch(setCartAction(products));
+              localStorage.setItem('localCart', JSON.stringify([]));
             }
-
-          })
+          });
       } else {
-        getCart(loginUserToken);
+        getCart(loginUserToken)
+          .unwrap()
+          .then(serverCart => {
+            if (serverCart) {
+              dispatch(setCartAction(serverCart.products))
+            } else return
+          });
       }
-      getWishlist(loginUserToken);
+      getWishlist(loginUserToken)
+        .unwrap()
+        .then(serverWishlist => {
+          if (serverWishlist) {
+            dispatch(setWishlistAction(serverWishlist.products))
+          } else return
+
+        });
+      getCustomer(loginUserToken)
+        .unwrap()
+        .then((response) => dispatch(setCustomerDataAction(response)));
+    }
+    if (loginIsError) {
+      toast.error("Invalid Login or Password")
     }
   };
 
-  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess]);
+  useEffect(() => isLoginSuccessHandler(), [loginIsSuccess, loginIsError]);
 
   return (
     <>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log('something happen');
-          console.log(values);
+          // console.log(values)
           loginUser(values);
         }}
       >
         <Form className={styles.form}>
           <div className={styles.logoIcon}>
-            <LogoIcon/>
+            <LogoIcon />
           </div>
           <div className={styles.form_name}>
             <h2 className={styles.title}>Sing in</h2>
@@ -126,22 +165,22 @@ function LoginForm(props) {
           {/* <h2 className={styles.title}>Sing in Bud<span
                         className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
                     </h2> */}
-
           <div className={styles.wrapperLogin}>
             <LoginInput
-                className={styles.loginInput}
-                name="loginOrEmail"
-                type="email"
-                placeholder="Login"
-                label="Username or email address"
+              className={styles.loginInput}
+              name="loginOrEmail"
+              type="text"
+              placeholder="Login"
+              label="Username or email address"
+              loginIsError={loginIsError}
             />
             <div className={styles.passwordInput}>
               <LoginInput
-                  className={styles.loginInput}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  label="Password"
+                className={styles.loginInput}
+                name="password"
+                type="password"
+                placeholder="Password"
+                label="Password"
               />
               <Link to="/" className={styles.forgotPassword}>
                 Forgot password?
@@ -158,11 +197,11 @@ function LoginForm(props) {
           Create an account
         </Link> */}
             <ButtonHeader
-                className={styles.btnCreate}
-                onClick={() => {
-                  dispatch(setModal(false));
-                  navigate('/registration');
-                }}
+              className={styles.btnCreate}
+              onClick={() => {
+                dispatch(setModal(false));
+                navigate('/registration');
+              }}
             >
               Create an account
             </ButtonHeader>

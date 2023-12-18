@@ -66,6 +66,7 @@ function ProductList(props) {
 
   useEffect(() => {
     setSearchParams(queryString);
+    // log(queryString);
   }, [queryString]);
 
   useEffect(() => {
@@ -95,6 +96,35 @@ function ProductList(props) {
         }
       });
   }, [searchParams]);
+  // useEffect(() => {
+  //   getFilteredProducts(
+  //     filteredQueryString(searchParams, startPage, productsPerPage),
+  //   )
+  //     .unwrap()
+  //     .then((response) => {
+  //       try {
+  //         setTotalProducts(response.productsQuantity);
+  //         setProductCards(
+  //           <div className={styles.list__products_wrapper}>
+  //             {response.products?.map((product) => (
+  //               <ProductCard
+  //                 actions={{
+  //                   toggleWishlistHandler,
+  //                   toggleCartHandler,
+  //                   toggleLocalCartHandler,
+  //                 }}
+  //                 product={product}
+  //                 key={product._id}
+  //                 handleModalAddToCart={() => handleModalAddToCart(product)}
+  //               />
+  //             ))}
+  //           </div>,
+  //         );
+  //       } catch (error) {
+  //         log(error, isErrorLazyFilteredProducts);
+  //       }
+  //     });
+  // }, [searchParams, startPage]);
 
   return (
     <div className={styles.list__products}>

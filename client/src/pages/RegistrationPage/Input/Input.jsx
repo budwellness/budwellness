@@ -30,7 +30,9 @@ function Input(props) {
         <p className={styles.errorInput}>{emailError}</p>
       )}
       {!!meta.error && meta.touched && (
-        <ErrorMessage name={name} className={styles.errorInput} component="p" />
+        <div className={styles.wrapperError}>
+          <ErrorMessage name={name} className={styles.errorInput} component="p" />
+        </div>
       )}
 
     </label>

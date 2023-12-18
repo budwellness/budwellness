@@ -33,7 +33,12 @@
     border-radius: 24px;
     border: 1px solid $secondary-text-color;
     padding: 13px 20px;
+
+    &:focus {
+      outline: transparent;
+    }
   }
+
 
   &__passwordIcon {
     width: 25px;
@@ -84,6 +89,7 @@
   width: 100%;
   background-color: $main-orange;
   border-radius: 24px;
+  gap: 50px;
   @include for-size(476px) {
     background-color: white;
   }

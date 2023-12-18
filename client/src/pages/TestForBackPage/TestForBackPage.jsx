@@ -56,6 +56,7 @@ import {
 } from '../../store/serverResponse/danitApi.cart';
 
 import styles from './TestForBackPage.module.scss';
+import { useAddGlobalConfigMutation } from '../../store/serverResponse/danitApi.globalConfig';
 
 const { log } = console;
 
@@ -496,6 +497,9 @@ function TestForBackPage() {
           </button>
           <button type="button" onClick={() => getFilteredProductsHandler()}>
             Slider with server data
+          </button>
+          <button type="button" onClick={() => addGlobalConfigHandler()}>
+            Add global config
           </button>
           <button type="button" onClick={() => createCartHandler()}>
             Create New Cart

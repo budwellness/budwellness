@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import PropTypes from 'prop-types';
 
 function LocationIcon(props) {
-  const { fill, ...rest } = props;
+  const { ...rest } = props;
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      fill={fill}
+      // fill={fill}
       {...rest}
     >
       <g data-name="Layer 2">
@@ -42,8 +41,8 @@ function LocationIcon(props) {
   );
 }
 
-LocationIcon.propTypes = {
-  fill: PropTypes.string.isRequired,
-};
+// LocationIcon.propTypes = {
+//   fill: PropTypes.string.isRequired,
+// };
 
 export default LocationIcon;

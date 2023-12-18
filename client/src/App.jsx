@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -35,6 +35,9 @@ import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlis
 import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
 
+import { useLazyGetCustomerDataQuery } from './store/serverResponse/danitApi.customer.js';
+import { setCustomerDataAction } from './store/user/user.slice';
+
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
 import './App.scss';
@@ -49,6 +52,10 @@ import Registration from './pages/RegistrationPage/Registration.jsx';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 import Profile from './pages/Profile/Profile.jsx';
+import UserInformation from './pages/Profile/UserInformation/UserInformation.jsx';
+import OrderHistory from './pages/Profile/OrderHistory/OrderHistory.jsx';
+import ChangePassword from './pages/Profile/ChangePassword/ChangePassword.jsx';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const { log } = console;
 
@@ -73,6 +80,11 @@ function App() {
   const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
     useLazyGetCartQuery();
   const fetchLocalCartProducts = useFetchLocalCardProducts();
+
+  const [
+    getCustomerData,
+    { data: userCustomerData, isSuccess: isSuccessUserCustomerData },
+  ] = useLazyGetCustomerDataQuery();
 
   /* --------------------------- COMPONENT LOGIC: --------------------------- */
   const handleModal = () => {
@@ -125,6 +137,7 @@ function App() {
         dispatch(userLoginUserAction(localStorageToken));
         getWishlist(localStorageToken);
         getCart(localStorageToken);
+        getCustomerData(localStorageToken);
         log('token valid');
       }
     }
@@ -160,10 +173,17 @@ function App() {
     }
   };
 
+  const initUserCustomerDataOnLoad = () => {
+    if (isUserLogin && userCustomerData) {
+      dispatch(setCustomerDataAction(userCustomerData));
+    }
+  };
 
   useEffect(() => initUserCardOnLoad(), [isSuccessUserCartData]);
 
   useEffect(() => initUserWishlistOnLoad(), [isSuccessUserWishlistData]);
+
+  useEffect(() => initUserCustomerDataOnLoad(), [isSuccessUserCustomerData]);
 
   return (
     <>
@@ -178,12 +198,30 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ProductsPage />} />
         <Route path="/product/:productID" element={<SingleProductPage />} />
-        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <WishlistPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/team" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        >
+          <Route index="information" element={<UserInformation />} />
+          <Route path="password" element={<ChangePassword />} />
+          <Route path="history" element={<OrderHistory />} />
+        </Route>
         <Route path="/test" element={<TestForBackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

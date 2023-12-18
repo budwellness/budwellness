@@ -1,62 +1,99 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import validationSchema from './validationSchema';
 import Button from '../../../components/Button/Button';
-import EyeIcon from '../../../components/UI/EyeIcon';
 import styles from './FormData.module.scss';
-
-const initialValues = {
-  name: '',
-  lastName: '',
-  userName: '',
-  email: '',
-  password: '',
-  newPassword: '',
-  phone: '+380',
-  age: '',
-  city: '',
-  street: '',
-};
+import { useEditUserMutation } from '../../../store/serverResponse/danitApi.auth';
+import { setCustomerDataAction } from '../../../store/user/user.slice';
 
 function FormData() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
+  const dispatch = useDispatch();
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const [readOnly, setReadOnly] = useState(true);
+
+  //= ================== тут приходят с редакса
+  const { detailInfo, token: tokenReduxStore } = useSelector((state) => state.user);
+  const [initialValues, setInitialValues] = useState({
+    firstName: detailInfo?.firstName || '',
+    lastName: detailInfo?.lastName || '',
+    login: detailInfo?.login || '',
+    email: detailInfo?.email || '',
+    telephone: detailInfo?.telephone || '',
+    age: detailInfo?.age || '',
+    city: detailInfo?.city || '',
+    street: detailInfo?.street || '',
+  });
+    //= =================================
+
+  // тут приходят ответ с сервера
+  const [editUser, { data }] = useEditUserMutation();
+
+  const toggleForm = () => {
+    setReadOnly(!readOnly);
   };
-  const toggleNewPasswordVisibility = () => {
-    setShowNewPassword(!showNewPassword);
-  };
+
+  useEffect(() => {
+    if (data) {
+      setInitialValues({
+        firstName: data?.firstName,
+        lastName: data?.lastName,
+        login: data?.login,
+        email: data?.email,
+        telephone: data?.telephone,
+        age: data?.age,
+        city: data?.city || '',
+        street: data?.street || '',
+      });
+      // setIsDataLoaded(true)
+      dispatch(setCustomerDataAction(data));
+    }
+  }, [data]);
+
+  useEffect(() => {
+    setInitialValues({
+      firstName: detailInfo?.firstName || '',
+      lastName: detailInfo?.lastName || '',
+      login: detailInfo?.login || '',
+      email: detailInfo?.email || '',
+      telephone: detailInfo?.telephone || '',
+      age: detailInfo?.age || '',
+      city: detailInfo?.city || '',
+      street: detailInfo?.street || '',
+    });
+  }, [detailInfo]);
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values, { resetForm }) => {
-        resetForm();
+      onSubmit={(values) => {
+        editUser({ userData: values, token: tokenReduxStore });
+        toggleForm();
       }}
       validationSchema={validationSchema}
       validateOnBlur
+      enableReinitialize
     >
       {({ handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
           <div className={styles.formDataWrapper}>
             <div className={styles.form}>
-              <label htmlFor="name" className={styles.form__subtitle}>
-                Your name
+              <label htmlFor="firstName" className={styles.form__subtitle}>
+                Your firstName
               </label>
               <Field
                 type="text"
-                id="name"
-                name="name"
+                id="firstName"
+                name="firstName"
                 placeholder="Your name"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
-                name="name"
+                name="firstName"
                 component="div"
                 className={styles.form__errorMessage}
               />
@@ -72,6 +109,7 @@ function FormData() {
                 name="lastName"
                 placeholder="Your last name"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
                 name="lastName"
@@ -81,18 +119,19 @@ function FormData() {
             </div>
 
             <div className={styles.form}>
-              <label htmlFor="userName" className={styles.form__subtitle}>
-                Your username
+              <label htmlFor="login" className={styles.form__subtitle}>
+                Your login
               </label>
               <Field
                 type="text"
-                id="userName"
-                name="userName"
+                id="login"
+                name="login"
                 placeholder="Your username"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
-                name="userName"
+                name="login"
                 component="div"
                 className={styles.form__errorMessage}
               />
@@ -108,6 +147,7 @@ function FormData() {
                 name="email"
                 placeholder="you@example.com"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
                 name="email"
@@ -117,69 +157,18 @@ function FormData() {
             </div>
 
             <div className={styles.form}>
-              <label htmlFor="password" className={styles.form__subtitle}>
-                Your password
-              </label>
-              <Field
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                placeholder="Your password"
-                className={styles.form__message}
-              />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className={styles.form__errorMessage}
-              />
-              <EyeIcon
-                className={
-                  !showPassword
-                    ? styles.form__passwordIcon
-                    : styles.form__passwordIconActive
-                }
-                onClick={togglePasswordVisibility}
-              />
-            </div>
-
-            <div className={styles.form}>
-              <label htmlFor="newPassword" className={styles.form__subtitle}>
-                Your new password
-              </label>
-              <Field
-                type={showNewPassword ? 'text' : 'password'}
-                id="newPassword"
-                name="newPassword"
-                placeholder="Your new password"
-                className={styles.form__message}
-              />
-              <ErrorMessage
-                name="newPassword"
-                component="div"
-                className={styles.form__errorMessage}
-              />
-              <EyeIcon
-                className={
-                  !showNewPassword
-                    ? styles.form__passwordIcon
-                    : styles.form__passwordIconActive
-                }
-                onClick={toggleNewPasswordVisibility}
-              />
-            </div>
-
-            <div className={styles.form}>
-              <label htmlFor="phone" className={styles.form__subtitle}>
-                Your phone number
+              <label htmlFor="telephone" className={styles.form__subtitle}>
+                Your telephone number
               </label>
               <Field
                 type="text"
-                id="phone"
-                name="phone"
+                id="telephone"
+                name="telephone"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
-                name="phone"
+                name="telephone"
                 component="div"
                 className={styles.form__errorMessage}
               />
@@ -195,6 +184,7 @@ function FormData() {
                 name="age"
                 placeholder="Your age"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
                 name="age"
@@ -220,6 +210,7 @@ function FormData() {
                 name="city"
                 placeholder="City"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
                 name="city"
@@ -238,6 +229,7 @@ function FormData() {
                 name="street"
                 placeholder="Street, build"
                 className={styles.form__message}
+                readOnly={readOnly}
               />
               <ErrorMessage
                 name="street"
@@ -247,7 +239,29 @@ function FormData() {
             </div>
           </div>
           <div className={styles.buttonWrapp}>
-            <Button type="button" text="Save" className="profileBtn" />
+            {readOnly && (
+            <Button
+              type="button"
+              text="Edit"
+              className="profileBtn"
+              onClick={toggleForm}
+            />
+            )}
+            {!readOnly && (
+            <>
+              <Button
+                type="submit"
+                text="save"
+                className="profileBtn"
+              />
+              <Button
+                type="button"
+                text="cancel"
+                className="profileRedBtn"
+                onClick={toggleForm}
+              />
+            </>
+            )}
           </div>
         </Form>
       )}

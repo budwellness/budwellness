@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isOpen: false,
   isModalAddToCart: false,
+  isPopupOpen: false,
 };
 
 const modalSlice = createSlice({
@@ -16,14 +17,16 @@ const modalSlice = createSlice({
     },
 
     isModalAddToCartAction: (state) => {
-        state.isModalAddToCart = !state.isModalAddToCart
+      state.isModalAddToCart = !state.isModalAddToCart;
     },
 
+    isPopupOpenAction: (state) => {
+      state.isPopupOpen = !state.isPopupOpen;
+    },
   },
 });
 
-export const {  
-  isModalAddToCartAction,
-  setModal } = modalSlice.actions;
+export const { isModalAddToCartAction, setModal, isPopupOpenAction } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

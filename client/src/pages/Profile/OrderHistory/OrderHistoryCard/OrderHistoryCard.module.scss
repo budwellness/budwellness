@@ -1,0 +1,193 @@
+.orderHistoryWrapper__item__active {
+  opacity: 1;
+  max-height: 100%;
+  transition:
+    max-height 1s ease-out,
+    opacity 1s ease-out;
+  // margin-top: 25px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+  padding: 9px 25px;
+  @include for-size(768px) {
+    // margin-top: 40px;
+    padding: 12px 50px;
+  }
+  @include for-size(992px) {
+    // margin-top: 50px;
+  }
+  @include for-size(1200px) {
+    padding: 17px 80px;
+  }
+
+  .elem {
+    display: grid;
+    // padding: 9px 25px;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid $tertiary-green;
+    &:last-child {
+      border-bottom: none;
+    }
+    @include for-size(768px) {
+      grid-template-columns: repeat(4, 20% 40% 25% 15%);
+      // padding: 12px 50px;
+    }
+    @include for-size(1200px) {
+      grid-template-columns: repeat(4, 12% 48% 20% 20%);
+      // padding: 17px 80px;
+    }
+
+    .imgWpapper {
+      display: grid;
+      align-items: center;
+      .img {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        box-shadow: 0px 0px 15px 0px rgba(37, 143, 103, 0.1);
+        @include for-size(768px) {
+          width: 102px;
+          height: 100px;
+        }
+      }
+    }
+
+    .mainInfo {
+      display: grid;
+      grid-template-rows: repeat(2, 45% 55%);
+      @include for-size(768px) {
+        grid-template-rows: repeat(2, 35% 65%);
+        margin-left: 5px;
+      }
+      @include for-size(992px) {
+        grid-template-rows: repeat(2, 50% 50%);
+        margin-left: 20px;
+      }
+      @include for-size(1200px) {
+        margin-left: 40px;
+      }
+
+      .title {
+        color: $main-green;
+        font-family: $font-nunito;
+        text-transform: capitalize;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        @include for-size(768px) {
+          font-size: 17px;
+        }
+        @include for-size(992px) {
+          font-size: 22px;
+        }
+      }
+      .weight {
+        color: $main-text-color;
+        font-family: $font-montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25.5px;
+        @include for-size(768px) {
+          font-size: 15px;
+        }
+        @include for-size(992px) {
+          font-size: 17px;
+        }
+      }
+    }
+
+    .quantity {
+      display: grid;
+      align-items: center;
+      padding-bottom: 30px;
+      @include for-size(768px) {
+        justify-content: center;
+        padding-bottom: 0;
+      }
+      .quantityTextWrapper {
+        justify-content: center;
+        padding: 6px 12px;
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 1px 2px 15px 0px rgba(33, 72, 66, 0.07);
+        width: 53px;
+        @include for-size(768px) {
+          padding: 12px 28px;
+          width: 93px;
+          gap: 5px;
+        }
+        .quantityText {
+          color: $main-green;
+          font-family: $font-nunito;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          @include for-size(768px) {
+            font-size: 17px;
+          }
+        }
+      }
+    }
+
+    .priceWrapper {
+      display: grid;
+      grid-template-rows: repeat(2, 15% 75%);
+      @include for-size(768px) {
+        grid-template-rows: repeat(2, 10% 90%);
+        justify-content: flex-end;
+      }
+      .priceText {
+        color: $secondary-text-color;
+        font-family: $font-montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18.2px;
+        @include for-size(768px) {
+          font-size: 14px;
+        }
+      }
+      .price {
+        color: $main-green;
+        font-family: $font-nunito;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 30.8px;
+        @include for-size(768px) {
+          font-size: 20px;
+        }
+        @include for-size(992px) {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+
+  .line {
+    width: calc(100% - 50px);
+    height: 1px;
+    background-color: $tertiary-green;
+    @include for-size(768px) {
+      width: calc(100% - 100px);
+    }
+    @include for-size(1200px) {
+      width: calc(100% - 160px);
+    }
+  }
+}
+
+// .orderHistoryWrapper__item {
+//   display: none;
+//   transition:
+//     max-height 0.5s ease-out,
+//     opacity 0.5s ease-out;
+// }
+
+.orderHistoryWrapper__item {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}

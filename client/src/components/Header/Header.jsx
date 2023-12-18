@@ -11,6 +11,7 @@ import Container from '../Container/Container';
 import Nav from '../Nav/Nav';
 import Search from '../Search/Search';
 import ButtonHeader from '../ButtonHeader/ButtonHeader';
+import UserPopup from './UserPopup/UserPopup';
 
 // ICONS IMPORT:
 import LogoIcon from './icons/LogoIcon';
@@ -20,23 +21,19 @@ import LoginIcon from './icons/LoginIcon';
 
 // USER IMPORTS:
 import {
+  clearCustomerDataAction,
   userLogoutUserAction,
 } from '../../store/user/user.slice';
 
-import { setModal } from '../../store/modal/modal.slice';
+import { setModal, isPopupOpenAction } from '../../store/modal/modal.slice';
 import { setCartModal } from '../../store/cartModal/cartModal.slice';
 
 import styles from './Header.module.scss';
-import { clearLocalCartAction } from '../../store/cart/cart.slice';
+import { clearCartAction, clearLocalCartAction } from '../../store/cart/cart.slice';
+import { clearWishListAction } from '../../store/wishlist/wishList.slice';
+import { toast } from 'react-toastify';
 
 function Header() {
-  // const {
-  //   actions: {
-  //     getCart,
-  //     getWishlist,
-  //   },
-  // } = props;
-
   /* --------------------------- INIT HOOKS: --------------------------- */
 
   const dispatch = useDispatch();
@@ -54,11 +51,11 @@ function Header() {
     (state) => state.wishlist,
   );
 
-  const { isUserLogin } = useSelector(
-    (state) => state.user,
-  );
+  const { isUserLogin } = useSelector((state) => state.user);
 
-  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector((state) => state.cart);
+  const { cart: cartStoreData, localCart: localCartStoreData } = useSelector(
+    (state) => state.cart,
+  );
   const { isOpenModal } = useSelector((state) => state.modal);
 
   /* --------------------------- COMPONENT HELPER HANDLERS: --------------------------- */
@@ -66,6 +63,10 @@ function Header() {
   const logoutHandler = () => {
     localStorage.removeItem('token');
     dispatch(userLogoutUserAction());
+    dispatch(clearCustomerDataAction());
+    dispatch(clearCartAction());
+    dispatch(clearLocalCartAction());
+    dispatch(clearWishListAction());
     dispatch(setModal(false));
   };
 
@@ -114,8 +115,19 @@ function Header() {
 
   //= ===================================================
 
+  const handleWishlistClick = () => {
+    if (!isUserLogin) {
+      toast.error('Please log in first!')
+    }
+  };
+
   return (
-    <header className={cn(styles.header, { [styles.scrolled]: scrolled, [styles.hide]: hide })}>
+    <header
+      className={cn(styles.header, {
+        [styles.scrolled]: scrolled,
+        [styles.hide]: hide,
+      })}
+    >
       <Container>
         <div className={styles.wrapper}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
@@ -131,32 +143,70 @@ function Header() {
           <Link to="/" className={styles.logoLink}>
             <LogoIcon />
             <span className={styles.header_logoTitle}>Bud</span>
-            <span className={cn(styles.header_logoTitle, styles.accentColor)}>Wellness</span>
+            <span className={cn(styles.header_logoTitle, styles.accentColor)}>
+              Wellness
+            </span>
           </Link>
           <Nav showBurger={showBurger} setShowBurger={setShowBurger} />
           <div className={styles.header_user}>
             <Search />
-            <ButtonHeader className={styles.header_userLink} onClick={handleModal}>
-              <LoginIcon />
-            </ButtonHeader>
-            <Link to="/wishlist" className={styles.header_userLink}>
+            {isUserLogin ? (
+              <ButtonHeader
+                className={styles.header_userLink}
+                onClick={() => {
+                  dispatch(isPopupOpenAction(true));
+                }}
+              >
+                <LoginIcon />
+              </ButtonHeader>
+            ) : (
+              <ButtonHeader
+                className={styles.header_userLink}
+                onClick={handleModal}
+              >
+                <LoginIcon />
+              </ButtonHeader>
+            )}
+
+            <Link to={isUserLogin ? '/wishlist' : undefined} className={styles.header_userLink} onClick={handleWishlistClick}>
               <WishlistIcon />
               {isUserLogin && wishlistStoreData.length > 0 && (
-                <span className={styles.wishlistCounter}>{wishlistStoreData.length}</span>
+                <span className={styles.wishlistCounter}>
+                  {wishlistStoreData.length}
+                </span>
               )}
             </Link>
-            <ButtonHeader className={styles.header_userLink} onClick={handleOpenCartModal}>
+            <ButtonHeader
+              className={styles.header_userLink}
+              onClick={handleOpenCartModal}
+            >
               <CartIcon />
-              {(isUserLogin && cartStoreData.length > 0 && (
-                <span className={styles.wishlistCounter}>{cartStoreData.length}</span>
-              ))}
-              {(!isUserLogin && localCartStoreData.length > 0 && (
-                <span className={styles.wishlistCounter}>{localCartStoreData.length}</span>
-              ))}
+              {isUserLogin && cartStoreData.length > 0 && (
+                <span className={styles.wishlistCounter}>
+                  {cartStoreData.length}
+                </span>
+              )}
+              {!isUserLogin && localCartStoreData.length > 0 && (
+                <span className={styles.wishlistCounter}>
+                  {localCartStoreData.length}
+                </span>
+              )}
             </ButtonHeader>
           </div>
+          {isUserLogin && (
+            <div
+              className={cn(styles.header_userMenu, {
+                [styles.header_userMenuScrolled]: scrolled,
+                [styles.header_userMenuHide]: hide,
+              })}
+            >
+              {() => {
+                logoutHandler();
+              }}
+              <UserPopup logoutHandler={logoutHandler} />
+            </div>
+          )}
         </div>
-        {isUserLogin && <button type="button" className={styles.header_userMenu} onClick={() => { dispatch(clearLocalCartAction()); logoutHandler(); }}>Logout111</button>}
       </Container>
     </header>
   );
