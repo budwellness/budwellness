@@ -148,7 +148,7 @@ function Carousel() {
                       <li>CBD 0.0-1.0mg/g</li>
                     </div>
                   </ul>
-                  <Link to="/product/11532" className={styles.aboutProduct}>
+                  <Link to="/product/618464" className={styles.aboutProduct}>
                     About Product
                   </Link>
                 </div>
@@ -181,7 +181,7 @@ function Carousel() {
                       <li>CBD 0.0-2.0mg/g</li>
                     </div>
                   </ul>
-                  <Link to="/product/729879" className={styles.aboutProduct}>
+                  <Link to="/product/811828" className={styles.aboutProduct}>
                     About Product
                   </Link>
                 </div>
@@ -214,7 +214,7 @@ function Carousel() {
                       <li>CBD 0.0-1.0mg/g</li>
                     </div>
                   </ul>
-                  <Link to="/product/499299" className={styles.aboutProduct}>
+                  <Link to="/product/618750" className={styles.aboutProduct}>
                     About Product
                   </Link>
                 </div>

@@ -30,7 +30,11 @@ function ProductsPage() {
             <ProductList startPage={startPage} setStartPage={setStartPage} />
           </div>
           <div className={styles.Filter}>
-            <Filter startPage={startPage} setStartPage={setStartPage} formRef={formRef} />
+            <Filter
+              startPage={startPage}
+              setStartPage={setStartPage}
+              formRef={formRef}
+            />
           </div>
         </div>
         <PopularProducts />
