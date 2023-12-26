@@ -7,14 +7,10 @@
     // padding: 90px 0 0 0;
     width: 100%;
     background-color: $color-white;
+    margin-top: 60px;
     @include dflex-column-jcfs-aic;
 
-    @include _320 {
-        margin-top: 20px;
-    }
-
     @include _576 {
-        margin: 0;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2vw;
