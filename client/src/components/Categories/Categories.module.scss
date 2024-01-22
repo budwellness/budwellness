@@ -1,0 +1,68 @@
+@mixin for-size($size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
+.container {
+    max-width: 1380px;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 140px 0 0;
+}
+
+.content-categories {
+    text-align: center;
+    cursor: pointer;
+}
+
+.image-categories {
+    width: 133px;
+    height: 133px;
+    border-radius: 20px;
+    object-fit: cover;
+
+    @media (min-width: 459px) {
+        width: 202px;
+        height: 202px;
+    }
+
+    @media (min-width: 666px) {
+        width: 306px;
+        height: 306px;
+    }
+
+    @include for-size(768px) {
+        width: 227px;
+        height: 227px;
+    }
+
+    @include for-size(1200px) {
+        width: 162px;
+        height: 162px;
+    }
+
+    &:hover {
+        filter: brightness(50%);
+        transform: scale(1.05);
+        transition: all 0.5s ease;
+    }
+}
+
+.text-categories {
+    color: #214842;
+    font-family: Nunito Sans;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24.2px;
+}

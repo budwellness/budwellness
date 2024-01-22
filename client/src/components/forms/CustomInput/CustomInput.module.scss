@@ -1,0 +1,39 @@
+.inputRoot {
+  //   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 68px;
+
+  input {
+    width: 100%;
+    border: 1px solid $secondary-text-color;
+    border-radius: 24px;
+    padding: 13px 20px;
+    height: 48px;
+    cursor: pointer;
+    background: 0 0;
+    color: $main-text-color;
+    font: $font-montserrat;
+    font-size: 17px;
+    line-height: 1.5;
+    outline: none;
+
+    &:focus {
+      border-color: $main-green;
+      transition: 0.3s ease-in-out;
+
+      &::placeholder {
+        color: transparent;
+        transition: 0.3s ease-in-out;
+      }
+    }
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 3px 0 3px 20px;
+  }
+}

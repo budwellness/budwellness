@@ -1,0 +1,21 @@
+.section_cart {
+  @include _320 {
+    padding: 60px 0;
+  }
+  @include _768 {
+    padding: 90px 0;
+  }
+  @include _1380 {
+    padding: 160px 0;
+  }
+
+  .cart_container {
+    width: 100%;
+    justify-content: space-between;
+    align-content: flex-start;
+
+    @include _768 {
+      display: flex;
+    }
+  }
+}

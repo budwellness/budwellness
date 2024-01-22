@@ -1,0 +1,331 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.footer {
+  background-color: $main-green;
+
+  &__container {
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+
+    @include for-size(1200px) {
+      padding: 160px 0;
+    }
+  }
+
+  &__content {
+    max-width: 1380px;
+    justify-content: space-between;
+
+    @include for-size(576px) {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include for-size(768px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include for-size(992px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include for-size(1200px) {
+      width: 1380px;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+  }
+}
+
+.subtitle {
+  font-weight: 700;
+  color: $color-white;
+  font-size: 22px;
+  line-height: 1.1;
+  margin: 0;
+  margin-bottom: 20px;
+
+}
+
+.about {
+  @include for-size(320px) {
+    margin-bottom: 30px;
+  }
+
+  &__logoLink {
+    @include for-size(320px) {
+      margin-bottom: 10px;
+    }
+
+    text-decoration: none;
+    display: flex;
+
+    svg {
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+      margin-top: -10px;
+    }
+  }
+
+  &__logoTitle {
+    color: $main-orange;
+    font-family: $font-nunito;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 20px;
+
+    @include for-size(576px) {
+      display: block;
+    }
+  }
+
+  &__accentColor {
+    color: $secondary-green;
+
+    @include for-size(576px) {
+      display: block;
+    }
+  }
+
+  &__desc {
+    width: 100%;
+    color: $color-white;
+    margin: 15px 0 50px;
+    font-size: 17px;
+    line-height: 1.5;
+    font-family: $font-montserrat;
+
+    @include for-size(320px) {
+      margin: 5px 0 20px;
+    }
+
+    @include for-size(576px) {
+      display: block;
+      margin: 5px 0 20px;
+    }
+
+    @include for-size(992px) {
+      margin: 5px 0 50px;
+      width: 260px;
+    }
+
+    @include for-size(1200px) {
+      max-width: 260px;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.contacts {
+  @include for-size(320px) {
+    margin-bottom: 30px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    @include for-size(320px) {
+      margin-bottom: 15px;
+    }
+
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-direction: row;
+    align-items: start;
+  }
+
+  &__desc {
+    display: grid;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 17px;
+    line-height: 1.5;
+    font-family: $font-montserrat;
+    color: $color-white;
+    margin: 0;
+  }
+}
+
+.phoneImgFill {
+  width: 40px;
+  height: 40px;
+  fill: $main-orange;
+  background-color: $main-green;
+  border-radius: 50%;
+}
+
+.locationImgFill {
+  width: 40px;
+  height: 40px;
+  fill: $main-green;
+  background-color: $main-orange;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.clockImgFill {
+  width: 40px;
+  height: 40px;
+  background-color: $main-orange;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.shop {
+  @include for-size(320px) {
+    margin-bottom: 30px;
+    margin-left: 10px;
+  }
+
+  &__list {
+    @include for-size(320px) {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      margin-left: 10px;
+    }
+
+    @include for-size(576px) {
+      margin-left: 20px;
+    }
+
+    @include for-size(768px) {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+      margin-left: 15px;
+    }
+
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 15px;
+  }
+
+  &__linkItem {
+    text-decoration: none;
+    font-size: 17px;
+    line-height: 1.5;
+    font-family: $font-montserrat;
+    color: $color-white;
+    margin: 0;
+  }
+
+  &__link {
+    position: relative;
+  }
+
+  &__link::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -6%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-bottom-width: 5px;
+    border-top-width: 5px;
+    border-left: 7px solid $main-orange;
+
+    @include for-size(768px) {
+      left: -3%;
+    }
+
+    @include for-size(992px) {
+      left: -2%;
+    }
+
+    @include for-size(1200px) {
+      left: -6%;
+    }
+  }
+}
+
+.instagram {
+  &__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    // max-width: 312px;
+    flex-wrap: wrap;
+    gap: 19px;
+
+    @include for-size(320px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+    }
+
+    @include for-size(576px) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      width: 100%;
+    }
+  }
+
+  &__instaImage {
+    @include for-size(320px) {
+      width: 100%;
+      height: 100%;
+    }
+
+    @include for-size(576px) {
+      width: 100%;
+      height: 100%;
+    }
+
+    @include for-size(1200px) {
+      width: 91px;
+      height: 100px;
+    }
+
+    width: 91px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__instaImage:hover {
+    transform: scale(1.05);
+    transition: 0.5s ease;
+  }
+}

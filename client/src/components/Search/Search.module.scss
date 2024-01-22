@@ -1,0 +1,158 @@
+.header_userSearchForm {
+  display: inline;
+  margin-right: 75px;
+  position: relative;
+
+  @media (max-width: 1199.98px) {
+    margin-right: 0;
+  }
+  @media (max-width: 767.98px) {
+    display: none;
+  }
+}
+
+.header_userSearchInput {
+  display: inline;
+  padding: 0 20px;
+  height: 40px;
+  border: 1px solid #c6c6c6;
+  border-radius: 20px;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  width: 250px;
+
+  @media (max-width: 767.98px) {
+    display: none;
+  }
+
+  &:focus {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+.header_userSearchButton {
+  //position: absolute;
+  //right: 0;
+  //top: 0;
+  //bottom: 0;
+  //margin: 0;
+  border-radius: 50%;
+  background: #efc368;
+  fill: #214842;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  //================================
+  //position: absolute;
+  //right: 0;
+  //top: 0;
+  //bottom: 0;
+  //margin: 0;
+  //
+  //border-radius: 50%;
+  //background: #efc368;
+  //fill: #214842;
+  //width: 40px;
+  //height: 40px;
+  //font-size: 16px;
+  //border: none;
+  //cursor: pointer;
+  //
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  &:hover{
+    fill: yellow;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+
+  }
+
+  @media (min-width: 767.98px) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    //margin: 0;
+
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    //height: 40px;
+  }
+}
+
+.header_userSearchDropdown {
+  position: absolute;
+  list-style: none;
+  width: 500px;
+  max-height: 500px;
+  overflow-y: scroll;
+  border: 1px solid;
+
+  padding-left: 0;
+  background-color: white;
+}
+
+.userSearchItem {
+  display: flex;
+  align-items: center;
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+}
+.userSearchItemLogo{
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+}
+
+.userSearchLink {
+  text-decoration: none;
+  cursor: pointer;
+  //
+  margin-left: 5px;
+  flex-grow: 1;
+  font-family: $font-nunito;
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 700;
+  color:$main-green;
+  text-transform: capitalize;
+
+  &:hover {
+    color: $secondary-green;
+  }
+}
+
+.mainTitle {
+  text-decoration: none;
+  cursor: pointer;
+  margin: 10px 0;
+  flex-grow: 1;
+  font-family: $font-nunito;
+  color: $main-green;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  transition: 0.3s ease-in-out;
+  text-transform: capitalize;
+
+  &:hover {
+    color: $secondary-green;
+  }
+}

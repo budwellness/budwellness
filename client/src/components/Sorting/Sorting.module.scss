@@ -1,0 +1,107 @@
+@mixin for-size($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+.sorting {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+  width: 235px;
+  // margin: 60px 0 40px;
+  position: relative;
+
+  @include for-size(320px) {
+    width: 100%;
+    justify-content: center;
+  }
+  @include for-size(576px) {
+    width: 215px;
+    justify-content: center;
+  }
+
+  @include for-size(992px) {
+    width: 215px;
+    margin: 40px 0 0 0;
+  }
+
+  &__title {
+    font-family: $font-montserrat;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $main-text-color;
+    @include for-size(320px) {
+      display: none;
+    }
+    @include for-size(576px) {
+      display: block;
+    }
+  }
+
+  &__dropbtn {
+    cursor: pointer;
+    background-color: $white-text-color;
+    color: $main-green;
+    font-family: $font-montserrat;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    border: 1px solid $tertiary-green;
+    border-radius: 100px;
+    height: 40px;
+    width: 140px;
+    position: relative;
+
+    &:hover {
+      color: $secondary-green;
+    }
+    @include for-size(768px) {
+      border: 1px solid $tertiary-green;
+      border-radius: 100px;
+      top: 15%;
+      left: 27%;
+    }
+  }
+
+  &__dropdownContent {
+    position: absolute;
+    overflow-y: auto;
+    margin-top: 10px;
+    transition:
+      max-height 1.5s ease-out,
+      margin-top 1.5s ease-in-out;
+    background: $color-white;
+    box-shadow: 0 0 30px rgba(37, 143, 103, 0.07);
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 160px;
+    @include for-size(320px) {
+      top: 400%;
+      left: 50%;
+    }
+    @include for-size(576px) {
+      left: 65%;
+      top: 300%;
+    }
+    @include for-size(768px) {
+      left: 85%;
+      top: 300%;
+    }
+  }
+  &__desc {
+    padding: 10px 15px;
+    color: $main-green;
+    color: $main-text-color;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    cursor: pointer;
+    &:hover {
+      color: $secondary-green;
+    }
+  }
+}

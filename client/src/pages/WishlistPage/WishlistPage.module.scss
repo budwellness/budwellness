@@ -1,0 +1,42 @@
+.container {
+    // width: 100%;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // gap: 20px;
+    // padding: 90px 0 0 0;
+    width: 100%;
+    background-color: $color-white;
+    @include dflex-column-jcfs-aic;
+
+    @include _320 {
+        margin-top: 20px;
+    }
+
+    @include _576 {
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;
+        align-items: flex-start;
+    }
+
+    @include _768 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;
+    }
+
+    @media (min-width:1200px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2vw;
+    }
+}
+
+
+.emptyWishlist {
+    font-family: $font-montserrat;
+    font-size: 24px;
+    line-height: 1.5;
+}

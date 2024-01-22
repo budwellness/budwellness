@@ -1,0 +1,42 @@
+.popupList {
+  width: 150px;
+  height: 75px;
+  background-color: white;
+  border-radius: 3px;
+  border: 2px solid rgba(211, 211, 211, 0.8);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(211, 211, 211, 0.5);
+      @include for-size(1200px) {
+        background-color: lightgray;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    height: auto;
+    width: 100%;
+    color: $main-green;
+    font-family: $font-nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25.5px;
+    cursor: pointer;
+  }
+}

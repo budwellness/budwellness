@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  list-style-type: none;
+
+  &__container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.page_item {
+  cursor: pointer;
+  position: relative;
+  padding: 20px;
+  margin: 3px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+
+  &_active {
+    // background-color: $color-white;
+    background-color: rgb(252, 205, 136);
+    box-shadow: 1px 2px 15px rgba(33, 72, 66, 0.146);
+  }
+}
+
+.num {
+  position: absolute;
+  transform: translate(0%, 0%);
+  top: 20%;
+  left: 40%;
+  color: $main-green;
+  font-size: 17px;
+  font-family: NunitoSans, sans-serif;
+  font-weight: 700;
+}

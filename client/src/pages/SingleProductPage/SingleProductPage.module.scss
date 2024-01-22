@@ -1,0 +1,13 @@
+.wrapper {
+  @include for-size(992px) {
+    display: flex;
+    gap: 5%;
+  }
+}
+
+.swiperWrap {
+  padding-top: 60px;
+  @include for-size(992px) {
+    width: 40%;
+  }
+}

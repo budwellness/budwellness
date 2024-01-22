@@ -1,0 +1,198 @@
+.product_card {
+  @include dflex-column-jcfs-aic;
+  max-width: 450px;
+  font-size: 14px;
+  background: $color-white;
+  border-radius: 16px;
+
+  &:is(:hover, :focus) {
+    box-shadow: 0 0 15px rgba(37, 143, 103, 0.2);
+    transition: 0.3s ease-in-out;
+  }
+
+  @include _320 {
+    min-width: 234px;
+    margin-bottom: 30px;
+  }
+
+  .product_card__media {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: $color-white;
+
+    .product_card__img_link {
+      width: 100%;
+      overflow: hidden;
+
+      .product_card__img_wrapper {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .product_card__img {
+          display: block;
+          width: 100%;
+          max-height: 250px;
+          object-fit: contain;
+          aspect-ratio: 1;
+        }
+      }
+    }
+
+    .product_card__sale_label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 30px 0 0 30px;
+      padding: 3px 15px;
+      background-color: $secondary-green;
+      border-radius: 16px;
+      font-weight: 600;
+      color: $white-text-color;
+    }
+
+    .product_card__overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: fit-content;
+      padding: 30px;
+
+      .product_card__action {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .product_card__main {
+    width: 100%;
+    padding: 0 30px 30px;
+    @include dflex-column-jcfs-aic;
+    text-align: center;
+
+    .product_card__title_link {
+      margin: 10px 0;
+      max-width: 280px;
+      min-height: 23px;
+      text-decoration: none;
+      color: $main-green;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out;
+
+      .product_card__title {
+        margin: 0;
+        font-family: $font-nunito;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1.3;
+        text-wrap: balance;
+        text-transform: capitalize;
+
+        @include _576 {
+          min-height: 52px;
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+        }
+
+        &:is(:hover, :focus) {
+          color: $secondary-green;
+          transition: 0.3s ease-in-out;
+        }
+      }
+    }
+
+    .product_card__properties {
+      margin: 0;
+      padding: 0;
+
+      .product_card__properties_item {
+        font-family: $font-montserrat;
+        font-size: 14px;
+        color: $main-green;
+        list-style-type: none;
+
+        & span {
+          font-weight: 600;
+        }
+      }
+    }
+
+    .product_card__prices_wrapper {
+      width: 100%;
+      margin: 15px 0 20px;
+      @include dflex-jcc-aic;
+      font-size: 22px;
+      line-height: 1.1;
+      font-family: $font-nunito;
+
+      .product_card__previous_price {
+        margin-right: 15px;
+        font-weight: 700;
+        color: $secondary-text-color;
+        text-decoration: line-through;
+      }
+
+      .product_card__current_price {
+        color: $main-green;
+        font-weight: 800;
+      }
+    }
+
+    .whiteBtn {
+      font-family: $font-nunito;
+      background-color: $color-white;
+    }
+  }
+}
+
+.btn__add_to_favorites,
+.btn__single_product_preview {
+  margin-bottom: 20px;
+  height: 40px;
+  width: 40px;
+  @include dflex-jcc-aic;
+  background-color: $color-white;
+  border-radius: 50%;
+  border: 1px solid $main-orange;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $main-orange;
+    color: $white-text-color;
+    transition: 0.3s ease-in-out;
+
+    .favorite_icon, .eye_icon {
+      fill: $white-text-color;
+      transition: 0.3s ease-in-out;
+    }
+  }
+
+  .favorite_icon, .eye_icon {
+    fill: $main-orange;
+    width: 19px;
+    height: 16px;
+  }
+}
+
+.btn__add_to_favorites_active,
+.btn__single_product_preview_active {
+  margin-bottom: 20px;
+  height: 40px;
+  width: 40px;
+  @include dflex-jcc-aic;
+  background: $main-orange;
+  border-radius: 50%;
+  border: 1px solid $main-orange;
+  cursor: pointer;
+
+  .favorite_icon, .eye_icon {
+    fill: $color-white;
+    width: 19px;
+    height: 16px;
+  }
+}

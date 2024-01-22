@@ -1,0 +1,42 @@
+.label {
+  // font-size: 14px;
+  // text-align: left;
+  //position: relative;
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25.5px;
+  font-family: $font-nunito;
+  color: $main-green;
+}
+
+.wrapperError {
+  position: relative;
+}
+
+.errorInput {
+  color: red !important;
+  padding: 0;
+  font-size: 10px !important;
+  //margin-top: 5px;
+  //text-align: left;
+  position: absolute;
+  //top: 77px;
+  top: -35px;
+  width: 250px;
+}
+
+.formItem {
+  display: block;
+  width: 100%;
+  padding: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 1px solid $tertiary-green;
+  height: 48px;
+}

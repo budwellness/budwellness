@@ -1,0 +1,57 @@
+@mixin for-size($size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
+.partners {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 80px 0;
+    background-color: $background-secondary;
+
+    &__hemp {
+        width: 320px;
+        text-align: center;
+    }
+
+    &__green {
+        width: 320px;
+        display: none;
+        text-align: center;
+
+        @media (min-width: 576px) {
+            display: block;
+        }
+    }
+
+    &__verano {
+        width: 320px;
+        display: none;
+        text-align: center;
+
+        @include for-size(768px) {
+            display: block;
+        }
+    }
+
+    &__holy {
+        width: 320px;
+        display: none;
+        text-align: center;
+
+        @media (min-width: 992px) {
+            display: block;
+        }
+    }
+
+    &__cresco {
+        width: 320px;
+        display: none;
+        text-align: center;
+
+        @include for-size(1200px) {
+            display: block;
+        }
+    }
+}
