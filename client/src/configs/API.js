@@ -1,8 +1,6 @@
 // BASE URL:
 export const API_URL = 'https://budwellness.dan-it.com.ua/api';
 // export const API_URL = 'http://localhost:4000/api';
-// export const API_URL =
-//   'https://boiling-ocean-55962-97ab89365b50.herokuapp.com/api';
 
 // LOGIN API's:
 export const API_LOGIN = '/customers/login';
