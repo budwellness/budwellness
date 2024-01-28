@@ -7,6 +7,7 @@ import { danitApiCart } from './serverResponse/danitApi.cart';
 import { danitApiCustomer } from './serverResponse/danitApi.customer';
 import { danitApiOrders } from './serverResponse/danitApi.orders';
 import { danitApiGlobalConfig } from './serverResponse/danitApi.globalConfig';
+import { danitApiComments } from './serverResponse/danitApi.comments';
 import userReducer from './user/user.slice';
 import wishlistReducer from './wishlist/wishList.slice';
 import cartReducer from './cart/cart.slice';
@@ -14,6 +15,7 @@ import modalReducer from './modal/modal.slice';
 import cartModalReducer from './cartModal/cartModal.slice';
 import productsReducer from './product/product.slice';
 import filterReducer from './filter/filter.slice';
+import commentsReducer from './comments/comments.slice';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -23,6 +25,7 @@ const rootReducer = combineReducers({
   cartModal: cartModalReducer,
   products: productsReducer,
   filter: filterReducer,
+  comments: commentsReducer,
   [danitApiCart.reducerPath]: danitApiCart.reducer,
   [danitApiAuth.reducerPath]: danitApiAuth.reducer,
   [danitApiWishlist.reducerPath]: danitApiWishlist.reducer,
@@ -31,6 +34,7 @@ const rootReducer = combineReducers({
   [danitApiCustomer.reducerPath]: danitApiCustomer.reducer,
   [danitApiOrders.reducerPath]: danitApiOrders.reducer,
   [danitApiGlobalConfig.reducerPath]: danitApiGlobalConfig.reducer,
+  [danitApiComments.reducerPath]: danitApiComments.reducer,
 });
 
 const store = configureStore({
@@ -43,6 +47,7 @@ const store = configureStore({
     .concat(danitApiCustomer.middleware)
     .concat(danitApiOrders.middleware)
     .concat(danitApiGlobalConfig.middleware)
+    .concat(danitApiComments.middleware)
     .concat(localJsonApi.middleware),
 });
 

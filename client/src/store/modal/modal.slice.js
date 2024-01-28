@@ -1,4 +1,5 @@
-/* eslint-disable */
+/* eslint no-param-reassign:
+["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }] */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -26,7 +27,6 @@ const modalSlice = createSlice({
   },
 });
 
-export const { isModalAddToCartAction, setModal, isPopupOpenAction } =
-  modalSlice.actions;
+export const { isModalAddToCartAction, setModal, isPopupOpenAction } = modalSlice.actions;
 
 export default modalSlice.reducer;

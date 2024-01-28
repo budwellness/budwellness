@@ -23,20 +23,19 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import {
   userLoginUserAction,
   userLogoutUserAction,
+  setCustomerDataAction,
 } from './store/user/user.slice';
 
 // WISHLIST IMPORTS:
 import { setWishlistAction } from './store/wishlist/wishList.slice';
-import { isModalAddToCartAction } from './store/modal/modal.slice';
+import { isModalAddToCartAction, setModal } from './store/modal/modal.slice';
 
 import { useLazyGetWishlistQuery } from './store/serverResponse/danitApi.wishlist';
+import { useLazyGetCustomerDataQuery } from './store/serverResponse/danitApi.customer';
 
 // CART IMPORTS:
 import { setCartAction, setLocalCartAction } from './store/cart/cart.slice';
 import { useLazyGetCartQuery } from './store/serverResponse/danitApi.cart';
-
-import { useLazyGetCustomerDataQuery } from './store/serverResponse/danitApi.customer.js';
-import { setCustomerDataAction } from './store/user/user.slice';
 
 // import { useGetAllProductsQuery } from './store/serverResponse/fetchLocalJson';
 
@@ -44,11 +43,10 @@ import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import ContactPage from './pages/ContactPage/ContactPage';
 import isTokenExpired from './helpers/isTokenExpired';
-import Modal from './components/Modal/Modal.jsx';
+import Modal from './components/Modal/Modal';
 import ModalAddToCart from './components/ModalAddToCart/ModalAddToCart';
-import LoginForm from './components/LoginForm/LoginForm.jsx';
-import { setModal } from './store/modal/modal.slice.js';
-import Registration from './pages/RegistrationPage/Registration.jsx';
+import LoginForm from './components/LoginForm/LoginForm';
+import Registration from './pages/RegistrationPage/Registration';
 import OurTeam from './pages/OurTeam/OurTeam';
 import useFetchLocalCardProducts from './hooks/useFetchLocalCardProducts';
 import Profile from './pages/Profile/Profile.jsx';
@@ -77,8 +75,7 @@ function App() {
     { data: userWishListData, isSuccess: isSuccessUserWishlistData },
   ] = useLazyGetWishlistQuery();
 
-  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] =
-    useLazyGetCartQuery();
+  const [getCart, { data: userCartData, isSuccess: isSuccessUserCartData }] = useLazyGetCartQuery();
   const fetchLocalCartProducts = useFetchLocalCardProducts();
 
   const [
@@ -99,14 +96,13 @@ function App() {
   };
   const initUserOnLoad = () => {
     const localStorageToken = localStorage.getItem('token');
-    const userLocalCartData =
-      localStorage.getItem('localCart') === ''
-        ? ''
-        : JSON.parse(localStorage.getItem('localCart'));
+    const userLocalCartData = localStorage.getItem('localCart') === ''
+      ? ''
+      : JSON.parse(localStorage.getItem('localCart'));
     if (!localStorageToken) {
       if (userLocalCartData && userLocalCartData.length > 0) {
         const productsItemNo = userLocalCartData.map(
-          (product) => product.itemNo
+          (product) => product.itemNo,
         );
         const fetchLocalCardProductsHandler = async () => {
           await fetchLocalCartProducts(productsItemNo).then((response) => {
@@ -114,14 +110,14 @@ function App() {
               setLocalCartAction(
                 response.map((product) => {
                   const localCardProductQuantity = userLocalCartData.find(
-                    (item) => item.itemNo === product.itemNo
+                    (item) => item.itemNo === product.itemNo,
                   );
                   return {
                     product,
                     cartQuantity: localCardProductQuantity.cartQuantity,
                   };
-                })
-              )
+                }),
+              ),
             );
           });
         };
@@ -129,6 +125,9 @@ function App() {
       } else {
         localStorage.setItem('localCart', JSON.stringify([]));
       }
+    } else if (isTokenExpired(localStorageToken)) {
+      log('token expired');
+      dispatch(userLogoutUserAction());
     } else {
       if (isTokenExpired(localStorageToken)) {
         log('token expired');
@@ -158,7 +157,7 @@ function App() {
   const initUserCardOnLoad = () => {
     if (isUserLogin && userCartData) {
       dispatch(
-        setCartAction(userCartData.products)
+        setCartAction(userCartData.products),
         // setCartAction(
         //   userCartData.products.map((p) => {
         //     log('product', p)
@@ -227,8 +226,8 @@ function App() {
       </Routes>
       <Footer />
       <CartModal />
-      {isOpenModal &&
-        (isUserLogin ? (
+      {isOpenModal
+        && (isUserLogin ? (
           <button type="button" onClick={logoutHandler}>
             Logout
           </button>
